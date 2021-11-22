@@ -1,6 +1,7 @@
 ---
 title: about
 date: 2021-11-08 14:27:59
+refplus: true
 ---
 
 ## GitHub
@@ -20,8 +21,10 @@ date: 2021-11-08 14:27:59
 
 ## Research
 
-* An effective ROI extracting method for color brain slice in assisting the diagnostic analysis of epilepsy[^1]
-* A Fragment Fracture Surface Segmentation Method Based on Learning of Local Geometric Features on Margins Used for Automatic Utensil Reassembly[^2]
+
+
+* An effective ROI extracting method for color brain slice in assisting the diagnostic analysis of epilepsy{% ref 1 %}
+* A Fragment Fracture Surface Segmentation Method Based on Learning of Local Geometric Features on Margins Used for Automatic Utensil Reassembly{% ref 2 %}
 
 
 ## Experience
@@ -33,6 +36,15 @@ date: 2021-11-08 14:27:59
 
 **🏸Badminton** | **💪Fitness** | **🏊‍Swimming** | **🚲Cycling** | **🥘Cooking**
 
-[^1]: [An effective ROI extracting method for color brain slice in assisting the diagnostic analysis of epilepsy](https://dl.acm.org/doi/10.1145/3340037.3340041)
-[^2]:[A Fragment Fracture Surface Segmentation Method Based on Learning of Local Geometric Features on Margins Used for Automatic Utensil Reassembly](https://www.sciencedirect.com/science/article/abs/pii/S0010448520301561)
+
+
+***
+
+{% references %}
+
+[1] <a href="https://dl.acm.org/doi/10.1145/3340037.3340041">An effective ROI extracting method for color brain slice in assisting the diagnostic analysis of epilepsy</a>
+
+[2] <a href="https://www.sciencedirect.com/science/article/abs/pii/S0010448520301561">A Fragment Fracture Surface Segmentation Method Based on Learning of Local Geometric Features on Margins Used for Automatic Utensil Reassembly</a>
+
+{% endreferences %}
 
