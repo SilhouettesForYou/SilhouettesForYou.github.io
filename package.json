@@ -37,14 +37,20 @@
     "hexo-renderer-stylus": "^2.0.0",
     "hexo-seo-link-visualizer": "^0.0.3",
     "hexo-server": "^2.0.0",
-    "hexo-tag-chart": "^1.0.8",
+    "hexo-spoiler": "^1.7.3",
+    "hexo-tag-autogallery": "^0.0.1",
     "hexo-tag-color-block": "^0.0.3",
+    "hexo-tag-common": "^0.0.5",
+    "hexo-tag-echarts": "^1.0.0",
+    "hexo-tag-echarts3": "^1.1.2",
+    "hexo-tag-hint": "^0.3.1",
     "hexo-tag-map": "^1.1.9",
     "hexo-tag-mdline": "^1.0.0",
     "hexo-tag-owl": "^1.0.2",
     "hexo-theme-landscape": "^0.0.3",
-    "hexo-url-submission": "^1.0.5",
+    "hexo-wordcount": "^6.0.1",
     "live2d-widget-model-hijiki": "^1.0.5",
-    "live2d-widget-model-wanko": "^1.0.5"
+    "live2d-widget-model-wanko": "^1.0.5",
+    "markdown-it-ruby": "^0.1.1"
   }
 }

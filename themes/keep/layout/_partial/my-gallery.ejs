@@ -1,0 +1,20 @@
+<div class="gallery">
+    <% if (photos.length){ %>
+      <%
+        photos.forEach(function(photo) {
+          var path = config.root + photo;
+          
+      %>
+        <a class="gallery-photo" style="background-image: url(<%-path %>);" href="<%-path %>"></a>
+      <% }); %>
+    <% } %>
+  
+    <!--
+      If you use lightGallery, you can then simply use it by adding the following
+    -->
+    <!-- <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        lightGallery(document.querySelector('.post-gallery'));
+      });
+    </script> -->
+</div>
