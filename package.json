@@ -19,7 +19,6 @@
     "hexo-bilibili-card": "^0.6.0",
     "hexo-blog-encrypt": "^3.1.6",
     "hexo-butterfly-tag-plugins-plus": "^1.0.3",
-    "hexo-cli-extras": "^1.0.4",
     "hexo-deployer-git": "^3.0.0",
     "hexo-filter-mathjax": "^0.8.0",
     "hexo-filter-mermaid-diagrams": "^1.0.5",
