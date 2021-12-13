@@ -1,0 +1,166 @@
+﻿body{
+	padding: 0px;
+	margin: 0px;
+	font-family:"Lato","Helvetica Neue","Arial",Sans-Serif;
+	background:url(../img/bg.jpg) ;
+}
+.container{
+	width: 600px;
+	margin: 0px auto;
+}
+.hide{
+	display: none;
+}
+
+
+.nav{
+	
+	height: 48px;
+    background: #fff;
+    line-height: 48px;
+    text-align: center;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 100;
+
+}
+.nav h1{
+	margin: 0px;
+	font-size:20px;
+	font-weight:normal;
+	cursor: default;
+}
+.inputwarpper{
+	width: 600px;
+	background-color: rgba(0,0,0,0.4);
+	height: 40px;
+	margin: 60px auto 20px;
+	border-radius: 3px;
+	line-height: 40px;
+}
+.inputwarpper .txt{
+	margin: 0px 10px;
+	width: 580px;
+	border:none;
+	background-color: transparent; /*背景透明*/
+	outline:none;
+	color: #fff;
+	text-shadow: 0 1px 2px rgba(0,0,0,0.8);
+}
+.inputwarpper .txt::-webkit-input-placeholder {
+	color: #fff;
+}
+
+.list {
+	list-style-type: none;
+	margin: 0px;
+	padding: 0px;
+	width: 600px;
+	margin: 0px auto;
+}
+.list li {
+	
+	margin-bottom: 3px;
+}
+.list li div{
+	padding: 10px 0px 10px 30px;
+	font-size:14px;
+	background-color: rgba(255,255,255,0.8);
+	border-radius:3px;
+	box-shadow: 0 1px 2px rgba(0,0,0,0.3); 
+	position: relative;
+}
+.list li div span {
+	display: inline-block;
+	width: 12px;
+	height: 12px;
+	border:1px solid #888;
+	border-radius:2px;
+	position: absolute;
+	left:8px;
+	top:11px;
+}
+.list li div span:hover{
+	cursor: pointer;
+}
+
+/***********************/
+.list .done div{
+	background-color: rgba(255,255,255,0.3);
+	color: #666;
+	text-decoration: line-through;
+}
+.list .done div span:after{
+	font-family: FontAwesome;
+	content: "\f00c";
+	position: absolute;
+	top:-2px;
+	/*left: 2px;*/
+}
+
+.numberLink{
+	display: inline-block;
+	margin: 10px 0px;
+	background: rgba(0,0,0,0.4);
+	border-radius:3px;
+	color: #fff;
+	padding: 5px;
+	font-size:12px;
+	text-decoration: none;
+	cursor: default;
+}
+
+.history{
+	width: 600px;
+    margin: 20px auto 10px;
+	
+	
+}
+
+.history span{
+	
+	display: inline-block;
+    font-size: 12px;
+    color: #fff;
+    background: rgba(0,0,0,0.4);
+    padding: 5px;
+    border-radius: 3px;
+    cursor: pointer
+}
+.history_content{
+	width: 600px;
+    margin: 0px auto 50px;
+	
+}
+.his_title{
+	
+	margin: 15px 0 5px;
+}
+.his_date{
+	background: #fff;
+    display: inline-block;
+    padding: 3px;
+    border-radius: 9px;
+    /* margin: 0 4px; */
+    font-size: 14px;
+    cursor: default;
+   
+	
+}
+.his_clear{
+	float: right;
+	background: #fff;
+    border-radius: 9px;
+    padding: 1px 6px;
+    font-size: 13px;
+    color: #666;
+    cursor: pointer;
+    margin-right: 5px;
+}
+.his_clear:hover{
+	background: #ccc;
+	font-size:14px
+	
+}
+

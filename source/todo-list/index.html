@@ -1,0 +1,43 @@
+﻿<!doctype html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="Cache-Control" content="Private"/>
+	<link rel="stylesheet" href="css/font-awesome.min.css">
+	<link rel="stylesheet" href="css/style.css">
+	<title>TodoList</title>
+</head>
+<body>
+	<!--导航-->
+	<div class="nav">
+		<h1><i class="fa fa-tasks"></i> TodoList</h1>
+	</div>
+	
+	<div class="inputwarpper">
+		<input id="input" type="text" class="txt" placeholder="+ 添加一个新任务，回车键结束">
+	</div>
+	
+	<ul class="list" id="newTaskList">
+		
+	</ul>
+	
+	<div class="container hide">
+		<a href="javascript:;" class="numberLink">已经完成<span id="taskNum">0</span>个任务</a>
+	</div>
+	
+	<ul class="list" id="doneTaskList">
+		
+	</ul>
+	
+	<div class="history hide">
+		<span class="his_open" ref="true">历史记录(点击展开)</span>
+	</div>
+	<div class="history_content">
+		
+	</div>
+	
+	<script src="js/app.js"></script>
+	
+	
+</body>
+</html>
