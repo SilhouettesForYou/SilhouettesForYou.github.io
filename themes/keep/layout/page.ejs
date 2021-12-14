@@ -7,6 +7,7 @@
 
     <div class="page-main-content">
 
+        
         <div class="page-main-content-top">
             <%- partial('_partial/header') %>
         </div>
@@ -17,7 +18,6 @@
 
                 <% if (is_home()) { %>
                     <%- partial('home-content') %>
-
                 <% } else if (is_archive()) { %>
                     <%- partial('archive-content') %>
 

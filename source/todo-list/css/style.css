@@ -2,7 +2,11 @@
 	padding: 0px;
 	margin: 0px;
 	font-family:"Lato","Helvetica Neue","Arial",Sans-Serif;
-	background:url(../img/bg.jpg) ;
+	background:url(../img/bg-2.jpg) no-repeat center center fixed;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
 }
 .container{
 	width: 600px;
