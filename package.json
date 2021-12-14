@@ -23,6 +23,7 @@
     "hexo-filter-mathjax": "^0.8.0",
     "hexo-filter-mermaid-diagrams": "^1.0.5",
     "hexo-generator-archive": "^1.0.0",
+    "hexo-generator-calendar": "^0.1.0",
     "hexo-generator-category": "^1.0.0",
     "hexo-generator-feed": "^3.0.0",
     "hexo-generator-index": "^2.0.0",
