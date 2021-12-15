@@ -302,7 +302,7 @@
         var cMainPad = $('<tbody/>');
         var day = 1;
         var dayOfNextMonth = 1;
-        for (var i = 0; i < 6; i++) {
+        for (var i = 0; i < 5; i++) {
           var cWeek = $('<tr/>');
           for (var j = 0; j < 7; j++) {
             var cDay = $('<td/>');

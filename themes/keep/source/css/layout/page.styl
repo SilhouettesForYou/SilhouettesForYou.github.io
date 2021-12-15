@@ -146,6 +146,22 @@ $page-aside-width = $temp-width ? convert($temp-width) : 260px;
 
   }
 
+  .widget-wrap {
+    position: fixed;
+    top: $header-height + $component-spacing-value;
+    right: $component-spacing-value;
+    width: $page-aside-width;
+
+    +keep-tablet() {
+      visibility: hidden;
+    }
+
+
+    +keep-mobile() {
+      visibility: hidden;
+    }
+  }
+
 
   .post-tools {
     position: fixed;

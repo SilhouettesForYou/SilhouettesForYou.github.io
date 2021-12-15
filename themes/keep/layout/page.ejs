@@ -18,6 +18,10 @@
 
                 <% if (is_home()) { %>
                     <%- partial('home-content') %>
+                    <%- partial('_partial/calendar') %>
+                    <div class="widget-wrap">
+                        <div class="widget" id="CloudCalendar"></div>
+                    </div>
                 <% } else if (is_archive()) { %>
                     <%- partial('archive-content') %>
 
