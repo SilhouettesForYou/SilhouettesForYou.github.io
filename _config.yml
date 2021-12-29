@@ -108,7 +108,7 @@ theme: keep
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
   type: git
-  repo: https://github.com/SilhouettesForYou/SilhouettesForYou.github.io.git
+  repo: git@github.com:SilhouettesForYou/SilhouettesForYou.github.io.git
   branch: master
 
 # Search
