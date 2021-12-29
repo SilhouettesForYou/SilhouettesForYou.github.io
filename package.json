@@ -14,11 +14,12 @@
   },
   "dependencies": {
     "@iktakahiro/markdown-it-katex": "^4.0.1",
-    "hexo": "^5.0.0",
+    "hexo": "^5.4.0",
     "hexo-asset-image": "github:CodeFalling/hexo-asset-image",
     "hexo-bilibili-card": "^0.6.0",
     "hexo-blog-encrypt": "^3.1.6",
     "hexo-butterfly-tag-plugins-plus": "^1.0.3",
+    "hexo-cli": "^4.3.0",
     "hexo-deployer-git": "^3.0.0",
     "hexo-filter-mathjax": "^0.8.0",
     "hexo-filter-mermaid-diagrams": "^1.0.5",

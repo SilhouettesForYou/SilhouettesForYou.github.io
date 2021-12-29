@@ -116,7 +116,7 @@ deploy:
 search:
   path: search.json
   field: post
-  content: true
+  content: true 
   format: striptags
 
 live2d:
