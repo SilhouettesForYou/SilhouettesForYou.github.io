@@ -18,7 +18,7 @@
     "hexo-asset-image": "github:CodeFalling/hexo-asset-image",
     "hexo-bilibili-card": "^0.6.0",
     "hexo-blog-encrypt": "^3.1.6",
-    "hexo-butterfly-tag-plugins-plus": "^1.0.3",
+    "hexo-butterfly-tag-plugins-plus": "^1.0.10",
     "hexo-deployer-git": "^3.0.0",
     "hexo-filter-mathjax": "^0.8.0",
     "hexo-filter-mermaid-diagrams": "^1.0.5",
