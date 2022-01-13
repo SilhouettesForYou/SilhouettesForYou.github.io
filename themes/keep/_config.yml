@@ -112,7 +112,7 @@ post:
 # ---------------------------------------------------------------------------------------
 code_copy:
   enable: true
-  style: default # values: default | mac
+  style: mac # values: default | mac
 
 # ---------------------------------------------------------------------------------------
 # Table of Contents in the Sidebar
