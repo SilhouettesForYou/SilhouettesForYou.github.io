@@ -8,6 +8,7 @@ permalink: /404
 <link rel="icon" href="/404/favicon.svg">
 <!-- css文件 -->
 <link rel="stylesheet" type="text/css" href="/404/style.css">
+
 <!DOCTYPE html>
 <html lang="en" >
 <head>

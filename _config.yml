@@ -30,6 +30,7 @@ code_dir: downloads/code
 i18n_dir: :lang
 skip_render:
   - todo-list/**
+  - lover/**
   - _posts/24/data.json
 
 # Writing
