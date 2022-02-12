@@ -1,17 +1,3 @@
----
-title: 风烟俱静 天山共色
-toc: false
-date: 2021-12-07 14:26:48
-categories: 相册
-tags:
-- 风景
-sticky: 700
----
-
-<p align="center">树深时见鹿，溪午不闻钟</p>
-
-<!-- more-->
-
 <div class="masonry-gallery" id="gallery">
   <div class="gallery-item">
     <div class="content">
@@ -499,33 +485,3 @@ sticky: 700
     </div>
   </div>
 </div>
-
-<script>
-var gallery = document.querySelector('#gallery');
-var getVal = function (elem, style) { return parseInt(window.getComputedStyle(elem).getPropertyValue(style)); };
-var getHeight = function (item) { return item.querySelector('.content').getBoundingClientRect().height; };
-var resizeAll = function () {
-    var altura = getVal(gallery, 'grid-auto-rows');
-    var gap = getVal(gallery, 'grid-row-gap');
-    gallery.querySelectorAll('.gallery-item').forEach(function (item) {
-        var el = item;
-        el.style.gridRowEnd = "span " + Math.ceil((getHeight(item) + gap) / (altura + gap));
-    });
-};
-gallery.querySelectorAll('img').forEach(function (item) {
-    item.classList.add('byebye');
-    if (item.complete) {
-        console.log(item.src);
-    }
-    else {
-        item.addEventListener('load', function () {
-            var altura = getVal(gallery, 'grid-auto-rows');
-            var gap = getVal(gallery, 'grid-row-gap');
-            var gitem = item.parentElement.parentElement;
-            gitem.style.gridRowEnd = "span " + Math.ceil((getHeight(gitem) + gap) / (altura + gap));
-            item.classList.remove('byebye');
-        });
-    }
-});
-window.addEventListener('resize', resizeAll);
-</script>
