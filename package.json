@@ -10,7 +10,7 @@
     "show-article-map": "node node_modules/hexo-seo-link-visualizer/app/show-article-map.js"
   },
   "hexo": {
-    "version": "5.4.1"
+    "version": "5.4.0"
   },
   "dependencies": {
     "@iktakahiro/markdown-it-katex": "^4.0.1",
