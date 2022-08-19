@@ -10,11 +10,11 @@
     "show-article-map": "node node_modules/hexo-seo-link-visualizer/app/show-article-map.js"
   },
   "hexo": {
-    "version": "5.4.0"
+    "version": "5.4.2"
   },
   "dependencies": {
     "@iktakahiro/markdown-it-katex": "^4.0.1",
-    "hexo": "^5.4.0",
+    "hexo": "^5.4.2",
     "hexo-admonition": "^1.1.2",
     "hexo-asset-image": "github:CodeFalling/hexo-asset-image",
     "hexo-bilibili-card": "^0.6.0",
