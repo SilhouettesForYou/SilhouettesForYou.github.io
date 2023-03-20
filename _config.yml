@@ -111,6 +111,8 @@ deploy:
   type: git
   repo: https://github.com/SilhouettesForYou/SilhouettesForYou.github.io.git
   branch: master
+  name: SilhouettesForYou
+  email: mgze.wang@gmail.com
 
 # Search
 ## See: https://github.com/theme-next/hexo-generator-searchdb
