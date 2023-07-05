@@ -7,3 +7,4 @@ public/
 .deploy*/
 cache/
 cache/seo-link-visualizer.json
+.markdownlint.json
