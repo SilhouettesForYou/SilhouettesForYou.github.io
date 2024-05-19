@@ -23,8 +23,6 @@
     
     <title>
         
-            在 Windows 中将 VSCode 添加至右键菜单 |
-        
         Silhouettes For You
     </title>
     
@@ -227,7 +225,7 @@ p.spoiler {
     <div class="article-content-container">
 
         <div class="article-title">
-            <span class="title-hover-animation">在 Windows 中将 VSCode 添加至右键菜单</span>
+            <span class="title-hover-animation"></span>
         </div>
 
         
@@ -243,45 +241,15 @@ p.spoiler {
                     <div class="meta-info">
                         <div class="article-meta-info">
     <span class="article-date article-meta-item">
-        <i class="fas fa-edit"></i>&nbsp;2021-12-09 16:15:24
+        <i class="fas fa-edit"></i>&nbsp;2024-05-19 10:21:19
     </span>
     
-        <span class="article-categories article-meta-item">
-            <i class="fas fa-folder"></i>&nbsp;
-            <ul>
-                
-                    <li>
-                        <a href="/categories/Tools/">Tools</a>&nbsp;
-                    </li>
-                
-            </ul>
-        </span>
-    
-    
-        <span class="article-tags article-meta-item">
-            <i class="fas fa-tags"></i>&nbsp;
-            <ul>
-                
-                    <li>
-                        <a href="/tags/vscode/">vscode</a>&nbsp;
-                    </li>
-                
-                    <li>
-                        | <a href="/tags/%E5%8F%B3%E9%94%AE%E8%8F%9C%E5%8D%95/">右键菜单</a>&nbsp;
-                    </li>
-                
-                    <li>
-                        | <a href="/tags/%E6%B3%A8%E5%86%8C%E8%A1%A8/">注册表</a>&nbsp;
-                    </li>
-                
-            </ul>
-        </span>
     
 
     
     
         <span class="article-wordcount article-meta-item">
-            <i class="fas fa-file-word"></i>&nbsp;<span>177 字</span>
+            <i class="fas fa-file-word"></i>&nbsp;<span>308 字</span>
         </span>
     
     
@@ -294,10 +262,46 @@ p.spoiler {
         
 
         <div class="article-content markdown-body">
-            <link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>Windows 上面安装 Visual Studio Code 后，将 <span class="hint--info hint--rounded hint--top" data-hint="右键快捷方式" ontouchstart>Open with Code</span> 添加到鼠标右键菜单里</p>
-<span id="more"></span>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">Windows Registry Editor Version 5.00</span><br><span class="line"> </span><br><span class="line">[HKEY_CLASSES_ROOT\*\shell\VSCode]</span><br><span class="line">@=<span class="string">&quot;Open with Code&quot;</span></span><br><span class="line"><span class="string">&quot;Icon&quot;</span>=<span class="string">&quot;D:\\Microsoft VS Code\\Code.exe&quot;</span></span><br><span class="line"> </span><br><span class="line">[HKEY_CLASSES_ROOT\*\shell\VSCode\<span class="built_in">command</span>]</span><br><span class="line">@=<span class="string">&quot;\&quot;D:\\Microsoft VS Code\\Code.exe\&quot; \&quot;%1\&quot;&quot;</span></span><br><span class="line"> </span><br><span class="line">Windows Registry Editor Version 5.00</span><br><span class="line"> </span><br><span class="line">[HKEY_CLASSES_ROOT\Directory\shell\VSCode]</span><br><span class="line">@=<span class="string">&quot;Open with Code&quot;</span></span><br><span class="line"><span class="string">&quot;Icon&quot;</span>=<span class="string">&quot;D:\\Microsoft VS Code\\Code.exe&quot;</span></span><br><span class="line"> </span><br><span class="line">[HKEY_CLASSES_ROOT\Directory\shell\VSCode\<span class="built_in">command</span>]</span><br><span class="line">@=<span class="string">&quot;\&quot;D:\\Microsoft VS Code\\Code.exe\&quot; \&quot;%V\&quot;&quot;</span></span><br><span class="line"> </span><br><span class="line">Windows Registry Editor Version 5.00</span><br><span class="line"> </span><br><span class="line">[HKEY_CLASSES_ROOT\Directory\Background\shell\VSCode]</span><br><span class="line">@=<span class="string">&quot;Open with Code&quot;</span></span><br><span class="line"><span class="string">&quot;Icon&quot;</span>=<span class="string">&quot;D:\\Microsoft VS Code\\Code.exe&quot;</span></span><br><span class="line"> </span><br><span class="line">[HKEY_CLASSES_ROOT\Directory\Background\shell\VSCode\<span class="built_in">command</span>]</span><br><span class="line">@=<span class="string">&quot;\&quot;D:\\Microsoft VS Code\\Code.exe\&quot; \&quot;%V\&quot;&quot;</span></span><br></pre></td></tr></table></figure>
-<p>将以上代码复制到后缀为 <code>.reg</code> 的文件中，双击确定即可。</p>
+            <link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Markmap</title>
+<style>
+* {
+  margin: 0;
+  padding: 0;
+}
+#mindmap {
+  display: block;
+  width: 100vw;
+  height: 100vh;
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/markmap-toolbar@0.17.0/dist/style.css">
+</head>
+<body>
+<svg id="mindmap"/>
+<script src="https://cdn.jsdelivr.net/npm/d3@7.8.5/dist/d3.min.js"></script><script src="https://cdn.jsdelivr.net/npm/markmap-view@0.17.0/dist/browser/index.js"></script><script src="https://cdn.jsdelivr.net/npm/markmap-toolbar@0.17.0/dist/index.js"></script><script>(r => {setTimeout(r);
+              })(() => {
+  const {
+    markmap,
+    mm
+  } = window;
+  const {el} = markmap.Toolbar.create(mm);
+  el.setAttribute('style', 'position:absolute;bottom:20px;right:20px');
+  document.body.append(el);
+})</script><script>((getMarkmap, getOptions, root2, jsonOptions) => {const markmap = getMarkmap();
+              window.mm = markmap.Markmap.create(
+                "svg#mindmap",
+                (getOptions || markmap.deriveOptions)(jsonOptions),
+                root2
+              );
+            })(() => window.markmap,null,{"content":"CutScene","children":[{"content":"运行时","children":[{"content":"管理器","children":[{"content":"资源加载、绑定","children":[],"payload":{"lines":"5,6"}},{"content":"显隐控制","children":[],"payload":{"lines":"6,7"}}],"payload":{"lines":"4,7"}},{"content":"轨道","children":[{"content":"镜头","children":[],"payload":{"lines":"8,9"}},{"content":"动作","children":[],"payload":{"lines":"9,10"}},{"content":"特效","children":[],"payload":{"lines":"10,11"}},{"content":"音频","children":[],"payload":{"lines":"11,12"}},{"content":"UI","children":[],"payload":{"lines":"12,13"}},{"content":"...","children":[],"payload":{"lines":"13,14"}}],"payload":{"lines":"7,14"}},{"content":"额外功能","children":[{"content":"过渡表现","children":[],"payload":{"lines":"15,16"}},{"content":"播放时实时加载 NPC","children":[],"payload":{"lines":"16,17"}},{"content":"...","children":[],"payload":{"lines":"17,19"}}],"payload":{"lines":"14,19"}}],"payload":{"lines":"2,3"}},{"content":"编辑器","children":[{"content":"编辑数据","children":[{"content":".playable","children":[],"payload":{"lines":"22,23"}},{"content":".xml","children":[],"payload":{"lines":"23,24"}},{"content":".prefab","children":[],"payload":{"lines":"24,25"}},{"content":"bytes","children":[],"payload":{"lines":"25,26"}}],"payload":{"lines":"21,26"}},{"content":"预览","children":[{"content":"镜头","children":[],"payload":{"lines":"27,28"}},{"content":"动作","children":[],"payload":{"lines":"28,29"}},{"content":"后处理","children":[],"payload":{"lines":"29,30"}},{"content":"...","children":[],"payload":{"lines":"30,31"}}],"payload":{"lines":"26,31"}},{"content":"易用性","children":[{"content":"运行时编辑、预览","children":[],"payload":{"lines":"32,33"}}],"payload":{"lines":"31,33"}}],"payload":{"lines":"19,20"}}],"payload":{"lines":"0,1"}},{})</script>
+<!-- hexo injector body_end start --><script src="https://cdn.jsdelivr.net/npm/hexo-tag-common@0.0.5/js/index.js"></script><!-- hexo injector body_end end --></body>
+</html>
 
         </div>
 
@@ -306,29 +310,14 @@ p.spoiler {
         
             <div class="article-nav">
                 
-                    <div class="article-prev">
-                        <a class="prev"
-                           rel="prev"
-                           href="/2021/12/10/28/"
-                        >
-                            <span class="left arrow-icon flex-center">
-                              <i class="fas fa-chevron-left"></i>
-                            </span>
-                            <span class="title flex-center">
-                                <span class="post-nav-title-item">实时阴影</span>
-                                <span class="post-nav-item">上一篇</span>
-                            </span>
-                        </a>
-                    </div>
-                
                 
                     <div class="article-next">
                         <a class="next"
                            rel="next"
-                           href="/2021/12/07/26/"
+                           href="/2024/05/13/51/"
                         >
                             <span class="title flex-center">
-                                <span class="post-nav-title-item">树深时见鹿，溪午不闻钟</span>
+                                <span class="post-nav-title-item">面经</span>
                                 <span class="post-nav-item">下一篇</span>
                             </span>
                             <span class="right arrow-icon flex-center">
@@ -499,12 +488,6 @@ p.spoiler {
     
         <aside class="page-aside">
             
-    <div class="post-toc-wrap">
-        <div class="post-toc">
-            
-        </div>
-    </div>
-
 
         </aside>
     
@@ -569,5 +552,5 @@ p.spoiler {
 
 
 
-<!-- hexo injector body_end start --><script src="https://cdn.jsdelivr.net/npm/hexo-tag-common@0.0.5/js/index.js"></script><!-- hexo injector body_end end --><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7}});</script></body>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7}});</script></body>
 </html>
