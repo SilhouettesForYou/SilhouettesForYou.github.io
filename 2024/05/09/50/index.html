@@ -225,7 +225,7 @@ mjx-container[display="true"] + br {
                             <a class=""
                                href="/"
                             >
-                                首页
+                                HOME
                             </a>
                         </li>
                     
@@ -233,7 +233,7 @@ mjx-container[display="true"] + br {
                             <a class=""
                                href="/archives"
                             >
-                                归档
+                                ARCHIVES
                             </a>
                         </li>
                     
@@ -241,7 +241,7 @@ mjx-container[display="true"] + br {
                             <a class=""
                                href="/categories"
                             >
-                                分类
+                                CATEGORIES
                             </a>
                         </li>
                     
@@ -249,7 +249,7 @@ mjx-container[display="true"] + br {
                             <a class=""
                                href="/tags"
                             >
-                                标签
+                                TAGS
                             </a>
                         </li>
                     
@@ -265,7 +265,7 @@ mjx-container[display="true"] + br {
                             <a class=""
                                href="/about"
                             >
-                                关于
+                                ABOUT
                             </a>
                         </li>
                     
@@ -292,22 +292,22 @@ mjx-container[display="true"] + br {
             
                 <li class="drawer-menu-item flex-center">
                     <a class=""
-                       href="/">首页</a>
+                       href="/">HOME</a>
                 </li>
             
                 <li class="drawer-menu-item flex-center">
                     <a class=""
-                       href="/archives">归档</a>
+                       href="/archives">ARCHIVES</a>
                 </li>
             
                 <li class="drawer-menu-item flex-center">
                     <a class=""
-                       href="/categories">分类</a>
+                       href="/categories">CATEGORIES</a>
                 </li>
             
                 <li class="drawer-menu-item flex-center">
                     <a class=""
-                       href="/tags">标签</a>
+                       href="/tags">TAGS</a>
                 </li>
             
                 <li class="drawer-menu-item flex-center">
@@ -317,7 +317,7 @@ mjx-container[display="true"] + br {
             
                 <li class="drawer-menu-item flex-center">
                     <a class=""
-                       href="/about">关于</a>
+                       href="/about">ABOUT</a>
                 </li>
             
         </ul>
@@ -385,7 +385,7 @@ mjx-container[display="true"] + br {
     
     
         <span class="article-wordcount article-meta-item">
-            <i class="fas fa-file-word"></i>&nbsp;<span>6.4k 字</span>
+            <i class="fas fa-file-word"></i>&nbsp;<span>6.4k Words</span>
         </span>
     
     
@@ -781,18 +781,18 @@ mjx-container[display="true"] + br {
 <li><code>PlayableAsset</code>：片段资源，用来创建 Playable 以及提供序列化数据</li>
 <li><code>PlayableBehaviour</code>：逻辑行为，用来实现 Playable 具体的业务逻辑</li>
 </ul>
-<h2 id="资源管理"><a href="# 资源管理" class="headerlink" title="资源管理"></a>资源管理 </h2><h3 id="RO 的资源打包流程"><a href="#RO 的资源打包流程" class="headerlink" title="RO 的资源打包流程"></a>RO 的资源打包流程</h3><p> 所有可能被打包的资源都会被归类到一个个的 filter 类中</p>
+<h2 id="资源管理"><a href="# 资源管理" class="headerlink" title="资源管理"></a>资源管理 </h2><h3 id="RO- 的资源打包流程"><a href="#RO- 的资源打包流程" class="headerlink" title="RO 的资源打包流程"></a>RO 的资源打包流程</h3><p> 所有可能被打包的资源都会被归类到一个个的 filter 类中</p>
 <ul>
 <li>ABDir：处理后的资源存放的文件夹（前缀都是 roab/ 平台）</li>
 <li>AbType：资源类型。一共三大类型：<ul>
-<li>AB：需要打成 AB 的资源   基类为：ABBaseFilter</li>
-<li>bytes：后缀为 robytes 的资源   基类为：ABBaseFilter</li>
-<li>直接 copy 的资源：音频、视频、Resources\QualitySetting 和 MiniStringPool 中的 json 文件基类为：ABCopyBaseFilter。他的基类为：ABBaseFilter</li>
+<li>AB：需要打成 AB 的资源   基类为：<code>ABBaseFilter</code></li>
+<li>bytes：后缀为 robytes 的资源   基类为：<code>ABBaseFilter</code></li>
+<li>直接 copy 的资源：音频、视频、Resources\QualitySetting 和 MiniStringPool 中的 json 文件基类为：<code>ABCopyBaseFilter</code>。他的基类为：<code>ABBaseFilter</code></li>
 </ul>
 </li>
 <li>Filters：将要处理的资源列表。 所有的资源都会用 ABFilter 数据结构存储</li>
 </ul>
-<h3 id="打 AB 流程"><a href="# 打 AB 流程" class="headerlink" title="打 AB 流程"></a>打 AB 流程</h3><ul>
+<h3 id="打 -AB- 流程"><a href="# 打 -AB- 流程" class="headerlink" title="打 AB 流程"></a>打 AB 流程</h3><ul>
 <li>XbuildAB：打 AB 的接口文件，这里可以看到打 AB 的各个步骤</li>
 <li>XABContainer：管理所有的 XABItem</li>
 <li>XABItem：AB 的最小单位，一个小的资源对应一个 XABItem 实例。但并不是所有的都会导出</li>
@@ -808,7 +808,7 @@ mjx-container[display="true"] + br {
 <li>分析依赖<ul>
 <li>分析步骤一中生成的所有 XABItem 的依赖关系，从而找到所有可能被打成 AB 的资源，并记下来其前后依赖关系（我依赖了哪些，哪些依赖了我，要求不能循环引用）</li>
 <li>确定需要导出的 AB 列表，是否导出根据如下规则<ul>
-<li><code>Asset = 1</code>  // 普通素材，被根素材依赖的, 跟随其根素材到一个 AB 中</li>
+<li><code>Asset = 1</code>  // 普通素材，被根素材依赖的，跟随其根素材到一个 AB 中</li>
 <li><code>Root = 1 &lt;&lt; 1</code> // 根，只有 filter 中指定的才会是根，会被单独打成 AB</li>
 <li><code>Standalone = 1 &lt;&lt; 2</code> // 被两个或者离两个以上素材引用的会被单独打成 AB</li>
 </ul>
@@ -842,7 +842,7 @@ mjx-container[display="true"] + br {
 </ul>
 </li>
 <li>脚本<ul>
-<li>通过 luajit 将.lua 文件处理成二进制文件</li>
+<li>通过 luajit 将。lua 文件处理成二进制文件</li>
 </ul>
 </li>
 <li>其他资源</li>
@@ -873,7 +873,7 @@ mjx-container[display="true"] + br {
                             </span>
                             <span class="title flex-center">
                                 <span class="post-nav-title-item">面经</span>
-                                <span class="post-nav-item">上一篇</span>
+                                <span class="post-nav-item">Prev posts</span>
                             </span>
                         </a>
                     </div>
@@ -886,7 +886,7 @@ mjx-container[display="true"] + br {
                         >
                             <span class="title flex-center">
                                 <span class="post-nav-title-item">Life of a triangle</span>
-                                <span class="post-nav-item">下一篇</span>
+                                <span class="post-nav-item">Next posts</span>
                             </span>
                             <span class="right arrow-icon flex-center">
                               <i class="fas fa-chevron-right"></i>
@@ -902,7 +902,7 @@ mjx-container[display="true"] + br {
                 <div class="comments-container">
     <div id="comment-anchor"></div>
     <div class="comment-area-title">
-        <i class="fas fa-comments">&nbsp;评论</i>
+        <i class="fas fa-comments">&nbsp;Comments</i>
     </div>
     
 
@@ -1058,7 +1058,7 @@ mjx-container[display="true"] + br {
             
     <div class="post-toc-wrap">
         <div class="post-toc">
-            <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%A2%E6%88%B7%E7%AB%AF%E8%87%AA%E5%8A%A8%E6%88%98%E6%96%97%20-AI"><span class="nav-number">1.</span> <span class="nav-text">客户端自动战斗 AI</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Behaviour-Designer-%20%E8%A1%8C%E4%B8%BA%E6%A0%91%E6%8F%92%E4%BB%B6"><span class="nav-number">1.1.</span> <span class="nav-text">Behaviour Designer 行为树插件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#AI-%20%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="nav-number">1.1.1.</span> <span class="nav-text">AI 的解决方案</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Behaviour-Designer-%20%E4%B8%AD%E7%9A%84%20-Task"><span class="nav-number">1.2.</span> <span class="nav-text">Behaviour Designer 中的 Task</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Action-%20%E5%92%8C%20-Conditional-%20%E8%87%AA%E5%AE%9A%E4%B9%89%20-Task"><span class="nav-number">1.2.1.</span> <span class="nav-text">Action 和 Conditional 自定义 Task</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E7%9A%84%20-Parent-Tasks"><span class="nav-number">1.2.2.</span> <span class="nav-text">常用的 Parent Tasks</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%98%E9%87%8F%E7%9B%B8%E5%85%B3"><span class="nav-number">1.3.</span> <span class="nav-text">变量相关 </span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Behaviour-Designer-%20%E4%B8%AD%E7%9A%84%E5%85%B1%E4%BA%AB%E5%8F%98%E9%87%8F%E7%9A%84%E7%90%86%E8%A7%A3"><span class="nav-number">1.4.</span> <span class="nav-text">Behaviour Designer 中的共享变量的理解 </span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RO-%20%E4%B8%AD%E7%9A%84%20MShareData"><span class="nav-number">1.5.</span> <span class="nav-text">RO 中的 MShareData</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8F%AF%E5%85%B1%E4%BA%AB%E7%9A%84%E5%8F%98%E9%87%8F%E7%B1%BB%E5%9E%8B"><span class="nav-number">1.5.1.</span> <span class="nav-text"> 可共享的变量类型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#AI-%20%E8%8A%82%E7%82%B9%E4%B8%AD%E5%8F%98%E9%87%8F%E5%90%8D%E5%92%8C%E5%80%BC%E7%9A%84%E5%AD%98%E5%82%A8"><span class="nav-number">1.5.2.</span> <span class="nav-text">AI 节点中变量名和值的存储 </span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#PB-%20%E6%95%B0%E6%8D%AE"><span class="nav-number">1.5.3.</span> <span class="nav-text">PB 数据 </span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%AE%A2%E6%88%B7%E7%AB%AF%E8%A1%8C%E4%B8%BA%E6%A0%91%E7%9A%84%20-Node-%20%E7%94%9F%E6%88%90"><span class="nav-number">1.5.3.1.</span> <span class="nav-text"> 客户端行为树的 Node 生成</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%90%E8%A1%8C%E6%97%B6%20-AI"><span class="nav-number">1.6.</span> <span class="nav-text">运行时 AI</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="nav-number">1.6.1.</span> <span class="nav-text">初始化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%B0%83%E7%94%A8%E9%80%BB%E8%BE%91"><span class="nav-number">1.6.2.</span> <span class="nav-text">调用逻辑</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%A6%82%E4%BD%95%E8%BF%9B%E8%A1%8C%E8%87%AA%E5%8A%A8%E9%87%8A%E6%94%BE"><span class="nav-number">1.6.3.</span> <span class="nav-text">客户端如何进行自动释放</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%B8%E5%85%B3%E6%94%B9%E8%BF%9B"><span class="nav-number">1.7.</span> <span class="nav-text">相关改进 </span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%99%84%E8%BA%AB"><span class="nav-number">2.</span> <span class="nav-text">附身 </span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9C%80%E6%B1%82"><span class="nav-number">2.1.</span> <span class="nav-text"> 需求</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9E%E7%8E%B0%E6%96%B9%E5%BC%8F"><span class="nav-number">2.2.</span> <span class="nav-text">实现方式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Odin-OdinMenuTree"><span class="nav-number">3.</span> <span class="nav-text">Odin OdinMenuTree</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#UI-%20%E6%A1%86%E6%9E%B6"><span class="nav-number">4.</span> <span class="nav-text">UI 框架</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Windows-%20%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F"><span class="nav-number">4.1.</span> <span class="nav-text">Windows 生命周期</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#UIBase"><span class="nav-number">4.2.</span> <span class="nav-text">UIBase</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#UIManager"><span class="nav-number">4.3.</span> <span class="nav-text">UIManager</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AE%20-UI-%20%E5%B1%82%E7%BA%A7%EF%BC%88UILayer%EF%BC%89"><span class="nav-number">4.3.1.</span> <span class="nav-text">设置 UI 层级（UILayer）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%95%8C%E9%9D%A2%E7%B1%BB%E5%9E%8B%EF%BC%88ActiveType%EF%BC%89"><span class="nav-number">4.3.2.</span> <span class="nav-text">界面类型（ActiveType）</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%A7%E6%9C%AC%E8%A7%A3%E6%9E%90"><span class="nav-number">5.</span> <span class="nav-text">剧本解析 </span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E7%BB%93%E6%9E%84"><span class="nav-number">5.1.</span> <span class="nav-text"> 代码结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A7%A3%E6%9E%90%E7%89%B9%E6%AE%8A%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="nav-number">5.2.</span> <span class="nav-text">解析特殊表达式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#UI-Renderer-Texture"><span class="nav-number">6.</span> <span class="nav-text">UI Renderer Texture</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%20-URP-%20%E7%AE%A1%E7%BA%BF%E8%BF%9B%E8%A1%8C%20-RT-%20%E6%B8%B2%E6%9F%93"><span class="nav-number">6.1.</span> <span class="nav-text">使用 URP 管线进行 RT 渲染</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%20MCBRTRendererFeature"><span class="nav-number">6.1.1.</span> <span class="nav-text">自定义MCBRTRendererFeature</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TimeLine"><span class="nav-number">7.</span> <span class="nav-text">TimeLine</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%90%E8%A1%8C%E6%97%B6"><span class="nav-number">7.1.</span> <span class="nav-text">运行时</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#MCutSceneMgr"><span class="nav-number">7.1.1.</span> <span class="nav-text">MCutSceneMgr</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B6%E4%BB%96%E8%BE%85%E5%8A%A9%E7%B1%BB"><span class="nav-number">7.2.</span> <span class="nav-text">其他辅助类</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#PlayableBehaviour%E3%80%81PlayableAsset%20%E5%92%8C%20TrackAsset"><span class="nav-number">7.2.1.</span> <span class="nav-text">PlayableBehaviour、PlayableAsset和TrackAsset</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B5%84%E6%BA%90%E7%AE%A1%E7%90%86"><span class="nav-number">8.</span> <span class="nav-text">资源管理 </span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#RO%20%E7%9A%84%E8%B5%84%E6%BA%90%E6%89%93%E5%8C%85%E6%B5%81%E7%A8%8B"><span class="nav-number">8.1.</span> <span class="nav-text">RO 的资源打包流程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%89%93%20AB%20%E6%B5%81%E7%A8%8B"><span class="nav-number">8.2.</span> <span class="nav-text">打 AB 流程</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AF%BB%E8%A1%A8"><span class="nav-number">9.</span> <span class="nav-text">读表 </span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AF%BB%E5%8F%96%E6%95%B4%E8%A1%A8"><span class="nav-number">9.1.</span> <span class="nav-text"> 读取整表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AF%BB%E5%8F%96%E4%B8%80%E8%A1%8C"><span class="nav-number">9.2.</span> <span class="nav-text">读取一行</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hash"><span class="nav-number">10.</span> <span class="nav-text">Hash</span></a></li></ol>
+            <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%A2%E6%88%B7%E7%AB%AF%E8%87%AA%E5%8A%A8%E6%88%98%E6%96%97%20-AI"><span class="nav-number">1.</span> <span class="nav-text">客户端自动战斗 AI</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Behaviour-Designer-%20%E8%A1%8C%E4%B8%BA%E6%A0%91%E6%8F%92%E4%BB%B6"><span class="nav-number">1.1.</span> <span class="nav-text">Behaviour Designer 行为树插件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#AI-%20%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="nav-number">1.1.1.</span> <span class="nav-text">AI 的解决方案</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Behaviour-Designer-%20%E4%B8%AD%E7%9A%84%20-Task"><span class="nav-number">1.2.</span> <span class="nav-text">Behaviour Designer 中的 Task</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Action-%20%E5%92%8C%20-Conditional-%20%E8%87%AA%E5%AE%9A%E4%B9%89%20-Task"><span class="nav-number">1.2.1.</span> <span class="nav-text">Action 和 Conditional 自定义 Task</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E7%9A%84%20-Parent-Tasks"><span class="nav-number">1.2.2.</span> <span class="nav-text">常用的 Parent Tasks</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%98%E9%87%8F%E7%9B%B8%E5%85%B3"><span class="nav-number">1.3.</span> <span class="nav-text">变量相关 </span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Behaviour-Designer-%20%E4%B8%AD%E7%9A%84%E5%85%B1%E4%BA%AB%E5%8F%98%E9%87%8F%E7%9A%84%E7%90%86%E8%A7%A3"><span class="nav-number">1.4.</span> <span class="nav-text">Behaviour Designer 中的共享变量的理解 </span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RO-%20%E4%B8%AD%E7%9A%84%20MShareData"><span class="nav-number">1.5.</span> <span class="nav-text">RO 中的 MShareData</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8F%AF%E5%85%B1%E4%BA%AB%E7%9A%84%E5%8F%98%E9%87%8F%E7%B1%BB%E5%9E%8B"><span class="nav-number">1.5.1.</span> <span class="nav-text"> 可共享的变量类型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#AI-%20%E8%8A%82%E7%82%B9%E4%B8%AD%E5%8F%98%E9%87%8F%E5%90%8D%E5%92%8C%E5%80%BC%E7%9A%84%E5%AD%98%E5%82%A8"><span class="nav-number">1.5.2.</span> <span class="nav-text">AI 节点中变量名和值的存储 </span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#PB-%20%E6%95%B0%E6%8D%AE"><span class="nav-number">1.5.3.</span> <span class="nav-text">PB 数据 </span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%AE%A2%E6%88%B7%E7%AB%AF%E8%A1%8C%E4%B8%BA%E6%A0%91%E7%9A%84%20-Node-%20%E7%94%9F%E6%88%90"><span class="nav-number">1.5.3.1.</span> <span class="nav-text"> 客户端行为树的 Node 生成</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%90%E8%A1%8C%E6%97%B6%20-AI"><span class="nav-number">1.6.</span> <span class="nav-text">运行时 AI</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="nav-number">1.6.1.</span> <span class="nav-text">初始化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%B0%83%E7%94%A8%E9%80%BB%E8%BE%91"><span class="nav-number">1.6.2.</span> <span class="nav-text">调用逻辑</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%A6%82%E4%BD%95%E8%BF%9B%E8%A1%8C%E8%87%AA%E5%8A%A8%E9%87%8A%E6%94%BE"><span class="nav-number">1.6.3.</span> <span class="nav-text">客户端如何进行自动释放</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%B8%E5%85%B3%E6%94%B9%E8%BF%9B"><span class="nav-number">1.7.</span> <span class="nav-text">相关改进 </span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%99%84%E8%BA%AB"><span class="nav-number">2.</span> <span class="nav-text">附身 </span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9C%80%E6%B1%82"><span class="nav-number">2.1.</span> <span class="nav-text"> 需求</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9E%E7%8E%B0%E6%96%B9%E5%BC%8F"><span class="nav-number">2.2.</span> <span class="nav-text">实现方式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Odin-OdinMenuTree"><span class="nav-number">3.</span> <span class="nav-text">Odin OdinMenuTree</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#UI-%20%E6%A1%86%E6%9E%B6"><span class="nav-number">4.</span> <span class="nav-text">UI 框架</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Windows-%20%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F"><span class="nav-number">4.1.</span> <span class="nav-text">Windows 生命周期</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#UIBase"><span class="nav-number">4.2.</span> <span class="nav-text">UIBase</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#UIManager"><span class="nav-number">4.3.</span> <span class="nav-text">UIManager</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AE%20-UI-%20%E5%B1%82%E7%BA%A7%EF%BC%88UILayer%EF%BC%89"><span class="nav-number">4.3.1.</span> <span class="nav-text">设置 UI 层级（UILayer）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%95%8C%E9%9D%A2%E7%B1%BB%E5%9E%8B%EF%BC%88ActiveType%EF%BC%89"><span class="nav-number">4.3.2.</span> <span class="nav-text">界面类型（ActiveType）</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%A7%E6%9C%AC%E8%A7%A3%E6%9E%90"><span class="nav-number">5.</span> <span class="nav-text">剧本解析 </span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E7%BB%93%E6%9E%84"><span class="nav-number">5.1.</span> <span class="nav-text"> 代码结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A7%A3%E6%9E%90%E7%89%B9%E6%AE%8A%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="nav-number">5.2.</span> <span class="nav-text">解析特殊表达式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#UI-Renderer-Texture"><span class="nav-number">6.</span> <span class="nav-text">UI Renderer Texture</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%20-URP-%20%E7%AE%A1%E7%BA%BF%E8%BF%9B%E8%A1%8C%20-RT-%20%E6%B8%B2%E6%9F%93"><span class="nav-number">6.1.</span> <span class="nav-text">使用 URP 管线进行 RT 渲染</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%20MCBRTRendererFeature"><span class="nav-number">6.1.1.</span> <span class="nav-text">自定义MCBRTRendererFeature</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TimeLine"><span class="nav-number">7.</span> <span class="nav-text">TimeLine</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%90%E8%A1%8C%E6%97%B6"><span class="nav-number">7.1.</span> <span class="nav-text">运行时</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#MCutSceneMgr"><span class="nav-number">7.1.1.</span> <span class="nav-text">MCutSceneMgr</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B6%E4%BB%96%E8%BE%85%E5%8A%A9%E7%B1%BB"><span class="nav-number">7.2.</span> <span class="nav-text">其他辅助类</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#PlayableBehaviour%E3%80%81PlayableAsset%20%E5%92%8C%20TrackAsset"><span class="nav-number">7.2.1.</span> <span class="nav-text">PlayableBehaviour、PlayableAsset和TrackAsset</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B5%84%E6%BA%90%E7%AE%A1%E7%90%86"><span class="nav-number">8.</span> <span class="nav-text">资源管理 </span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#RO-%20%E7%9A%84%E8%B5%84%E6%BA%90%E6%89%93%E5%8C%85%E6%B5%81%E7%A8%8B"><span class="nav-number">8.1.</span> <span class="nav-text">RO 的资源打包流程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%89%93%20-AB-%20%E6%B5%81%E7%A8%8B"><span class="nav-number">8.2.</span> <span class="nav-text">打 AB 流程</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AF%BB%E8%A1%A8"><span class="nav-number">9.</span> <span class="nav-text">读表 </span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AF%BB%E5%8F%96%E6%95%B4%E8%A1%A8"><span class="nav-number">9.1.</span> <span class="nav-text"> 读取整表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AF%BB%E5%8F%96%E4%B8%80%E8%A1%8C"><span class="nav-number">9.2.</span> <span class="nav-text">读取一行</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hash"><span class="nav-number">10.</span> <span class="nav-text">Hash</span></a></li></ol>
         </div>
     </div>
 
@@ -1082,7 +1082,7 @@ mjx-container[display="true"] + br {
                 <input autocomplete="off"
                        autocorrect="off"
                        autocapitalize="off"
-                       placeholder="搜索..."
+                       placeholder="Search..."
                        spellcheck="false"
                        type="search"
                        class="search-input"

@@ -113,7 +113,7 @@ p.spoiler {
                             <a class=""
                                href="/"
                             >
-                                首页
+                                HOME
                             </a>
                         </li>
                     
@@ -121,7 +121,7 @@ p.spoiler {
                             <a class=""
                                href="/archives"
                             >
-                                归档
+                                ARCHIVES
                             </a>
                         </li>
                     
@@ -129,7 +129,7 @@ p.spoiler {
                             <a class=""
                                href="/categories"
                             >
-                                分类
+                                CATEGORIES
                             </a>
                         </li>
                     
@@ -137,7 +137,7 @@ p.spoiler {
                             <a class=""
                                href="/tags"
                             >
-                                标签
+                                TAGS
                             </a>
                         </li>
                     
@@ -153,7 +153,7 @@ p.spoiler {
                             <a class=""
                                href="/about"
                             >
-                                关于
+                                ABOUT
                             </a>
                         </li>
                     
@@ -180,22 +180,22 @@ p.spoiler {
             
                 <li class="drawer-menu-item flex-center">
                     <a class=""
-                       href="/">首页</a>
+                       href="/">HOME</a>
                 </li>
             
                 <li class="drawer-menu-item flex-center">
                     <a class=""
-                       href="/archives">归档</a>
+                       href="/archives">ARCHIVES</a>
                 </li>
             
                 <li class="drawer-menu-item flex-center">
                     <a class=""
-                       href="/categories">分类</a>
+                       href="/categories">CATEGORIES</a>
                 </li>
             
                 <li class="drawer-menu-item flex-center">
                     <a class=""
-                       href="/tags">标签</a>
+                       href="/tags">TAGS</a>
                 </li>
             
                 <li class="drawer-menu-item flex-center">
@@ -205,7 +205,7 @@ p.spoiler {
             
                 <li class="drawer-menu-item flex-center">
                     <a class=""
-                       href="/about">关于</a>
+                       href="/about">ABOUT</a>
                 </li>
             
         </ul>
@@ -273,7 +273,7 @@ p.spoiler {
     
     
         <span class="article-wordcount article-meta-item">
-            <i class="fas fa-file-word"></i>&nbsp;<span>319 字</span>
+            <i class="fas fa-file-word"></i>&nbsp;<span>315 Words</span>
         </span>
     
     
@@ -286,20 +286,21 @@ p.spoiler {
         
 
         <div class="article-content markdown-body">
-            <link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h3 id="lua-gettable"><code>lua_gettable</code></h3>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">lua_gettable</span><span class="params">(lua_State *L, <span class="type">int</span> index)</span>;</span><br></pre></td></tr></table></figure>
+            <link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h3 id="lua-gettable"><a href="#lua-gettable" class="headerlink" title="lua_gettable"></a><code>lua_gettable</code></h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">lua_gettable</span><span class="params">(lua_State *L, <span class="type">int</span> index)</span>;</span><br></pre></td></tr></table></figure>
+
 <p>把 <code>t[k]</code> 值压入堆栈， 这里的 <code>t</code> 是指有效索引 <code>index</code> 指向的值， 而 <code>k</code> 则是栈顶放的值。这个函数会弹出堆栈上的 key（把结果放在栈上相同位置），在 Lua 中这个函数可能触发对应 <code>__index</code> 事件的元方法</p>
 <center>
     <img src="/2022/01/14/33/lua-gettable.png">
 </center>
-<h3 id="lua-settable"><code>lua_settable</code></h3>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">lua_settable</span><span class="params">(lua_State *L, <span class="type">int</span> index)</span>;</span><br></pre></td></tr></table></figure>
+
+<h3 id="lua-settable"><a href="#lua-settable" class="headerlink" title="lua_settable"></a><code>lua_settable</code></h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">lua_settable</span><span class="params">(lua_State *L, <span class="type">int</span> index)</span>;</span><br></pre></td></tr></table></figure>
+
 <p>作一个等价于 <code>t[k] = v</code> 的操作， 这里 <code>t</code> 是一个给定有效索引 <code>index</code> 处的值， <code>v </code>指栈顶的值， 而 <code>k</code> 是栈顶之下的那个值。这个函数会把键和值都从堆栈中弹出。 在 Lua 中这个函数可能触发 <code>__newindex</code> 事件的元方法</p>
-<h3 id="lua-rawset-lua-rawget"><code>lua_rawset</code> &amp; <code>lua_rawget</code></h3>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">lua_rawset</span><span class="params">(lua_State *L, <span class="type">int</span> index)</span>;</span><br><span class="line"><span class="type">void</span> <span class="title function_">lua_rawget</span><span class="params">(lua_State *L, <span class="type">int</span> index)</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="lua-rawset-amp-lua-rawget"><a href="#lua-rawset-amp-lua-rawget" class="headerlink" title="lua_rawset &amp; lua_rawget"></a><code>lua_rawset</code> &amp; <code>lua_rawget</code></h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">lua_rawset</span><span class="params">(lua_State *L, <span class="type">int</span> index)</span>;</span><br><span class="line"><span class="type">void</span> <span class="title function_">lua_rawget</span><span class="params">(lua_State *L, <span class="type">int</span> index)</span>;</span><br></pre></td></tr></table></figure>
+
 <p><code>lua_rawset</code>类似于 <code>lua_settable</code>， 但是是作一个直接赋值，不触发元方法；<code>lua_rawget</code> 类似于<code>lua_gettable</code>， 但是作一次直接访问，不触发元方法</p>
-<h3 id="lua-rawseti-lua-rawgeti"><code>lua_rawseti</code> &amp; <code>lua_rawgeti</code></h3>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">lua_rawgeti</span><span class="params">(lua_State *L, <span class="type">int</span> index, <span class="type">int</span> n)</span>;</span><br><span class="line"><span class="type">void</span> <span class="title function_">lua_rawseti</span><span class="params">(lua_State *L, <span class="type">int</span> index, <span class="type">int</span> n)</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="lua-rawseti-amp-lua-rawgeti"><a href="#lua-rawseti-amp-lua-rawgeti" class="headerlink" title="lua_rawseti &amp; lua_rawgeti"></a><code>lua_rawseti</code> &amp; <code>lua_rawgeti</code></h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">lua_rawgeti</span><span class="params">(lua_State *L, <span class="type">int</span> index, <span class="type">int</span> n)</span>;</span><br><span class="line"><span class="type">void</span> <span class="title function_">lua_rawseti</span><span class="params">(lua_State *L, <span class="type">int</span> index, <span class="type">int</span> n)</span>;</span><br></pre></td></tr></table></figure>
+
 <ul>
 <li><code>lua_rawgeti</code>：把 <code>t[n]</code> 的值压栈， 这里的 <code>t</code> 是指给定索引 <code>index</code> 处的一个值， 这是一个直接访问，不会触发元方法</li>
 <li><code>lua_rawseti</code>：等价于 <code>t[n] = v</code>，这里的<code>t</code> 是指给定索引 <code>index</code> 处的一个值， 而 <code>v</code> 是栈顶的值，不会触发元方法</li>
@@ -322,7 +323,7 @@ p.spoiler {
                             </span>
                             <span class="title flex-center">
                                 <span class="post-nav-title-item">Perforce 学习</span>
-                                <span class="post-nav-item">上一篇</span>
+                                <span class="post-nav-item">Prev posts</span>
                             </span>
                         </a>
                     </div>
@@ -335,7 +336,7 @@ p.spoiler {
                         >
                             <span class="title flex-center">
                                 <span class="post-nav-title-item">C++11 新特性</span>
-                                <span class="post-nav-item">下一篇</span>
+                                <span class="post-nav-item">Next posts</span>
                             </span>
                             <span class="right arrow-icon flex-center">
                               <i class="fas fa-chevron-right"></i>
@@ -351,7 +352,7 @@ p.spoiler {
                 <div class="comments-container">
     <div id="comment-anchor"></div>
     <div class="comment-area-title">
-        <i class="fas fa-comments">&nbsp;评论</i>
+        <i class="fas fa-comments">&nbsp;Comments</i>
     </div>
     
 
@@ -507,7 +508,7 @@ p.spoiler {
             
     <div class="post-toc-wrap">
         <div class="post-toc">
-            <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#lua-gettable"><span class="nav-number">1.</span> <span class="nav-text">lua_gettable</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#lua-settable"><span class="nav-number">2.</span> <span class="nav-text">lua_settable</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#lua-rawset-lua-rawget"><span class="nav-number">3.</span> <span class="nav-text">lua_rawset &amp; lua_rawget</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#lua-rawseti-lua-rawgeti"><span class="nav-number">4.</span> <span class="nav-text">lua_rawseti &amp; lua_rawgeti</span></a></li></ol>
+            <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#lua-gettable"><span class="nav-number">1.</span> <span class="nav-text">lua_gettable</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#lua-settable"><span class="nav-number">2.</span> <span class="nav-text">lua_settable</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#lua-rawset-amp-lua-rawget"><span class="nav-number">3.</span> <span class="nav-text">lua_rawset &amp; lua_rawget</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#lua-rawseti-amp-lua-rawgeti"><span class="nav-number">4.</span> <span class="nav-text">lua_rawseti &amp; lua_rawgeti</span></a></li></ol>
         </div>
     </div>
 
@@ -531,7 +532,7 @@ p.spoiler {
                 <input autocomplete="off"
                        autocorrect="off"
                        autocapitalize="off"
-                       placeholder="搜索..."
+                       placeholder="Search..."
                        spellcheck="false"
                        type="search"
                        class="search-input"

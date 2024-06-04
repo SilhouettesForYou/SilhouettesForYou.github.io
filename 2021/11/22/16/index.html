@@ -113,7 +113,7 @@ p.spoiler {
                             <a class=""
                                href="/"
                             >
-                                首页
+                                HOME
                             </a>
                         </li>
                     
@@ -121,7 +121,7 @@ p.spoiler {
                             <a class=""
                                href="/archives"
                             >
-                                归档
+                                ARCHIVES
                             </a>
                         </li>
                     
@@ -129,7 +129,7 @@ p.spoiler {
                             <a class=""
                                href="/categories"
                             >
-                                分类
+                                CATEGORIES
                             </a>
                         </li>
                     
@@ -137,7 +137,7 @@ p.spoiler {
                             <a class=""
                                href="/tags"
                             >
-                                标签
+                                TAGS
                             </a>
                         </li>
                     
@@ -153,7 +153,7 @@ p.spoiler {
                             <a class=""
                                href="/about"
                             >
-                                关于
+                                ABOUT
                             </a>
                         </li>
                     
@@ -180,22 +180,22 @@ p.spoiler {
             
                 <li class="drawer-menu-item flex-center">
                     <a class=""
-                       href="/">首页</a>
+                       href="/">HOME</a>
                 </li>
             
                 <li class="drawer-menu-item flex-center">
                     <a class=""
-                       href="/archives">归档</a>
+                       href="/archives">ARCHIVES</a>
                 </li>
             
                 <li class="drawer-menu-item flex-center">
                     <a class=""
-                       href="/categories">分类</a>
+                       href="/categories">CATEGORIES</a>
                 </li>
             
                 <li class="drawer-menu-item flex-center">
                     <a class=""
-                       href="/tags">标签</a>
+                       href="/tags">TAGS</a>
                 </li>
             
                 <li class="drawer-menu-item flex-center">
@@ -205,7 +205,7 @@ p.spoiler {
             
                 <li class="drawer-menu-item flex-center">
                     <a class=""
-                       href="/about">关于</a>
+                       href="/about">ABOUT</a>
                 </li>
             
         </ul>
@@ -273,7 +273,7 @@ p.spoiler {
     
     
         <span class="article-wordcount article-meta-item">
-            <i class="fas fa-file-word"></i>&nbsp;<span>2.3k 字</span>
+            <i class="fas fa-file-word"></i>&nbsp;<span>2.3k Words</span>
         </span>
     
     
@@ -286,13 +286,11 @@ p.spoiler {
         
 
         <div class="article-content markdown-body">
-            <link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h4 id="垃圾回收">垃圾回收</h4>
-<p>采用了自动内存管理。 这意味着你不用操心新创建的对象需要的内存如何分配出来， 也不用考虑在对象不再被使用后怎样释放它们所占用的内存。</p>
+            <link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h4 id="垃圾回收"><a href="# 垃圾回收" class="headerlink" title="垃圾回收"></a>垃圾回收 </h4><p> 采用了自动内存管理。 这意味着你不用操心新创建的对象需要的内存如何分配出来， 也不用考虑在对象不再被使用后怎样释放它们所占用的内存。</p>
 <p>Lua 运行了一个垃圾收集器来收集所有死对象 （即在 Lua 中不可能再访问到的对象）来完成自动内存管理的工作。 Lua 中所有用到的内存，如：字符串、表、用户数据、函数、线程、 内部结构等，都服从自动管理。</p>
-<h4 id="垃圾回收器函数">垃圾回收器函数</h4>
-<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- collectgarbage(&quot;collect&quot;): 做一次完整的垃圾收集循环。通过参数 opt 它提供了一组不同的功能</span></span><br><span class="line"><span class="comment">-- collectgarbage(&quot;count&quot;): 以 K 字节数为单位返回 Lua 使用的总内存数。 这个值有小数部分，所以只需要乘上 1024 就能得到 Lua 使用的准确字节数（除非溢出）。</span></span><br><span class="line"><span class="comment">-- collectgarbage(&quot;restart&quot;): 重启垃圾收集器的自动运行。</span></span><br><span class="line"><span class="comment">-- collectgarbage(&quot;setpause&quot;): 将 arg 设为收集器的 间歇率。 返回 间歇率 的前一个值。</span></span><br><span class="line"><span class="comment">-- collectgarbage(&quot;setstepmul&quot;): 返回 步进倍率 的前一个值。</span></span><br><span class="line"><span class="comment">-- collectgarbage(&quot;step&quot;): 单步运行垃圾收集器。 步长 &quot; 大小 &quot; 由 arg 控制。 传入 0 时，收集器步进（不可分割的）一步。 传入非 0 值， 收集器收集相当于 Lua 分配这些多（K 字节）内存的工作。 如果收集器结束一个循环将返回 true 。</span></span><br><span class="line"><span class="comment">-- collectgarbage(&quot;stop&quot;): 停止垃圾收集器的运行。 在调用重启前，收集器只会因显式的调用运行。</span></span><br><span class="line"></span><br><span class="line">test = &#123;<span class="string">&quot;W&quot;</span>,<span class="string">&quot;L&quot;</span>,<span class="string">&quot;Q&quot;</span>&#125;</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">collectgarbage</span>(<span class="string">&quot;count&quot;</span>))</span><br><span class="line"></span><br><span class="line">test = <span class="literal">nil</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">collectgarbage</span>(<span class="string">&quot;count&quot;</span>))</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">collectgarbage</span>(<span class="string">&quot;collect&quot;</span>))</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">collectgarbage</span>(<span class="string">&quot;count&quot;</span>))</span><br></pre></td></tr></table></figure>
-<h4 id="gc- 算法分析">gc 算法分析</h4>
-<p>Lua gc 采用的是 <strong> 标记 - 清除 </strong> 算法，即一次 gc 分两步：</p>
+<h4 id="垃圾回收器函数"><a href="# 垃圾回收器函数" class="headerlink" title="垃圾回收器函数"></a>垃圾回收器函数</h4><figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- collectgarbage(&quot;collect&quot;): 做一次完整的垃圾收集循环。通过参数 opt 它提供了一组不同的功能</span></span><br><span class="line"><span class="comment">-- collectgarbage(&quot;count&quot;): 以 K 字节数为单位返回 Lua 使用的总内存数。 这个值有小数部分，所以只需要乘上 1024 就能得到 Lua 使用的准确字节数（除非溢出）。</span></span><br><span class="line"><span class="comment">-- collectgarbage(&quot;restart&quot;): 重启垃圾收集器的自动运行。</span></span><br><span class="line"><span class="comment">-- collectgarbage(&quot;setpause&quot;): 将 arg 设为收集器的 间歇率。 返回 间歇率 的前一个值。</span></span><br><span class="line"><span class="comment">-- collectgarbage(&quot;setstepmul&quot;): 返回 步进倍率 的前一个值。</span></span><br><span class="line"><span class="comment">-- collectgarbage(&quot;step&quot;): 单步运行垃圾收集器。 步长 &quot; 大小 &quot; 由 arg 控制。 传入 0 时，收集器步进（不可分割的）一步。 传入非 0 值， 收集器收集相当于 Lua 分配这些多（K 字节）内存的工作。 如果收集器结束一个循环将返回 true 。</span></span><br><span class="line"><span class="comment">-- collectgarbage(&quot;stop&quot;): 停止垃圾收集器的运行。 在调用重启前，收集器只会因显式的调用运行。</span></span><br><span class="line"></span><br><span class="line">test = &#123;<span class="string">&quot;W&quot;</span>,<span class="string">&quot;L&quot;</span>,<span class="string">&quot;Q&quot;</span>&#125;</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">collectgarbage</span>(<span class="string">&quot;count&quot;</span>))</span><br><span class="line"></span><br><span class="line">test = <span class="literal">nil</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">collectgarbage</span>(<span class="string">&quot;count&quot;</span>))</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">collectgarbage</span>(<span class="string">&quot;collect&quot;</span>))</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">collectgarbage</span>(<span class="string">&quot;count&quot;</span>))</span><br></pre></td></tr></table></figure>
+
+<h4 id="gc- 算法分析"><a href="#gc- 算法分析" class="headerlink" title="gc 算法分析"></a>gc 算法分析 </h4><p>Lua gc 采用的是<strong> 标记 - 清除 </strong> 算法，即一次 gc 分两步：</p>
 <ul>
 <li>在标记阶段，从根集对象开始标记，把整个对象层级都标记完，这些被标记到的对象称为可达到的对象。</li>
 <li>在清除阶段，遍历上面提到的对象链表，如果对象被标记过则擦除标记并跳过，如果对象没有被标记说明他不可达到，那就把它释放掉。</li>
@@ -303,8 +301,7 @@ p.spoiler {
 <li>灰色：表示对象本身已标记，但它引用的对象未被标记，比如一个表已被标记，它的键值对象还未被标记。这表示对象标记的一个中间状态。</li>
 <li>黑色：表示对象和它引用的对象都已被标记，在清除阶段黑色对象为可到达对象。</li>
 </ul>
-<h5 id="对象链表">对象链表</h5>
-<p><code>global_State</code>有好多和 GC 相关的字段，其中有一些重要链表。所有 GC 对象总是在下面的链表中：</p>
+<h5 id="对象链表"><a href="# 对象链表" class="headerlink" title="对象链表"></a>对象链表 </h5><p><code>global_State</code> 有好多和 GC 相关的字段，其中有一些重要链表。所有 GC 对象总是在下面的链表中：</p>
 <ul>
 <li><code>allgc</code>：所有未被标记为终结的对象</li>
 <li><code>finobj</code>：所有标记为终结的对象</li>
@@ -315,7 +312,7 @@ p.spoiler {
 <p>如果对象设置一个元表，且元表有 <code>__gc</code> 元方法，那么它会从 <code>allgc</code> 取出，加入到 <code>finobj</code> 去，并设置对象的 <code>FINALIZEDBIT</code> 标记为。</p>
 <p>在标记阶段，<code>finobj</code>中的白对象会移到 <code>tobefnz</code> 链表去，然后标记这些对象，这样当前周期不会释放这些对象；清除完之后会进入 <code>GCScallfin</code> 阶段，在这里调用 <code>tobefnz</code> 对象的 gc 方法，同时把对象移回 <code>allgc</code> 链表；如果 gc 中使对象重新变成可到达，则对象复活过来；否则下个周期这个对象就会被正常清除。</p>
 <p><code>fixedgc</code>是那些不会被回收的对象，在新建完对象后，必须马上调用 <code>luaC_fic</code> 把对象从 <code>allgc</code> 移到 <code>fixedgc</code> 去。GC 的过程不会对 <code>fixedgc</code> 进行清除。</p>
-<p><img src="/2021/11/22/16/lua-gc.png" alt></p>
+<p><img src="/2021/11/22/16/lua-gc.png"></p>
 <p>luajit 使用状态机来执行 gc 算法，共有 6 中状态：</p>
 <ul>
 <li><strong><code>GCSpause</code>：</strong> gc 开始阶段，初始化一些属性，将一些跟节点（主线程对象，主线程环境对象，全局对象等）push 到灰色链表中</li>
@@ -325,8 +322,7 @@ p.spoiler {
 <li><strong><code>GCSsweep</code>：</strong> 遍历所有全局 gc 对象，每次遍历 40 个，如果 gc 对象为白色，将被释放</li>
 <li><strong><code>GCSfinalize</code>：</strong> 遍历 <code>GCSatomic</code> 生成的 <code>userdata</code> 链表，如果该 <code>userdata</code> 还存在 gc 元方法，调用该元方法，每次处理一个</li>
 </ul>
-<h5 id="什么时候会导致 -gc">什么时候会导致 gc</h5>
-<p><code>global_state</code>有两个字段是关于 Lua 的内存统计的：</p>
+<h5 id="什么时候会导致 -gc"><a href="# 什么时候会导致 -gc" class="headerlink" title="什么时候会导致 gc"></a>什么时候会导致 gc</h5><p><code>global_state</code>有两个字段是关于 Lua 的内存统计的：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">l_mem totalbytes;</span><br><span class="line">l_mem GCdebt;</span><br></pre></td></tr></table></figure>
 <p>在 <code>lua_newstate</code> 函数里，这两个字段初始为：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">g-&gt;totalbytes = <span class="built_in">sizeof</span>(LG);</span><br><span class="line">g-&gt;GCdebt = <span class="number">0</span>;</span><br></pre></td></tr></table></figure>
@@ -335,12 +331,11 @@ p.spoiler {
 <p>判断是否触发 GC 的宏是：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> lauC_condGC(L, pre, pos) \</span></span><br><span class="line"><span class="meta">    &#123; <span class="keyword">if</span> (G(L)-&gt;GCdebt &gt; 0) &#123; pre; luaC_step(L); pos; &#125;; \</span></span><br><span class="line"><span class="meta">        condchangemem(L, pre, pos); &#125;</span></span><br></pre></td></tr></table></figure>
 <p><code>g-&gt;GCdebt</code>如果大于 0，就执行一次<code>luaC_step</code>。</p>
-<h5 id="回收控制">回收控制</h5>
-<p><code>luaC_step</code>执行一步 GC：</p>
+<h5 id="回收控制"><a href="# 回收控制" class="headerlink" title="回收控制"></a>回收控制 </h5><p><code>luaC_step</code> 执行一步 GC：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">luaC_step</span><span class="params">(lua_State* L)</span> </span>&#123;</span><br><span class="line">    global_State* g = <span class="built_in">G</span>(L);</span><br><span class="line">    <span class="comment">// 1. 计算 GC 的内存债务</span></span><br><span class="line">    l_mem debt = <span class="built_in">getdebt</span>(g);</span><br><span class="line">    ...</span><br><span class="line">    <span class="comment">// 2. 循环执行 singlestep，知道 GC 周期完毕，或 debt 小于某个值</span></span><br><span class="line">    <span class="keyword">do</span> &#123;</span><br><span class="line">        lu_mem work = <span class="built_in">singlestep</span>(L);</span><br><span class="line">        debt -= work;</span><br><span class="line">    &#125; <span class="keyword">while</span> (debt &gt; -GCSTEPSIZE &amp;&amp; g-&gt;gcstate != GCSpause);</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 3. 如果 GC 结束，计算下一个阈值</span></span><br><span class="line">    <span class="keyword">if</span> (g-&gt;gcstate == GCSpause)</span><br><span class="line">        <span class="built_in">setpause</span>(g);</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="comment">// 4. 否则计算下一次触发的时机</span></span><br><span class="line">        debt = (debt / g-&gt;gcstepmul) * STEPMULADJ;</span><br><span class="line">        <span class="built_in">luaE_setdebt</span>(g, debt);</span><br><span class="line">        <span class="built_in">runafewinalizers</span>(L);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <hr>
-<h4 id="GC- 的过程">GC 的过程</h4>
-<p>Lua 会自动管理内存，它通过垃圾收集器回收掉不再使用的对象，所谓不再使用，可以简单理解为没有其他对象引用的对象。</p>
+<h4 id="GC- 的过程"><a href="#GC- 的过程" class="headerlink" title="GC 的过程"></a>GC 的过程</h4><p>Lua 会自动管理内存，它通过垃圾收集器回收掉不再使用的对象，所谓不再使用，可以简单理解为没有其他对象引用的对象。</p>
 <p>Lua 使用简单的标记和清除的垃圾回收容器，每次完整的 GC 分为 4 个阶段：</p>
 <ul>
 <li>标记（mark）：Lua 将根集对象标记为活的，根集对象实际上就是 C 注册表，像主线程和全局环境都是注册表的预定义项。从根集对象一直往下标记，任何存在于活对象中的对象，只要程序可达（弱表除外），也会被标记为活的。</li>
@@ -349,12 +344,12 @@ p.spoiler {
 <li>终结（finalization）：在清理阶段将有终结函数，且未被标记的对象都移到一个独立的列表中，这阶段就是遍历这个列表，并调用它们的终结函数。而这些未活的对象，实际上应该会在下一个 GC 周期才被回收掉。</li>
 </ul>
 <p>在 Lua5.1 以上的版本，GC 被优化成增量式的，它和解释器交错运行，即每一个 GC 只执行一部分，这样就有效避免 GC 的时候解释器停顿太久。</p>
-<h5 id="弱表">弱表</h5>
-<p>下面的例子能说明弱表的行为：</p>
+<h5 id="弱表"><a href="# 弱表" class="headerlink" title="弱表"></a>弱表 </h5><p> 下面的例子能说明弱表的行为：</p>
 <figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">a = &#123;&#125;</span><br><span class="line">mt = &#123;<span class="built_in">__mode</span> = <span class="string">&#x27;k&#x27;</span>&#125; <span class="comment">-- 设置为 k 表示 a 的 key 是弱引用；设置为 v 表示 value 是弱引用；设置为 kv 表示 key 和 value 都是弱引用</span></span><br><span class="line"><span class="built_in">setmetatable</span>(a, mt)</span><br><span class="line"></span><br><span class="line">k1 = &#123;&#125;</span><br><span class="line">a[k1] = <span class="number">1</span></span><br><span class="line">k2 = &#123;&#125;</span><br><span class="line">a[k2] = <span class="number">2</span></span><br><span class="line">k1 = <span class="literal">nil</span> <span class="comment">-- 将 k1 删除，k1 引用的那个表只存在于 a，但 a 是 key 的弱引用，所以这个表被 GC</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">collectgarbage</span>()</span><br><span class="line"><span class="keyword">for</span> k, v <span class="keyword">in</span> <span class="built_in">pairs</span>(a) <span class="keyword">do</span> <span class="built_in">print</span>(v) <span class="keyword">end</span></span><br><span class="line"><span class="comment">-- &gt; 2</span></span><br></pre></td></tr></table></figure>
-<h5 id="终结函数">终结函数</h5>
-<p>就是元表有指定 <code>__gc</code> 元方法，如：</p>
+
+<h5 id="终结函数"><a href="# 终结函数" class="headerlink" title="终结函数"></a>终结函数 </h5><p> 就是元表有指定 <code>__gc</code> 元方法，如：</p>
 <figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">o = &#123;x = <span class="string">&#x27;hi&#x27;</span>&#125;</span><br><span class="line"><span class="built_in">setmetatable</span>(o, &#123;<span class="built_in">__gc</span> = <span class="function"><span class="keyword">function</span><span class="params">(o)</span></span> <span class="built_in">print</span>(o.x) <span class="keyword">end</span>&#125;)</span><br><span class="line">o = <span class="literal">nil</span></span><br><span class="line"><span class="built_in">collectgarbage</span>() <span class="comment">-- &gt; hi</span></span><br></pre></td></tr></table></figure>
+
 <p>如果一个对象（有终结函数）在程序结束的时候还未被回收，Lua 会在结束的时候调用该对象的终结函数，可以利用这个特性来监控程序结束。</p>
 
         </div>
@@ -374,7 +369,7 @@ p.spoiler {
                             </span>
                             <span class="title flex-center">
                                 <span class="post-nav-title-item">红黑树</span>
-                                <span class="post-nav-item">上一篇</span>
+                                <span class="post-nav-item">Prev posts</span>
                             </span>
                         </a>
                     </div>
@@ -387,7 +382,7 @@ p.spoiler {
                         >
                             <span class="title flex-center">
                                 <span class="post-nav-title-item">包围盒</span>
-                                <span class="post-nav-item">下一篇</span>
+                                <span class="post-nav-item">Next posts</span>
                             </span>
                             <span class="right arrow-icon flex-center">
                               <i class="fas fa-chevron-right"></i>
@@ -403,7 +398,7 @@ p.spoiler {
                 <div class="comments-container">
     <div id="comment-anchor"></div>
     <div class="comment-area-title">
-        <i class="fas fa-comments">&nbsp;评论</i>
+        <i class="fas fa-comments">&nbsp;Comments</i>
     </div>
     
 
@@ -559,7 +554,7 @@ p.spoiler {
             
     <div class="post-toc-wrap">
         <div class="post-toc">
-            <ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6"><span class="nav-number">1.</span> <span class="nav-text">垃圾回收</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E5%99%A8%E5%87%BD%E6%95%B0"><span class="nav-number">2.</span> <span class="nav-text">垃圾回收器函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#gc-%20%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90"><span class="nav-number">3.</span> <span class="nav-text">gc 算法分析</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%AF%B9%E8%B1%A1%E9%93%BE%E8%A1%A8"><span class="nav-number">3.1.</span> <span class="nav-text">对象链表</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%97%B6%E5%80%99%E4%BC%9A%E5%AF%BC%E8%87%B4%20-gc"><span class="nav-number">3.2.</span> <span class="nav-text">什么时候会导致 gc</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%9B%9E%E6%94%B6%E6%8E%A7%E5%88%B6"><span class="nav-number">3.3.</span> <span class="nav-text">回收控制</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#GC-%20%E7%9A%84%E8%BF%87%E7%A8%8B"><span class="nav-number">4.</span> <span class="nav-text">GC 的过程</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%BC%B1%E8%A1%A8"><span class="nav-number">4.1.</span> <span class="nav-text">弱表</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E7%BB%88%E7%BB%93%E5%87%BD%E6%95%B0"><span class="nav-number">4.2.</span> <span class="nav-text">终结函数</span></a></li></ol></li></ol>
+            <ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6"><span class="nav-number">1.</span> <span class="nav-text">垃圾回收 </span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E5%99%A8%E5%87%BD%E6%95%B0"><span class="nav-number">2.</span> <span class="nav-text">垃圾回收器函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#gc-%20%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90"><span class="nav-number">3.</span> <span class="nav-text">gc 算法分析 </span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%AF%B9%E8%B1%A1%E9%93%BE%E8%A1%A8"><span class="nav-number">3.1.</span> <span class="nav-text">对象链表 </span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%97%B6%E5%80%99%E4%BC%9A%E5%AF%BC%E8%87%B4%20-gc"><span class="nav-number">3.2.</span> <span class="nav-text">什么时候会导致 gc</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%9B%9E%E6%94%B6%E6%8E%A7%E5%88%B6"><span class="nav-number">3.3.</span> <span class="nav-text">回收控制 </span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#GC-%20%E7%9A%84%E8%BF%87%E7%A8%8B"><span class="nav-number">4.</span> <span class="nav-text">GC 的过程</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%BC%B1%E8%A1%A8"><span class="nav-number">4.1.</span> <span class="nav-text">弱表 </span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E7%BB%88%E7%BB%93%E5%87%BD%E6%95%B0"><span class="nav-number">4.2.</span> <span class="nav-text">终结函数 </span></a></li></ol></li></ol>
         </div>
     </div>
 
@@ -583,7 +578,7 @@ p.spoiler {
                 <input autocomplete="off"
                        autocorrect="off"
                        autocapitalize="off"
-                       placeholder="搜索..."
+                       placeholder="Search..."
                        spellcheck="false"
                        type="search"
                        class="search-input"
