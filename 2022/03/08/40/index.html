@@ -113,7 +113,7 @@ p.spoiler {
                             <a class=""
                                href="/"
                             >
-                                首頁
+                                HOME
                             </a>
                         </li>
                     
@@ -121,7 +121,7 @@ p.spoiler {
                             <a class=""
                                href="/archives"
                             >
-                                歸檔
+                                ARCHIVES
                             </a>
                         </li>
                     
@@ -129,7 +129,7 @@ p.spoiler {
                             <a class=""
                                href="/categories"
                             >
-                                分類
+                                CATEGORIES
                             </a>
                         </li>
                     
@@ -137,7 +137,7 @@ p.spoiler {
                             <a class=""
                                href="/tags"
                             >
-                                標籤
+                                TAGS
                             </a>
                         </li>
                     
@@ -153,7 +153,7 @@ p.spoiler {
                             <a class=""
                                href="/about"
                             >
-                                關於
+                                ABOUT
                             </a>
                         </li>
                     
@@ -180,22 +180,22 @@ p.spoiler {
             
                 <li class="drawer-menu-item flex-center">
                     <a class=""
-                       href="/">首頁</a>
+                       href="/">HOME</a>
                 </li>
             
                 <li class="drawer-menu-item flex-center">
                     <a class=""
-                       href="/archives">歸檔</a>
+                       href="/archives">ARCHIVES</a>
                 </li>
             
                 <li class="drawer-menu-item flex-center">
                     <a class=""
-                       href="/categories">分類</a>
+                       href="/categories">CATEGORIES</a>
                 </li>
             
                 <li class="drawer-menu-item flex-center">
                     <a class=""
-                       href="/tags">標籤</a>
+                       href="/tags">TAGS</a>
                 </li>
             
                 <li class="drawer-menu-item flex-center">
@@ -205,7 +205,7 @@ p.spoiler {
             
                 <li class="drawer-menu-item flex-center">
                     <a class=""
-                       href="/about">關於</a>
+                       href="/about">ABOUT</a>
                 </li>
             
         </ul>
@@ -277,7 +277,7 @@ p.spoiler {
     
     
         <span class="article-wordcount article-meta-item">
-            <i class="fas fa-file-word"></i>&nbsp;<span>302 字數</span>
+            <i class="fas fa-file-word"></i>&nbsp;<span>304 Words</span>
         </span>
     
     
@@ -294,39 +294,40 @@ p.spoiler {
     <img src="/2022/03/08/40/git-kraken.png">
 </center>
 <span id="more"></span>
-
-<h3 id="GitKraken- 简介"><a href="#GitKraken- 简介" class="headerlink" title="GitKraken 简介"></a>GitKraken 简介</h3><p><a class="link" target="_blank" rel="noopener" href="https://www.gitkraken.com/">GitKraken<i class="fas fa-external-link-alt"></i></a> 是一款界面十分美观的 Git 可视化管理工具，比较遗憾的是 GitKraken 是收费软件，类似的免费软件有 <a class="link" target="_blank" rel="noopener" href="https://www.sourcetreeapp.com/">Sourcetree<i class="fas fa-external-link-alt"></i></a> ，不过使用体验不如 GitKraken。</p>
-<h4 id="GitKraken- 连接 -GitLab"><a href="#GitKraken- 连接 -GitLab" class="headerlink" title="GitKraken 连接 GitLab"></a>GitKraken 连接 GitLab</h4><h5 id="Start-a-hosted-repo"><a href="#Start-a-hosted-repo" class="headerlink" title="Start a hosted repo"></a>Start a hosted repo</h5><center>
+<h3 id="GitKraken- 简介">GitKraken 简介</h3>
+<p><a class="link" target="_blank" rel="noopener" href="https://www.gitkraken.com/">GitKraken<i class="fas fa-external-link-alt"></i></a> 是一款界面十分美观的 Git 可视化管理工具，比较遗憾的是 GitKraken 是收费软件，类似的免费软件有 <a class="link" target="_blank" rel="noopener" href="https://www.sourcetreeapp.com/">Sourcetree<i class="fas fa-external-link-alt"></i></a> ，不过使用体验不如 GitKraken。</p>
+<h4 id="GitKraken- 连接 -GitLab">GitKraken 连接 GitLab</h4>
+<h5 id="Start-a-hosted-repo">Start a hosted repo</h5>
+<center>
     <img src="/2022/03/08/40/start-a-hosted-repo.png">
 </center>
-
 <p>通过 ** File/Preferences <strong>进入偏好设置界面，选择 </strong> Authentication <strong> 中的</strong> GitLab Self-Managed ** 页面，输入 GitLab 地址和 Token</p>
-<h5 id="获得 -Personal-Access-Token"><a href="# 获得 -Personal-Access-Token" class="headerlink" title="获得 Personal Access Token"></a>获得 Personal Access Token</h5><center>
+<h5 id="获得 -Personal-Access-Token">获得 Personal Access Token</h5>
+<center>
     <img src="/2022/03/08/40/personal-access-tokens.png">
 </center>
-
 <ol>
-<li>进入 ** User Settings<strong>，选择</strong> Access Token**</li>
+<li>进入 ** User Settings**，选择 ** Access Token**</li>
 <li>输入一个 Token 的名字</li>
 <li>勾选 <code>api</code> 和<code>read_user</code></li>
 <li>生成 Token</li>
 <li>复制 Token（这个 Token 离开页面后将不被保存）</li>
 </ol>
-<h5 id="连接成功"><a href="# 连接成功" class="headerlink" title="连接成功"></a>连接成功</h5><center>
+<h5 id="连接成功">连接成功</h5>
+<center>
     <img src="/2022/03/08/40/connected-gitlab.png">
 </center>
-
-<h3 id="破解"><a href="# 破解" class="headerlink" title="破解"></a>破解 </h3><h4 id="安装 yarn"><a href="# 安装 yarn" class="headerlink" title="安装 yarn"></a> 安装<code>yarn</code></h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i yarn -g</span><br></pre></td></tr></table></figure>
-
-<h4 id="运行破解项目"><a href="# 运行破解项目" class="headerlink" title="运行破解项目"></a>运行破解项目 </h4><p> 破解前先确保 GitKraken 已关闭退出，破解工具在 Github 上是一个开源项目 <a class="link" target="_blank" rel="noopener" href="https://github.com/5cr1pt/GitCracken">5cr1pt/GitCracken<i class="fas fa-external-link-alt"></i></a> ，将该项目 clone 到本地，使用方法也可参考项目的 README.md 文件，另外也在 Gitee 上也有。仓库拷贝到本地后，进入仓库的 <code>GitCracken/GitCracken</code> 目录，依次执行以下指令运行破解</p>
+<h3 id="破解">破解</h3>
+<h4 id="安装 yarn">安装<code>yarn</code></h4>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i yarn -g</span><br></pre></td></tr></table></figure>
+<h4 id="运行破解项目">运行破解项目</h4>
+<p>破解前先确保 GitKraken 已关闭退出，破解工具在 Github 上是一个开源项目 <a class="link" target="_blank" rel="noopener" href="https://github.com/5cr1pt/GitCracken">5cr1pt/GitCracken<i class="fas fa-external-link-alt"></i></a> ，将该项目 clone 到本地，使用方法也可参考项目的 <a class="link" target="_blank" rel="noopener" href="http://README.md">README.md<i class="fas fa-external-link-alt"></i></a> 文件，另外也在 Gitee 上也有。仓库拷贝到本地后，进入仓库的 <code>GitCracken/GitCracken</code> 目录，依次执行以下指令运行破解</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">yarn install</span><br><span class="line">yarn build</span><br><span class="line">node dist/bin/gitcracken.js patcher</span><br></pre></td></tr></table></figure>
-
 <blockquote>
 <p>运行 <code>yarn install</code> 可能会出现连接超时的错误</p>
 <center>
     <img src="/2022/03/08/40/yarn-install-error.png">
 </center>
-
 <p>直接安装对应的 module 即可</p>
 <center>
     <img src="/2022/03/08/40/yarn-install-error-fix.png">
@@ -336,7 +337,6 @@ p.spoiler {
 <center>
     <img src="/2022/03/08/40/git-kraken-install-success.png">
 </center>
-
 <p>在 GitKraken 界面右下角可以看到破解后的状态</p>
 <center>
     <img src="/2022/03/08/40/git-kraken-pro.png">
@@ -359,7 +359,7 @@ p.spoiler {
                             </span>
                             <span class="title flex-center">
                                 <span class="post-nav-title-item">尝试 Visual Code 调试 Lua</span>
-                                <span class="post-nav-item">上一篇</span>
+                                <span class="post-nav-item">Prev posts</span>
                             </span>
                         </a>
                     </div>
@@ -371,8 +371,8 @@ p.spoiler {
                            href="/2022/03/07/39/"
                         >
                             <span class="title flex-center">
-                                <span class="post-nav-title-item">C++20 新特性</span>
-                                <span class="post-nav-item">下一篇</span>
+                                <span class="post-nav-title-item">领域驱动设计</span>
+                                <span class="post-nav-item">Next posts</span>
                             </span>
                             <span class="right arrow-icon flex-center">
                               <i class="fas fa-chevron-right"></i>
@@ -388,7 +388,7 @@ p.spoiler {
                 <div class="comments-container">
     <div id="comment-anchor"></div>
     <div class="comment-area-title">
-        <i class="fas fa-comments">&nbsp;留言</i>
+        <i class="fas fa-comments">&nbsp;Comments</i>
     </div>
     
 
@@ -544,7 +544,7 @@ p.spoiler {
             
     <div class="post-toc-wrap">
         <div class="post-toc">
-            <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#GitKraken-%20%E7%AE%80%E4%BB%8B"><span class="nav-number">1.</span> <span class="nav-text">GitKraken 简介</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#GitKraken-%20%E8%BF%9E%E6%8E%A5%20-GitLab"><span class="nav-number">1.1.</span> <span class="nav-text">GitKraken 连接 GitLab</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Start-a-hosted-repo"><span class="nav-number">1.1.1.</span> <span class="nav-text">Start a hosted repo</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E8%8E%B7%E5%BE%97%20-Personal-Access-Token"><span class="nav-number">1.1.2.</span> <span class="nav-text">获得 Personal Access Token</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E8%BF%9E%E6%8E%A5%E6%88%90%E5%8A%9F"><span class="nav-number">1.1.3.</span> <span class="nav-text">连接成功</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A0%B4%E8%A7%A3"><span class="nav-number">2.</span> <span class="nav-text">破解 </span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%89%E8%A3%85%20yarn"><span class="nav-number">2.1.</span> <span class="nav-text"> 安装yarn</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BF%90%E8%A1%8C%E7%A0%B4%E8%A7%A3%E9%A1%B9%E7%9B%AE"><span class="nav-number">2.2.</span> <span class="nav-text">运行破解项目 </span></a></li></ol></li></ol>
+            <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#GitKraken-%20%E7%AE%80%E4%BB%8B"><span class="nav-number">1.</span> <span class="nav-text">GitKraken 简介</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#GitKraken-%20%E8%BF%9E%E6%8E%A5%20-GitLab"><span class="nav-number">1.1.</span> <span class="nav-text">GitKraken 连接 GitLab</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Start-a-hosted-repo"><span class="nav-number">1.1.1.</span> <span class="nav-text">Start a hosted repo</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E8%8E%B7%E5%BE%97%20-Personal-Access-Token"><span class="nav-number">1.1.2.</span> <span class="nav-text">获得 Personal Access Token</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E8%BF%9E%E6%8E%A5%E6%88%90%E5%8A%9F"><span class="nav-number">1.1.3.</span> <span class="nav-text">连接成功</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A0%B4%E8%A7%A3"><span class="nav-number">2.</span> <span class="nav-text">破解</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%89%E8%A3%85%20yarn"><span class="nav-number">2.1.</span> <span class="nav-text">安装yarn</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BF%90%E8%A1%8C%E7%A0%B4%E8%A7%A3%E9%A1%B9%E7%9B%AE"><span class="nav-number">2.2.</span> <span class="nav-text">运行破解项目</span></a></li></ol></li></ol>
         </div>
     </div>
 
@@ -568,7 +568,7 @@ p.spoiler {
                 <input autocomplete="off"
                        autocorrect="off"
                        autocapitalize="off"
-                       placeholder="搜尋..."
+                       placeholder="Search..."
                        spellcheck="false"
                        type="search"
                        class="search-input"

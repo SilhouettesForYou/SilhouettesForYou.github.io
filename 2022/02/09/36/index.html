@@ -113,7 +113,7 @@ p.spoiler {
                             <a class=""
                                href="/"
                             >
-                                首頁
+                                HOME
                             </a>
                         </li>
                     
@@ -121,7 +121,7 @@ p.spoiler {
                             <a class=""
                                href="/archives"
                             >
-                                歸檔
+                                ARCHIVES
                             </a>
                         </li>
                     
@@ -129,7 +129,7 @@ p.spoiler {
                             <a class=""
                                href="/categories"
                             >
-                                分類
+                                CATEGORIES
                             </a>
                         </li>
                     
@@ -137,7 +137,7 @@ p.spoiler {
                             <a class=""
                                href="/tags"
                             >
-                                標籤
+                                TAGS
                             </a>
                         </li>
                     
@@ -153,7 +153,7 @@ p.spoiler {
                             <a class=""
                                href="/about"
                             >
-                                關於
+                                ABOUT
                             </a>
                         </li>
                     
@@ -180,22 +180,22 @@ p.spoiler {
             
                 <li class="drawer-menu-item flex-center">
                     <a class=""
-                       href="/">首頁</a>
+                       href="/">HOME</a>
                 </li>
             
                 <li class="drawer-menu-item flex-center">
                     <a class=""
-                       href="/archives">歸檔</a>
+                       href="/archives">ARCHIVES</a>
                 </li>
             
                 <li class="drawer-menu-item flex-center">
                     <a class=""
-                       href="/categories">分類</a>
+                       href="/categories">CATEGORIES</a>
                 </li>
             
                 <li class="drawer-menu-item flex-center">
                     <a class=""
-                       href="/tags">標籤</a>
+                       href="/tags">TAGS</a>
                 </li>
             
                 <li class="drawer-menu-item flex-center">
@@ -205,7 +205,7 @@ p.spoiler {
             
                 <li class="drawer-menu-item flex-center">
                     <a class=""
-                       href="/about">關於</a>
+                       href="/about">ABOUT</a>
                 </li>
             
         </ul>
@@ -273,7 +273,7 @@ p.spoiler {
     
     
         <span class="article-wordcount article-meta-item">
-            <i class="fas fa-file-word"></i>&nbsp;<span>234 字數</span>
+            <i class="fas fa-file-word"></i>&nbsp;<span>235 Words</span>
         </span>
     
     
@@ -290,22 +290,22 @@ p.spoiler {
     <img src="/2022/02/09/36/git-kraken.png">
 </center>
 <span id="more"></span>
-
-<h3 id="强制覆盖本地代码（与 -git- 远程仓库保持一致）"><a href="# 强制覆盖本地代码（与 -git- 远程仓库保持一致）" class="headerlink" title="强制覆盖本地代码（与 git 远程仓库保持一致）"></a>强制覆盖本地代码（与 git 远程仓库保持一致）</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git fetch --all <span class="comment"># 拉取所有更新，不同步</span></span><br><span class="line">git reset --hard origin/master <span class="comment"># 本地代码同步线上最新版本（会覆盖本地所有与远程仓库上同名的文件）</span></span><br><span class="line">git pull <span class="comment"># 再更新一次</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="Please-move-or-remove-them-before-you-can-merge"><a href="#Please-move-or-remove-them-before-you-can-merge" class="headerlink" title="Please move or remove them before you can merge"></a>Please move or remove them before you can merge</h3><center>
+<h3 id="强制覆盖本地代码（与 -git- 远程仓库保持一致）"> 强制覆盖本地代码（与 git 远程仓库保持一致）</h3>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git fetch --all <span class="comment"># 拉取所有更新，不同步 </span></span><br><span class="line">git reset --hard origin/master <span class="comment"># 本地代码同步线上最新版本（会覆盖本地所有与远程仓库上同名的文件）</span></span><br><span class="line">git pull <span class="comment"># 再更新一次 </span></span><br></pre></td></tr></table></figure>
+<h3 id="Please-move-or-remove-them-before-you-can-merge">Please move or remove them before you can merge</h3>
+<center>
     <img src="/2022/02/09/36/git-pull-error.png">
 </center>
-
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clean -d -f <span class="comment"># To remove &amp; delete all changes</span></span><br></pre></td></tr></table></figure>
+<h3 id="Git- 推送本地分支到远端">Git 推送本地分支到远端 </h3>
+<h4 id="远程先开好分支然后拉到本地"> 远程先开好分支然后拉到本地 </h4>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout -b =&lt;branch&gt; origin/&lt;branch&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="本地先开好分支然后推送到远程"> 本地先开好分支然后推送到远程 </h4>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git checkout -b &lt;branch&gt; <span class="comment"># 创建并切换到分支 &lt;branch&gt;  </span></span><br><span class="line">git push origin &lt;branch&gt; <span class="comment"># 推送本地的 &lt;branch&gt; 分支到远程 origin 的 &lt;branch&gt; 分支 </span></span><br></pre></td></tr></table></figure>
+<h3 id="Git- 回滚代码到某个 -commit">Git 回滚代码到某个 commit</h3>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git reset --hard HEAD^ <span class="comment"># 回退到上个版本 </span></span><br><span class="line">git reset --hard HEAD~3 <span class="comment"># 回退到前三次提交之前 </span></span><br><span class="line">git reset --hard &lt;commit-id&gt; 退到 / 进到指定 &lt;commit-id&gt; 的 hashm</span><br></pre></td></tr></table></figure>
+<h3 id></h3>
 
-<h3 id="Git- 推送本地分支到远端"><a href="#Git- 推送本地分支到远端" class="headerlink" title="Git 推送本地分支到远端"></a>Git 推送本地分支到远端 </h3><h4 id="远程先开好分支然后拉到本地"><a href="# 远程先开好分支然后拉到本地" class="headerlink" title="远程先开好分支然后拉到本地"></a> 远程先开好分支然后拉到本地</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout -b =&lt;branch&gt; origin/&lt;branch&gt;</span><br></pre></td></tr></table></figure>
-
-<h4 id="本地先开好分支然后推送到远程"><a href="# 本地先开好分支然后推送到远程" class="headerlink" title="本地先开好分支然后推送到远程"></a>本地先开好分支然后推送到远程</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git checkout -b &lt;branch&gt; <span class="comment"># 创建并切换到分支 &lt;branch&gt;  </span></span><br><span class="line">git push origin &lt;branch&gt; <span class="comment"># 推送本地的 &lt;branch&gt; 分支到远程 origin 的 &lt;branch&gt; 分支</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="Git- 回滚代码到某个 -commit"><a href="#Git- 回滚代码到某个 -commit" class="headerlink" title="Git 回滚代码到某个 commit"></a>Git 回滚代码到某个 commit</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git reset --hard HEAD^ <span class="comment"># 回退到上个版本</span></span><br><span class="line">git reset --hard HEAD~3 <span class="comment"># 回退到前三次提交之前</span></span><br><span class="line">git reset --hard &lt;commit-id&gt; 退到 / 进到指定 &lt;commit-id&gt; 的 hashm</span><br></pre></td></tr></table></figure>
-
-<h3 id><a href="#" class="headerlink" title></a></h3>
         </div>
 
         
@@ -323,7 +323,7 @@ p.spoiler {
                             </span>
                             <span class="title flex-center">
                                 <span class="post-nav-title-item">老照片</span>
-                                <span class="post-nav-item">上一篇</span>
+                                <span class="post-nav-item">Prev posts</span>
                             </span>
                         </a>
                     </div>
@@ -336,7 +336,7 @@ p.spoiler {
                         >
                             <span class="title flex-center">
                                 <span class="post-nav-title-item">C++14 新特性</span>
-                                <span class="post-nav-item">下一篇</span>
+                                <span class="post-nav-item">Next posts</span>
                             </span>
                             <span class="right arrow-icon flex-center">
                               <i class="fas fa-chevron-right"></i>
@@ -352,7 +352,7 @@ p.spoiler {
                 <div class="comments-container">
     <div id="comment-anchor"></div>
     <div class="comment-area-title">
-        <i class="fas fa-comments">&nbsp;留言</i>
+        <i class="fas fa-comments">&nbsp;Comments</i>
     </div>
     
 
@@ -508,7 +508,7 @@ p.spoiler {
             
     <div class="post-toc-wrap">
         <div class="post-toc">
-            <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%BA%E5%88%B6%E8%A6%86%E7%9B%96%E6%9C%AC%E5%9C%B0%E4%BB%A3%E7%A0%81%EF%BC%88%E4%B8%8E%20-git-%20%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93%E4%BF%9D%E6%8C%81%E4%B8%80%E8%87%B4%EF%BC%89"><span class="nav-number">1.</span> <span class="nav-text">强制覆盖本地代码（与 git 远程仓库保持一致）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Please-move-or-remove-them-before-you-can-merge"><span class="nav-number">2.</span> <span class="nav-text">Please move or remove them before you can merge</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Git-%20%E6%8E%A8%E9%80%81%E6%9C%AC%E5%9C%B0%E5%88%86%E6%94%AF%E5%88%B0%E8%BF%9C%E7%AB%AF"><span class="nav-number">3.</span> <span class="nav-text">Git 推送本地分支到远端 </span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BF%9C%E7%A8%8B%E5%85%88%E5%BC%80%E5%A5%BD%E5%88%86%E6%94%AF%E7%84%B6%E5%90%8E%E6%8B%89%E5%88%B0%E6%9C%AC%E5%9C%B0"><span class="nav-number">3.1.</span> <span class="nav-text"> 远程先开好分支然后拉到本地</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9C%AC%E5%9C%B0%E5%85%88%E5%BC%80%E5%A5%BD%E5%88%86%E6%94%AF%E7%84%B6%E5%90%8E%E6%8E%A8%E9%80%81%E5%88%B0%E8%BF%9C%E7%A8%8B"><span class="nav-number">3.2.</span> <span class="nav-text">本地先开好分支然后推送到远程</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Git-%20%E5%9B%9E%E6%BB%9A%E4%BB%A3%E7%A0%81%E5%88%B0%E6%9F%90%E4%B8%AA%20-commit"><span class="nav-number">4.</span> <span class="nav-text">Git 回滚代码到某个 commit</span></a></li><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-number">5.</span> <span class="nav-text"></span></a></li></ol>
+            <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%BA%E5%88%B6%E8%A6%86%E7%9B%96%E6%9C%AC%E5%9C%B0%E4%BB%A3%E7%A0%81%EF%BC%88%E4%B8%8E%20-git-%20%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93%E4%BF%9D%E6%8C%81%E4%B8%80%E8%87%B4%EF%BC%89"><span class="nav-number">1.</span> <span class="nav-text"> 强制覆盖本地代码（与 git 远程仓库保持一致）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Please-move-or-remove-them-before-you-can-merge"><span class="nav-number">2.</span> <span class="nav-text">Please move or remove them before you can merge</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Git-%20%E6%8E%A8%E9%80%81%E6%9C%AC%E5%9C%B0%E5%88%86%E6%94%AF%E5%88%B0%E8%BF%9C%E7%AB%AF"><span class="nav-number">3.</span> <span class="nav-text">Git 推送本地分支到远端 </span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BF%9C%E7%A8%8B%E5%85%88%E5%BC%80%E5%A5%BD%E5%88%86%E6%94%AF%E7%84%B6%E5%90%8E%E6%8B%89%E5%88%B0%E6%9C%AC%E5%9C%B0"><span class="nav-number">3.1.</span> <span class="nav-text"> 远程先开好分支然后拉到本地 </span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9C%AC%E5%9C%B0%E5%85%88%E5%BC%80%E5%A5%BD%E5%88%86%E6%94%AF%E7%84%B6%E5%90%8E%E6%8E%A8%E9%80%81%E5%88%B0%E8%BF%9C%E7%A8%8B"><span class="nav-number">3.2.</span> <span class="nav-text"> 本地先开好分支然后推送到远程 </span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Git-%20%E5%9B%9E%E6%BB%9A%E4%BB%A3%E7%A0%81%E5%88%B0%E6%9F%90%E4%B8%AA%20-commit"><span class="nav-number">4.</span> <span class="nav-text">Git 回滚代码到某个 commit</span></a></li><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-number">5.</span> <span class="nav-text"></span></a></li></ol>
         </div>
     </div>
 
@@ -532,7 +532,7 @@ p.spoiler {
                 <input autocomplete="off"
                        autocorrect="off"
                        autocapitalize="off"
-                       placeholder="搜尋..."
+                       placeholder="Search..."
                        spellcheck="false"
                        type="search"
                        class="search-input"

@@ -113,7 +113,7 @@ p.spoiler {
                             <a class=""
                                href="/"
                             >
-                                首頁
+                                HOME
                             </a>
                         </li>
                     
@@ -121,7 +121,7 @@ p.spoiler {
                             <a class=""
                                href="/archives"
                             >
-                                歸檔
+                                ARCHIVES
                             </a>
                         </li>
                     
@@ -129,7 +129,7 @@ p.spoiler {
                             <a class=""
                                href="/categories"
                             >
-                                分類
+                                CATEGORIES
                             </a>
                         </li>
                     
@@ -137,7 +137,7 @@ p.spoiler {
                             <a class=""
                                href="/tags"
                             >
-                                標籤
+                                TAGS
                             </a>
                         </li>
                     
@@ -153,7 +153,7 @@ p.spoiler {
                             <a class=""
                                href="/about"
                             >
-                                關於
+                                ABOUT
                             </a>
                         </li>
                     
@@ -180,22 +180,22 @@ p.spoiler {
             
                 <li class="drawer-menu-item flex-center">
                     <a class=""
-                       href="/">首頁</a>
+                       href="/">HOME</a>
                 </li>
             
                 <li class="drawer-menu-item flex-center">
                     <a class=""
-                       href="/archives">歸檔</a>
+                       href="/archives">ARCHIVES</a>
                 </li>
             
                 <li class="drawer-menu-item flex-center">
                     <a class=""
-                       href="/categories">分類</a>
+                       href="/categories">CATEGORIES</a>
                 </li>
             
                 <li class="drawer-menu-item flex-center">
                     <a class=""
-                       href="/tags">標籤</a>
+                       href="/tags">TAGS</a>
                 </li>
             
                 <li class="drawer-menu-item flex-center">
@@ -205,7 +205,7 @@ p.spoiler {
             
                 <li class="drawer-menu-item flex-center">
                     <a class=""
-                       href="/about">關於</a>
+                       href="/about">ABOUT</a>
                 </li>
             
         </ul>
@@ -277,7 +277,7 @@ p.spoiler {
     
     
         <span class="article-wordcount article-meta-item">
-            <i class="fas fa-file-word"></i>&nbsp;<span>1.1k 字數</span>
+            <i class="fas fa-file-word"></i>&nbsp;<span>1.1k Words</span>
         </span>
     
     
@@ -290,7 +290,9 @@ p.spoiler {
         
 
         <div class="article-content markdown-body">
-            <link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h3 id="UPROPERTY- 和 UFUNCTION"><a href="#UPROPERTY- 和 UFUNCTION" class="headerlink" title="UPROPERTY()和 UFUNCTION()"></a><code>UPROPERTY()</code>和<code>UFUNCTION()</code></h3><h4 id="UPROPERTY"><a href="#UPROPERTY" class="headerlink" title="UPROPERTY()"></a><code>UPROPERTY()</code></h4><ul>
+            <link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h3 id="UPROPERTY- 和 UFUNCTION"><code>UPROPERTY()</code>和<code>UFUNCTION()</code></h3>
+<h4 id="UPROPERTY"><code>UPROPERTY()</code></h4>
+<ul>
 <li><code>BlueprintCallable</code>：可以在蓝图中被调用</li>
 <li><code>BlueprintReadOnly</code>：可以被蓝图读取，但是不可被修改</li>
 <li><code>BlueprintReadWrite</code>：可以被蓝图读取和修改</li>
@@ -303,7 +305,8 @@ p.spoiler {
 <li><code>Transient</code>：该属性不会被序列化保存，通常用于临时数据或不希望被保存的数据</li>
 <li><code>Replicated</code>：属性在网络中进行复制</li>
 </ul>
-<h4 id="UFUNCTION"><a href="#UFUNCTION" class="headerlink" title="UFUNCTION"></a><code>UFUNCTION</code></h4><p><code>UFUNCTION</code>是 Unreal Engine 中神功函数的宏，它用于标记某个函数是一个 Unreal Engine 托管的函数，并且可以在编辑器中惊醒访问和操作</p>
+<h4 id="UFUNCTION"><code>UFUNCTION</code></h4>
+<p><code>UFUNCTION</code>是 Unreal Engine 中神功函数的宏，它用于标记某个函数是一个 Unreal Engine 托管的函数，并且可以在编辑器中惊醒访问和操作</p>
 <p><code>UFUNCTION</code>宏提供了一系列参数，用于定义函数的属性和行为，例如是否是阑入可调用的，是否可在网络中复制等</p>
 <ul>
 <li><code>BlueprintCallable</code>：可以在蓝图或者关卡蓝图中调用</li>
@@ -314,65 +317,80 @@ p.spoiler {
 <li><code>Server**</code>、<code>Client</code>、<code>Reliable</code>：用于网络功能，指定该函数在服务端、客户端执行，以及指定该函数是否可靠传输</li>
 <li><code>BlueprintNativeEvent</code>：这个函数可以在蓝图类中重写，同时拥有 C++ 实现，函数名为<code>FuncName_Implementtation</code></li>
 </ul>
-<h3 id="include 引入头文件与不完全声明"><a href="#include 引入头文件与不完全声明" class="headerlink" title="#include 引入头文件与不完全声明"></a><code>#include</code>引入头文件与不完全声明 </h3><p> 建议在源文件中引入其他头文件，而不是在头文件中引入其他头文件</p>
+<h3 id="include 引入头文件与不完全声明"><code>#include</code>引入头文件与不完全声明</h3>
+<p>建议在源文件中引入其他头文件，而不是在头文件中引入其他头文件</p>
 <ul>
 <li>减少编译时间</li>
 <li>比秒循环依赖</li>
 <li>增强可维护性</li>
 </ul>
-<h3 id="打印 -LOG"><a href="# 打印 -LOG" class="headerlink" title="打印 LOG"></a>打印 LOG</h3><ul>
-<li><p><code>UE_LOG</code></p>
+<h3 id="打印 -LOG">打印 LOG</h3>
+<ul>
+<li>
+<p><code>UE_LOG</code></p>
 <ul>
 <li><code>UE_Log</code>宏是 Unreal Engine 重用日志记录的标准方式。它可以输出日志信息到控制台和日志文件，支持多种日志级别（如<code>Log</code>，<code>Warning</code>，<code>Error</code>）</li>
 <li><code>UE_LOG(LogCategory, LogVerbosity, Format, ...)</code></li>
 </ul>
 </li>
-<li><p><code>GEngine-&gt;AddOnScreenDebugMessage</code></p>
+<li>
+<p><code>GEngine-&gt;AddOnScreenDebugMessage</code></p>
 <ul>
 <li><code>GEngine-&gt;AddOnScreenDebugMessage</code>可以在游戏屏幕上现实调试信息，通常用于快速查看和调试</li>
 <li><code>GEngine-&gt;AddOnScreenDebugMessage(Key TimeToDisplay, Color, Message)</code></li>
 </ul>
 </li>
 </ul>
-<h3 id="控制输入"><a href="# 控制输入" class="headerlink" title="控制输入"></a>控制输入</h3><ul>
-<li>Input Mapping Context<ul>
+<h3 id="控制输入">控制输入</h3>
+<ul>
+<li>Input Mapping Context
+<ul>
 <li>定义了那些输入键触发那些输入动作的规则集合</li>
 </ul>
 </li>
-<li>Input Action<ul>
+<li>Input Action
+<ul>
 <li>代表了玩家可以执行的某种动作</li>
 </ul>
 </li>
-<li><code>EnhancedInputComponent</code><ul>
+<li><code>EnhancedInputComponent</code>
+<ul>
 <li>更灵活</li>
 <li>输入绑定优化</li>
 <li>输入处理流程的改进</li>
 </ul>
 </li>
 </ul>
-<h3 id="Anim-Instnce- 与动画"><a href="#Anim-Instnce- 与动画" class="headerlink" title="Anim Instnce 与动画"></a>Anim Instnce 与动画 </h3><h3 id="AActor、APawn 和 ACharactor"><a href="#AActor、APawn 和 ACharactor" class="headerlink" title="AActor、APawn 和 ACharactor"></a><code>AActor</code>、<code>APawn</code> 和<code>ACharactor</code></h3><ul>
+<h3 id="Anim-Instnce- 与动画">Anim Instnce 与动画</h3>
+<h3 id="AActor、APawn 和 ACharactor"><code>AActor</code>、<code>APawn</code>和<code>ACharactor</code></h3>
+<ul>
 <li><code>UObject</code>：基础类 <code>UObject</code> 是所有非 Actor 类的基类，几乎所有的 Unreal Engine 对象都继承自<code>UObject</code></li>
 <li><code>AActor</code>：继承自<code>UObject</code>，并且是所有场景中对象（角色、道具、灯光等）的基类</li>
-<li><code>APawn</code>：可以被玩家或 AI 控制的对象，丹斯不需要复杂的运动和动画系统<ul>
+<li><code>APawn</code>：可以被玩家或 AI 控制的对象，丹斯不需要复杂的运动和动画系统
+<ul>
 <li>可控制性</li>
 <li>控制器：<code>APawn</code>通常与 <code>AController</code> 或<code>APlayerController</code>关联，以实现移动和交互</li>
 <li>不包含骨骼网格和动画</li>
 </ul>
 </li>
-<li><code>ACharacter</code>是一种特殊类型的<code>APawn</code>，它包含用于行走、跳跃、游泳等运动功能。它是带有骨骼动画和动画系统的高级角色类<ul>
+<li><code>ACharacter</code>是一种特殊类型的<code>APawn</code>，它包含用于行走、跳跃、游泳等运动功能。它是带有骨骼动画和动画系统的高级角色类
+<ul>
 <li>骨骼网格和动画：<code>ACharacter</code>包含 ``USkeletallMeshComponent 和动画蓝图，用于角色的外观和动画</li>
 <li>角色运动：包含<code>UCharacterMovementComponent</code>，支持复杂的角色运动</li>
 <li>碰撞和胶囊体：默认包含一个胶囊碰撞体，用于角色的碰撞检测</li>
 </ul>
 </li>
 </ul>
-<h3 id="游戏是怎样运行的"><a href="# 游戏是怎样运行的" class="headerlink" title="游戏是怎样运行的"></a>游戏是怎样运行的</h3><ul>
-<li><code>AGameModeBase</code><ul>
+<h3 id="游戏是怎样运行的">游戏是怎样运行的</h3>
+<ul>
+<li><code>AGameModeBase</code>
+<ul>
 <li>这是游戏模式的基类，它定义了游戏的规则、逻辑和行为</li>
 <li>可以通过创建自定义的游戏模式类来扩展它，并重写其中的方法来实现特定的游戏的逻辑</li>
 </ul>
 </li>
-<li><code>AGameMode</code><ul>
+<li><code>AGameMode</code>
+<ul>
 <li><code>AGameMode</code>类是 <code>AGameModeBase</code> 的一个子类，它提供了更多的功能和控制权，例如玩家控制、团队管理、积分系统等</li>
 <li>可以使用 <code>AGameMode</code> 类来实现更复杂的游戏逻辑和规则</li>
 </ul>
@@ -400,7 +418,7 @@ p.spoiler {
                         >
                             <span class="title flex-center">
                                 <span class="post-nav-title-item">XLua 如何与 C# 进行交互</span>
-                                <span class="post-nav-item">下一篇</span>
+                                <span class="post-nav-item">Next posts</span>
                             </span>
                             <span class="right arrow-icon flex-center">
                               <i class="fas fa-chevron-right"></i>
@@ -416,7 +434,7 @@ p.spoiler {
                 <div class="comments-container">
     <div id="comment-anchor"></div>
     <div class="comment-area-title">
-        <i class="fas fa-comments">&nbsp;留言</i>
+        <i class="fas fa-comments">&nbsp;Comments</i>
     </div>
     
 
@@ -572,7 +590,7 @@ p.spoiler {
             
     <div class="post-toc-wrap">
         <div class="post-toc">
-            <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#UPROPERTY-%20%E5%92%8C%20UFUNCTION"><span class="nav-number">1.</span> <span class="nav-text">UPROPERTY()和UFUNCTION()</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#UPROPERTY"><span class="nav-number">1.1.</span> <span class="nav-text">UPROPERTY()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#UFUNCTION"><span class="nav-number">1.2.</span> <span class="nav-text">UFUNCTION</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#include%20%E5%BC%95%E5%85%A5%E5%A4%B4%E6%96%87%E4%BB%B6%E4%B8%8E%E4%B8%8D%E5%AE%8C%E5%85%A8%E5%A3%B0%E6%98%8E"><span class="nav-number">2.</span> <span class="nav-text">#include引入头文件与不完全声明 </span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%89%93%E5%8D%B0%20-LOG"><span class="nav-number">3.</span> <span class="nav-text">打印 LOG</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8E%A7%E5%88%B6%E8%BE%93%E5%85%A5"><span class="nav-number">4.</span> <span class="nav-text">控制输入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Anim-Instnce-%20%E4%B8%8E%E5%8A%A8%E7%94%BB"><span class="nav-number">5.</span> <span class="nav-text">Anim Instnce 与动画 </span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#AActor%E3%80%81APawn%20%E5%92%8C%20ACharactor"><span class="nav-number">6.</span> <span class="nav-text">AActor、APawn 和ACharactor</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B8%B8%E6%88%8F%E6%98%AF%E6%80%8E%E6%A0%B7%E8%BF%90%E8%A1%8C%E7%9A%84"><span class="nav-number">7.</span> <span class="nav-text">游戏是怎样运行的</span></a></li></ol>
+            <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#UPROPERTY-%20%E5%92%8C%20UFUNCTION"><span class="nav-number">1.</span> <span class="nav-text">UPROPERTY()和UFUNCTION()</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#UPROPERTY"><span class="nav-number">1.1.</span> <span class="nav-text">UPROPERTY()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#UFUNCTION"><span class="nav-number">1.2.</span> <span class="nav-text">UFUNCTION</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#include%20%E5%BC%95%E5%85%A5%E5%A4%B4%E6%96%87%E4%BB%B6%E4%B8%8E%E4%B8%8D%E5%AE%8C%E5%85%A8%E5%A3%B0%E6%98%8E"><span class="nav-number">2.</span> <span class="nav-text">#include引入头文件与不完全声明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%89%93%E5%8D%B0%20-LOG"><span class="nav-number">3.</span> <span class="nav-text">打印 LOG</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8E%A7%E5%88%B6%E8%BE%93%E5%85%A5"><span class="nav-number">4.</span> <span class="nav-text">控制输入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Anim-Instnce-%20%E4%B8%8E%E5%8A%A8%E7%94%BB"><span class="nav-number">5.</span> <span class="nav-text">Anim Instnce 与动画</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#AActor%E3%80%81APawn%20%E5%92%8C%20ACharactor"><span class="nav-number">6.</span> <span class="nav-text">AActor、APawn和ACharactor</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B8%B8%E6%88%8F%E6%98%AF%E6%80%8E%E6%A0%B7%E8%BF%90%E8%A1%8C%E7%9A%84"><span class="nav-number">7.</span> <span class="nav-text">游戏是怎样运行的</span></a></li></ol>
         </div>
     </div>
 
@@ -596,7 +614,7 @@ p.spoiler {
                 <input autocomplete="off"
                        autocorrect="off"
                        autocapitalize="off"
-                       placeholder="搜尋..."
+                       placeholder="Search..."
                        spellcheck="false"
                        type="search"
                        class="search-input"

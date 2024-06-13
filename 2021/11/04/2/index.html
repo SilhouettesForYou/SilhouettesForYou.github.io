@@ -225,7 +225,7 @@ mjx-container[display="true"] + br {
                             <a class=""
                                href="/"
                             >
-                                首頁
+                                HOME
                             </a>
                         </li>
                     
@@ -233,7 +233,7 @@ mjx-container[display="true"] + br {
                             <a class=""
                                href="/archives"
                             >
-                                歸檔
+                                ARCHIVES
                             </a>
                         </li>
                     
@@ -241,7 +241,7 @@ mjx-container[display="true"] + br {
                             <a class=""
                                href="/categories"
                             >
-                                分類
+                                CATEGORIES
                             </a>
                         </li>
                     
@@ -249,7 +249,7 @@ mjx-container[display="true"] + br {
                             <a class=""
                                href="/tags"
                             >
-                                標籤
+                                TAGS
                             </a>
                         </li>
                     
@@ -265,7 +265,7 @@ mjx-container[display="true"] + br {
                             <a class=""
                                href="/about"
                             >
-                                關於
+                                ABOUT
                             </a>
                         </li>
                     
@@ -292,22 +292,22 @@ mjx-container[display="true"] + br {
             
                 <li class="drawer-menu-item flex-center">
                     <a class=""
-                       href="/">首頁</a>
+                       href="/">HOME</a>
                 </li>
             
                 <li class="drawer-menu-item flex-center">
                     <a class=""
-                       href="/archives">歸檔</a>
+                       href="/archives">ARCHIVES</a>
                 </li>
             
                 <li class="drawer-menu-item flex-center">
                     <a class=""
-                       href="/categories">分類</a>
+                       href="/categories">CATEGORIES</a>
                 </li>
             
                 <li class="drawer-menu-item flex-center">
                     <a class=""
-                       href="/tags">標籤</a>
+                       href="/tags">TAGS</a>
                 </li>
             
                 <li class="drawer-menu-item flex-center">
@@ -317,7 +317,7 @@ mjx-container[display="true"] + br {
             
                 <li class="drawer-menu-item flex-center">
                     <a class=""
-                       href="/about">關於</a>
+                       href="/about">ABOUT</a>
                 </li>
             
         </ul>
@@ -389,7 +389,7 @@ mjx-container[display="true"] + br {
     
     
         <span class="article-wordcount article-meta-item">
-            <i class="fas fa-file-word"></i>&nbsp;<span>1.6k 字數</span>
+            <i class="fas fa-file-word"></i>&nbsp;<span>1.6k Words</span>
         </span>
     
     
@@ -402,34 +402,42 @@ mjx-container[display="true"] + br {
         
 
         <div class="article-content markdown-body">
-            <link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h4 id="OpenGL- 上下文（Context）"><a href="#OpenGL- 上下文（Context）" class="headerlink" title="OpenGL 上下文（Context）"></a>OpenGL 上下文（Context）</h4><h4 id="帧缓冲区 -FrameBuffer）"><a href="# 帧缓冲区 -FrameBuffer）" class="headerlink" title="帧缓冲区 (FrameBuffer）"></a>帧缓冲区 (FrameBuffer）</h4><ul>
+            <link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h4 id="OpenGL- 上下文（Context）">OpenGL 上下文（Context）</h4>
+<h4 id="帧缓冲区 -FrameBuffer）">帧缓冲区 (FrameBuffer）</h4>
+<ul>
 <li>所有的运算结果最终都是需要通过图像进行输出的</li>
 <li><strong>帧缓冲区 </strong> 就是 OpenGL 中的画板</li>
 <li><strong>帧缓冲区 </strong> 并不是实际存储数据的对象</li>
 <li>实际存储数据的 Attachment 所指向的对应缓冲区</li>
 </ul>
-<h4 id="Attachment"><a href="#Attachment" class="headerlink" title="Attachment"></a>Attachment</h4><p>帧缓冲区中有三种 <code>Attachment</code>，Color Attachment，Depth Attachment，Stencil Attachment。这三种<code>Attachment</code> 对应的缓冲区分别是颜色缓冲区（Color Buffer），深度缓冲区（Depth Buffer），模板缓冲区（Stencil Buffer）。</p>
-<h4 id="纹理（Texture）和渲染缓冲区（Render-Buffer）"><a href="# 纹理（Texture）和渲染缓冲区（Render-Buffer）" class="headerlink" title="纹理（Texture）和渲染缓冲区（Render Buffer）"></a>纹理（Texture）和渲染缓冲区（Render Buffer）</h4><ul>
+<h4 id="Attachment">Attachment</h4>
+<p>帧缓冲区中有三种 <code>Attachment</code>，Color Attachment，Depth Attachment，Stencil Attachment。这三种<code>Attachment</code> 对应的缓冲区分别是颜色缓冲区（Color Buffer），深度缓冲区（Depth Buffer），模板缓冲区（Stencil Buffer）。</p>
+<h4 id="纹理（Texture）和渲染缓冲区（Render-Buffer）">纹理（Texture）和渲染缓冲区（Render Buffer）</h4>
+<ul>
 <li>纹理和渲染缓冲区都是存储图像的对象</li>
 <li>渲染缓冲区对应操作系统提供的窗口，而纹理代表离屏的图像存储区域</li>
 <li>渲染缓冲区都是 2D 的图像类型</li>
 <li>纹理一般有立方体纹理，1D、2D、3D 纹理等类型</li>
 <li>渲染缓冲区和纹理不能同时挂载在同一个帧缓冲区上</li>
 </ul>
-<h4 id="顶点数组（Vertex-Array）和顶点缓冲区（Vertex-Buffer）"><a href="# 顶点数组（Vertex-Array）和顶点缓冲区（Vertex-Buffer）" class="headerlink" title="顶点数组（Vertex Array）和顶点缓冲区（Vertex Buffer）"></a>顶点数组（Vertex Array）和顶点缓冲区（Vertex Buffer）</h4><p>OpenGL 中的图像都是由图元组成的，由三种类型的图元：点、线、三角形。</p>
+<h4 id="顶点数组（Vertex-Array）和顶点缓冲区（Vertex-Buffer）">顶点数组（Vertex Array）和顶点缓冲区（Vertex Buffer）</h4>
+<p>OpenGL 中的图像都是由图元组成的，由三种类型的图元：点、线、三角形。</p>
 <ul>
 <li>顶点数据以数组的形式存储在内存当中称为 <strong> 顶点数组</strong></li>
 <li>顶点数据存在显存当中称为 <strong> 顶点缓冲区</strong></li>
 </ul>
-<h4 id="索引数组（Element-Array）和索引缓冲区（Element-Buffer）"><a href="# 索引数组（Element-Array）和索引缓冲区（Element-Buffer）" class="headerlink" title="索引数组（Element Array）和索引缓冲区（Element Buffer）"></a>索引数组（Element Array）和索引缓冲区（Element Buffer）</h4><ul>
+<h4 id="索引数组（Element-Array）和索引缓冲区（Element-Buffer）">索引数组（Element Array）和索引缓冲区（Element Buffer）</h4>
+<ul>
 <li>索引数据的目的主要是为了实现顶点的复用，通过索引数据指示 OpenGL 绘制顶点的顺序，能防止顶点的重复运算</li>
 <li>索引数据以数组的形式存在内存当中成为 <strong> 索引数组</strong></li>
 <li>索引数据存在显存当中称为 <strong> 索引缓冲区</strong></li>
 <li>OpenGL 提供了 2 中主要的绘制方法：<code>glDrawArray</code>和<code>glDrawElements</code>，前者对应的时没有索引数据的情况，后者对应的时由索引数据的情况</li>
 </ul>
-<h4 id="顶点着色器（Vertex-Shader）"><a href="# 顶点着色器（Vertex-Shader）" class="headerlink" title="顶点着色器（Vertex Shader）"></a>顶点着色器（Vertex Shader）</h4><ul>
+<h4 id="顶点着色器（Vertex-Shader）">顶点着色器（Vertex Shader）</h4>
+<ul>
 <li>顶点着色其时 OpenGL 中用于计算顶点属性的程序。每个顶点数据都会执行一次顶点着色器（并行的），并且顶点着色器运算过程中无法访问其他顶点的数据</li>
-<li>顶点着色器的数据输入主要有两种：<ul>
+<li>顶点着色器的数据输入主要有两种：
+<ul>
 <li>统一变量（Uniform）：在所有顶点运算中是一样的</li>
 <li>顶点属性（Vertex Attribute）：从外部输入的顶点数据中获取，一般在每个顶点运算中不同</li>
 </ul>
@@ -437,24 +445,32 @@ mjx-container[display="true"] + br {
 <li>典型的需要计算的顶点属性主要包括顶点坐标变换、逐顶点光照运算等等</li>
 <li>顶点着色器的输出结果也会作为片段着色器的输入</li>
 </ul>
-<h4 id="片段着色器（Fragment-Shader）"><a href="# 片段着色器（Fragment-Shader）" class="headerlink" title="片段着色器（Fragment Shader）"></a>片段着色器（Fragment Shader）</h4><ul>
+<h4 id="片段着色器（Fragment-Shader）">片段着色器（Fragment Shader）</h4>
+<ul>
 <li>片段着色器是 OpenGL 中用于计算片段（像素）颜色的程序。每个像素都会执行一次片段着色器。</li>
-<li>片段着色器有三种：<ul>
+<li>片段着色器有三种：
+<ul>
 <li>统一变量（Uniform）：在同一个 OpenGL 着色器程序中顶点着色器和片段着色器是一致的</li>
 <li>顶点着色器输入变量（Varying）：在每个像素运算中一般是不同的，它的值由组成图元顶点的顶点着色器运算输出的值，根据像素位置进行插值的结果而决定</li>
 <li>采样器（Sampler）：从设定好的纹理中获取纹理的像素颜色</li>
 </ul>
 </li>
 </ul>
-<h4 id="逐片元操作（Per-Fragment-Operation）"><a href="# 逐片元操作（Per-Fragment-Operation）" class="headerlink" title="逐片元操作（Per-Fragment Operation）"></a>逐片元操作（Per-Fragment Operation）</h4><h5 id="测试（Test）"><a href="# 测试（Test）" class="headerlink" title="测试（Test）"></a>测试（Test）</h5><ul>
+<h4 id="逐片元操作（Per-Fragment-Operation）">逐片元操作（Per-Fragment Operation）</h4>
+<h5 id="测试（Test）">测试（Test）</h5>
+<ul>
 <li>测试主要可以分为像素所有者测试（PixelOwnership Test）、裁剪测试（Scissor Test）、模板测试（Stencil Test）和深度测试（Depth Test）</li>
 <li>模板测试：通过模板测试决定最终的像素是否丢弃，根据 OpenGL 的模板覆写状态决定是否更新像素的模板值</li>
 <li>深度测试：主要通过对像素的运算出来的深度进行对比，根据 OpenGL 设定好的深度测试程序，决定是否最终渲染到画布上。</li>
 </ul>
-<h5 id="混合（Blending）"><a href="# 混合（Blending）" class="headerlink" title="混合（Blending）"></a>混合（Blending）</h5><p>在混合阶段，像素的颜色和帧缓冲区中颜色 Attachment 上的颜色进行混合，混合的算法可以通过 OpenGL 的函数进行指定。但是 OpenGL 提供的混合算法是有限的，如果需要更加复杂的混合算法，一般可以通过像素着色器进行实现，当然性能回避原生的混合算法差一些</p>
-<h5 id="抖动（Dithering）"><a href="# 抖动（Dithering）" class="headerlink" title="抖动（Dithering）"></a>抖动（Dithering）</h5><p>抖动是一种针对于可用颜色较少的系统，可以以牺牲分辨率为代价，通过颜色值的抖动来增加可用颜色数量的技术</p>
-<h4 id="渲染到纹理"><a href="# 渲染到纹理" class="headerlink" title="渲染到纹理"></a>渲染到纹理 </h4><p> 有些 OpenGL 程序并不希望渲染出来的图像立即显示在屏幕上，而是需要多次渲染。可能其中一次渲染的结果是下次渲染的输入。因此，如果帧缓冲区的颜色 Attachment 设置为一张纹理，那么渲染完成之后，可以重新构造新的缓冲区，并将上次渲染出来的纹理作为输入，重新进行前面所述的流程</p>
-<h4 id="渲染上屏 - 交换缓冲区（Swap-Buffer）"><a href="# 渲染上屏 - 交换缓冲区（Swap-Buffer）" class="headerlink" title="渲染上屏 / 交换缓冲区（Swap Buffer）"></a>渲染上屏 / 交换缓冲区（Swap Buffer）</h4><ul>
+<h5 id="混合（Blending）">混合（Blending）</h5>
+<p>在混合阶段，像素的颜色和帧缓冲区中颜色 Attachment 上的颜色进行混合，混合的算法可以通过 OpenGL 的函数进行指定。但是 OpenGL 提供的混合算法是有限的，如果需要更加复杂的混合算法，一般可以通过像素着色器进行实现，当然性能回避原生的混合算法差一些</p>
+<h5 id="抖动（Dithering）">抖动（Dithering）</h5>
+<p>抖动是一种针对于可用颜色较少的系统，可以以牺牲分辨率为代价，通过颜色值的抖动来增加可用颜色数量的技术</p>
+<h4 id="渲染到纹理">渲染到纹理</h4>
+<p>有些 OpenGL 程序并不希望渲染出来的图像立即显示在屏幕上，而是需要多次渲染。可能其中一次渲染的结果是下次渲染的输入。因此，如果帧缓冲区的颜色 Attachment 设置为一张纹理，那么渲染完成之后，可以重新构造新的缓冲区，并将上次渲染出来的纹理作为输入，重新进行前面所述的流程</p>
+<h4 id="渲染上屏 - 交换缓冲区（Swap-Buffer）">渲染上屏 / 交换缓冲区（Swap Buffer）</h4>
+<ul>
 <li>渲染缓冲区一般映射的系统资源比如窗口，如果每个窗口只有一个缓冲区，那么在绘制过程中屏幕进行了刷新，窗口可能显示出不完整的图像</li>
 <li>常规的 OpenGL 程序至少都会由两个缓冲区。显示在屏幕上的称为屏幕缓冲区，没有显示的称为离屏缓冲区</li>
 <li>垂直同步：由于显示器刷新一般是逐行进行的，因此为了防止交换缓冲区的时候屏幕上下区域的图像分属两个不同的帧，因此交换一般会等待显示器刷新完成的信号，在显示器两次刷新的间隔中进行交换，这个信号就被称为 <strong> 垂直同步信号 </strong>，这个技术称为<strong> 垂直同步</strong></li>
@@ -478,7 +494,7 @@ mjx-container[display="true"] + br {
                             </span>
                             <span class="title flex-center">
                                 <span class="post-nav-title-item">日常开发笔记</span>
-                                <span class="post-nav-item">上一篇</span>
+                                <span class="post-nav-item">Prev posts</span>
                             </span>
                         </a>
                     </div>
@@ -491,7 +507,7 @@ mjx-container[display="true"] + br {
                         >
                             <span class="title flex-center">
                                 <span class="post-nav-title-item">现代图形学入门</span>
-                                <span class="post-nav-item">下一篇</span>
+                                <span class="post-nav-item">Next posts</span>
                             </span>
                             <span class="right arrow-icon flex-center">
                               <i class="fas fa-chevron-right"></i>
@@ -507,7 +523,7 @@ mjx-container[display="true"] + br {
                 <div class="comments-container">
     <div id="comment-anchor"></div>
     <div class="comment-area-title">
-        <i class="fas fa-comments">&nbsp;留言</i>
+        <i class="fas fa-comments">&nbsp;Comments</i>
     </div>
     
 
@@ -663,7 +679,7 @@ mjx-container[display="true"] + br {
             
     <div class="post-toc-wrap">
         <div class="post-toc">
-            <ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#OpenGL-%20%E4%B8%8A%E4%B8%8B%E6%96%87%EF%BC%88Context%EF%BC%89"><span class="nav-number">1.</span> <span class="nav-text">OpenGL 上下文（Context）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B8%A7%E7%BC%93%E5%86%B2%E5%8C%BA%20-FrameBuffer%EF%BC%89"><span class="nav-number">2.</span> <span class="nav-text">帧缓冲区 (FrameBuffer）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Attachment"><span class="nav-number">3.</span> <span class="nav-text">Attachment</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BA%B9%E7%90%86%EF%BC%88Texture%EF%BC%89%E5%92%8C%E6%B8%B2%E6%9F%93%E7%BC%93%E5%86%B2%E5%8C%BA%EF%BC%88Render-Buffer%EF%BC%89"><span class="nav-number">4.</span> <span class="nav-text">纹理（Texture）和渲染缓冲区（Render Buffer）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A1%B6%E7%82%B9%E6%95%B0%E7%BB%84%EF%BC%88Vertex-Array%EF%BC%89%E5%92%8C%E9%A1%B6%E7%82%B9%E7%BC%93%E5%86%B2%E5%8C%BA%EF%BC%88Vertex-Buffer%EF%BC%89"><span class="nav-number">5.</span> <span class="nav-text">顶点数组（Vertex Array）和顶点缓冲区（Vertex Buffer）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%B4%A2%E5%BC%95%E6%95%B0%E7%BB%84%EF%BC%88Element-Array%EF%BC%89%E5%92%8C%E7%B4%A2%E5%BC%95%E7%BC%93%E5%86%B2%E5%8C%BA%EF%BC%88Element-Buffer%EF%BC%89"><span class="nav-number">6.</span> <span class="nav-text">索引数组（Element Array）和索引缓冲区（Element Buffer）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A1%B6%E7%82%B9%E7%9D%80%E8%89%B2%E5%99%A8%EF%BC%88Vertex-Shader%EF%BC%89"><span class="nav-number">7.</span> <span class="nav-text">顶点着色器（Vertex Shader）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%89%87%E6%AE%B5%E7%9D%80%E8%89%B2%E5%99%A8%EF%BC%88Fragment-Shader%EF%BC%89"><span class="nav-number">8.</span> <span class="nav-text">片段着色器（Fragment Shader）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%80%90%E7%89%87%E5%85%83%E6%93%8D%E4%BD%9C%EF%BC%88Per-Fragment-Operation%EF%BC%89"><span class="nav-number">9.</span> <span class="nav-text">逐片元操作（Per-Fragment Operation）</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%B5%8B%E8%AF%95%EF%BC%88Test%EF%BC%89"><span class="nav-number">9.1.</span> <span class="nav-text">测试（Test）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%B7%B7%E5%90%88%EF%BC%88Blending%EF%BC%89"><span class="nav-number">9.2.</span> <span class="nav-text">混合（Blending）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%8A%96%E5%8A%A8%EF%BC%88Dithering%EF%BC%89"><span class="nav-number">9.3.</span> <span class="nav-text">抖动（Dithering）</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B8%B2%E6%9F%93%E5%88%B0%E7%BA%B9%E7%90%86"><span class="nav-number">10.</span> <span class="nav-text">渲染到纹理 </span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B8%B2%E6%9F%93%E4%B8%8A%E5%B1%8F%20-%20%E4%BA%A4%E6%8D%A2%E7%BC%93%E5%86%B2%E5%8C%BA%EF%BC%88Swap-Buffer%EF%BC%89"><span class="nav-number">11.</span> <span class="nav-text">渲染上屏 &#x2F; 交换缓冲区（Swap Buffer）</span></a></li></ol>
+            <ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#OpenGL-%20%E4%B8%8A%E4%B8%8B%E6%96%87%EF%BC%88Context%EF%BC%89"><span class="nav-number">1.</span> <span class="nav-text">OpenGL 上下文（Context）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B8%A7%E7%BC%93%E5%86%B2%E5%8C%BA%20-FrameBuffer%EF%BC%89"><span class="nav-number">2.</span> <span class="nav-text">帧缓冲区 (FrameBuffer）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Attachment"><span class="nav-number">3.</span> <span class="nav-text">Attachment</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BA%B9%E7%90%86%EF%BC%88Texture%EF%BC%89%E5%92%8C%E6%B8%B2%E6%9F%93%E7%BC%93%E5%86%B2%E5%8C%BA%EF%BC%88Render-Buffer%EF%BC%89"><span class="nav-number">4.</span> <span class="nav-text">纹理（Texture）和渲染缓冲区（Render Buffer）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A1%B6%E7%82%B9%E6%95%B0%E7%BB%84%EF%BC%88Vertex-Array%EF%BC%89%E5%92%8C%E9%A1%B6%E7%82%B9%E7%BC%93%E5%86%B2%E5%8C%BA%EF%BC%88Vertex-Buffer%EF%BC%89"><span class="nav-number">5.</span> <span class="nav-text">顶点数组（Vertex Array）和顶点缓冲区（Vertex Buffer）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%B4%A2%E5%BC%95%E6%95%B0%E7%BB%84%EF%BC%88Element-Array%EF%BC%89%E5%92%8C%E7%B4%A2%E5%BC%95%E7%BC%93%E5%86%B2%E5%8C%BA%EF%BC%88Element-Buffer%EF%BC%89"><span class="nav-number">6.</span> <span class="nav-text">索引数组（Element Array）和索引缓冲区（Element Buffer）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A1%B6%E7%82%B9%E7%9D%80%E8%89%B2%E5%99%A8%EF%BC%88Vertex-Shader%EF%BC%89"><span class="nav-number">7.</span> <span class="nav-text">顶点着色器（Vertex Shader）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%89%87%E6%AE%B5%E7%9D%80%E8%89%B2%E5%99%A8%EF%BC%88Fragment-Shader%EF%BC%89"><span class="nav-number">8.</span> <span class="nav-text">片段着色器（Fragment Shader）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%80%90%E7%89%87%E5%85%83%E6%93%8D%E4%BD%9C%EF%BC%88Per-Fragment-Operation%EF%BC%89"><span class="nav-number">9.</span> <span class="nav-text">逐片元操作（Per-Fragment Operation）</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%B5%8B%E8%AF%95%EF%BC%88Test%EF%BC%89"><span class="nav-number">9.1.</span> <span class="nav-text">测试（Test）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%B7%B7%E5%90%88%EF%BC%88Blending%EF%BC%89"><span class="nav-number">9.2.</span> <span class="nav-text">混合（Blending）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%8A%96%E5%8A%A8%EF%BC%88Dithering%EF%BC%89"><span class="nav-number">9.3.</span> <span class="nav-text">抖动（Dithering）</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B8%B2%E6%9F%93%E5%88%B0%E7%BA%B9%E7%90%86"><span class="nav-number">10.</span> <span class="nav-text">渲染到纹理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B8%B2%E6%9F%93%E4%B8%8A%E5%B1%8F%20-%20%E4%BA%A4%E6%8D%A2%E7%BC%93%E5%86%B2%E5%8C%BA%EF%BC%88Swap-Buffer%EF%BC%89"><span class="nav-number">11.</span> <span class="nav-text">渲染上屏 &#x2F; 交换缓冲区（Swap Buffer）</span></a></li></ol>
         </div>
     </div>
 
@@ -687,7 +703,7 @@ mjx-container[display="true"] + br {
                 <input autocomplete="off"
                        autocorrect="off"
                        autocapitalize="off"
-                       placeholder="搜尋..."
+                       placeholder="Search..."
                        spellcheck="false"
                        type="search"
                        class="search-input"
