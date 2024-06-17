@@ -55,6 +55,10 @@
         "ctime": "cpp",
         "span": "cpp",
         "variant": "cpp",
-        "ranges": "cpp"
+        "ranges": "cpp",
+        "print": "cpp",
+        "text_encoding": "cpp",
+        "generator": "cpp",
+        "coroutine": "cpp"
     }
 }
