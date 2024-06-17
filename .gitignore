@@ -8,3 +8,5 @@ public/
 cache/
 cache/seo-link-visualizer.json
 .markdownlint.json
+.vscode/c_cpp_properties.json
+cache/seo-link-visualizer.json

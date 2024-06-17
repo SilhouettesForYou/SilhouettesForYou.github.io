@@ -1,19 +1,32 @@
-#include<vector>
+#include<print>
 #include<iostream>
-#include<ranges>
+#include<variant>
 
-namespace stdr = std::ranges;
-
-template<typename Func>
-void Test(std::vector<int>& v1, std::vector<int>& v2, const Func& set_op)
+struct A
 {
-    std::vector<int> v3(v1.size() + v2.size());
-    auto it3 = set_op(v1, v2, v3.begin()).out;
-    v3.erase(it3, v3.end());
-}
+    void test() { std::println("A"); }
+};
+
+struct B
+{
+    void test() { std::println("B"); }
+};
 
 int main()
 {
-    std::vector<int> v{ 1, 1, 4, 5, 5, 5, 5, 6 }, v2{ 2, 3, 5, 5, 6};
-    Test(v, v2, )
+    std::variant<A, B> v;
+    std::variant<int, float> v2;
+
+    std::visit([](auto &x) { x.test(); }, v);
+    std::visit([](auto &x) {
+        if constexpr (std::is_same_v<decltype(x), int>)
+        {
+            std::println("int {}", x);
+        }
+        else if constexpr (std::is_same_v<decltype(x), float>)
+        {
+            std::println("float {}", x);
+        }
+    }, v2);
+    return 0;
 }
