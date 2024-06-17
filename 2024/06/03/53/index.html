@@ -225,7 +225,7 @@ mjx-container[display="true"] + br {
                             <a class=""
                                href="/"
                             >
-                                首頁
+                                首页
                             </a>
                         </li>
                     
@@ -233,7 +233,7 @@ mjx-container[display="true"] + br {
                             <a class=""
                                href="/archives"
                             >
-                                歸檔
+                                归档
                             </a>
                         </li>
                     
@@ -241,7 +241,7 @@ mjx-container[display="true"] + br {
                             <a class=""
                                href="/categories"
                             >
-                                分類
+                                分类
                             </a>
                         </li>
                     
@@ -249,7 +249,7 @@ mjx-container[display="true"] + br {
                             <a class=""
                                href="/tags"
                             >
-                                標籤
+                                标签
                             </a>
                         </li>
                     
@@ -265,7 +265,7 @@ mjx-container[display="true"] + br {
                             <a class=""
                                href="/about"
                             >
-                                關於
+                                关于
                             </a>
                         </li>
                     
@@ -292,22 +292,22 @@ mjx-container[display="true"] + br {
             
                 <li class="drawer-menu-item flex-center">
                     <a class=""
-                       href="/">首頁</a>
+                       href="/">首页</a>
                 </li>
             
                 <li class="drawer-menu-item flex-center">
                     <a class=""
-                       href="/archives">歸檔</a>
+                       href="/archives">归档</a>
                 </li>
             
                 <li class="drawer-menu-item flex-center">
                     <a class=""
-                       href="/categories">分類</a>
+                       href="/categories">分类</a>
                 </li>
             
                 <li class="drawer-menu-item flex-center">
                     <a class=""
-                       href="/tags">標籤</a>
+                       href="/tags">标签</a>
                 </li>
             
                 <li class="drawer-menu-item flex-center">
@@ -317,7 +317,7 @@ mjx-container[display="true"] + br {
             
                 <li class="drawer-menu-item flex-center">
                     <a class=""
-                       href="/about">關於</a>
+                       href="/about">关于</a>
                 </li>
             
         </ul>
@@ -389,7 +389,7 @@ mjx-container[display="true"] + br {
     
     
         <span class="article-wordcount article-meta-item">
-            <i class="fas fa-file-word"></i>&nbsp;<span>10.4k 字數</span>
+            <i class="fas fa-file-word"></i>&nbsp;<span>13.8k 字</span>
         </span>
     
     
@@ -474,7 +474,7 @@ mjx-container[display="true"] + br {
 <li>Order 顺序</li>
 </ul>
 </li>
-<li>From the view of compiler, an expressiong is in fact a tree, determined by associativity and precedence. e.g. <code>9 / 3 / 2 + 2 * 3</code><ul>
+<li>From the view of compiler, an expression is in fact a tree, determined by associativity and precedence. e.g. <code>9 / 3 / 2 + 2 * 3</code><ul>
 <li>Precedence is used to split terms first.</li>
 <li>Associativity determines how the tree will grow.</li>
 <li>Then, it’s order of expression evaluation that computes the whole tree. 但是顺序是不确定的<ul>
@@ -489,7 +489,7 @@ mjx-container[display="true"] + br {
 <li>三目运算</li>
 <li>逗号表达式</li>
 <li>C++ 17<ul>
-<li>Parameters in function are evaluated indeterminately, i.e. every sub-tree represneted by te parameter is fully evaluated in a <strong>non-overlap</strong> way 不会以交叠的形式 evaluated</li>
+<li>Parameters in function are evaluated indeterminately, i.e. every sub-tree represented by te parameter is fully evaluated in a <strong>non-overlap</strong> way 不会以交叠的形式 evaluated</li>
 <li>运算符重载，和 build-in 运算符的 evaluated 顺序一致，而不是被当作普通函数</li>
 <li>More useful examples: chained call</li>
 </ul>
@@ -556,10 +556,37 @@ mjx-container[display="true"] + br {
 <li>继承和组合</li>
 <li>派生类可以隐式的转化成基类</li>
 </ul>
+<h5 id="Slicing-Problem"><a href="#Slicing-Problem" class="headerlink" title="Slicing Problem"></a>Slicing Problem</h5><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">    Student student1{...}, student2{...};</span><br><span class="line">    Person&amp; student1Ref = student1;</span><br><span class="line">    student1Ref = student2;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>There exists implicit conversion in <code>student1Ref = student2</code> so actually it calls <code>Person::operator=(const Person&amp;)</code></li>
+<li>Can decorating <code>operator=</code> with <code>virtual</code> help<ul>
+<li><code>Person::operator=</code> needs <code>const Person&amp;</code> but <code>Student::operator=</code> accepts <code>const Student&amp;</code> 参数都不一样，虚函数都不生效</li>
+</ul>
+</li>
+<li>This is called “slicing” because such operation will only affect the base slice but not the initial object as whole 只影响了一小片</li>
+<li>Polymorphic base class should hide their copy &amp; move functions if it has data member, otherwise deleting them 对于具有多态属性的基类，应该隐藏它们的拷贝和移动函数</li>
+<li>Make copy &amp; move functions <code>protected</code> so derived class can call them</li>
+</ul>
+<h5 id="Multiple-Inheritance"><a href="#Multiple-Inheritance" class="headerlink" title="Multiple Inheritance"></a>Multiple Inheritance</h5><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Elephant</span> {};</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Seal</span> {};</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">ElephantSeal</span> : <span class="keyword">public</span> Elephant, <span class="keyword">public</span> Seal {};</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Dreaded diamond</li>
+<li>C++ introduces virtual inheritance<ul>
+<li>All virtual bases will be merged and seen as the same</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Animal</span> {<span class="keyword">public</span>: <span class="type">int</span> weight; };</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Elephant</span> : <span class="keyword">public</span> <span class="keyword">virtual</span> Animal {};</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Seal</span> : <span class="keyword">virtual</span> <span class="keyword">public</span> Animal {}; <span class="comment">// virtual 和 public 顺序是不重要的</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">ElephantSeat</span> : <span class="keyword">public</span> Elephant, <span class="keyword">public</span> Seal {};</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>That is, you define many ABCs, which tries to reduce data members and non-pure-virtual member functions as much as you can 定义很多抽象类，尽可能减少成员变量和非纯虚函数的数量，最好是没有</li>
+<li>They usually denote “-able” functionality 这样展现出来的就是就有某种能力</li>
+</ul>
 <h4 id="Polymorphism- 多态"><a href="#Polymorphism- 多态" class="headerlink" title="Polymorphism 多态"></a>Polymorphism 多态</h4><ul>
 <li>you can use the base class to load the derived object and call tis own methods 使用基类的指针 / 引用，承载派生类的对象，从而调用派生类的方法</li>
 <li>virtual pointer and virtual table</li>
-<li>Every object whose class has a virtal method will have a virtual pointer, which points to virtual table of its class 每个类中都有一个指向虚表的指针，虚表内容就是声明为 <code>virtual</code> 函数的地址</li>
+<li>Every object whose class has a virtual method will have a virtual pointer, which points to virtual table of its class 每个类中都有一个指向虚表的指针，虚表内容就是声明为 <code>virtual</code> 函数的地址</li>
 <li>In C++ 11, it’s recommended to use <code>override</code> 子类没有 <code>override</code> 编译器会报错</li>
 <li><code>final</code> It means override, and the derived class cannot override again 继承链中的最后一个节点<ul>
 <li><code>class A final {...};</code> 让类不能被继承</li>
@@ -571,7 +598,7 @@ mjx-container[display="true"] + br {
 <li>可以是使用抽象类的指针，指向的都是派生类的对象</li>
 <li>C++ 通过纯虚函数实现抽象类 <code>virtual void PrintInfo() const = 0;</code></li>
 <li>派生类继承自抽象类必须实现纯虚函数，否则仍然是抽象类</li>
-<li>Don’t call <strong>any</strong> virtual function and any functoin that calls virtual function in ctor &amp; dtor 在构造函数和析构函数中不要调用任何虚函数，也不要掉调用任何可能调用虚函数的函数</li>
+<li>Don’t call <strong>any</strong> virtual function and any function that calls virtual function in ctor &amp; dtor 在构造函数和析构函数中不要调用任何虚函数，也不要掉调用任何可能调用虚函数的函数</li>
 <li>You should usually make dtor of base class <code>virtual</code> 通常将析构函数声明为虚函数<ul>
 <li>deleting <code>Base*</code> that cast from <code>Derived*</code> will lead to correct dtor 派生类指针赋给基类，当调用 <code>delete</code> 时，如果不基类不是虚析构函数，就会调用基类的析构函数</li>
 </ul>
@@ -775,7 +802,7 @@ mjx-container[display="true"] + br {
 <li>If you want to get the raw pointer of array content, you can use <code>.data()</code></li>
 </ul>
 </li>
-<li>Additonal methods<ul>
+<li>Additional methods<ul>
 <li><code>.swap()</code></li>
 <li><code>operator=</code>, <code>operator&lt;=&gt;</code> 三路比较运算符</li>
 <li><code>.fill()</code> 将整个数组填充为某个特定值</li>
@@ -792,7 +819,7 @@ mjx-container[display="true"] + br {
 <h4 id="vector"><a href="#vector" class="headerlink" title="vector"></a>vector</h4><ul>
 <li>动态数组<ul>
 <li>支持随机访问，占据连续空间</li>
-<li>When insering and removing elements at the end (i.e. pushing/poping back), the complexity is amoritized（均摊） <mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.566ex;" xmlns="http://www.w3.org/2000/svg" width="4.618ex" height="2.262ex" role="img" focusable="false" viewbox="0 -750 2041 1000"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D442" d="M740 435Q740 320 676 213T511 42T304 -22Q207 -22 138 35T51 201Q50 209 50 244Q50 346 98 438T227 601Q351 704 476 704Q514 704 524 703Q621 689 680 617T740 435ZM637 476Q637 565 591 615T476 665Q396 665 322 605Q242 542 200 428T157 216Q157 126 200 73T314 19Q404 19 485 98T608 313Q637 408 637 476Z"/></g><g data-mml-node="mo" transform="translate(763,0)"><path data-c="28" d="M94 250Q94 319 104 381T127 488T164 576T202 643T244 695T277 729T302 750H315H319Q333 750 333 741Q333 738 316 720T275 667T226 581T184 443T167 250T184 58T225 -81T274 -167T316 -220T333 -241Q333 -250 318 -250H315H302L274 -226Q180 -141 137 -14T94 250Z"/></g><g data-mml-node="mn" transform="translate(1152,0)"><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"/></g><g data-mml-node="mo" transform="translate(1652,0)"><path data-c="29" d="M60 749L64 750Q69 750 74 750H86L114 726Q208 641 251 514T294 250Q294 182 284 119T261 12T224 -76T186 -143T145 -194T113 -227T90 -246Q87 -249 86 -250H74Q66 -250 63 -250T58 -247T55 -238Q56 -237 66 -225Q221 -64 221 250T66 725Q56 737 55 738Q55 746 60 749Z"/></g></g></g></svg></mjx-container></li>
+<li>When inserting and removing elements at the end (i.e. pushing/poping back), the complexity is amortized（均摊） <mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.566ex;" xmlns="http://www.w3.org/2000/svg" width="4.618ex" height="2.262ex" role="img" focusable="false" viewbox="0 -750 2041 1000"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D442" d="M740 435Q740 320 676 213T511 42T304 -22Q207 -22 138 35T51 201Q50 209 50 244Q50 346 98 438T227 601Q351 704 476 704Q514 704 524 703Q621 689 680 617T740 435ZM637 476Q637 565 591 615T476 665Q396 665 322 605Q242 542 200 428T157 216Q157 126 200 73T314 19Q404 19 485 98T608 313Q637 408 637 476Z"/></g><g data-mml-node="mo" transform="translate(763,0)"><path data-c="28" d="M94 250Q94 319 104 381T127 488T164 576T202 643T244 695T277 729T302 750H315H319Q333 750 333 741Q333 738 316 720T275 667T226 581T184 443T167 250T184 58T225 -81T274 -167T316 -220T333 -241Q333 -250 318 -250H315H302L274 -226Q180 -141 137 -14T94 250Z"/></g><g data-mml-node="mn" transform="translate(1152,0)"><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"/></g><g data-mml-node="mo" transform="translate(1652,0)"><path data-c="29" d="M60 749L64 750Q69 750 74 750H86L114 726Q208 641 251 514T294 250Q294 182 284 119T261 12T224 -76T186 -143T145 -194T113 -227T90 -246Q87 -249 86 -250H74Q66 -250 63 -250T58 -247T55 -238Q56 -237 66 -225Q221 -64 221 250T66 725Q56 737 55 738Q55 746 60 749Z"/></g></g></g></svg></mjx-container></li>
 <li>If not at end, it’ll be <mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.566ex;" xmlns="http://www.w3.org/2000/svg" width="4.844ex" height="2.262ex" role="img" focusable="false" viewbox="0 -750 2141 1000"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D442" d="M740 435Q740 320 676 213T511 42T304 -22Q207 -22 138 35T51 201Q50 209 50 244Q50 346 98 438T227 601Q351 704 476 704Q514 704 524 703Q621 689 680 617T740 435ZM637 476Q637 565 591 615T476 665Q396 665 322 605Q242 542 200 428T157 216Q157 126 200 73T314 19Q404 19 485 98T608 313Q637 408 637 476Z"/></g><g data-mml-node="mo" transform="translate(763,0)"><path data-c="28" d="M94 250Q94 319 104 381T127 488T164 576T202 643T244 695T277 729T302 750H315H319Q333 750 333 741Q333 738 316 720T275 667T226 581T184 443T167 250T184 58T225 -81T274 -167T316 -220T333 -241Q333 -250 318 -250H315H302L274 -226Q180 -141 137 -14T94 250Z"/></g><g data-mml-node="mi" transform="translate(1152,0)"><path data-c="1D45B" d="M21 287Q22 293 24 303T36 341T56 388T89 425T135 442Q171 442 195 424T225 390T231 369Q231 367 232 367L243 378Q304 442 382 442Q436 442 469 415T503 336T465 179T427 52Q427 26 444 26Q450 26 453 27Q482 32 505 65T540 145Q542 153 560 153Q580 153 580 145Q580 144 576 130Q568 101 554 73T508 17T439 -10Q392 -10 371 17T350 73Q350 92 386 193T423 345Q423 404 379 404H374Q288 404 229 303L222 291L189 157Q156 26 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 112 180T152 343Q153 348 153 366Q153 405 129 405Q91 405 66 305Q60 285 60 284Q58 278 41 278H27Q21 284 21 287Z"/></g><g data-mml-node="mo" transform="translate(1752,0)"><path data-c="29" d="M60 749L64 750Q69 750 74 750H86L114 726Q208 641 251 514T294 250Q294 182 284 119T261 12T224 -76T186 -143T145 -194T113 -227T90 -246Q87 -249 86 -250H74Q66 -250 63 -250T58 -247T55 -238Q56 -237 66 -225Q221 -64 221 250T66 725Q56 737 55 738Q55 746 60 749Z"/></g></g></g></svg></mjx-container></li>
 </ul>
 </li>
@@ -860,8 +887,8 @@ mjx-container[display="true"] + br {
 </li>
 <li><code>.pop_back()</code></li>
 <li><code>.insert(const_iterator pos, xxx)</code></li>
-<li><code>.erase(const_iteraor pos)</code>, <code>.erase(const_iterator first, const_iterator last)</code>: erase a single element/elements from <code>[first, last)</code><ul>
-<li>insert/erase will return next calid iterator of inserted/erase elements</li>
+<li><code>.erase(const_iterator pos)</code>, <code>.erase(const_iterator first, const_iterator last)</code>: erase a single element/elements from <code>[first, last)</code><ul>
+<li>insert/erase will return next valid iterator of inserted/erase elements</li>
 </ul>
 </li>
 <li>Interact with another vector<ul>
@@ -890,15 +917,15 @@ mjx-container[display="true"] + br {
 <li><p>For vector</p>
 <ul>
 <li><p>If the capacity changes, all iterators are invalid</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;vector&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">    std::vctorv{<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>};</span><br><span class="line">    <span class="keyword">auto</span> it = v.<span class="built_in">begin</span>();</span><br><span class="line">    v.<span class="built_in">reserve</span>(<span class="number">10086</span>); <span class="comment">// 会导致上一行的 `it` 失效</span></span><br><span class="line">    it = v.<span class="built_in">begin</span>(); <span class="comment">// 必须进行重新获取</span></span><br><span class="line">}</span><br></pre></td></tr></table></figure></li>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;vector&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">    std::vector{<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>};</span><br><span class="line">    <span class="keyword">auto</span> it = v.<span class="built_in">begin</span>();</span><br><span class="line">    v.<span class="built_in">reserve</span>(<span class="number">10086</span>); <span class="comment">// 会导致上一行的 `it` 失效</span></span><br><span class="line">    it = v.<span class="built_in">begin</span>(); <span class="comment">// 必须进行重新获取</span></span><br><span class="line">}</span><br></pre></td></tr></table></figure></li>
 <li><p>If the capacity doesn’t change, but some elements are moved, iterators after the changed points are invalid</p>
 </li>
 </ul>
 </li>
 </ul>
 <h4 id="Span"><a href="#Span" class="headerlink" title="Span"></a>Span</h4><ul>
-<li>视图 View means that it doesn’t catually hold the data; it observes the data</li>
-<li>Span is a view for contiguous memory (e.g. vector, array, string, C-sytle array initializer list, etc.)</li>
+<li>视图 View means that it doesn’t actually hold the data; it observes the data</li>
+<li>Span is a view for contiguous memory (e.g. vector, array, string, C-style array initializer list, etc.)</li>
 <li>可以像 array 一样操控 span</li>
 <li><code>.first(N)/.last(N)</code></li>
 <li><code>.subspan(beginPos(, size))</code></li>
@@ -942,7 +969,7 @@ mjx-container[display="true"] + br {
 <li>We can use <code>off / block_size</code> to know the position of head</li>
 </ul>
 </li>
-<li>Element nunmbers</li>
+<li>Element numbers</li>
 </ul>
 </li>
 <li>重新分配的时候只需要拷贝指针</li>
@@ -951,7 +978,7 @@ mjx-container[display="true"] + br {
 <li>需要使得循环队列仍然是连续的<ul>
 <li>First, copy all elements from <code>vec[head, vecEnd]</code> to <code>newVec[head, currEnd]</code></li>
 <li>Then, if <code>head &lt;= count</code>, copy <code>[0, head)</code> to <code>[currEnd, ...)</code></li>
-<li>Else, copy after <code>currEnd</code> as mush as posisble, and the rest is arranged to the <code>newVecBegin</code></li>
+<li>Else, copy after <code>currEnd</code> as mush as possible, and the rest is arranged to the <code>newVecBegin</code></li>
 <li>Finally, set all the rest to <code>nullptr</code></li>
 </ul>
 </li>
@@ -959,7 +986,7 @@ mjx-container[display="true"] + br {
 </li>
 </ul>
 </li>
-<li>Dequeue iterator incalidation<ul>
+<li>Dequeue iterator invalidation<ul>
 <li>All iterators are seen as invalid after insertion 插入之后所有的迭代器都是失效的，还包括<ul>
 <li><code>resize</code></li>
 <li><code>shrink_to_fit</code></li>
@@ -983,9 +1010,9 @@ mjx-container[display="true"] + br {
 <li>不需要特判 nullptr`</li>
 </ul>
 </li>
-<li>There are two mehods to move nodes from another list<ul>
+<li>There are two methods to move nodes from another list<ul>
 <li>和 <code>insert(pos, it1, it2)</code> 有区别，<code>insert</code>只是拷贝，没有清除操作</li>
-<li><code>.merge(list2)/.mearge(list2, cmp)</code>，通常用在已排序的 list 中</li>
+<li><code>.merge(list2)/.merge(list2, cmp)</code>，通常用在已排序的 list 中</li>
 <li><code>.splice(pos, list2, ...)</code><ul>
 <li><code>()</code>: insert the total <code>list2</code> to pos</li>
 <li><code>(it2)</code>: insert <code>it2</code> to <code>pos</code> (and remove it from <code>list2</code>)</li>
@@ -997,7 +1024,7 @@ mjx-container[display="true"] + br {
 </ul>
 <h4 id="Froward-list"><a href="#Froward-list" class="headerlink" title="Froward list"></a>Froward list</h4><ul>
 <li>Single linked list</li>
-<li>Foward list 的目的是为了减少存储空间，所以不提供 <code>.size()</code> 函数</li>
+<li>Forward list 的目的是为了减少存储空间，所以不提供 <code>.size()</code> 函数</li>
 <li>只存储头部节点</li>
 </ul>
 <h3 id="Container-adaptors"><a href="#Container-adaptors" class="headerlink" title="Container adaptors"></a>Container adaptors</h3><ul>
@@ -1029,15 +1056,15 @@ mjx-container[display="true"] + br {
 <li>插入或者弹出元素的时间复杂度是<mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.566ex;" xmlns="http://www.w3.org/2000/svg" width="8.167ex" height="2.262ex" role="img" focusable="false" viewbox="0 -750 3610 1000"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D442" d="M740 435Q740 320 676 213T511 42T304 -22Q207 -22 138 35T51 201Q50 209 50 244Q50 346 98 438T227 601Q351 704 476 704Q514 704 524 703Q621 689 680 617T740 435ZM637 476Q637 565 591 615T476 665Q396 665 322 605Q242 542 200 428T157 216Q157 126 200 73T314 19Q404 19 485 98T608 313Q637 408 637 476Z"/></g><g data-mml-node="mo" transform="translate(763,0)"><path data-c="28" d="M94 250Q94 319 104 381T127 488T164 576T202 643T244 695T277 729T302 750H315H319Q333 750 333 741Q333 738 316 720T275 667T226 581T184 443T167 250T184 58T225 -81T274 -167T316 -220T333 -241Q333 -250 318 -250H315H302L274 -226Q180 -141 137 -14T94 250Z"/></g><g data-mml-node="TeXAtom" data-mjx-texclass="ORD" transform="translate(1152,0)"><g data-mml-node="mi"><path data-c="1D425" d="M43 686L134 690Q225 694 226 694H232V62H301V0H292Q274 3 170 3Q67 3 49 0H40V62H109V332Q109 387 109 453T110 534Q110 593 108 605T94 620Q80 624 53 624H40V686H43Z"/><path data-c="1D428" d="M287 -5Q228 -5 182 10T109 48T63 102T39 161T32 219Q32 272 50 314T94 382T154 423T214 446T265 452H279Q319 452 326 451Q428 439 485 376T542 221Q542 156 514 108T442 33Q384 -5 287 -5ZM399 230V250Q399 280 398 298T391 338T372 372T338 392T282 401Q241 401 212 380Q190 363 183 334T175 230Q175 202 175 189T177 153T183 118T195 91T215 68T245 56T287 50Q348 50 374 84Q388 101 393 132T399 230Z" transform="translate(319,0)"/><path data-c="1D420" d="M50 300Q50 368 105 409T255 450Q328 450 376 426L388 420Q435 455 489 455Q517 455 533 441T554 414T558 389Q558 367 544 353T508 339Q484 339 471 354T458 387Q458 397 462 400Q464 401 461 400Q459 400 454 399Q429 392 427 390Q454 353 459 328Q461 315 461 300Q461 240 419 202Q364 149 248 149Q185 149 136 172Q129 158 129 148Q129 105 170 93Q176 91 263 91Q273 91 298 91T334 91T366 89T400 85T432 77T466 64Q544 22 544 -69Q544 -114 506 -145Q438 -201 287 -201Q149 -201 90 -161T30 -70Q30 -58 33 -47T42 -27T54 -13T69 -1T82 6T94 12T101 15Q66 57 66 106Q66 151 90 187L97 197L89 204Q50 243 50 300ZM485 403H492Q491 404 488 404L485 403V403ZM255 200Q279 200 295 206T319 219T331 242T335 268T336 300Q336 337 333 352T317 380Q298 399 255 399Q228 399 211 392T187 371T178 345T176 312V300V289Q176 235 194 219Q215 200 255 200ZM287 -150Q357 -150 400 -128T443 -71Q443 -65 442 -61T436 -50T420 -37T389 -27T339 -21L308 -20Q276 -20 253 -20Q190 -20 180 -20T156 -26Q130 -38 130 -69Q130 -105 173 -127T287 -150Z" transform="translate(894,0)"/></g></g><g data-mml-node="mi" transform="translate(2621,0)"><path data-c="1D45B" d="M21 287Q22 293 24 303T36 341T56 388T89 425T135 442Q171 442 195 424T225 390T231 369Q231 367 232 367L243 378Q304 442 382 442Q436 442 469 415T503 336T465 179T427 52Q427 26 444 26Q450 26 453 27Q482 32 505 65T540 145Q542 153 560 153Q580 153 580 145Q580 144 576 130Q568 101 554 73T508 17T439 -10Q392 -10 371 17T350 73Q350 92 386 193T423 345Q423 404 379 404H374Q288 404 229 303L222 291L189 157Q156 26 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 112 180T152 343Q153 348 153 366Q153 405 129 405Q91 405 66 305Q60 285 60 284Q58 278 41 278H27Q21 284 21 287Z"/></g><g data-mml-node="mo" transform="translate(3221,0)"><path data-c="29" d="M60 749L64 750Q69 750 74 750H86L114 726Q208 641 251 514T294 250Q294 182 284 119T261 12T224 -76T186 -143T145 -194T113 -227T90 -246Q87 -249 86 -250H74Q66 -250 63 -250T58 -247T55 -238Q56 -237 66 -225Q221 -64 221 250T66 725Q56 737 55 738Q55 746 60 749Z"/></g></g></g></svg></mjx-container></li>
 <li>建堆的时间复杂度是<mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.566ex;" xmlns="http://www.w3.org/2000/svg" width="4.844ex" height="2.262ex" role="img" focusable="false" viewbox="0 -750 2141 1000"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D442" d="M740 435Q740 320 676 213T511 42T304 -22Q207 -22 138 35T51 201Q50 209 50 244Q50 346 98 438T227 601Q351 704 476 704Q514 704 524 703Q621 689 680 617T740 435ZM637 476Q637 565 591 615T476 665Q396 665 322 605Q242 542 200 428T157 216Q157 126 200 73T314 19Q404 19 485 98T608 313Q637 408 637 476Z"/></g><g data-mml-node="mo" transform="translate(763,0)"><path data-c="28" d="M94 250Q94 319 104 381T127 488T164 576T202 643T244 695T277 729T302 750H315H319Q333 750 333 741Q333 738 316 720T275 667T226 581T184 443T167 250T184 58T225 -81T274 -167T316 -220T333 -241Q333 -250 318 -250H315H302L274 -226Q180 -141 137 -14T94 250Z"/></g><g data-mml-node="mi" transform="translate(1152,0)"><path data-c="1D45B" d="M21 287Q22 293 24 303T36 341T56 388T89 425T135 442Q171 442 195 424T225 390T231 369Q231 367 232 367L243 378Q304 442 382 442Q436 442 469 415T503 336T465 179T427 52Q427 26 444 26Q450 26 453 27Q482 32 505 65T540 145Q542 153 560 153Q580 153 580 145Q580 144 576 130Q568 101 554 73T508 17T439 -10Q392 -10 371 17T350 73Q350 92 386 193T423 345Q423 404 379 404H374Q288 404 229 303L222 291L189 157Q156 26 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 112 180T152 343Q153 348 153 366Q153 405 129 405Q91 405 66 305Q60 285 60 284Q58 278 41 278H27Q21 284 21 287Z"/></g><g data-mml-node="mo" transform="translate(1752,0)"><path data-c="29" d="M60 749L64 750Q69 750 74 750H86L114 726Q208 641 251 514T294 250Q294 182 284 119T261 12T224 -76T186 -143T145 -194T113 -227T90 -246Q87 -249 86 -250H74Q66 -250 63 -250T58 -247T55 -238Q56 -237 66 -225Q221 -64 221 250T66 725Q56 737 55 738Q55 746 60 749Z"/></g></g></g></svg></mjx-container></li>
 <li>Percolation is the core algorithm<ul>
-<li>插入的时候进行上滤 precolate up</li>
-<li>删除的时候进行下滤 precolate down</li>
+<li>插入的时候进行上滤 percolate up</li>
+<li>删除的时候进行下滤 percolate down</li>
 </ul>
 </li>
 </ul>
 </li>
 </ul>
 <h4 id="Flat-containers"><a href="#Flat-containers" class="headerlink" title="Flat containers"></a>Flat containers</h4><ul>
-<li>The only defect of map/unordered_map/… is that they’re rellay cache-unfriendly</li>
+<li>The only defect of map/unordered_map/… is that they’re really cache-unfriendly</li>
 <li>Flat containers 对缓存利用率更高<ul>
 <li>The functionality is same as set/map</li>
 <li>But it’s in fact an ordered “vector”<ul>
@@ -1063,7 +1090,7 @@ mjx-container[display="true"] + br {
 </li>
 <li>There exist ordered one and unordered one<ul>
 <li>有序的需要比较函数 less than<ul>
-<li>BBST (balanced binary serch tree) 查找、插入、删除的时间复杂度都是<mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.566ex;" xmlns="http://www.w3.org/2000/svg" width="7.538ex" height="2.262ex" role="img" focusable="false" viewbox="0 -750 3332 1000"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D45C" d="M201 -11Q126 -11 80 38T34 156Q34 221 64 279T146 380Q222 441 301 441Q333 441 341 440Q354 437 367 433T402 417T438 387T464 338T476 268Q476 161 390 75T201 -11ZM121 120Q121 70 147 48T206 26Q250 26 289 58T351 142Q360 163 374 216T388 308Q388 352 370 375Q346 405 306 405Q243 405 195 347Q158 303 140 230T121 120Z"/></g><g data-mml-node="mo" transform="translate(485,0)"><path data-c="28" d="M94 250Q94 319 104 381T127 488T164 576T202 643T244 695T277 729T302 750H315H319Q333 750 333 741Q333 738 316 720T275 667T226 581T184 443T167 250T184 58T225 -81T274 -167T316 -220T333 -241Q333 -250 318 -250H315H302L274 -226Q180 -141 137 -14T94 250Z"/></g><g data-mml-node="TeXAtom" data-mjx-texclass="ORD" transform="translate(874,0)"><g data-mml-node="mi"><path data-c="1D425" d="M43 686L134 690Q225 694 226 694H232V62H301V0H292Q274 3 170 3Q67 3 49 0H40V62H109V332Q109 387 109 453T110 534Q110 593 108 605T94 620Q80 624 53 624H40V686H43Z"/><path data-c="1D428" d="M287 -5Q228 -5 182 10T109 48T63 102T39 161T32 219Q32 272 50 314T94 382T154 423T214 446T265 452H279Q319 452 326 451Q428 439 485 376T542 221Q542 156 514 108T442 33Q384 -5 287 -5ZM399 230V250Q399 280 398 298T391 338T372 372T338 392T282 401Q241 401 212 380Q190 363 183 334T175 230Q175 202 175 189T177 153T183 118T195 91T215 68T245 56T287 50Q348 50 374 84Q388 101 393 132T399 230Z" transform="translate(319,0)"/><path data-c="1D420" d="M50 300Q50 368 105 409T255 450Q328 450 376 426L388 420Q435 455 489 455Q517 455 533 441T554 414T558 389Q558 367 544 353T508 339Q484 339 471 354T458 387Q458 397 462 400Q464 401 461 400Q459 400 454 399Q429 392 427 390Q454 353 459 328Q461 315 461 300Q461 240 419 202Q364 149 248 149Q185 149 136 172Q129 158 129 148Q129 105 170 93Q176 91 263 91Q273 91 298 91T334 91T366 89T400 85T432 77T466 64Q544 22 544 -69Q544 -114 506 -145Q438 -201 287 -201Q149 -201 90 -161T30 -70Q30 -58 33 -47T42 -27T54 -13T69 -1T82 6T94 12T101 15Q66 57 66 106Q66 151 90 187L97 197L89 204Q50 243 50 300ZM485 403H492Q491 404 488 404L485 403V403ZM255 200Q279 200 295 206T319 219T331 242T335 268T336 300Q336 337 333 352T317 380Q298 399 255 399Q228 399 211 392T187 371T178 345T176 312V300V289Q176 235 194 219Q215 200 255 200ZM287 -150Q357 -150 400 -128T443 -71Q443 -65 442 -61T436 -50T420 -37T389 -27T339 -21L308 -20Q276 -20 253 -20Q190 -20 180 -20T156 -26Q130 -38 130 -69Q130 -105 173 -127T287 -150Z" transform="translate(894,0)"/></g></g><g data-mml-node="mi" transform="translate(2343,0)"><path data-c="1D45B" d="M21 287Q22 293 24 303T36 341T56 388T89 425T135 442Q171 442 195 424T225 390T231 369Q231 367 232 367L243 378Q304 442 382 442Q436 442 469 415T503 336T465 179T427 52Q427 26 444 26Q450 26 453 27Q482 32 505 65T540 145Q542 153 560 153Q580 153 580 145Q580 144 576 130Q568 101 554 73T508 17T439 -10Q392 -10 371 17T350 73Q350 92 386 193T423 345Q423 404 379 404H374Q288 404 229 303L222 291L189 157Q156 26 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 112 180T152 343Q153 348 153 366Q153 405 129 405Q91 405 66 305Q60 285 60 284Q58 278 41 278H27Q21 284 21 287Z"/></g><g data-mml-node="mo" transform="translate(2943,0)"><path data-c="29" d="M60 749L64 750Q69 750 74 750H86L114 726Q208 641 251 514T294 250Q294 182 284 119T261 12T224 -76T186 -143T145 -194T113 -227T90 -246Q87 -249 86 -250H74Q66 -250 63 -250T58 -247T55 -238Q56 -237 66 -225Q221 -64 221 250T66 725Q56 737 55 738Q55 746 60 749Z"/></g></g></g></svg></mjx-container><ul>
+<li>BBST (balanced binary search tree) 查找、插入、删除的时间复杂度都是<mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.566ex;" xmlns="http://www.w3.org/2000/svg" width="7.538ex" height="2.262ex" role="img" focusable="false" viewbox="0 -750 3332 1000"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D45C" d="M201 -11Q126 -11 80 38T34 156Q34 221 64 279T146 380Q222 441 301 441Q333 441 341 440Q354 437 367 433T402 417T438 387T464 338T476 268Q476 161 390 75T201 -11ZM121 120Q121 70 147 48T206 26Q250 26 289 58T351 142Q360 163 374 216T388 308Q388 352 370 375Q346 405 306 405Q243 405 195 347Q158 303 140 230T121 120Z"/></g><g data-mml-node="mo" transform="translate(485,0)"><path data-c="28" d="M94 250Q94 319 104 381T127 488T164 576T202 643T244 695T277 729T302 750H315H319Q333 750 333 741Q333 738 316 720T275 667T226 581T184 443T167 250T184 58T225 -81T274 -167T316 -220T333 -241Q333 -250 318 -250H315H302L274 -226Q180 -141 137 -14T94 250Z"/></g><g data-mml-node="TeXAtom" data-mjx-texclass="ORD" transform="translate(874,0)"><g data-mml-node="mi"><path data-c="1D425" d="M43 686L134 690Q225 694 226 694H232V62H301V0H292Q274 3 170 3Q67 3 49 0H40V62H109V332Q109 387 109 453T110 534Q110 593 108 605T94 620Q80 624 53 624H40V686H43Z"/><path data-c="1D428" d="M287 -5Q228 -5 182 10T109 48T63 102T39 161T32 219Q32 272 50 314T94 382T154 423T214 446T265 452H279Q319 452 326 451Q428 439 485 376T542 221Q542 156 514 108T442 33Q384 -5 287 -5ZM399 230V250Q399 280 398 298T391 338T372 372T338 392T282 401Q241 401 212 380Q190 363 183 334T175 230Q175 202 175 189T177 153T183 118T195 91T215 68T245 56T287 50Q348 50 374 84Q388 101 393 132T399 230Z" transform="translate(319,0)"/><path data-c="1D420" d="M50 300Q50 368 105 409T255 450Q328 450 376 426L388 420Q435 455 489 455Q517 455 533 441T554 414T558 389Q558 367 544 353T508 339Q484 339 471 354T458 387Q458 397 462 400Q464 401 461 400Q459 400 454 399Q429 392 427 390Q454 353 459 328Q461 315 461 300Q461 240 419 202Q364 149 248 149Q185 149 136 172Q129 158 129 148Q129 105 170 93Q176 91 263 91Q273 91 298 91T334 91T366 89T400 85T432 77T466 64Q544 22 544 -69Q544 -114 506 -145Q438 -201 287 -201Q149 -201 90 -161T30 -70Q30 -58 33 -47T42 -27T54 -13T69 -1T82 6T94 12T101 15Q66 57 66 106Q66 151 90 187L97 197L89 204Q50 243 50 300ZM485 403H492Q491 404 488 404L485 403V403ZM255 200Q279 200 295 206T319 219T331 242T335 268T336 300Q336 337 333 352T317 380Q298 399 255 399Q228 399 211 392T187 371T178 345T176 312V300V289Q176 235 194 219Q215 200 255 200ZM287 -150Q357 -150 400 -128T443 -71Q443 -65 442 -61T436 -50T420 -37T389 -27T339 -21L308 -20Q276 -20 253 -20Q190 -20 180 -20T156 -26Q130 -38 130 -69Q130 -105 173 -127T287 -150Z" transform="translate(894,0)"/></g></g><g data-mml-node="mi" transform="translate(2343,0)"><path data-c="1D45B" d="M21 287Q22 293 24 303T36 341T56 388T89 425T135 442Q171 442 195 424T225 390T231 369Q231 367 232 367L243 378Q304 442 382 442Q436 442 469 415T503 336T465 179T427 52Q427 26 444 26Q450 26 453 27Q482 32 505 65T540 145Q542 153 560 153Q580 153 580 145Q580 144 576 130Q568 101 554 73T508 17T439 -10Q392 -10 371 17T350 73Q350 92 386 193T423 345Q423 404 379 404H374Q288 404 229 303L222 291L189 157Q156 26 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 112 180T152 343Q153 348 153 366Q153 405 129 405Q91 405 66 305Q60 285 60 284Q58 278 41 278H27Q21 284 21 287Z"/></g><g data-mml-node="mo" transform="translate(2943,0)"><path data-c="29" d="M60 749L64 750Q69 750 74 750H86L114 726Q208 641 251 514T294 250Q294 182 284 119T261 12T224 -76T186 -143T145 -194T113 -227T90 -246Q87 -249 86 -250H74Q66 -250 63 -250T58 -247T55 -238Q56 -237 66 -225Q221 -64 221 250T66 725Q56 737 55 738Q55 746 60 749Z"/></g></g></g></svg></mjx-container><ul>
 <li>RB tree</li>
 <li>AVL</li>
 </ul>
@@ -1078,7 +1105,7 @@ mjx-container[display="true"] + br {
 </li>
 </ul>
 <h4 id="Map"><a href="#Map" class="headerlink" title="Map"></a>Map</h4><ul>
-<li>The key is unique; a signle key cannot be mapped to multiple values</li>
+<li>The key is unique; a single key cannot be mapped to multiple values</li>
 <li><code>std::map&lt;Key, Value, CMPForKey = std::less&lt;Key&gt;&gt;</code><ul>
 <li>默认是小于号</li>
 <li><code>CMPForKey</code> should be able to accept <code>const key</code></li>
@@ -1142,14 +1169,14 @@ mjx-container[display="true"] + br {
 <li><code>.insert_or_assign(key, value)</code>: return <code>pair&lt;iterator, bool&gt;</code></li>
 </ul>
 </li>
-<li>Leave it unchanged and even not contruct the inserted value (C++ 17)<ul>
-<li><code>.try_emplace(key, params)</code>: same as <code>empalce</code>, except that the params are used to construct value, and <code>emplace</code> is not forbidden to construct the pair in failure 构造 value 非常昂贵的时候使用</li>
+<li>Leave it unchanged and even not construct the inserted value (C++ 17)<ul>
+<li><code>.try_emplace(key, params)</code>: same as <code>emplace</code>, except that the params are used to construct value, and <code>emplace</code> is not forbidden to construct the pair in failure 构造 value 非常昂贵的时候使用</li>
 </ul>
 </li>
 </ul>
 </li>
 <li>You can also provide a hint iterator for insertion<ul>
-<li>hint iteraotr 在被插入元素后面的时候会有效率提升，在前面的话会使效率降低</li>
+<li>hint iterator 在被插入元素后面的时候会有效率提升，在前面的话会使效率降低</li>
 <li>Hint is often used in idiom blow<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">auto</span> pLoc = someMap.<span class="built_in">lower_bound</span>(someKey);</span><br><span class="line"><span class="keyword">if</span> (pLoc != someMap.<span class="built_in">end</span>() &amp;&amp; !(someMap.<span class="built_in">Key_comp</span>()(someKey, pLoc-&gt;first)))</span><br><span class="line">    <span class="keyword">return</span> pLoc-&gt;second;</span><br><span class="line"><span class="keyword">else</span> {</span><br><span class="line">    <span class="keyword">auto</span> newValue = <span class="built_in">expensiveCalculation</span>();</span><br><span class="line">    someMap.<span class="built_in">insert</span>(pLoc, <span class="built_in">make_pair</span>(someKey, <span class="keyword">new</span> Value));</span><br><span class="line">    <span class="keyword">return</span> newValue;</span><br><span class="line">}</span><br></pre></td></tr></table></figure></li>
 </ul>
 </li>
@@ -1285,11 +1312,11 @@ mjx-container[display="true"] + br {
 <li><code>stdv::take(x)</code>: take first <code>x</code> elements (but not exceed <code>end</code>)</li>
 <li><code>stdv::take_while(Pred)</code>: take elements until <code>Pred</code> return <code>false</code> (or <code>end</code>)</li>
 <li><code>stdv::drop(x)</code>: drop first <code>x</code> elements</li>
-<li><code>stdv::drop_while(Pred)</code>: drop elements unitl <code>Pred</code> returns <code>false</code></li>
+<li><code>stdv::drop_while(Pred)</code>: drop elements until <code>Pred</code> returns <code>false</code></li>
 <li><code>stdv::reverse</code></li>
 <li><code>stdv::keys</code>: get the first element from a tuple-like thing</li>
 <li><code>stdv::values</code></li>
-<li><code>stdv::elements&lt;i&gt;</code>: get the <code>i</code>th elemnt from a tuple-like thing</li>
+<li><code>stdv::elements&lt;i&gt;</code>: get the <code>i</code>th element from a tuple-like thing</li>
 <li><code>stdv::stride(k)</code>: use <code>k</code> as stride to iterate<ul>
 <li>e.g. <code>stdv::iota(1, 0) | stdv::stride(2)</code> gets <code>{1, 3, 5, 7, 9}</code></li>
 </ul>
@@ -1298,7 +1325,7 @@ mjx-container[display="true"] + br {
 <li><code>stdv::join_with(xx)</code>: fill the interval with <code>xx</code> 需要用 <code>|</code> 连接</li>
 <li><code>stdv::zip(r1, r2, ...)</code>: zip values from ranges to a tuple</li>
 <li><code>stdv::cartesian_product(r1, r2, ...)</code>: return a tuple of elements from the cartesian product of these ranges</li>
-<li><code>stdv::enumerate</code>: return <code>std::tuple&lt;Integer, T&amp;&gt;</code>; Integer is index whose tpe is diff typr of iterator</li>
+<li><code>stdv::enumerate</code>: return <code>std::tuple&lt;Integer, T&amp;&gt;</code>; Integer is index whose tpe is diff type of iterator</li>
 <li><code>stdv::slide(width)</code>: slide the range in a sliding window of <code>width</code><ul>
 <li>e.g. <code>std::vector v{1, 2, 3, 4, 5}; v | stdv::slide(3)</code> gets <code>{{1, 2, 3}, {2, 3, 4}, {3, 4, 5}}</code></li>
 </ul>
@@ -1306,7 +1333,7 @@ mjx-container[display="true"] + br {
 <li><code>stdv::adjacent&lt;width&gt;</code>: same as <code>stdv::slide(width)</code></li>
 <li><code>stdv::pairwise</code>: i.e. stdv::adjacent&lt;2&gt;</li>
 <li><code>stdv::chunk(width)</code>: partition the range by <code>width</code></li>
-<li><code>stdv::chunj_by(pred2)</code>: partition the range by <code>pred2</code>, i.e. a view sill stop when <code>pred2(*it, *next(it))</code> return <code>false</code></li>
+<li><code>stdv::chunk_by(pred2)</code>: partition the range by <code>pred2</code>, i.e. a view sill stop when <code>pred2(*it, *next(it))</code> return <code>false</code></li>
 <li><code>stdv::split(xx)</code></li>
 <li><code>stdv::lazy_split(xx)</code></li>
 </ul>
@@ -1325,7 +1352,7 @@ mjx-container[display="true"] + br {
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">std::vector&lt;<span class="type">int</span>&gt; v{<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span> };</span><br><span class="line"><span class="type">int</span> cnt = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">auto</span> r = v | stdv::<span class="built_in">transform</span>([&amp;cnt](<span class="type">const</span> <span class="type">int</span> ele) {</span><br><span class="line">    std::cout &lt;&lt; std::format(<span class="string">"cnt={}, ele={}\n"</span>, cnt, ele);</span><br><span class="line">    cnt++;</span><br><span class="line">    <span class="keyword">return</span> cnt + ele;</span><br><span class="line">}) | stdv::<span class="built_in">take_while</span>([](<span class="type">const</span> <span class="type">int</span> ele) {<span class="keyword">return</span> ele &lt; <span class="number">10</span>; });</span><br><span class="line"><span class="keyword">for</span> (<span class="type">const</span> <span class="keyword">auto</span>&amp; i : r);</span><br><span class="line"><span class="comment">// output:</span></span><br><span class="line"><span class="comment">// cnt=0, ele=1</span></span><br><span class="line"><span class="comment">// cnt=1, ele=1</span></span><br><span class="line"><span class="comment">// cnt=2, ele=2</span></span><br><span class="line"><span class="comment">// cnt=3, ele=2</span></span><br><span class="line"><span class="comment">// cnt=4, ele=3</span></span><br><span class="line"><span class="comment">// cnt=5, ele=3</span></span><br><span class="line"><span class="comment">// cnt=6, ele=4</span></span><br></pre></td></tr></table></figure>
 
 <ul>
-<li><code>++</code> will trigger transfrom since <code>take_while</code> needs the transformed value to advance the iterator (i.e. by <code>Pred(*it)</code>)</li>
+<li><code>++</code> will trigger transform since <code>take_while</code> needs the transformed value to advance the iterator (i.e. by <code>Pred(*it)</code>)</li>
 <li><code>const auto&amp; ele = *it</code> will trigger it again</li>
 <li>That’s because the result doesn’t reference some existing elements, but generate from temporary; every time you need it, lazy evaluation generate it again 太 lazy 了</li>
 <li>Sometimes, you may want to convert a range to a e.g. container, which needs to eagerly evaluate all<ul>
@@ -1352,8 +1379,8 @@ mjx-container[display="true"] + br {
 
 <p>When the function reaches <code>yield</code>, it will pause and <code>return</code> the number; when iterator moves forward, the function will resume and continue to execute until the next <code>yield</code> or real <code>return</code></p>
 <ul>
-<li>Since C++ 23, generator is also supported by <strong>corutine</strong><ul>
-<li>Coroutines <strong>cooperates</strong> with each other and yield their excution flow themselves 协程之间是相互配合的控制流<ul>
+<li>Since C++ 23, generator is also supported by <strong>coroutine</strong><ul>
+<li>Coroutines <strong>cooperates</strong> with each other and yield their execution flow themselves 协程之间是相互配合的控制流<ul>
 <li>By contrast, for threads, they usually compete with each other and are interrupted by OS to give other threads chances to execute 线程则是抢占式的</li>
 </ul>
 </li>
@@ -1433,7 +1460,7 @@ mjx-container[display="true"] + br {
 <li>Different from reference, it can be bound to another object by <code>operator=</code>, just like pointer 引用是不可以换绑的，但是 <code>std::ref()</code> 可以</li>
 </ul>
 </li>
-<li>It’s also used to denote “it should be a reference” exlicitly in some methods in standard library, e.g. <code>std::bind_back</code> or <code>std::bind_front</code></li>
+<li>It’s also used to denote “it should be a reference” explicitly in some methods in standard library, e.g. <code>std::bind_back</code> or <code>std::bind_front</code></li>
 </ul>
 </li>
 </ul>
@@ -1456,7 +1483,7 @@ mjx-container[display="true"] + br {
 </ul>
 </li>
 </ul>
-<h2 id="Algorithms"><a href="#Algorithms" class="headerlink" title="Algorithms"></a>Algorithms</h2><h3 id="Algorithms’-Consiit"><a href="#Algorithms’-Consiit" class="headerlink" title="Algorithms’ Consiit"></a>Algorithms’ Consiit</h3><ul>
+<h2 id="Algorithms"><a href="#Algorithms" class="headerlink" title="Algorithms"></a>Algorithms</h2><h3 id="Algorithms’-Consist"><a href="#Algorithms’-Consist" class="headerlink" title="Algorithms’ Consist"></a>Algorithms’ Consist</h3><ul>
 <li>Iterator pairs 迭代器对，或者直接传入 ranges</li>
 <li>Predicate function / transform function 判别函数或者变换函数，通常情况下变换都是<code>const&amp;</code>，或者对于比较小的类型传入拷贝</li>
 <li>大部分算法都返回一个范围迭代器</li>
@@ -1465,7 +1492,7 @@ mjx-container[display="true"] + br {
 </ul>
 <h3 id="Search"><a href="#Search" class="headerlink" title="Search"></a>Search</h3><ul>
 <li>两种搜索算法<ul>
-<li>Linear seach<ul>
+<li>Linear search<ul>
 <li>Find single value<ul>
 <li><code>std::find</code></li>
 <li><code>std::find_if</code></li>
@@ -1482,7 +1509,7 @@ mjx-container[display="true"] + br {
 </li>
 <li>Others<ul>
 <li><code>std::adjacent_find(begin, end[, Pred2])</code>: 相邻元素相等的位置</li>
-<li><code>std::sratch_n(begin, end, count, value, [, Pred2])</code></li>
+<li><code>std::search_n(begin, end, count, value, [, Pred2])</code></li>
 </ul>
 </li>
 </ul>
@@ -1513,7 +1540,7 @@ mjx-container[display="true"] + br {
 <li><code>std::count_if(begin, end, Pred)</code></li>
 <li>These algorithms are all <mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.566ex;" xmlns="http://www.w3.org/2000/svg" width="5.495ex" height="2.262ex" role="img" focusable="false" viewbox="0 -750 2429 1000"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D442" d="M740 435Q740 320 676 213T511 42T304 -22Q207 -22 138 35T51 201Q50 209 50 244Q50 346 98 438T227 601Q351 704 476 704Q514 704 524 703Q621 689 680 617T740 435ZM637 476Q637 565 591 615T476 665Q396 665 322 605Q242 542 200 428T157 216Q157 126 200 73T314 19Q404 19 485 98T608 313Q637 408 637 476Z"/></g><g data-mml-node="mo" transform="translate(763,0)"><path data-c="28" d="M94 250Q94 319 104 381T127 488T164 576T202 643T244 695T277 729T302 750H315H319Q333 750 333 741Q333 738 316 720T275 667T226 581T184 443T167 250T184 58T225 -81T274 -167T316 -220T333 -241Q333 -250 318 -250H315H302L274 -226Q180 -141 137 -14T94 250Z"/></g><g data-mml-node="mi" transform="translate(1152,0)"><path data-c="1D441" d="M234 637Q231 637 226 637Q201 637 196 638T191 649Q191 676 202 682Q204 683 299 683Q376 683 387 683T401 677Q612 181 616 168L670 381Q723 592 723 606Q723 633 659 637Q635 637 635 648Q635 650 637 660Q641 676 643 679T653 683Q656 683 684 682T767 680Q817 680 843 681T873 682Q888 682 888 672Q888 650 880 642Q878 637 858 637Q787 633 769 597L620 7Q618 0 599 0Q585 0 582 2Q579 5 453 305L326 604L261 344Q196 88 196 79Q201 46 268 46H278Q284 41 284 38T282 19Q278 6 272 0H259Q228 2 151 2Q123 2 100 2T63 2T46 1Q31 1 31 10Q31 14 34 26T39 40Q41 46 62 46Q130 49 150 85Q154 91 221 362L289 634Q287 635 234 637Z"/></g><g data-mml-node="mo" transform="translate(2040,0)"><path data-c="29" d="M60 749L64 750Q69 750 74 750H86L114 726Q208 641 251 514T294 250Q294 182 284 119T261 12T224 -76T186 -143T145 -194T113 -227T90 -246Q87 -249 86 -250H74Q66 -250 63 -250T58 -247T55 -238Q56 -237 66 -225Q221 -64 221 250T66 725Q56 737 55 738Q55 746 60 749Z"/></g></g></g></svg></mjx-container></li>
 </ul>
-<h3 id="Generating-and-Trankforming"><a href="#Generating-and-Trankforming" class="headerlink" title="Generating and Trankforming"></a>Generating and Trankforming</h3><ul>
+<h3 id="Generating-and-Transforming"><a href="#Generating-and-Transforming" class="headerlink" title="Generating and Transforming"></a>Generating and Transforming</h3><ul>
 <li><code>std::fill(begin, end, value)</code></li>
 <li><code>std::fill_n(begin, count, value)</code></li>
 <li><code>std::generate(begin, end, Gen)</code>: for each element in <code>[begin, end)</code>, <code>ele = Gen()</code></li>
@@ -1611,8 +1638,8 @@ mjx-container[display="true"] + br {
 </ul>
 </li>
 <li>Since <code>std::sort</code> requires the complexity exactly <mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.566ex;" xmlns="http://www.w3.org/2000/svg" width="10.828ex" height="2.262ex" role="img" focusable="false" viewbox="0 -750 4786 1000"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D442" d="M740 435Q740 320 676 213T511 42T304 -22Q207 -22 138 35T51 201Q50 209 50 244Q50 346 98 438T227 601Q351 704 476 704Q514 704 524 703Q621 689 680 617T740 435ZM637 476Q637 565 591 615T476 665Q396 665 322 605Q242 542 200 428T157 216Q157 126 200 73T314 19Q404 19 485 98T608 313Q637 408 637 476Z"/></g><g data-mml-node="mo" transform="translate(763,0)"><path data-c="28" d="M94 250Q94 319 104 381T127 488T164 576T202 643T244 695T277 729T302 750H315H319Q333 750 333 741Q333 738 316 720T275 667T226 581T184 443T167 250T184 58T225 -81T274 -167T316 -220T333 -241Q333 -250 318 -250H315H302L274 -226Q180 -141 137 -14T94 250Z"/></g><g data-mml-node="mi" transform="translate(1152,0)"><path data-c="1D441" d="M234 637Q231 637 226 637Q201 637 196 638T191 649Q191 676 202 682Q204 683 299 683Q376 683 387 683T401 677Q612 181 616 168L670 381Q723 592 723 606Q723 633 659 637Q635 637 635 648Q635 650 637 660Q641 676 643 679T653 683Q656 683 684 682T767 680Q817 680 843 681T873 682Q888 682 888 672Q888 650 880 642Q878 637 858 637Q787 633 769 597L620 7Q618 0 599 0Q585 0 582 2Q579 5 453 305L326 604L261 344Q196 88 196 79Q201 46 268 46H278Q284 41 284 38T282 19Q278 6 272 0H259Q228 2 151 2Q123 2 100 2T63 2T46 1Q31 1 31 10Q31 14 34 26T39 40Q41 46 62 46Q130 49 150 85Q154 91 221 362L289 634Q287 635 234 637Z"/></g><g data-mml-node="TeXAtom" data-mjx-texclass="ORD" transform="translate(2040,0)"><g data-mml-node="mi"><path data-c="1D425" d="M43 686L134 690Q225 694 226 694H232V62H301V0H292Q274 3 170 3Q67 3 49 0H40V62H109V332Q109 387 109 453T110 534Q110 593 108 605T94 620Q80 624 53 624H40V686H43Z"/><path data-c="1D428" d="M287 -5Q228 -5 182 10T109 48T63 102T39 161T32 219Q32 272 50 314T94 382T154 423T214 446T265 452H279Q319 452 326 451Q428 439 485 376T542 221Q542 156 514 108T442 33Q384 -5 287 -5ZM399 230V250Q399 280 398 298T391 338T372 372T338 392T282 401Q241 401 212 380Q190 363 183 334T175 230Q175 202 175 189T177 153T183 118T195 91T215 68T245 56T287 50Q348 50 374 84Q388 101 393 132T399 230Z" transform="translate(319,0)"/><path data-c="1D420" d="M50 300Q50 368 105 409T255 450Q328 450 376 426L388 420Q435 455 489 455Q517 455 533 441T554 414T558 389Q558 367 544 353T508 339Q484 339 471 354T458 387Q458 397 462 400Q464 401 461 400Q459 400 454 399Q429 392 427 390Q454 353 459 328Q461 315 461 300Q461 240 419 202Q364 149 248 149Q185 149 136 172Q129 158 129 148Q129 105 170 93Q176 91 263 91Q273 91 298 91T334 91T366 89T400 85T432 77T466 64Q544 22 544 -69Q544 -114 506 -145Q438 -201 287 -201Q149 -201 90 -161T30 -70Q30 -58 33 -47T42 -27T54 -13T69 -1T82 6T94 12T101 15Q66 57 66 106Q66 151 90 187L97 197L89 204Q50 243 50 300ZM485 403H492Q491 404 488 404L485 403V403ZM255 200Q279 200 295 206T319 219T331 242T335 268T336 300Q336 337 333 352T317 380Q298 399 255 399Q228 399 211 392T187 371T178 345T176 312V300V289Q176 235 194 219Q215 200 255 200ZM287 -150Q357 -150 400 -128T443 -71Q443 -65 442 -61T436 -50T420 -37T389 -27T339 -21L308 -20Q276 -20 253 -20Q190 -20 180 -20T156 -26Q130 -38 130 -69Q130 -105 173 -127T287 -150Z" transform="translate(894,0)"/></g></g><g data-mml-node="mi" transform="translate(3509,0)"><path data-c="1D441" d="M234 637Q231 637 226 637Q201 637 196 638T191 649Q191 676 202 682Q204 683 299 683Q376 683 387 683T401 677Q612 181 616 168L670 381Q723 592 723 606Q723 633 659 637Q635 637 635 648Q635 650 637 660Q641 676 643 679T653 683Q656 683 684 682T767 680Q817 680 843 681T873 682Q888 682 888 672Q888 650 880 642Q878 637 858 637Q787 633 769 597L620 7Q618 0 599 0Q585 0 582 2Q579 5 453 305L326 604L261 344Q196 88 196 79Q201 46 268 46H278Q284 41 284 38T282 19Q278 6 272 0H259Q228 2 151 2Q123 2 100 2T63 2T46 1Q31 1 31 10Q31 14 34 26T39 40Q41 46 62 46Q130 49 150 85Q154 91 221 362L289 634Q287 635 234 637Z"/></g><g data-mml-node="mo" transform="translate(4397,0)"><path data-c="29" d="M60 749L64 750Q69 750 74 750H86L114 726Q208 641 251 514T294 250Q294 182 284 119T261 12T224 -76T186 -143T145 -194T113 -227T90 -246Q87 -249 86 -250H74Q66 -250 63 -250T58 -247T55 -238Q56 -237 66 -225Q221 -64 221 250T66 725Q56 737 55 738Q55 746 60 749Z"/></g></g></g></svg></mjx-container>, quick sort is not enough 快排只是平均意义上的<mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.566ex;" xmlns="http://www.w3.org/2000/svg" width="10.828ex" height="2.262ex" role="img" focusable="false" viewbox="0 -750 4786 1000"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D442" d="M740 435Q740 320 676 213T511 42T304 -22Q207 -22 138 35T51 201Q50 209 50 244Q50 346 98 438T227 601Q351 704 476 704Q514 704 524 703Q621 689 680 617T740 435ZM637 476Q637 565 591 615T476 665Q396 665 322 605Q242 542 200 428T157 216Q157 126 200 73T314 19Q404 19 485 98T608 313Q637 408 637 476Z"/></g><g data-mml-node="mo" transform="translate(763,0)"><path data-c="28" d="M94 250Q94 319 104 381T127 488T164 576T202 643T244 695T277 729T302 750H315H319Q333 750 333 741Q333 738 316 720T275 667T226 581T184 443T167 250T184 58T225 -81T274 -167T316 -220T333 -241Q333 -250 318 -250H315H302L274 -226Q180 -141 137 -14T94 250Z"/></g><g data-mml-node="mi" transform="translate(1152,0)"><path data-c="1D441" d="M234 637Q231 637 226 637Q201 637 196 638T191 649Q191 676 202 682Q204 683 299 683Q376 683 387 683T401 677Q612 181 616 168L670 381Q723 592 723 606Q723 633 659 637Q635 637 635 648Q635 650 637 660Q641 676 643 679T653 683Q656 683 684 682T767 680Q817 680 843 681T873 682Q888 682 888 672Q888 650 880 642Q878 637 858 637Q787 633 769 597L620 7Q618 0 599 0Q585 0 582 2Q579 5 453 305L326 604L261 344Q196 88 196 79Q201 46 268 46H278Q284 41 284 38T282 19Q278 6 272 0H259Q228 2 151 2Q123 2 100 2T63 2T46 1Q31 1 31 10Q31 14 34 26T39 40Q41 46 62 46Q130 49 150 85Q154 91 221 362L289 634Q287 635 234 637Z"/></g><g data-mml-node="TeXAtom" data-mjx-texclass="ORD" transform="translate(2040,0)"><g data-mml-node="mi"><path data-c="1D425" d="M43 686L134 690Q225 694 226 694H232V62H301V0H292Q274 3 170 3Q67 3 49 0H40V62H109V332Q109 387 109 453T110 534Q110 593 108 605T94 620Q80 624 53 624H40V686H43Z"/><path data-c="1D428" d="M287 -5Q228 -5 182 10T109 48T63 102T39 161T32 219Q32 272 50 314T94 382T154 423T214 446T265 452H279Q319 452 326 451Q428 439 485 376T542 221Q542 156 514 108T442 33Q384 -5 287 -5ZM399 230V250Q399 280 398 298T391 338T372 372T338 392T282 401Q241 401 212 380Q190 363 183 334T175 230Q175 202 175 189T177 153T183 118T195 91T215 68T245 56T287 50Q348 50 374 84Q388 101 393 132T399 230Z" transform="translate(319,0)"/><path data-c="1D420" d="M50 300Q50 368 105 409T255 450Q328 450 376 426L388 420Q435 455 489 455Q517 455 533 441T554 414T558 389Q558 367 544 353T508 339Q484 339 471 354T458 387Q458 397 462 400Q464 401 461 400Q459 400 454 399Q429 392 427 390Q454 353 459 328Q461 315 461 300Q461 240 419 202Q364 149 248 149Q185 149 136 172Q129 158 129 148Q129 105 170 93Q176 91 263 91Q273 91 298 91T334 91T366 89T400 85T432 77T466 64Q544 22 544 -69Q544 -114 506 -145Q438 -201 287 -201Q149 -201 90 -161T30 -70Q30 -58 33 -47T42 -27T54 -13T69 -1T82 6T94 12T101 15Q66 57 66 106Q66 151 90 187L97 197L89 204Q50 243 50 300ZM485 403H492Q491 404 488 404L485 403V403ZM255 200Q279 200 295 206T319 219T331 242T335 268T336 300Q336 337 333 352T317 380Q298 399 255 399Q228 399 211 392T187 371T178 345T176 312V300V289Q176 235 194 219Q215 200 255 200ZM287 -150Q357 -150 400 -128T443 -71Q443 -65 442 -61T436 -50T420 -37T389 -27T339 -21L308 -20Q276 -20 253 -20Q190 -20 180 -20T156 -26Q130 -38 130 -69Q130 -105 173 -127T287 -150Z" transform="translate(894,0)"/></g></g><g data-mml-node="mi" transform="translate(3509,0)"><path data-c="1D441" d="M234 637Q231 637 226 637Q201 637 196 638T191 649Q191 676 202 682Q204 683 299 683Q376 683 387 683T401 677Q612 181 616 168L670 381Q723 592 723 606Q723 633 659 637Q635 637 635 648Q635 650 637 660Q641 676 643 679T653 683Q656 683 684 682T767 680Q817 680 843 681T873 682Q888 682 888 672Q888 650 880 642Q878 637 858 637Q787 633 769 597L620 7Q618 0 599 0Q585 0 582 2Q579 5 453 305L326 604L261 344Q196 88 196 79Q201 46 268 46H278Q284 41 284 38T282 19Q278 6 272 0H259Q228 2 151 2Q123 2 100 2T63 2T46 1Q31 1 31 10Q31 14 34 26T39 40Q41 46 62 46Q130 49 150 85Q154 91 221 362L289 634Q287 635 234 637Z"/></g><g data-mml-node="mo" transform="translate(4397,0)"><path data-c="29" d="M60 749L64 750Q69 750 74 750H86L114 726Q208 641 251 514T294 250Q294 182 284 119T261 12T224 -76T186 -143T145 -194T113 -227T90 -246Q87 -249 86 -250H74Q66 -250 63 -250T58 -247T55 -238Q56 -237 66 -225Q221 -64 221 250T66 725Q56 737 55 738Q55 746 60 749Z"/></g></g></g></svg></mjx-container>，最坏的情况是<mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.566ex;" xmlns="http://www.w3.org/2000/svg" width="6.606ex" height="2.452ex" role="img" focusable="false" viewbox="0 -833.9 2919.8 1083.9"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D442" d="M740 435Q740 320 676 213T511 42T304 -22Q207 -22 138 35T51 201Q50 209 50 244Q50 346 98 438T227 601Q351 704 476 704Q514 704 524 703Q621 689 680 617T740 435ZM637 476Q637 565 591 615T476 665Q396 665 322 605Q242 542 200 428T157 216Q157 126 200 73T314 19Q404 19 485 98T608 313Q637 408 637 476Z"/></g><g data-mml-node="mo" transform="translate(763,0)"><path data-c="28" d="M94 250Q94 319 104 381T127 488T164 576T202 643T244 695T277 729T302 750H315H319Q333 750 333 741Q333 738 316 720T275 667T226 581T184 443T167 250T184 58T225 -81T274 -167T316 -220T333 -241Q333 -250 318 -250H315H302L274 -226Q180 -141 137 -14T94 250Z"/></g><g data-mml-node="msup" transform="translate(1152,0)"><g data-mml-node="mi"><path data-c="1D441" d="M234 637Q231 637 226 637Q201 637 196 638T191 649Q191 676 202 682Q204 683 299 683Q376 683 387 683T401 677Q612 181 616 168L670 381Q723 592 723 606Q723 633 659 637Q635 637 635 648Q635 650 637 660Q641 676 643 679T653 683Q656 683 684 682T767 680Q817 680 843 681T873 682Q888 682 888 672Q888 650 880 642Q878 637 858 637Q787 633 769 597L620 7Q618 0 599 0Q585 0 582 2Q579 5 453 305L326 604L261 344Q196 88 196 79Q201 46 268 46H278Q284 41 284 38T282 19Q278 6 272 0H259Q228 2 151 2Q123 2 100 2T63 2T46 1Q31 1 31 10Q31 14 34 26T39 40Q41 46 62 46Q130 49 150 85Q154 91 221 362L289 634Q287 635 234 637Z"/></g><g data-mml-node="mn" transform="translate(975.3,363) scale(0.707)"><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"/></g></g><g data-mml-node="mo" transform="translate(2530.8,0)"><path data-c="29" d="M60 749L64 750Q69 750 74 750H86L114 726Q208 641 251 514T294 250Q294 182 284 119T261 12T224 -76T186 -143T145 -194T113 -227T90 -246Q87 -249 86 -250H74Q66 -250 63 -250T58 -247T55 -238Q56 -237 66 -225Q221 -64 221 250T66 725Q56 737 55 738Q55 746 60 749Z"/></g></g></g></svg></mjx-container></li>
-<li>C++ 标准库广泛使用的排序算法是 Inrosprective Sort(InroSrot)<ul>
-<li>It integrates insrtion srot, heap sort and quick sort 结合了插入排序，堆排序和快排</li>
+<li>C++ 标准库广泛使用的排序算法是 Introspective Sort(IntroSort)<ul>
+<li>It integrates insertion sort, heap sort and quick sort 结合了插入排序，堆排序和快排</li>
 <li>When the element number is <strong>low enough</strong>, insertion sort is used</li>
 <li>When the recursion is too deep, heap sort is used<ul>
 <li>避免快排的最坏情况</li>
@@ -1668,7 +1695,7 @@ mjx-container[display="true"] + br {
 <li><code>std::inner_product(begin1, end1, begin2, initVal, Op1 = std::plus, Op2 = std::multiplies)</code>: finally get <code>initVal + a[0] * b[0] + a[1] * b[1] + ...</code></li>
 <li><code>std::reduce(begin, end, initVal, Op = std::plus)</code>: same as accumulate</li>
 <li><code>std::inclusive_scan(begin, end, dstBegin, Op = std::plus[, initVal])</code>: same as partial sum</li>
-<li><code>std::transform_reduce(begin1, end1, begin2, initVal, ReduceOp = std::plus, BiTransfromOp = std::multiplies)</code>: same as inner product</li>
+<li><code>std::transform_reduce(begin1, end1, begin2, initVal, ReduceOp = std::plus, BiTransformOp = std::multiplies)</code>: same as inner product</li>
 <li><code>std::exclusive_scan(begin, end, dstBegin, initVal, Op = std::plus)</code>: similar to partial, but exclude the element itself, i.e. the sequence is <code>{initVal, initVal + val[0], ..., initVal + val[0] + ... + val[n - 2]}</code></li>
 <li><code>std::transform_inclusive_scan(begin, end, dstBegin, Op, UnaryTransformOp[, initVal])</code></li>
 <li><code>std::transform_exclusive_scan(begin, end, dstBegin, Op, UnaryTransformOp[, initVal])</code></li>
@@ -1712,13 +1739,13 @@ mjx-container[display="true"] + br {
 </ul>
 </li>
 <li>There are also some algorithms that cannot be parallelized<ul>
-<li>Those who only operate on serveral values, e.g. <code>std::min/max/minmax/clamp</code>, <code>std::swap/iter_swap</code></li>
+<li>Those who only operate on several values, e.g. <code>std::min/max/minmax/clamp</code>, <code>std::swap/iter_swap</code></li>
 <li>随机算法</li>
 <li><code>std::search</code></li>
 <li><code>std::push/pop/make/sort_heap</code></li>
 <li>排列算法</li>
 <li>二叉搜索算法</li>
-<li>Oerdered numeric algorithms, i.e. <code>std::iota/accumulate/inner_product/partial_sum</code></li>
+<li>Ordered numeric algorithms, i.e. <code>std::iota/accumulate/inner_product/partial_sum</code></li>
 </ul>
 </li>
 </ul>
@@ -1767,12 +1794,12 @@ mjx-container[display="true"] + br {
 <h2 id="Lifetime"><a href="#Lifetime" class="headerlink" title="Lifetime"></a>Lifetime</h2><h3 id="Storage-duration- 存储持续性"><a href="#Storage-duration- 存储持续性" class="headerlink" title="Storage duration 存储持续性"></a>Storage duration 存储持续性</h3><p>There are four kinds of storage duration</p>
 <ul>
 <li>Static storage duration: global variables, static variables in a function/class</li>
-<li>Automatic storage duration: variables that belong to a block scope ro funciton arguments 定义的时候构造，推出的时候析构</li>
+<li>Automatic storage duration: variables that belong to a block scope ro function arguments 定义的时候构造，推出的时候析构</li>
 <li>Dynamic storage duration: you can create objects by using or some other allocation functions</li>
 <li>Thread storage duration: 线程创建的时候构造，线程退出的时候析构</li>
 </ul>
 <p>The lifetime of an object begins when storage with proper alignment and size is allocated and the object is initialized 合适的对齐，合适的大小，以及初始化</p>
-<p>The lifetime of an object ends when it’s destroy, or the dtor is called, or its storage is released or reused by non-nested object 析构函数被调用，存储被释放，被重用（<code>flaot</code>类型的变量通过某些手段被 <code>int</code> 类型变量占用）</p>
+<p>The lifetime of an object ends when it’s destroy, or the dtor is called, or its storage is released or reused by non-nested object 析构函数被调用，存储被释放，被重用（<code>float</code>类型的变量通过某些手段被 <code>int</code> 类型变量占用）</p>
 <p>Temporary objects are only alive until the statement ends (i.e. until <code>;</code>) 临时变量的声明周期只到语句结束之前，也就是 <code>;</code> 分号之后才结束</p>
 <ul>
 <li>函数中的参数传递 <code>const&amp;</code> 或<code>std::function_ref</code>是安全的</li>
@@ -1785,6 +1812,296 @@ mjx-container[display="true"] + br {
 <ul>
 <li><code>new(buffet) Type Initializer</code>, where <code>Initializer</code> is optional</li>
 <li>Of course, you need to make sure the alignment satisfies the requirement of the type, so you can use keyword <code>alignas</code>  为了保证类型对齐需要用到在 C++ 11 引入的关键字<code>alignas</code></li>
+</ul>
+<blockquote>
+<ul>
+<li><code>std::byte</code>: defined in <code>&lt;cstddef&gt;</code> since C++ 17; it’s just an enumeration class and explicitly represents a byte (before we may use <code>unsigned char</code>)</li>
+<li>Trivial dtor<ul>
+<li>It’s implicitly declared or declared with <code>=default</code> 隐式生成（编译器）的或者被定义为<code>default</code></li>
+<li>It’s non-virtual and all non-static data members have trivial dtor 所有的非静态成员都有 trivial dtor，并且成员不能是虚的</li>
+<li>For example<ul>
+<li>✅<code>struct A{int a; float b;};</code></li>
+<li>✅<code>class A{int a; public: float b; ~A() = default };</code></li>
+<li>✅<code>class A{int a; public: float b; virtual ~A() = default };</code></li>
+<li>❎<code>class B : public A{};</code></li>
+<li>❎<code>class A{~A() {}};</code></li>
+<li>❎<code>class A{std::unique_ptr&lt;int&gt; ptr;};</code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<h3 id="Corner-Cases"><a href="#Corner-Cases" class="headerlink" title="Corner Cases"></a>Corner Cases</h3><ul>
+<li>Case1: if you construct an object that has the same type as the original object, and they occupies exactly same storage, then the original name, pointers and references are still valid 就像赋值符号一样</li>
+<li>Case2: it’s best to reuse storage of plain types like <code>int</code> or classes that have trivial dtor 如果要重用内存尽量使用简单的类型，例如 <code>int</code> 或者带有 trivial dtor 的类，对于其他类型编译器会在退出当前 scope 时候会自动调用析构函数</li>
+<li>Case3: it’s illegal to reuse memory of <code>const</code> objects that have determined their value in the compilation time</li>
+<li>Case4: <code>unsigned char/std::byte</code> array is explicitly regulated to be able to provide storage 这两个类型的数组是明确地可以提供 storage 的</li>
+<li>Case5: It’s legal to access the underlying object by pointers without the same type in these cases (type punning/aliasing 类型堆叠 / 类型别名） 在少数情况下可以使用不同类型的指针访问一些对象<ul>
+<li>add/remove cv-qualification <code>int</code>类型的指针可以使用 <code>const int</code> 类型的指针访问</li>
+<li>decayed array 用指针访问数组的元素</li>
+<li>if the underlying type is integer, then using the pointer of its signed/unsigned variant to access it is OK</li>
+<li>convert it to <code>(unsigned) char*/ std::byte*</code> 允许将对象视作字节数组 byte array</li>
+</ul>
+</li>
+<li>Case6:If you have an old pointer where you’ve constructed a new object, but you want to use the old pointer to get the new pointer, you can use <code>std::launder</code>（洗涤；洗钱） defined in <code>&lt;new&gt;</code> since C++ 17<ul>
+<li><code>std::launder(reinterpret_cast&lt;A*&gt;(buffer))</code> to get the actual valid pointer 用旧的指针获得指向新的对象的指针</li>
+</ul>
+</li>
+</ul>
+<h3 id="Strict-Aliasing-Rules"><a href="#Strict-Aliasing-Rules" class="headerlink" title="Strict Aliasing Rules"></a>Strict Aliasing Rules</h3><p>Strict aliasing rules, if pointers are not aliased or not contained as member, then compilers can freely assume that they’re different objects 本质上就是检查两个指针指向的区域有没有可能重叠</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">T</span></span><br><span class="line">{</span><br><span class="line">    <span class="type">uint8_t</span>* target;</span><br><span class="line">    <span class="type">char</span>* source;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">Unpack</span><span class="params">(<span class="type">int</span> size)</span></span></span><br><span class="line"><span class="function">    </span>{</span><br><span class="line">        <span class="keyword">while</span> (size &gt; <span class="number">0</span>)</span><br><span class="line">        {</span><br><span class="line">            <span class="type">uint64_t</span> t;</span><br><span class="line">            std::<span class="built_in">memcpy</span>(&amp;t, source, <span class="built_in">sizeof</span>(t));</span><br><span class="line">            target[<span class="number">0</span>] = t &amp; <span class="number">0x7</span>;</span><br><span class="line">            target[<span class="number">1</span>] = (t &gt;&gt; <span class="number">3</span>) &amp; <span class="number">0x7</span>;</span><br><span class="line">            target[<span class="number">2</span>] = (t &gt;&gt; <span class="number">6</span>) &amp; <span class="number">0x7</span>;</span><br><span class="line">            target[<span class="number">3</span>] = (t &gt;&gt; <span class="number">9</span>) &amp; <span class="number">0x7</span>;</span><br><span class="line">            source += <span class="number">6</span>, size -= <span class="number">6</span>, target += <span class="number">16</span>;</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line">};</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Compared with non-member version (i.e. <code>Unpack(uint8_t* target, char* src, int size)</code>), it’s 15% slower</li>
+<li><code>target</code> is an alias of <code>this</code>. It will then always reload <code>target[i]</code> instead of caching a <code>qword</code> to prevent change of <code>target</code> 编译器认为 <code>target</code> 是<code>this</code>的别名</li>
+</ul>
+<h3 id="Others"><a href="#Others" class="headerlink" title="Others"></a>Others</h3><ul>
+<li>Attention to lambda lifetime<ul>
+<li>Lambda lifetime should always be shorter than reference captures</li>
+<li>If you capture in the class, then this only captures members by <code>this</code>, which may be invalid after destruction 如果 <code>this</code> 被析构掉，就算是把 <code>this</code> 拷贝出来，还是失效的</li>
+</ul>
+</li>
+<li>Attention to view lifetime<ul>
+<li>Sometimes you mey return a view generated by range adaptor in a function (e.g. <code>v | std::reverse</code>)<ul>
+<li>For lvalue, it’s same as the lvalue itself, i.e. <code>v</code> here</li>
+<li>For rvalue, it’ll same as return a value, so that it’s always safe 临时值</li>
+</ul>
+</li>
+<li>所有的 range adaptors 在调用之前都会调用 <code>stdv::all</code> 尝试将 range 转换成 view；但是对于 view 来说不做任何事情<ul>
+<li>For lvalue range, it’ll create a <code>stdr::ref_view</code></li>
+<li>For rvalue range, it’ll create a <code>stdr::owning_view</code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="Type-Safety"><a href="#Type-Safety" class="headerlink" title="Type Safety"></a>Type Safety</h2><h3 id="Implicit-Conversion"><a href="#Implicit-Conversion" class="headerlink" title="Implicit Conversion"></a>Implicit Conversion</h3><ul>
+<li>Some implicit conversions are automatic (standard conversions), and others are user-defined 很多隐式的转型都是自动的<ul>
+<li>E.g. <code>operator float()</code>. If you declare it as <code>explicit</code>, then implicit conversion will be disabled</li>
+</ul>
+</li>
+<li>Standard conversions<ul>
+<li>Lvalue-to rvalue conversion, array-to-pointer conversion, function-to-pointer conversion<ul>
+<li>Decay actually means<ul>
+<li>Array/Function -&gt; pointer</li>
+<li>Or for other types, remove remove references first, remove cv-qualifiers(const &amp; volatile) next</li>
+<li>You can use <code>std::decay_t&lt;T&gt;</code> to get the decayed type</li>
+<li><code>auto a = xx;</code> will also decay the deduced type, while <code>auto&amp;</code> will not<ul>
+<li>But structured binding <code>auto [a, b] = xx;</code> “seems” not decay decay 看似没发生，其实是发生在结构化绑定的实现上，相当于 <code>auto anonymous = xx;</code>，<code>a</code> 和<code>b</code>是成员变量的别名，decay 发生在 <code>anonymous</code> 中</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Numeric promotions and conversions<ul>
+<li>Promotion: promotion has higher precedence and will not lose precision<ul>
+<li><code>b + c</code> where <code>b</code> and <code>c</code> are <code>unsigned short</code> will in fact silently promote them to <code>int</code> and then do <code>+</code> 先提升到 <code>int</code> 然后再做加法</li>
+<li>至少提升到<code>int</code></li>
+<li><code>float</code> can be promoted to <code>double</code></li>
+</ul>
+</li>
+<li>Signed value has negative values while unsigned ones don’t, but conversion may happen</li>
+<li><code>float</code> cannot represent all <code>int/...</code> but <code>int</code> can be converted to <code>float</code> implicitly</li>
+<li>Any scalar types can be converted to <code>bool</code></li>
+<li>Pointers can be converted to <code>void*</code> to base class, and <code>nullptr</code> can be converted to pointer directly</li>
+<li>Pointer to member of derived class can also be converted to pointer to member of base class, i.e. <code>Derived::int*</code> -&gt; <code>Base::int*</code></li>
+<li>There are also some numeric conversions that need explicit cast 数值上的转换需要显示的转换<ul>
+<li>Narrow integer conversion will mod <mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: 0;" xmlns="http://www.w3.org/2000/svg" width="2.279ex" height="1.528ex" role="img" focusable="false" viewbox="0 -675.5 1007.3 675.5"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="msup"><g data-mml-node="mn"><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"/></g><g data-mml-node="mi" transform="translate(533,363) scale(0.707)"><path data-c="1D45B" d="M21 287Q22 293 24 303T36 341T56 388T89 425T135 442Q171 442 195 424T225 390T231 369Q231 367 232 367L243 378Q304 442 382 442Q436 442 469 415T503 336T465 179T427 52Q427 26 444 26Q450 26 453 27Q482 32 505 65T540 145Q542 153 560 153Q580 153 580 145Q580 144 576 130Q568 101 554 73T508 17T439 -10Q392 -10 371 17T350 73Q350 92 386 193T423 345Q423 404 379 404H374Q288 404 229 303L222 291L189 157Q156 26 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 112 180T152 343Q153 348 153 366Q153 405 129 405Q91 405 66 305Q60 285 60 284Q58 278 41 278H27Q21 284 21 287Z"/></g></g></g></g></svg></mjx-container> 例如 <code>int</code> -&gt; <code>short</code>，<code>long long</code> -&gt; <code>int</code> 会把高位的位数截断</li>
+<li>Narrow floating conversion will be rounded</li>
+<li>Floating to integer will truncate the digits after dot; UB if truncated integer is not representable by converted type</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>(Exception-specified) function pointer conversion<ul>
+<li>可以把 <code>noexcept</code> 的函数指针转换成没有 <code>noexcept</code> 的函数指针</li>
+</ul>
+</li>
+<li>Qualification conversions<ul>
+<li>You can convert a non-const/non-volatile to const/volatile one</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="Static-Cast"><a href="#Static-Cast" class="headerlink" title="Static Cast"></a>Static Cast</h3><p><code>static_cast</code> is the most powerful one, which can process almost all of normal conversion,defined as <code>static_cast&lt;TargetType&gt;(Exp)</code></p>
+<blockquote>
+<p><strong>Standard-layout</strong></p>
+<ul>
+<li>所有的成员都有相同的访问属性</li>
+<li>没有虚函数</li>
+<li>The base class is not the type of the first member data 基类对象不能是子类第一个成员变量</li>
+<li>整个继承结构，只能有其中一个类是有非静态的变量</li>
+</ul>
+</blockquote>
+<ul>
+<li>All implicit conversions can be explicitly denoted by <code>static_cast</code> 可以做任何一种隐式的转换，也会允许逆操作 e.g. <code>int</code> -&gt; <code>short</code>, <code>double</code> -&gt; <code>float</code></li>
+<li>Scoped enumeration can be converted to/from integer or floating point, which is same as the underlying integer type</li>
+<li>Inheritance-related conversions<ul>
+<li>upcast 向基类转换；更安全的</li>
+<li>downcast 向派生类转换；有点危险</li>
+</ul>
+</li>
+<li>For <code>static_cast</code>, besides inheritance-related pointer conversion, it also processes <code>void*</code><ul>
+<li>You can convert any object pointer to <code>void*</code> (this is also implicit conversion)</li>
+<li>You can also convert explicitly <code>void*</code> to any object pointer 前提是对象潜在的类型 <code>U</code> 和指针的类型 <code>T</code> 有某种特殊的关系——pointer-interconvertible<ul>
+<li><code>T == U</code></li>
+<li><code>U</code> is a union type, while <code>T</code> is type of its member</li>
+<li><code>U</code> is standard-layout, while <code>T</code> is type of its first member or its base class</li>
+<li>Or all vice versa/transitivity</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>并不保证地址是相同的</li>
+<li>Convert to <code>void</code>: just discard value, nothing happens</li>
+<li>Construct new object: if the object ctor can accept a single parameter, which is convertible from the expression, then it in fact constructs a new object. E.g. <code>static_cast&lt;A&gt;(a)</code> for <code>A(int)</code></li>
+<li>Transform value category</li>
+<li><code>static_cast</code> can be used to specify which overload of functions is used by function-to-pointer conversion</li>
+</ul>
+<h3 id="Dynamic-Cast-and-RTTI"><a href="#Dynamic-Cast-and-RTTI" class="headerlink" title="Dynamic Cast and RTTI"></a>Dynamic Cast and RTTI</h3><h4 id="Dynamic-Cast"><a href="#Dynamic-Cast" class="headerlink" title="Dynamic Cast"></a>Dynamic Cast</h4><p><code>static_cast</code>在继承链中检查是非常弱的（可以说是不做检查），即便转换的对象不是派生类的类型仍然会做转换，只是会带来 undefined behavior。<code>dynamic_cast</code>尝试解决这个问题，如果转换不合适会失败</p>
+<ul>
+<li>引用上转换失败会抛出异常<code>throw std::bad_cast</code></li>
+<li>指针上转换失败会返回<code>nullptr</code></li>
+<li>比 UB 更强，更容易定位 bug</li>
+</ul>
+<p>为了做了运行时检查，C++ 编译器会在文件中保留运行时的类型识别（RTTI, Run-Time Type Information/Identification），<code>dynamic_cast</code>只能用在多态的类型转换中，因为 RTTI 依赖于虚指针等特性。但是 <code>dynamic_cast</code> 性能上要比 <code>static_cast</code> 慢 10 倍甚至百倍</p>
+<ul>
+<li>You can do downcast in polymorphic types<ul>
+<li>被转换的对象，潜在的对象类型必须和基类的类型相同，否则不能转换成功</li>
+<li><code>dynamic_cast</code>不能用在当前类构造函数和析构函数中，因为当前类的虚指针不是完整的</li>
+</ul>
+</li>
+<li>You can also do sidecast in polymorphic types with multiple inheritance</li>
+</ul>
+<h4 id="RTTI"><a href="#RTTI" class="headerlink" title="RTTI"></a>RTTI</h4><p>C++ 提供了一种方式可以直接得到类型的信息，定义在 <code>&lt;typeinfo&gt;</code>，同样要限制使用，会造成性能上的问题。可以使用<code>typeid(xxx)</code> 得到 <code>const std::type_info</code>，类似于<code>sizeof</code> 操作符。<code>type_info</code>是只读的，不能通过拷贝或者构造，只能通过 <code>typeid</code> 获得或者引用。可以使用 <code>.name()</code> 进行 debug</p>
+<ul>
+<li><code>.name()</code></li>
+<li><code>.hash_code()</code></li>
+<li><code>.before()</code></li>
+</ul>
+<p>RTTI is unfriendly to shared library 对动态链接库不是友好的</p>
+<ul>
+<li>Since GCC 3.0, symbols are compared equality by address instead fo names. So to preserve only one symbol across many <code>.obj</code> file, it  merges them when linking (like in static library) 符号使用地址比较相等性，而不是通过名字比较相等性；即使两个符号的名字是相等的，地址不相等，当出现在不同的 <code>.obj</code> 文件中的时候，会将名字相等的符号进行地址合并</li>
+<li>So to load shared library quickly, many procedures are omitted, which includes resolving different RTTI symbols 为了快速链接动态链接库，很多步骤都要被省略，其中也包括 RTTI 符号的合并</li>
+</ul>
+<h4 id="Const-Cast"><a href="#Const-Cast" class="headerlink" title="Const Cast"></a>Const Cast</h4><ul>
+<li>It tries to drop the cv-qualifiers<ul>
+<li>明确的知道了原来的对象就是非 read-only，然后接收到的对象是 <code>const</code> 类型的</li>
+<li>The author forgets the <code>const</code> in parameter, but it in fact doesn’t write it</li>
+</ul>
+</li>
+<li><code>volatile</code> is similar 把 <code>volatile</code> 去掉会有 cache 的风险，<code>volatile</code>要求每次使用都要到内存中重新去读</li>
+<li>一般情况下用不到</li>
+</ul>
+<h4 id="Reinterpret-Cast"><a href="#Reinterpret-Cast" class="headerlink" title="Reinterpret Cast"></a>Reinterpret Cast</h4><p><code>reinterpret_cast</code> is used to process pointers of different types, which is dangerous because of life time</p>
+<ul>
+<li>Converting from an object pointer to another type, i.e. <code>reinterpret_cast&lt;T*&gt;(xxx)</code><ul>
+<li>This is same as <code>static_cast&lt;T*&gt;)(static_cast&lt;(cv) void*&gt;(xxx))</code></li>
+<li><code>std::launder</code></li>
+</ul>
+</li>
+<li>Converting from a pointer to function to another type of pointer to function; or pointer to member to another one</li>
+<li>Converting pointer to integer or vice versa (反之亦然)<ul>
+<li>A pointer can be converted to integer by <code>reinterpret_cast</code> if the integer is large enough (<code>std::uintptr_t</code>)</li>
+<li>This integer can be converted back to get the original pointer</li>
+<li><code>reinterpret_cast</code> from <code>0/NULL</code> is UB</li>
+<li>Reference is also convertible 引用和指针一样</li>
+</ul>
+</li>
+</ul>
+<h4 id="Type-safe-union-and-void"><a href="#Type-safe-union-and-void" class="headerlink" title="Type-safe union and void*"></a>Type-safe <code>union</code> and <code>void*</code></h4><ul>
+<li><p>Since C++ 17, <code>&lt;variant&gt;</code> and <code>&lt;any&gt;</code> are introduced to guarantee the safety</p>
+<ul>
+<li><p><code>std::variant</code> can eb seen as a <code>union</code> with a <code>size_t</code> index, which will inspect whether the member is  in its lifetime when getting</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">std::variant&lt;<span class="type">int</span>, <span class="type">float</span>, <span class="type">int</span>, std::vector&lt;<span class="type">int</span>&gt;&gt; v{<span class="number">1.0f</span> };</span><br><span class="line"><span class="comment">// 类似于</span></span><br><span class="line"><span class="keyword">union</span> <span class="title class_">Union</span> {</span><br><span class="line">    <span class="type">int</span> _1;</span><br><span class="line">    <span class="type">float</span> _2;</span><br><span class="line">    <span class="type">int</span> _3;</span><br><span class="line">    std::vector&lt;<span class="type">int</span>&gt; _4;</span><br><span class="line">};</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>For construction<ul>
+<li>By default, the first alternative is value-initialized 默认第一个位置被初始化</li>
+<li>You can also assign a value with the same type of some alternative, then this’s the active alternative</li>
+<li>You can also construct the member in place,i.e. by <code>(std::in_place_type&lt;T&gt;, args...)</code></li>
+<li>You can construct by index, i.e. <code>(std::in_place_index&lt;Index&gt;, args...)</code></li>
+</ul>
+</li>
+<li>To access or check the existence of alternative<ul>
+<li><code>.index()</code>: return the index of active alternative</li>
+<li>These methods need the examined type <strong>unique</strong> in type params<ul>
+<li><code>std::hold_alternative&lt;T&gt;(v)</code>: return Boolean that denotes whether the active alternative is of type <code>T</code></li>
+<li><code>std::get&lt;T&gt;(v)</code>: return the active alternative of type <code>T</code> 传入引用</li>
+<li><code>std::get_if&lt;T&gt;(v)</code>: return the pointer to the active alternative of type <code>T</code> 传入指针</li>
+</ul>
+</li>
+<li>If not unique, you can also use index-based access: <code>std::get&lt;I&gt;(v)</code>, <code>std::get_if&lt;I&gt;(v)</code></li>
+</ul>
+</li>
+<li>Besides type safety, the most important extension of <code>std::variant</code> than <code>union</code> is that it implements <strong>visitor pattern</strong></li>
+</ul>
+</li>
+<li><p><code>std::any</code> can be seen as a <code>void*</code> with the original type “stored” magically, so that you’ll fail to grasp(理解；领会) the inner object with the wrong type 可以加载任意的对象</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">std::any a{<span class="number">1</span> };</span><br><span class="line">a = <span class="number">2.0f</span>;</span><br><span class="line">a = <span class="string">"test"</span>;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>承载的对象必须有构造函数，类型会 decay</li>
+<li>You can also default-construct it or call <code>.reset()</code>, then it holds nothing</li>
+<li><code>.has_value()</code></li>
+<li><code>(std::in_place_t&lt;T&gt;, args...)</code></li>
+<li>When you need to get the underlying object, you need to use <code>std::any_cast&lt;T&gt;(a)</code> or <code>(&amp;a)</code></li>
+<li><code>std::any</code> can have SBO (small buffer optimization) like <code>std::function</code> 编译器会给 <code>std::any</code> 在栈上分配比较小的 buffer，存储一些非常小的对象，而不是在堆上分配内存</li>
+<li><code>.swap/std::swap/.emplace</code></li>
+<li><code>.type()</code></li>
+<li><code>std::make_any</code>, same as constructing <code>std::any</code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="Programming-in-Multiple-Files"><a href="#Programming-in-Multiple-Files" class="headerlink" title="Programming in Multiple Files"></a>Programming in Multiple Files</h2><p>Remember the compilation procedures of C</p>
+<ul>
+<li>Preprocess, where comments are stripped and <strong>macros are processed</strong> (so that your <code>#include</code> can get the file correctly)</li>
+<li>Compile, where each source file is compiled independently 编译</li>
+<li>Assemble; this is not something we care since it just translate assembly to object file 汇编</li>
+<li>Link, to locate symbols that are referred in other TUs 链接</li>
+</ul>
+<h3 id="Preprocessor- 预处理器"><a href="#Preprocessor- 预处理器" class="headerlink" title="Preprocessor 预处理器"></a>Preprocessor 预处理器</h3><p>To be specific, preprocessing can be divided into 6 phases</p>
+<ul>
+<li>Read files and map them to translation character set, which guarantees UTF-7 to be supported 读文件 映射</li>
+<li>Backslashes as the end of line are processed to concatenate two physical lines into a single logical line 处理反斜杠<code>\</code></li>
+<li>Comments and macros are extracted, and the whole file is parsed</li>
+<li>Preprocessor runs to process all macros</li>
+<li>String literals are encoded as specified by the prefix 处理字符串常量，按照指定的前缀进行编码</li>
+<li>Adjacent string literals are concatenated ；邻近的字符串拼接</li>
+</ul>
+<p>A preprocessing directive begins with <code>#</code>. There are four kinds of directives</p>
+<ul>
+<li><p><code>#include ...</code>, which copies all file content into the current file</p>
+<ul>
+<li><code>#include &lt;...&gt;</code></li>
+<li><code>#include "..."</code></li>
+</ul>
+</li>
+<li><p><code>#define</code> i.e. macros, which does pure text replacement</p>
+<ul>
+<li><p><code>#define FUNC(a, b) a + b</code></p>
+</li>
+<li><p>Parameters of macros can be blank</p>
+</li>
+<li><p>Parameters of macros are directly parsed by commas when no paratheses surrounded, e.g. <code>FUNC(SomeFunc&lt;int, double&gt;())</code> -&gt; <code>SomeFunc&lt;int + double&gt;()</code> 遇到 <code>,</code> 就会替换</p>
+<ul>
+<li><p>You need to add an additional pair of paratheses to help parse, e.g. <code>FUNC((SomeFunc&lt;int, double&gt;()), 3)</code></p>
+</li>
+<li><p>You can use <code>...</code> for parameters of any number, and reference them by <code>__VA_ARGS__</code> 变长参数的替换</p>
+</li>
+<li><p>Since C++ 20, you can use <code>__VA_OPT__(content)</code>, which will be enabled only when <code>__VA_ARGS__</code> is not empty</p>
+</li>
+<li><p><code>#</code> can be used to turn parameters to strings, and  <code>##</code> can be used to concatenate parameters to make them a whole token</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> NameToStr(a, b) #a #b</span></span><br><span class="line"><span class="keyword">auto</span> str = <span class="built_in">NameToStr</span>(<span class="number">1</span>, aa)</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> ConcatName(a, id) a ## id</span></span><br><span class="line"><span class="type">int</span> <span class="built_in">ConcatName</span>(a, <span class="number">1</span>) = <span class="number">0</span>;</span><br><span class="line">std::cout &lt;&lt; a1;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 
         </div>
@@ -1833,7 +2150,7 @@ mjx-container[display="true"] + br {
                 <div class="comments-container">
     <div id="comment-anchor"></div>
     <div class="comment-area-title">
-        <i class="fas fa-comments">&nbsp;留言</i>
+        <i class="fas fa-comments">&nbsp;评论</i>
     </div>
     
 
@@ -1989,7 +2306,7 @@ mjx-container[display="true"] + br {
             
     <div class="post-toc-wrap">
         <div class="post-toc">
-            <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Basics-Review"><span class="nav-number">1.</span> <span class="nav-text">Basics Review</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Array-Type"><span class="nav-number">1.1.</span> <span class="nav-text">Array Type</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Function"><span class="nav-number">1.2.</span> <span class="nav-text">Function</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Attribute"><span class="nav-number">1.3.</span> <span class="nav-text">Attribute</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Enumeration"><span class="nav-number">1.4.</span> <span class="nav-text">Enumeration</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Expression"><span class="nav-number">1.5.</span> <span class="nav-text">Expression</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#class"><span class="nav-number">2.</span> <span class="nav-text">class</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Ctor-amp-Dtor"><span class="nav-number">2.1.</span> <span class="nav-text">Ctor &amp; Dtor</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Initialization-of-Object"><span class="nav-number">2.2.</span> <span class="nav-text">Initialization of Object</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Member-Functions"><span class="nav-number">2.3.</span> <span class="nav-text">Member Functions</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Access-Control"><span class="nav-number">2.4.</span> <span class="nav-text">Access Control</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Inheritance"><span class="nav-number">2.5.</span> <span class="nav-text">Inheritance</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Polymorphism-%20%E5%A4%9A%E6%80%81"><span class="nav-number">2.6.</span> <span class="nav-text">Polymorphism 多态</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Some-Covert-Facts-in-Inheritance"><span class="nav-number">2.7.</span> <span class="nav-text">Some Covert Facts in Inheritance</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#struct"><span class="nav-number">3.</span> <span class="nav-text">struct</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Function-Overloading-%20%E5%87%BD%E6%95%B0%E9%87%8D%E8%BD%BD"><span class="nav-number">4.</span> <span class="nav-text">Function Overloading 函数重载</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Lambda-Expression"><span class="nav-number">5.</span> <span class="nav-text">Lambda Expression</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Template"><span class="nav-number">6.</span> <span class="nav-text">Template</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Container"><span class="nav-number"></span> <span class="nav-text">Container</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Iterators"><span class="nav-number">1.</span> <span class="nav-text">Iterators</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Iterator-traits%EF%BC%88%E6%98%BE%E8%91%97%E7%9A%84%E7%89%B9%E7%82%B9%EF%BC%8C%E7%89%B9%E5%BE%81%EF%BC%89"><span class="nav-number">1.1.</span> <span class="nav-text">Iterator traits（显著的特点，特征）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Stream-iterator"><span class="nav-number">1.2.</span> <span class="nav-text">Stream iterator</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Iterator-adaptor"><span class="nav-number">1.3.</span> <span class="nav-text">Iterator adaptor</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Sequential-Container"><span class="nav-number">2.</span> <span class="nav-text">Sequential Container</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Array"><span class="nav-number">2.1.</span> <span class="nav-text">Array</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#vector"><span class="nav-number">2.2.</span> <span class="nav-text">vector</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Iterator-Invalidation"><span class="nav-number">2.3.</span> <span class="nav-text">Iterator Invalidation</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Span"><span class="nav-number">2.4.</span> <span class="nav-text">Span</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Dequeue-Double-Ended-Queue-%20%E5%8F%8C%E7%AB%AF%E9%98%9F%E5%88%97"><span class="nav-number">2.5.</span> <span class="nav-text">Dequeue Double-Ended Queue 双端队列</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#List"><span class="nav-number">2.6.</span> <span class="nav-text">List</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Froward-list"><span class="nav-number">2.7.</span> <span class="nav-text">Froward list</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Container-adaptors"><span class="nav-number">3.</span> <span class="nav-text">Container adaptors</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Stack"><span class="nav-number">3.1.</span> <span class="nav-text">Stack</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Queue"><span class="nav-number">4.</span> <span class="nav-text">Queue</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Priority-queue"><span class="nav-number">4.1.</span> <span class="nav-text">Priority queue</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Flat-containers"><span class="nav-number">4.2.</span> <span class="nav-text">Flat containers</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Associative-containers"><span class="nav-number">5.</span> <span class="nav-text">Associative containers</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Map"><span class="nav-number">5.1.</span> <span class="nav-text">Map</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Set"><span class="nav-number">5.2.</span> <span class="nav-text">Set</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Multimap"><span class="nav-number">5.3.</span> <span class="nav-text">Multimap</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Multiset"><span class="nav-number">5.4.</span> <span class="nav-text">Multiset</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Unordered-map"><span class="nav-number">5.5.</span> <span class="nav-text">Unordered map</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Ranges"><span class="nav-number"></span> <span class="nav-text">Ranges</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Generator"><span class="nav-number"></span> <span class="nav-text">Generator</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Function-1"><span class="nav-number"></span> <span class="nav-text">Function</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Pointer-to-member-functions"><span class="nav-number">1.</span> <span class="nav-text">Pointer to member functions</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Callable-parameter"><span class="nav-number">2.</span> <span class="nav-text">Callable parameter</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Function-as-parameter"><span class="nav-number">2.1.</span> <span class="nav-text">Function as parameter</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Lambda-expression"><span class="nav-number">2.2.</span> <span class="nav-text">Lambda expression</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Algorithms"><span class="nav-number"></span> <span class="nav-text">Algorithms</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Algorithms%E2%80%99-Consiit"><span class="nav-number">1.</span> <span class="nav-text">Algorithms’ Consiit</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Search"><span class="nav-number">2.</span> <span class="nav-text">Search</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Comparison"><span class="nav-number">3.</span> <span class="nav-text">Comparison</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Counting"><span class="nav-number">4.</span> <span class="nav-text">Counting</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Generating-and-Trankforming"><span class="nav-number">5.</span> <span class="nav-text">Generating and Trankforming</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Modifying"><span class="nav-number">6.</span> <span class="nav-text">Modifying</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Copying"><span class="nav-number">7.</span> <span class="nav-text">Copying</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Partition-and-Sort"><span class="nav-number">8.</span> <span class="nav-text">Partition and Sort</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Partition"><span class="nav-number">8.1.</span> <span class="nav-text">Partition</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Sort"><span class="nav-number">8.2.</span> <span class="nav-text">Sort</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Heap"><span class="nav-number">8.3.</span> <span class="nav-text">Heap</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Set-Operations"><span class="nav-number">8.4.</span> <span class="nav-text">Set Operations</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#MinMax"><span class="nav-number">8.5.</span> <span class="nav-text">MinMax</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Permutation"><span class="nav-number">8.6.</span> <span class="nav-text">Permutation</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Numeric-Algorithms"><span class="nav-number">8.7.</span> <span class="nav-text">Numeric Algorithms</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Parallel-Algorithm"><span class="nav-number">8.8.</span> <span class="nav-text">Parallel Algorithm</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Range-version-Algorithms"><span class="nav-number">8.9.</span> <span class="nav-text">Range-version Algorithms</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Lifetime"><span class="nav-number"></span> <span class="nav-text">Lifetime</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Storage-duration-%20%E5%AD%98%E5%82%A8%E6%8C%81%E7%BB%AD%E6%80%A7"><span class="nav-number">1.</span> <span class="nav-text">Storage duration 存储持续性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Placement-new"><span class="nav-number">2.</span> <span class="nav-text">Placement new</span></a></li></ol>
+            <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Basics-Review"><span class="nav-number">1.</span> <span class="nav-text">Basics Review</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Array-Type"><span class="nav-number">1.1.</span> <span class="nav-text">Array Type</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Function"><span class="nav-number">1.2.</span> <span class="nav-text">Function</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Attribute"><span class="nav-number">1.3.</span> <span class="nav-text">Attribute</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Enumeration"><span class="nav-number">1.4.</span> <span class="nav-text">Enumeration</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Expression"><span class="nav-number">1.5.</span> <span class="nav-text">Expression</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#class"><span class="nav-number">2.</span> <span class="nav-text">class</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Ctor-amp-Dtor"><span class="nav-number">2.1.</span> <span class="nav-text">Ctor &amp; Dtor</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Initialization-of-Object"><span class="nav-number">2.2.</span> <span class="nav-text">Initialization of Object</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Member-Functions"><span class="nav-number">2.3.</span> <span class="nav-text">Member Functions</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Access-Control"><span class="nav-number">2.4.</span> <span class="nav-text">Access Control</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Inheritance"><span class="nav-number">2.5.</span> <span class="nav-text">Inheritance</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Slicing-Problem"><span class="nav-number">2.5.1.</span> <span class="nav-text">Slicing Problem</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Multiple-Inheritance"><span class="nav-number">2.5.2.</span> <span class="nav-text">Multiple Inheritance</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Polymorphism-%20%E5%A4%9A%E6%80%81"><span class="nav-number">2.6.</span> <span class="nav-text">Polymorphism 多态</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Some-Covert-Facts-in-Inheritance"><span class="nav-number">2.7.</span> <span class="nav-text">Some Covert Facts in Inheritance</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#struct"><span class="nav-number">3.</span> <span class="nav-text">struct</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Function-Overloading-%20%E5%87%BD%E6%95%B0%E9%87%8D%E8%BD%BD"><span class="nav-number">4.</span> <span class="nav-text">Function Overloading 函数重载</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Lambda-Expression"><span class="nav-number">5.</span> <span class="nav-text">Lambda Expression</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Template"><span class="nav-number">6.</span> <span class="nav-text">Template</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Container"><span class="nav-number"></span> <span class="nav-text">Container</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Iterators"><span class="nav-number">1.</span> <span class="nav-text">Iterators</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Iterator-traits%EF%BC%88%E6%98%BE%E8%91%97%E7%9A%84%E7%89%B9%E7%82%B9%EF%BC%8C%E7%89%B9%E5%BE%81%EF%BC%89"><span class="nav-number">1.1.</span> <span class="nav-text">Iterator traits（显著的特点，特征）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Stream-iterator"><span class="nav-number">1.2.</span> <span class="nav-text">Stream iterator</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Iterator-adaptor"><span class="nav-number">1.3.</span> <span class="nav-text">Iterator adaptor</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Sequential-Container"><span class="nav-number">2.</span> <span class="nav-text">Sequential Container</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Array"><span class="nav-number">2.1.</span> <span class="nav-text">Array</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#vector"><span class="nav-number">2.2.</span> <span class="nav-text">vector</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Iterator-Invalidation"><span class="nav-number">2.3.</span> <span class="nav-text">Iterator Invalidation</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Span"><span class="nav-number">2.4.</span> <span class="nav-text">Span</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Dequeue-Double-Ended-Queue-%20%E5%8F%8C%E7%AB%AF%E9%98%9F%E5%88%97"><span class="nav-number">2.5.</span> <span class="nav-text">Dequeue Double-Ended Queue 双端队列</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#List"><span class="nav-number">2.6.</span> <span class="nav-text">List</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Froward-list"><span class="nav-number">2.7.</span> <span class="nav-text">Froward list</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Container-adaptors"><span class="nav-number">3.</span> <span class="nav-text">Container adaptors</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Stack"><span class="nav-number">3.1.</span> <span class="nav-text">Stack</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Queue"><span class="nav-number">4.</span> <span class="nav-text">Queue</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Priority-queue"><span class="nav-number">4.1.</span> <span class="nav-text">Priority queue</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Flat-containers"><span class="nav-number">4.2.</span> <span class="nav-text">Flat containers</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Associative-containers"><span class="nav-number">5.</span> <span class="nav-text">Associative containers</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Map"><span class="nav-number">5.1.</span> <span class="nav-text">Map</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Set"><span class="nav-number">5.2.</span> <span class="nav-text">Set</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Multimap"><span class="nav-number">5.3.</span> <span class="nav-text">Multimap</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Multiset"><span class="nav-number">5.4.</span> <span class="nav-text">Multiset</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Unordered-map"><span class="nav-number">5.5.</span> <span class="nav-text">Unordered map</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Ranges"><span class="nav-number"></span> <span class="nav-text">Ranges</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Generator"><span class="nav-number"></span> <span class="nav-text">Generator</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Function-1"><span class="nav-number"></span> <span class="nav-text">Function</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Pointer-to-member-functions"><span class="nav-number">1.</span> <span class="nav-text">Pointer to member functions</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Callable-parameter"><span class="nav-number">2.</span> <span class="nav-text">Callable parameter</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Function-as-parameter"><span class="nav-number">2.1.</span> <span class="nav-text">Function as parameter</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Lambda-expression"><span class="nav-number">2.2.</span> <span class="nav-text">Lambda expression</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Algorithms"><span class="nav-number"></span> <span class="nav-text">Algorithms</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Algorithms%E2%80%99-Consist"><span class="nav-number">1.</span> <span class="nav-text">Algorithms’ Consist</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Search"><span class="nav-number">2.</span> <span class="nav-text">Search</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Comparison"><span class="nav-number">3.</span> <span class="nav-text">Comparison</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Counting"><span class="nav-number">4.</span> <span class="nav-text">Counting</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Generating-and-Transforming"><span class="nav-number">5.</span> <span class="nav-text">Generating and Transforming</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Modifying"><span class="nav-number">6.</span> <span class="nav-text">Modifying</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Copying"><span class="nav-number">7.</span> <span class="nav-text">Copying</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Partition-and-Sort"><span class="nav-number">8.</span> <span class="nav-text">Partition and Sort</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Partition"><span class="nav-number">8.1.</span> <span class="nav-text">Partition</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Sort"><span class="nav-number">8.2.</span> <span class="nav-text">Sort</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Heap"><span class="nav-number">8.3.</span> <span class="nav-text">Heap</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Set-Operations"><span class="nav-number">8.4.</span> <span class="nav-text">Set Operations</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#MinMax"><span class="nav-number">8.5.</span> <span class="nav-text">MinMax</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Permutation"><span class="nav-number">8.6.</span> <span class="nav-text">Permutation</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Numeric-Algorithms"><span class="nav-number">8.7.</span> <span class="nav-text">Numeric Algorithms</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Parallel-Algorithm"><span class="nav-number">8.8.</span> <span class="nav-text">Parallel Algorithm</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Range-version-Algorithms"><span class="nav-number">8.9.</span> <span class="nav-text">Range-version Algorithms</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Lifetime"><span class="nav-number"></span> <span class="nav-text">Lifetime</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Storage-duration-%20%E5%AD%98%E5%82%A8%E6%8C%81%E7%BB%AD%E6%80%A7"><span class="nav-number">1.</span> <span class="nav-text">Storage duration 存储持续性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Placement-new"><span class="nav-number">2.</span> <span class="nav-text">Placement new</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Corner-Cases"><span class="nav-number">3.</span> <span class="nav-text">Corner Cases</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Strict-Aliasing-Rules"><span class="nav-number">4.</span> <span class="nav-text">Strict Aliasing Rules</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Others"><span class="nav-number">5.</span> <span class="nav-text">Others</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Type-Safety"><span class="nav-number"></span> <span class="nav-text">Type Safety</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Implicit-Conversion"><span class="nav-number">1.</span> <span class="nav-text">Implicit Conversion</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Static-Cast"><span class="nav-number">2.</span> <span class="nav-text">Static Cast</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Dynamic-Cast-and-RTTI"><span class="nav-number">3.</span> <span class="nav-text">Dynamic Cast and RTTI</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Dynamic-Cast"><span class="nav-number">3.1.</span> <span class="nav-text">Dynamic Cast</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#RTTI"><span class="nav-number">3.2.</span> <span class="nav-text">RTTI</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Const-Cast"><span class="nav-number">3.3.</span> <span class="nav-text">Const Cast</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Reinterpret-Cast"><span class="nav-number">3.4.</span> <span class="nav-text">Reinterpret Cast</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Type-safe-union-and-void"><span class="nav-number">3.5.</span> <span class="nav-text">Type-safe union and void*</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Programming-in-Multiple-Files"><span class="nav-number"></span> <span class="nav-text">Programming in Multiple Files</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Preprocessor-%20%E9%A2%84%E5%A4%84%E7%90%86%E5%99%A8"><span class="nav-number">1.</span> <span class="nav-text">Preprocessor 预处理器</span></a></li></ol>
         </div>
     </div>
 
@@ -2013,7 +2330,7 @@ mjx-container[display="true"] + br {
                 <input autocomplete="off"
                        autocorrect="off"
                        autocapitalize="off"
-                       placeholder="搜尋..."
+                       placeholder="搜索..."
                        spellcheck="false"
                        type="search"
                        class="search-input"
