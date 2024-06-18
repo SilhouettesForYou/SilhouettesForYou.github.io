@@ -348,19 +348,15 @@ mjx-container[display="true"] + br {
                     
                         <p>Vulkan的优势</p>
 <ul>
-<li>
-<p>显式的GPU控制</p>
+<li><p>显式的GPU控制</p>
 <p>Vulkan把API验证、内存管理、多线程管理等工作交由开发者负责。一旦API使用出错，应用就会出现crash</p>
 </li>
-<li>
-<p>CPU多线程的效率提升</p>
+<li><p>CPU多线程的效率提升</p>
 <p>Vulkan中引入了 <code>Command Buffer</code> 的概念，每个线程都可以往<code>Command Buffer</code> 提交渲染命令，给开发者提供了充分发挥CPU多核多线程的优势。在复杂场景下，性能的提升非常客观</p>
 </li>
-<li>
-<p>可移植性</p>
+<li><p>可移植性</p>
 </li>
-<li>
-<p><a class="link" target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=P_I8an8jXuM&amp;t=26s">Vulkan和OpenGL性能对比<i class="fas fa-external-link-alt"></i></a></p>
+<li><p><a class="link" target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=P_I8an8jXuM&t=26s">Vulkan和OpenGL性能对比<i class="fas fa-external-link-alt"></i></a></p>
 </li>
 </ul>
                     
@@ -419,8 +415,7 @@ mjx-container[display="true"] + br {
 
                 <div class="home-article-content markdown-body">
                     
-                         红黑树 
- 虽然平衡树解决了二叉查找树退化为近似链表的缺点，不过不是最佳方案。因为平衡树要求每个节点的左子树和右子树的高度差至多等于 1，这个要求实在是太严了，导致每次进行插入 / 删除节点的时候，几乎都会破坏平衡树的第二个规则，进而我们都需要通过...
+                        红黑树  虽然平衡树解决了二叉查找树退化为近似链表的缺点，不过不是最佳方案。因为平衡树要求每个节点的左子树和右子树的高度差至多等于 1，这个要求实在是太严了，导致每次进行插入 / 删除节点的时候，几乎都会破坏平衡树的第二个规则，进而我们都需要通过左旋...
                     
                 </div>
 
@@ -477,9 +472,8 @@ mjx-container[display="true"] + br {
 
                 <div class="home-article-content markdown-body">
                     
-                        垃圾回收
-采用了自动内存管理。 这意味着你不用操心新创建的对象需要的内存如何分配出来， 也不用考虑在对象不再被使用后怎样释放它们所占用的内存。
-Lua 运行了一个垃圾收集器来收集所有死对象 （即在 Lua 中不可能再访问到的对象）来完成自动内存管理的...
+                        垃圾回收  采用了自动内存管理。 这意味着你不用操心新创建的对象需要的内存如何分配出来， 也不用考虑在对象不再被使用后怎样释放它们所占用的内存。
+Lua 运行了一个垃圾收集器来收集所有死对象 （即在 Lua 中不可能再访问到的对象）来完成自动内存管理...
                     
                 </div>
 
@@ -531,13 +525,7 @@ Lua 运行了一个垃圾收集器来收集所有死对象 （即在 Lua 中不�
 
                 <div class="home-article-content markdown-body">
                     
-                        轴对齐包围盒（Axis-Aligned Bounding Box，AABB）
-三维的 AABB 就是一个简单的六面体，每一边都平行于一个坐标平面，矩形边界框不一定都是立方体，它的长、宽、高可以彼此不同。
-AABB 内的点满足以下条件：
-
-
-
-优点是简...
+                        轴对齐包围盒（Axis-Aligned Bounding Box，AABB）三维的 AABB 就是一个简单的六面体，每一边都平行于一个坐标平面，矩形边界框不一定都是立方体，它的长、宽、高可以彼此不同。AABB 内的点满足以下条件：优点是简单；缺点是紧...
                     
                 </div>
 
@@ -707,8 +695,7 @@ AABB 内的点满足以下条件：
                     
                         
 vector：底层数据结构为数组，支持快速随机访问。
-
-扩容规则为：当新建一个 vector 时，会首先分配一块连续的内存空间，当向其中增加元素是，如果初始分配空间已满，就会引起 vector 扩容。首先重新申请一个 2 倍大的内存空间；然后将原空...
+扩容规则为：当新建一个 vector 时，会首先分配一块连续的内存空间，当向其中增加元素是，如果初始分配空间已满，就会引起 vector 扩容。首先重新申请一个 2 倍大的内存空间；然后将原空间...
                     
                 </div>
 
@@ -763,12 +750,10 @@ vector：底层数据结构为数组，支持快速随机访问。
                         
 
 顶点着色器
-
 顶点着色器负责的功能是把输入的数据进行  坐标变换，计算光照公式生成每个点颜色，计算纹理坐标。并且把位置和纹理坐标发送到片元着色器。
 输入参数
-
 attribute：空间坐标、法向量、纹理坐标及顶点颜色。
-uniform：unifo...
+uniform：uniform...
                     
                 </div>
 
@@ -825,15 +810,14 @@ uniform：unifo...
 
                 <div class="home-article-content markdown-body">
                     
-                        光栅化
-与 Triangles and Z-Buffer 一样的流程
+                        光栅化  与 Triangles and Z-Buffer 一样的流程
 
 计算三角形的包围盒（bounding box）
 遍历包围盒判断点是否在三角形内
 求解重心坐标并进行插值校正
 更新深度值
 
-这里需要计算颜色插值（color）、向量插值（norma...
+这里需要计算颜色插值（color）、向量插值（norm...
                     
                 </div>
 
@@ -891,7 +875,8 @@ uniform：unifo...
                 <div class="home-article-content markdown-body">
                     
                         1#define offsetof(type, member)  ((size_t)&amp;((type *)0)-&gt;member)
-offsetof：获取结构体中成员的偏移位置，将地址 0 强制转换为 type 类型的指针（编译器认为 0 ...
+
+ offsetof：获取结构体中成员的偏移位置，将地址 0 强制转换为 type 类型的指针（编译器认为 ...
                     
                 </div>
 

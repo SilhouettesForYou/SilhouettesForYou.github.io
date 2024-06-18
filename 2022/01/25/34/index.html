@@ -277,7 +277,7 @@ p.spoiler {
     
     
         <span class="article-wordcount article-meta-item">
-            <i class="fas fa-file-word"></i>&nbsp;<span>756 Words</span>
+            <i class="fas fa-file-word"></i>&nbsp;<span>753 Words</span>
         </span>
     
     
@@ -293,48 +293,47 @@ p.spoiler {
             <link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><center>
     <img src="/2022/01/25/34/perforce.jpg">
 </center>
+
 <span id="more"></span>
-<h2 id="Using-Changelists-to-Manage-Files">Using Changelists to Manage Files</h2>
-<h3 id="Checkout">Checkout</h3>
-<center>
+
+<h2 id="Using-Changelists-to-Manage-Files"><a href="#Using-Changelists-to-Manage-Files" class="headerlink" title="Using Changelists to Manage Files"></a>Using Changelists to Manage Files</h2><h3 id="Checkout"><a href="#Checkout" class="headerlink" title="Checkout"></a>Checkout</h3><center>
     <img src="/2022/01/25/34/checkout-files.png">
 </center>
-<p>修改文件，必须将其 <code>Checkout</code>，当<code>Checkout</code> 文件是，Perforce 会将有关文件的信息添加到 ** Changelists**，并将本地工作区中文件的可写性从 <strong> 只读 </strong> 更改为 <strong> 读 / 写</strong></p>
-<h3 id="Changelists">Changelists</h3>
-<center>
+
+<p>修改文件，必须将其 <code>Checkout</code>，当<code>Checkout</code> 文件是，Perforce 会将有关文件的信息添加到 ** Changelists<strong>，并将本地工作区中文件的可写性从 </strong> 只读 <strong> 更改为 </strong> 读 / 写 **</p>
+<h3 id="Changelists"><a href="#Changelists" class="headerlink" title="Changelists"></a>Changelists</h3><center>
     <img src="/2022/01/25/34/changelist-management.png">
 </center>
+
 <p>一个 Changelist 定义了一个文件和文件夹的逻辑上的分组</p>
-<h4 id="Changelist- 内容">Changelist 内容</h4>
-<p>一个 Changelist 中包含的信息包括 Changelist 的标识符、文件列表、更改提交的日期等等。一个 Changelist 中的文件更改的方式，可以是任意的，包括对文件内容的编辑、文件和文件夹的添加或删除、文件重命名等</p>
-<h4 id="Changelist- 种类">Changelist 种类</h4>
-<p>Changelist 可以处于以下三种状态之一：<strong>Pending</strong>、<strong>Submitted</strong> 和 <strong>Shelved</strong></p>
+<h4 id="Changelist- 内容"><a href="#Changelist- 内容" class="headerlink" title="Changelist 内容"></a>Changelist 内容 </h4><p> 一个 Changelist 中包含的信息包括 Changelist 的标识符、文件列表、更改提交的日期等等。一个 Changelist 中的文件更改的方式，可以是任意的，包括对文件内容的编辑、文件和文件夹的添加或删除、文件重命名等</p>
+<h4 id="Changelist- 种类"><a href="#Changelist- 种类" class="headerlink" title="Changelist 种类"></a>Changelist 种类</h4><p>Changelist 可以处于以下三种状态之一：<strong>Pending</strong>、<strong>Submitted</strong> 和 <strong>Shelved</strong></p>
 <center>
     <img src="/2022/01/25/34/changelist-types.png">
 </center>
+
 <ul>
 <li>未提交的 Changelist 被称为 Pending Changelist 。</li>
 <li>一旦 Changelist 成功提交到服务器，Changelist 状态将更新为 Submitted。</li>
 <li>Shelved 是一种特殊形式的待定 Changelist。可以使用 Shelved 的 Changelist 将工作区文件临时存储在服务器上，而无需将更改提交到版本文件存储库。</li>
 </ul>
 <p>Perforce 服务器会追踪在系统元数据中存储的 Pending Changelist 中 Checkout 的文件。当在 Perforce GUI 客户端中查看 Changelist 时，正在查看的是存储在服务器上的 Changelist 的本地副本</p>
-<h4 id="默认 -Changelist- 和编号 -Changelist">默认 Changelist 和编号 Changelist</h4>
-<p>Perforce 在每个工作区的系统元数据中维护一个 <strong> 默认 </strong> 的 Pending Changelist。当 Checkout 文件时，可以将其添加到工作区的默认 Pending Changelist，或创建一个新的 <strong> 编号</strong> Pending Changelist。</p>
+<h4 id="默认 -Changelist- 和编号 -Changelist"><a href="# 默认 -Changelist- 和编号 -Changelist" class="headerlink" title="默认 Changelist 和编号 Changelist"></a>默认 Changelist 和编号 Changelist</h4><p>Perforce 在每个工作区的系统元数据中维护一个 <strong> 默认 </strong> 的 Pending Changelist。当 Checkout 文件时，可以将其添加到工作区的默认 Pending Changelist，或创建一个新的 <strong> 编号</strong> Pending Changelist。</p>
 <center>
     <img src="/2022/01/25/34/default-and-number-changelists.png">
 </center>
-<h4 id="Changelist- 编号机制">Changelist 编号机制</h4>
-<p>Perforce 维护一个编号序列，用于 Changelist 的 ID。当创建一个新的 Pending Changelist 时，Perforce 会使用序列中的下一个编号为 Changelist 分配一个 ID 编号。当提交在编号 Pending Changelist 中的修改时，Perforce 会验证最初分配给 Changelist 的编号是否仍然是序列中的下一个编号。如果不是（这在许多人同时在同一个仓库中工作时很常见），Perforce 会在将 Changelist 存储到系统元数据中之前，使用序列中的下一个编号为 Changelist 生成一个新的 ID 编号。</p>
+
+<h4 id="Changelist- 编号机制"><a href="#Changelist- 编号机制" class="headerlink" title="Changelist 编号机制"></a>Changelist 编号机制</h4><p>Perforce 维护一个编号序列，用于 Changelist 的 ID。当创建一个新的 Pending Changelist 时，Perforce 会使用序列中的下一个编号为 Changelist 分配一个 ID 编号。当提交在编号 Pending Changelist 中的修改时，Perforce 会验证最初分配给 Changelist 的编号是否仍然是序列中的下一个编号。如果不是（这在许多人同时在同一个仓库中工作时很常见），Perforce 会在将 Changelist 存储到系统元数据中之前，使用序列中的下一个编号为 Changelist 生成一个新的 ID 编号。</p>
 <p>因为 Perforce 按顺序为每个提交的 Changelist 生成唯一的 ID 号，因此 Changelist 的 ID 反映了每个 Changelist 提交到服务器的时间。</p>
 <center>
     <img src="/2022/01/25/34/changelist-numbering-scheme.png">
 </center>
-<h2 id="Cleaning-up-files-and-directories">Cleaning up files and directories</h2>
-<div class="admonition warning"><p class="admonition-title">Warning</p><p>Changes performed by the Clean option are permanent. You cannot revert this operation.</p>
+
+<h2 id="Cleaning-up-files-and-directories"><a href="#Cleaning-up-files-and-directories" class="headerlink" title="Cleaning up files and directories"></a>Cleaning up files and directories</h2><div class="admonition warning"><p class="admonition-title">Warning</p><p>Changes performed by the Clean option are permanent. You cannot revert this operation.</p>
 </div>
+
 <ol>
-<li>
-<p>Select a folder and click <strong>Actions &gt; Clean</strong>, or right-click a folder and select <strong>Clean</strong>.</p>
+<li><p>Select a folder and click <strong>Actions &gt; Clean</strong>, or right-click a folder and select <strong>Clean</strong>.</p>
 <p>If there are files that need to be cleaned up, the <strong>Clean Workspace (Revert to Depot)</strong> dialog appears.</p>
 <p>P4V compares your workspace to the depot and lists the following files:</p>
 <ul>
@@ -343,18 +342,14 @@ p.spoiler {
 <li>Depot files that are missing from your local workspace</li>
 </ul>
 </li>
-<li>
-<p>By default, all files are selected for cleanup. If there are any files that you do not want to clean up, clear the respective check boxes.</p>
+<li><p>By default, all files are selected for cleanup. If there are any files that you do not want to clean up, clear the respective check boxes.</p>
 </li>
-<li>
-<p>By default, files and directories listed in <code>P4IGNORE</code> files are excluded from cleanup and remain unaffected. If you do want to include such files, clear the <strong>Apply P4IGNORE files for this workspace</strong> check box.</p>
+<li><p>By default, files and directories listed in <code>P4IGNORE</code> files are excluded from cleanup and remain unaffected. If you do want to include such files, clear the <strong>Apply P4IGNORE files for this workspace</strong> check box.</p>
 <p>In this case, P4V compares your workspace to the depot again and then also lists applicable files that were previously excluded in the respective section.</p>
 </li>
-<li>
-<p>Click <strong>Clean</strong>.</p>
+<li><p>Click <strong>Clean</strong>.</p>
 </li>
-<li>
-<p>In the <strong>Confirm Deleting and Reverting Files</strong> dialog, click <strong>Continue</strong> to confirm the operation.</p>
+<li><p>In the <strong>Confirm Deleting and Reverting Files</strong> dialog, click <strong>Continue</strong> to confirm the operation.</p>
 </li>
 </ol>
 
@@ -560,7 +555,7 @@ p.spoiler {
             
     <div class="post-toc-wrap">
         <div class="post-toc">
-            <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Using-Changelists-to-Manage-Files"><span class="nav-number">1.</span> <span class="nav-text">Using Changelists to Manage Files</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Checkout"><span class="nav-number">1.1.</span> <span class="nav-text">Checkout</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Changelists"><span class="nav-number">1.2.</span> <span class="nav-text">Changelists</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Changelist-%20%E5%86%85%E5%AE%B9"><span class="nav-number">1.2.1.</span> <span class="nav-text">Changelist 内容</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Changelist-%20%E7%A7%8D%E7%B1%BB"><span class="nav-number">1.2.2.</span> <span class="nav-text">Changelist 种类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%BB%98%E8%AE%A4%20-Changelist-%20%E5%92%8C%E7%BC%96%E5%8F%B7%20-Changelist"><span class="nav-number">1.2.3.</span> <span class="nav-text">默认 Changelist 和编号 Changelist</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Changelist-%20%E7%BC%96%E5%8F%B7%E6%9C%BA%E5%88%B6"><span class="nav-number">1.2.4.</span> <span class="nav-text">Changelist 编号机制</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Cleaning-up-files-and-directories"><span class="nav-number">2.</span> <span class="nav-text">Cleaning up files and directories</span></a></li></ol>
+            <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Using-Changelists-to-Manage-Files"><span class="nav-number">1.</span> <span class="nav-text">Using Changelists to Manage Files</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Checkout"><span class="nav-number">1.1.</span> <span class="nav-text">Checkout</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Changelists"><span class="nav-number">1.2.</span> <span class="nav-text">Changelists</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Changelist-%20%E5%86%85%E5%AE%B9"><span class="nav-number">1.2.1.</span> <span class="nav-text">Changelist 内容 </span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Changelist-%20%E7%A7%8D%E7%B1%BB"><span class="nav-number">1.2.2.</span> <span class="nav-text">Changelist 种类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%BB%98%E8%AE%A4%20-Changelist-%20%E5%92%8C%E7%BC%96%E5%8F%B7%20-Changelist"><span class="nav-number">1.2.3.</span> <span class="nav-text">默认 Changelist 和编号 Changelist</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Changelist-%20%E7%BC%96%E5%8F%B7%E6%9C%BA%E5%88%B6"><span class="nav-number">1.2.4.</span> <span class="nav-text">Changelist 编号机制</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Cleaning-up-files-and-directories"><span class="nav-number">2.</span> <span class="nav-text">Cleaning up files and directories</span></a></li></ol>
         </div>
     </div>
 
