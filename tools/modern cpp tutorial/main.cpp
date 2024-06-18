@@ -1,25 +1,39 @@
-#include<vector>
-#include<iostream>
-#include<algorithm>
-#include <generator>
+#include <iostream>
 
-auto test(std::vector<int>& v) -> generator<decltype(v.begin())>
+class A
 {
-    std::vector sub{ 2, 0, 4 }, sub2{ 4, 4, 2 };
-    co_yield std::find(v.begin(), v.end(), 3);
-    co_yield std::find_if(v.begin(), v.end(), [](const int& elem) {
-        return elem % 2 == 1;
-    });
-    co_yield std::find_first_of(v.begin(), v.end(), sub.begin(), sub.end());
-    co_yield std::search(v.begin(), v.end(), sub2.begin(), sub2.end());
-    co_yield std::find_end(v.begin(), v.end(), sub2.begin(), sub2.end());
-    co_yield std::search_n(v.begin(), v.end(), 3, 2);
-    co_yield std::adjacent_find(v.begin(), v.end());
-}
+    char a;
+    short b;
+    int c;
+    double d;
+};
+
+struct B
+{
+    char a;
+    short b;
+    int c;
+    double d;
+};
 
 int main()
 {
-    std::vector v{ 1, 2, 3, 4, 4, 2, 4, 4, 2 };
-    for (auto it : test(v))
-        std::cout << (it - v.begin()) << '\n';
+    char c[] = "123";
+    char *p = c;
+    // char r = &p;
+    std::cout << "int: " << sizeof(int) <<std::endl;
+    std::cout << "short: " << sizeof(short) << std::endl;
+    std::cout << "float: " << sizeof(float) << std::endl;
+    std::cout << "double: " << sizeof(double) << std::endl;
+    std::cout << "unsigned int: " << sizeof(unsigned int) << std::endl;
+    std::cout << "char: " << sizeof(char) << std::endl;
+    std::cout << "signed int: " << sizeof(signed int) << std::endl;
+    std::cout << "char*: " << sizeof(p) << std::endl;
+    std::cout << "char array: " << sizeof(c) << std::endl;
+    std::cout << "string: " << sizeof(std::string("123")) << std::endl;
+    std::cout << "long: " << sizeof(long) << std::endl;
+    std::cout << "long long: " << sizeof(long long) << std::endl;
+    std::cout << "Class A: " << sizeof(A) << std::endl;
+    std::cout << "Class B: " << sizeof(B) << std::endl;
+    return 0;
 }

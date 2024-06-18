@@ -59,6 +59,7 @@
         "print": "cpp",
         "text_encoding": "cpp",
         "generator": "cpp",
-        "coroutine": "cpp"
+        "coroutine": "cpp",
+        "cstring": "cpp"
     }
 }
