@@ -290,41 +290,38 @@ p.spoiler {
         
 
         <div class="article-content markdown-body">
-            <link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="分析">分析</h2>
-<center>
+            <link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="分析"><a href="# 分析" class="headerlink" title="分析"></a>分析</h2><center>
     <img src="/2024/05/31/52/mind-map.png">
 </center>
-<h2 id="相关细节">相关细节</h2>
-<h3 id="自定义网格">自定义网格</h3>
-<p>基础网格</p>
+
+<h2 id="相关细节"><a href="# 相关细节" class="headerlink" title="相关细节"></a>相关细节 </h2><h3 id="自定义网格"><a href="# 自定义网格" class="headerlink" title="自定义网格"></a> 自定义网格 </h3><p> 基础网格</p>
 <figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Grid</span>&lt;<span class="title">T</span>&gt;</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> T[,] grids;</span><br><span class="line">    <span class="keyword">public</span> Vector3 rotation; <span class="comment">// 为 0 时表示地面，63（arctan2）时表示墙面</span></span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">int</span> width;</span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">int</span> height;</span><br><span class="line">    <span class="keyword">private</span> Vector3 cellSize; <span class="comment">// 网格大小，类似 unity 中 tilemap，layout 设置为 `isometric` 类型，(2, 1, 1) 表示每个 cell 的 width:height 为 2:1</span></span><br><span class="line">    <span class="keyword">private</span> Vector3 origin;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <p>网格物件</p>
 <figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">GridObject</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">int</span> x, y;</span><br><span class="line">    <span class="keyword">private</span> Grid&lt;GridObject&gt; grid;</span><br><span class="line">    <span class="keyword">public</span> PlaceableObject PlaceableObject;</span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">bool</span> CanBuild;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">GridObject</span>(<span class="params">Grid&lt;GridObject&gt; grid, <span class="built_in">int</span> x, <span class="built_in">int</span> y</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">this</span>.grid = grid;</span><br><span class="line">        <span class="keyword">this</span>.x = x;</span><br><span class="line">        <span class="keyword">this</span>.y = y;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <center>
     <img src="/2024/05/31/52/grid-ground.jpg">
     <img src="/2024/05/31/52/grid-wall.png">
 </center>
-<h3 id="可放置物件">可放置物件</h3>
-<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">PlaceableObject</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">int</span> depth; <span class="comment">// 记录物件的深度，每有一个物件被放置深度加一</span></span><br><span class="line">    <span class="keyword">public</span> Vector2Int offset; <span class="comment">// 相对于网格原点的偏移</span></span><br><span class="line">    <span class="keyword">public</span> Transform placedObjectTransform; <span class="comment">// 贴图 transform</span></span><br><span class="line">    <span class="keyword">public</span> List&lt;Vector2Int&gt; GridPositions; <span class="comment">// 占据的网格大小</span></span><br><span class="line">    <span class="keyword">private</span> List&lt;Grid&lt;GridObject&gt;&gt; grids; <span class="comment">// 物件也有网格，用于堆叠</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="遮挡和排序">遮挡和排序</h3>
-<ul>
+
+<h3 id="可放置物件"><a href="# 可放置物件" class="headerlink" title="可放置物件"></a>可放置物件</h3><figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">PlaceableObject</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">int</span> depth; <span class="comment">// 记录物件的深度，每有一个物件被放置深度加一</span></span><br><span class="line">    <span class="keyword">public</span> Vector2Int offset; <span class="comment">// 相对于网格原点的偏移</span></span><br><span class="line">    <span class="keyword">public</span> Transform placedObjectTransform; <span class="comment">// 贴图 transform</span></span><br><span class="line">    <span class="keyword">public</span> List&lt;Vector2Int&gt; GridPositions; <span class="comment">// 占据的网格大小</span></span><br><span class="line">    <span class="keyword">private</span> List&lt;Grid&lt;GridObject&gt;&gt; grids; <span class="comment">// 物件也有网格，用于堆叠</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="遮挡和排序"><a href="# 遮挡和排序" class="headerlink" title="遮挡和排序"></a>遮挡和排序</h3><ul>
 <li>深度值越大的（即被放置到其他物件之上），越靠前</li>
 <li>网格索引 (x, 0, z) 越小排序越靠前</li>
 <li>地面的可以遮挡墙面的</li>
 </ul>
-<h3 id="工具">工具</h3>
-<ul>
+<h3 id="工具"><a href="# 工具" class="headerlink" title="工具"></a>工具</h3><ul>
 <li>定义可编辑场景，导入相关资源</li>
-<li>编辑模式
-<ul>
+<li>编辑模式<ul>
 <li>编辑物件的 Placeable 部分</li>
 <li>编辑物件的 Grid 部分</li>
 <li>删除区域</li>
 </ul>
 </li>
 <li>响应利用射线检测鼠标位置，在不同编辑模式下，将屏幕坐标转成世界坐标，再转换到网格坐标</li>
-<li>存储编辑结果
-<ul>
+<li>存储编辑结果<ul>
 <li>利用<code>ScriptableObject</code>、<code>Json</code>、二进制等存储方式进行保存</li>
 <li>加载</li>
 </ul>
@@ -533,7 +530,7 @@ p.spoiler {
             
     <div class="post-toc-wrap">
         <div class="post-toc">
-            <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%86%E6%9E%90"><span class="nav-number">1.</span> <span class="nav-text">分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9B%B8%E5%85%B3%E7%BB%86%E8%8A%82"><span class="nav-number">2.</span> <span class="nav-text">相关细节</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E7%BD%91%E6%A0%BC"><span class="nav-number">2.1.</span> <span class="nav-text">自定义网格</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%AF%E6%94%BE%E7%BD%AE%E7%89%A9%E4%BB%B6"><span class="nav-number">2.2.</span> <span class="nav-text">可放置物件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%81%AE%E6%8C%A1%E5%92%8C%E6%8E%92%E5%BA%8F"><span class="nav-number">2.3.</span> <span class="nav-text">遮挡和排序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B7%A5%E5%85%B7"><span class="nav-number">2.4.</span> <span class="nav-text">工具</span></a></li></ol></li></ol>
+            <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%86%E6%9E%90"><span class="nav-number">1.</span> <span class="nav-text">分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9B%B8%E5%85%B3%E7%BB%86%E8%8A%82"><span class="nav-number">2.</span> <span class="nav-text">相关细节 </span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E7%BD%91%E6%A0%BC"><span class="nav-number">2.1.</span> <span class="nav-text"> 自定义网格 </span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%AF%E6%94%BE%E7%BD%AE%E7%89%A9%E4%BB%B6"><span class="nav-number">2.2.</span> <span class="nav-text">可放置物件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%81%AE%E6%8C%A1%E5%92%8C%E6%8E%92%E5%BA%8F"><span class="nav-number">2.3.</span> <span class="nav-text">遮挡和排序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B7%A5%E5%85%B7"><span class="nav-number">2.4.</span> <span class="nav-text">工具</span></a></li></ol></li></ol>
         </div>
     </div>
 
