@@ -6,8 +6,7 @@
     "build": "hexo generate",
     "clean": "hexo clean",
     "deploy": "hexo deploy",
-    "server": "hexo server",
-    "show-article-map": "node node_modules/hexo-seo-link-visualizer/app/show-article-map.js"
+    "server": "hexo server"
   },
   "hexo": {
     "version": "5.4.2"
@@ -42,7 +41,6 @@
     "hexo-renderer-markdown-it": "^5.0.0",
     "hexo-renderer-marked": "^4.1.0",
     "hexo-renderer-stylus": "^2.0.0",
-    "hexo-seo-link-visualizer": "^0.0.3",
     "hexo-server": "^2.0.0",
     "hexo-spoiler": "^1.7.3",
     "hexo-tag-autogallery": "^0.0.1",

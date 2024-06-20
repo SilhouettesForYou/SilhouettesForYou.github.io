@@ -158,23 +158,5 @@ mermaid: ## mermaid url https://github.com/knsv/mermaid
   options:  # find more api options from https://github.com/knsv/mermaid/blob/master/src/mermaidAPI.js
   #startOnload: true  // default true
 
-# hexo-seo-link-visualizer's option
-seoLinkVisualizer:
-  enable: true
-  cache: cache/seo-link-visualizer.json
-  port: 1234
-  previewHost: localhost:4000/
-  categoryDepthLimits: 1    
-  allowedSourcePath:
-    - _posts/
-    # - _drafts
-  ignoreLink:
-    int:
-    ext:
-      - amazon
-      - amz
-      - flickr
-    toc:
-
 sitemap:
   path: sitemap.xml
