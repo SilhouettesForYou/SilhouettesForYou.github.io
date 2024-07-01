@@ -331,120 +331,451 @@ mjx-container[display="true"] + br {
             <div class="main-content">
 
                 
-                    .home-content-container {
-  background: var(--background-color);
+                    <div class="home-content-container fade-in-down-animation">
+    <ul class="home-article-list">
+        
+            <li class="home-article-item">
+
+                
+
+                <h3 class="home-article-title">
+                    <a href="/2021/11/12/9/">
+                        Linux 内核 --offsetof 和 container_of
+                    </a>
+                </h3>
+
+                <div class="home-article-content markdown-body">
+                    
+                        1#define offsetof(type, member)  ((size_t)&amp;((type *)0)-&gt;member)
+
+ offsetof：获取结构体中成员的偏移位置，将地址 0 强制转换为 type 类型的指针（编译器认为 ...
+                    
+                </div>
+
+                <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Fri Nov 12 2021 09:40:11 GMT+0800">2021-11-12</span></span>
+        
+            <span class="home-article-category"><i class="fas fa-folder"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/categories/Linux/">Linux</a>&nbsp;
+                        </li>
+                    
+                    
+                </ul>
+            </span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fas fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/macro/">macro</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="/tags/linux/">linux</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/2021/11/12/9/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
+</div>
+
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                <h3 class="home-article-title">
+                    <a href="/2021/11/09/8/">
+                        Triangles and Z-Buffer
+                    </a>
+                </h3>
+
+                <div class="home-article-content markdown-body">
+                    
+                        投影矩阵  透视投影矩阵推导
+    
 
 
-  .home-article-list {
+对于正交投影（Orthographic Projection）需要把长方体  进行标准化成正方体，相应的变换矩阵是先进行平移变换（将长方体的中心与原点重合），再进行缩放变换（由于标准化的正方体的边长是 2，...
+                    
+                </div>
 
-    .home-article-item {
-      position: relative;
+                <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Tue Nov 09 2021 10:57:06 GMT+0800">2021-11-09</span></span>
+        
+            <span class="home-article-category"><i class="fas fa-folder"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/categories/GAMES-101-Assignments/">GAMES-101 Assignments</a>&nbsp;
+                        </li>
+                    
+                    
+                </ul>
+            </span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fas fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/Graphics/">Graphics</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="/tags/GAMES/">GAMES</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
 
-      keep-container(true, 1.015, 1.015, 28px, 38px);
+    <a href="/2021/11/09/8/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
+</div>
 
-      .top-icon {
-        position: absolute;
-        top: 10px;
-        right: 12px;
-        font-size: 1.2rem;
-        transform: rotate(45deg);
-        color: var(--third-text-color);
+            </li>
+        
+            <li class="home-article-item">
 
+                
 
-        +keep-tablet() {
-          font-size: 1.16rem;
-        }
-      }
+                <h3 class="home-article-title">
+                    <a href="/2021/11/08/6/">
+                        哈希表
+                    </a>
+                </h3>
 
+                <div class="home-article-content markdown-body">
+                    
+                        哈希表  哈希表，也叫散列表，它是基于快速存取的角度设计的，是一种典型的“空间换时间”的做法。它可以提供快速地插入和查找操作。
+哈希表函数的构造方法  直接定址法 （、 为常数），即取关键码的某个线性函数值为哈希地址，不会产生冲突，但要求地址集合与关...
+                    
+                </div>
 
-      .home-article-title {
-        position: relative;
-        font-weight: 600;
-        font-size: 1.4rem;
-        line-height: 1.5;
-        color: var(--second-text-color);
+                <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Mon Nov 08 2021 09:47:40 GMT+0800">2021-11-08</span></span>
+        
+            <span class="home-article-category"><i class="fas fa-folder"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/categories/%E9%9D%A2%E8%AF%95/">面试</a>&nbsp;
+                        </li>
+                    
+                    
+                </ul>
+            </span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fas fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="/tags/%E5%93%88%E5%B8%8C%E8%A1%A8/">哈希表</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
 
+    <a href="/2021/11/08/6/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
+</div>
 
-        +keep-tablet() {
-          font-size: 1.3rem;
-        }
+            </li>
+        
+            <li class="home-article-item">
 
+                
 
-        +keep-mobile() {
-          font-size: 1.2rem;
-        }
+                <h3 class="home-article-title">
+                    <a href="/2021/11/08/5/">
+                        C++ 知识
+                    </a>
+                </h3>
 
-        margin: 0;
+                <div class="home-article-content markdown-body">
+                    
+                        C++ 虚函数C++ 虚函数是定义在基类中的函数，子类必须对其进行覆盖。
+虚函数的作用
+定义子类对象，并调用对象中未被子类重写的基类函数 A。同时在该函数A 中，又调用了已被子类重写的基类函数B。那此时将会调用基类中的函数B，可我们本应该调用的是子类...
+                    
+                </div>
 
-      }
+                <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Mon Nov 08 2021 09:34:54 GMT+0800">2021-11-08</span></span>
+        
+            <span class="home-article-category"><i class="fas fa-folder"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/categories/%E9%9D%A2%E8%AF%95/">面试</a>&nbsp;
+                        </li>
+                    
+                    
+                </ul>
+            </span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fas fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/c/">c++</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
 
+    <a href="/2021/11/08/5/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
+</div>
 
-      .home-article-content {
-        word-wrap: break-word;
-        text-align: justify;
-        margin: 20px 0;
-        color: var(--default-text-color);
-      }
+            </li>
+        
+            <li class="home-article-item">
 
+                
 
-      .home-article-meta-info-container {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        font-size: 0.92rem;
-        color: var(--third-text-color);
+                <h3 class="home-article-title">
+                    <a href="/2021/11/05/4/">
+                        渲染管线
+                    </a>
+                </h3>
 
+                <div class="home-article-content markdown-body">
+                    
+                        
 
-        .home-article-meta-info {
-          letter-spacing: 0.5px;
+应用阶段  准备好场景数据，包括 Camera 的位置、朝向，视锥体，场景物件、光源信息，渲染对象的渲染状态准备包括材质、纹理、Shader 等基本信息，调用渲染图元的指令。
 
-          span {
-            margin-right: 10px;
+把数据加载到显存
+设置渲染状态
+调用 DrawCall
 
-            &:last-child {
-              margin-right: 0;
-            }
+几何阶段 ...
+                    
+                </div>
 
-            ul, li {
-              display: inline;
-            }
-          }
+                <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Fri Nov 05 2021 17:06:38 GMT+0800">2021-11-05</span></span>
+        
+            <span class="home-article-category"><i class="fas fa-folder"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/categories/%E5%9B%BE%E5%BD%A2%E5%AD%A6/">图形学</a>&nbsp;
+                        </li>
+                    
+                    
+                </ul>
+            </span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fas fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/Graphics/">Graphics</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
 
-          .home-article-category {
-            +keep-mobile() {
-              display: none;
-            }
-          }
+    <a href="/2021/11/05/4/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
+</div>
 
-          .home-article-tag {
-            +keep-tablet() {
-              display: none;
-            }
-          }
-        }
+            </li>
+        
+            <li class="home-article-item">
 
+                
 
-        hr {
-          border: none;
-          flex: 1;
-          height: 1px;
-          background: var(--border-color);
-          margin: 0 10px;
-        }
+                <h3 class="home-article-title">
+                    <a href="/2021/11/05/3/">
+                        日常开发笔记
+                    </a>
+                </h3>
 
-        a {
-          color: var(--third-text-color);
+                <div class="home-article-content markdown-body">
+                    
+                        Git 相关
+相关命令
+分支
 
-          &:hover {
-            color: var(--primary-color)
-          }
-        }
-      }
+git 回退本地修改
+12git checkout &lt;filename&gt;git checkout .
+切换到分支
+12git checkout &lt;branch&gt; # 切换到 &lt;branch...
+                    
+                </div>
 
+                <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Fri Nov 05 2021 12:06:38 GMT+0800">2021-11-05</span></span>
+        
+            <span class="home-article-category"><i class="fas fa-folder"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/categories/%E6%97%A5%E5%B8%B8/">日常</a>&nbsp;
+                        </li>
+                    
+                    
+                </ul>
+            </span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fas fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/git/">git</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="/tags/unity/">unity</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="/tags/c/">c#</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="/tags/c/">c++</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
 
-    }
-  }
-}
+    <a href="/2021/11/05/3/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
+</div>
+
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                <h3 class="home-article-title">
+                    <a href="/2021/11/04/2/">
+                        OpenGL 基础
+                    </a>
+                </h3>
+
+                <div class="home-article-content markdown-body">
+                    
+                        OpenGL 上下文（Context）帧缓冲区 (FrameBuffer）
+所有的运算结果最终都是需要通过图像进行输出的
+帧缓冲区  就是 OpenGL 中的画板
+帧缓冲区  并不是实际存储数据的对象
+实际存储数据的 Attachment 所指向的对...
+                    
+                </div>
+
+                <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Thu Nov 04 2021 17:54:56 GMT+0800">2021-11-04</span></span>
+        
+            <span class="home-article-category"><i class="fas fa-folder"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/categories/%E5%9B%BE%E5%BD%A2%E5%AD%A6/">图形学</a>&nbsp;
+                        </li>
+                    
+                    
+                </ul>
+            </span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fas fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/Graphics/">Graphics</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="/tags/OpenGL/">OpenGL</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/2021/11/04/2/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
+</div>
+
+            </li>
+        
+    </ul>
+
+    <div class="home-paginator">
+        <div class="paginator">
+    
+        <a class="prev btn"
+           href="/page/5/"
+        >上一页</a>
+    
+
+    
+</div>
+
+    </div>
+</div>
 
                     <!-- calendar widget -->
 
