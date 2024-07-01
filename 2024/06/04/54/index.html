@@ -113,7 +113,7 @@ p.spoiler {
                             <a class=""
                                href="/"
                             >
-                                HOME
+                                首页
                             </a>
                         </li>
                     
@@ -121,7 +121,7 @@ p.spoiler {
                             <a class=""
                                href="/archives"
                             >
-                                ARCHIVES
+                                归档
                             </a>
                         </li>
                     
@@ -129,7 +129,7 @@ p.spoiler {
                             <a class=""
                                href="/categories"
                             >
-                                CATEGORIES
+                                分类
                             </a>
                         </li>
                     
@@ -137,7 +137,7 @@ p.spoiler {
                             <a class=""
                                href="/tags"
                             >
-                                TAGS
+                                标签
                             </a>
                         </li>
                     
@@ -153,7 +153,7 @@ p.spoiler {
                             <a class=""
                                href="/about"
                             >
-                                ABOUT
+                                关于
                             </a>
                         </li>
                     
@@ -180,22 +180,22 @@ p.spoiler {
             
                 <li class="drawer-menu-item flex-center">
                     <a class=""
-                       href="/">HOME</a>
+                       href="/">首页</a>
                 </li>
             
                 <li class="drawer-menu-item flex-center">
                     <a class=""
-                       href="/archives">ARCHIVES</a>
+                       href="/archives">归档</a>
                 </li>
             
                 <li class="drawer-menu-item flex-center">
                     <a class=""
-                       href="/categories">CATEGORIES</a>
+                       href="/categories">分类</a>
                 </li>
             
                 <li class="drawer-menu-item flex-center">
                     <a class=""
-                       href="/tags">TAGS</a>
+                       href="/tags">标签</a>
                 </li>
             
                 <li class="drawer-menu-item flex-center">
@@ -205,7 +205,7 @@ p.spoiler {
             
                 <li class="drawer-menu-item flex-center">
                     <a class=""
-                       href="/about">ABOUT</a>
+                       href="/about">关于</a>
                 </li>
             
         </ul>
@@ -273,7 +273,7 @@ p.spoiler {
     
     
         <span class="article-wordcount article-meta-item">
-            <i class="fas fa-file-word"></i>&nbsp;<span>3.7k Words</span>
+            <i class="fas fa-file-word"></i>&nbsp;<span>3.7k 字</span>
         </span>
     
     
@@ -367,7 +367,7 @@ p.spoiler {
                             </span>
                             <span class="title flex-center">
                                 <span class="post-nav-title-item">XLua 如何与 C# 进行交互</span>
-                                <span class="post-nav-item">Prev posts</span>
+                                <span class="post-nav-item">上一篇</span>
                             </span>
                         </a>
                     </div>
@@ -380,7 +380,7 @@ p.spoiler {
                         >
                             <span class="title flex-center">
                                 <span class="post-nav-title-item">现代 C++ 基础</span>
-                                <span class="post-nav-item">Next posts</span>
+                                <span class="post-nav-item">下一篇</span>
                             </span>
                             <span class="right arrow-icon flex-center">
                               <i class="fas fa-chevron-right"></i>
@@ -393,45 +393,59 @@ p.spoiler {
 
         
             <div class="comment-container">
-                if (hexo-config('comment.enable') == true && hexo-config('comment.use') != "") {
-  if (hexo-config('comment.use') == "valine") {
-    @require "./valine.styl";
+                <div class="comments-container">
+    <div id="comment-anchor"></div>
+    <div class="comment-area-title">
+        <i class="fas fa-comments">&nbsp;评论</i>
+    </div>
+    
 
-  } else if (hexo-config('comment.use') == "gitalk") {
-    @require "./gitalk.styl";
+        
+            
+    <div id="gitalk-container"></div>
+    <script 
+            src="//cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.js"></script>
+    <script >
 
-  } else if (hexo-config('comment.use') == "twikoo") {
-    @require "./twikoo.styl";
-  }
-}
+        function loadGitalk() {
+            let __gitalk__pathname = decodeURI(location.pathname);
+            const __gitalk__pathnameLength = __gitalk__pathname.length;
+            const __gitalk__pathnameMaxLength = 50;
+            if (__gitalk__pathnameLength > __gitalk__pathnameMaxLength) {
+                __gitalk__pathname = __gitalk__pathname.substring(0, __gitalk__pathnameMaxLength - 3) + '...';
+            }
 
-.comments-container {
-  display: inline-block;
-  margin-top: $component-spacing-value;
-  width: 100%;
+            try {
+                Gitalk && new Gitalk({
+                    clientID: '0c74e477328e28bacf97',
+                    clientSecret: '62fd1a94cf185360ac2d2947665725e2eabf5e8d',
+                    repo: 'SilhouettesForYou.github.io',
+                    owner: 'SilhouettesForYou',
+                    admin: ['SilhouettesForYou'],
+                    id: __gitalk__pathname,
+                    language: 'zh-Hans'
+                }).render('gitalk-container');
 
-  #comment-anchor {
-    width: 100%;
-    height: 10px;
-  }
+            } catch (e) {
+                window.Gitalk = null;
+            }
+        }
 
-  .comment-area-title {
-    width: 100%;
-    margin: 10px 0;
-    font-size: 1.38rem;
-    color: var(--default-text-color);
+        if ('false') {
+            const loadGitalkTimeout = setTimeout(() => {
+                loadGitalk();
+                clearTimeout(loadGitalkTimeout);
+            }, 1000);
+        } else {
+            window.addEventListener('DOMContentLoaded', loadGitalk);
+        }
+    </script>
 
-    i {
-      color: var(--default-text-color);
-    }
 
-    +keep-tablet() {
-      margin: 5px 0;
-      font-size: 1.2rem;
-    }
-  }
 
-}
+        
+    
+</div>
 
             </div>
         
@@ -562,7 +576,7 @@ p.spoiler {
                 <input autocomplete="off"
                        autocorrect="off"
                        autocapitalize="off"
-                       placeholder="Search..."
+                       placeholder="搜索..."
                        spellcheck="false"
                        type="search"
                        class="search-input"
