@@ -23,7 +23,7 @@
     
     <title>
         
-            决策算法 |
+            Lua 问题 |
         
         Silhouettes For You
     </title>
@@ -113,7 +113,7 @@ p.spoiler {
                             <a class=""
                                href="/"
                             >
-                                首頁
+                                HOME
                             </a>
                         </li>
                     
@@ -121,7 +121,7 @@ p.spoiler {
                             <a class=""
                                href="/archives"
                             >
-                                歸檔
+                                ARCHIVES
                             </a>
                         </li>
                     
@@ -129,7 +129,7 @@ p.spoiler {
                             <a class=""
                                href="/categories"
                             >
-                                分類
+                                CATEGORIES
                             </a>
                         </li>
                     
@@ -137,7 +137,7 @@ p.spoiler {
                             <a class=""
                                href="/tags"
                             >
-                                標籤
+                                TAGS
                             </a>
                         </li>
                     
@@ -153,7 +153,7 @@ p.spoiler {
                             <a class=""
                                href="/about"
                             >
-                                關於
+                                ABOUT
                             </a>
                         </li>
                     
@@ -180,22 +180,22 @@ p.spoiler {
             
                 <li class="drawer-menu-item flex-center">
                     <a class=""
-                       href="/">首頁</a>
+                       href="/">HOME</a>
                 </li>
             
                 <li class="drawer-menu-item flex-center">
                     <a class=""
-                       href="/archives">歸檔</a>
+                       href="/archives">ARCHIVES</a>
                 </li>
             
                 <li class="drawer-menu-item flex-center">
                     <a class=""
-                       href="/categories">分類</a>
+                       href="/categories">CATEGORIES</a>
                 </li>
             
                 <li class="drawer-menu-item flex-center">
                     <a class=""
-                       href="/tags">標籤</a>
+                       href="/tags">TAGS</a>
                 </li>
             
                 <li class="drawer-menu-item flex-center">
@@ -205,7 +205,7 @@ p.spoiler {
             
                 <li class="drawer-menu-item flex-center">
                     <a class=""
-                       href="/about">關於</a>
+                       href="/about">ABOUT</a>
                 </li>
             
         </ul>
@@ -227,7 +227,7 @@ p.spoiler {
     <div class="article-content-container">
 
         <div class="article-title">
-            <span class="title-hover-animation">决策算法</span>
+            <span class="title-hover-animation">Lua 问题</span>
         </div>
 
         
@@ -251,7 +251,7 @@ p.spoiler {
             <ul>
                 
                     <li>
-                        <a href="/categories/%E6%B8%B8%E6%88%8F%E5%BC%95%E6%93%8E/">游戏引擎</a>&nbsp;
+                        <a href="/categories/Lua/">Lua</a>&nbsp;
                     </li>
                 
             </ul>
@@ -263,15 +263,11 @@ p.spoiler {
             <ul>
                 
                     <li>
-                        <a href="/tags/%E5%BC%95%E6%93%8E/">引擎</a>&nbsp;
+                        <a href="/tags/Lua/">Lua</a>&nbsp;
                     </li>
                 
                     <li>
-                        | <a href="/tags/104/">104</a>&nbsp;
-                    </li>
-                
-                    <li>
-                        | <a href="/tags/AI/">AI</a>&nbsp;
+                        | <a href="/tags/bug/">bug</a>&nbsp;
                     </li>
                 
             </ul>
@@ -279,6 +275,10 @@ p.spoiler {
     
 
     
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>236 Words</span>
+        </span>
     
     
     
@@ -290,13 +290,45 @@ p.spoiler {
         
 
         <div class="article-content markdown-body">
-            <link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css">
+            <link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h3 id="int64 乘法问题"><a href="#int64 乘法问题" class="headerlink" title="int64 乘法问题"></a><code>int64</code>乘法问题</h3><figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">local</span> a = int64.new(<span class="number">1000</span>)</span><br><span class="line"><span class="keyword">local</span> b = <span class="number">0.01</span></span><br><span class="line"><span class="built_in">print</span>(a + b) <span class="comment">-- 1000</span></span><br><span class="line"><span class="built_in">print</span>(a * b) <span class="comment">-- 0</span></span><br></pre></td></tr></table></figure>
+
+<p>原因：</p>
+<ul>
+<li><code>int64</code>乘法会触发元方法<code>__mul</code></li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">lua_pushstring(L, <span class="string">&quot;__mul&quot;</span>),</span><br><span class="line">lua_pushcfunction(L, _int64mul);</span><br><span class="line">lua_rawset(L, <span class="number">-3</span>); <span class="comment">// 指向栈顶</span></span><br><span class="line"></span><br><span class="line"><span class="type">static</span> <span class="type">int</span> _int64mul(lua_State* L)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">int64_t</span> lhs = toluas_checkint64(L, <span class="number">1</span>);    </span><br><span class="line">    <span class="type">int64_t</span> rhs = toluas_checkint64(L, <span class="number">2</span>);</span><br><span class="line">    toluas_pushint64(L, lhs * rhs);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span>;    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>触发元方法后调用 <code>toluas_checkint64</code> 检查栈中的数值类型并做类型转换，当 <code>int64</code> 类型和 <code>number</code> 类型相乘时，会将其转换成整型——<code>(int64_t)0.01</code>，所以相乘的结果是<code>0</code></li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">static</span> <span class="type">int64_t</span> <span class="title function_">toluas_checkint64</span><span class="params">(lua_State* L, <span class="type">int</span> pos)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">int64_t</span> n = <span class="number">0</span>;</span><br><span class="line">    <span class="type">int</span> type = lua_type(L, pos);</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">switch</span>(type)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">case</span> LUA_TNUMBER:</span><br><span class="line">            n = (<span class="type">int64_t</span>)lua_tonumber(L, pos);</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> LUA_TSTRING:</span><br><span class="line">            n = _long(L, pos);</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> LUA_TUSERDATA:</span><br><span class="line">            <span class="keyword">if</span> (_isint64(L, pos))</span><br><span class="line">            &#123;</span><br><span class="line">                n = *(<span class="type">int64_t</span>*)lua_touserdata(L, pos);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">default</span>:</span><br><span class="line">            <span class="keyword">return</span> luaL_typerror(L, pos, <span class="string">&quot;long&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> n;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>正确做法：</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">local</span> a = int64.new(<span class="number">1000</span>)</span><br><span class="line"><span class="keyword">local</span> b = <span class="number">0.01</span></span><br><span class="line"><span class="built_in">print</span>(a:toDouble() + b) <span class="comment">-- 1000.01</span></span><br><span class="line"><span class="built_in">print</span>(a:toDouble() * b) <span class="comment">-- 10</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">static</span> <span class="type">int</span> _int64todouble(lua_State* L)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span> (!toluas_isint64(L, <span class="number">1</span>))</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> luaL_typerror(L, <span class="number">1</span>, <span class="string">&quot;long&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="type">int64_t</span> n = toluas_toint64(L, <span class="number">1</span>);</span><br><span class="line">    lua_pushnumber(L, (<span class="type">double</span>)n);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
         </div>
 
         
 
         
             <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/2024/06/20/58/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">OpenGL with Xmake</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
                 
                 
                     <div class="article-next">
@@ -306,7 +338,7 @@ p.spoiler {
                         >
                             <span class="title flex-center">
                                 <span class="post-nav-title-item">Unreal 基础</span>
-                                <span class="post-nav-item">下一篇</span>
+                                <span class="post-nav-item">Next posts</span>
                             </span>
                             <span class="right arrow-icon flex-center">
                               <i class="fas fa-chevron-right"></i>
@@ -322,7 +354,7 @@ p.spoiler {
                 <div class="comments-container">
     <div id="comment-anchor"></div>
     <div class="comment-area-title">
-        <i class="fas fa-comments">&nbsp;留言</i>
+        <i class="fas fa-comments">&nbsp;Comments</i>
     </div>
     
 
@@ -478,7 +510,7 @@ p.spoiler {
             
     <div class="post-toc-wrap">
         <div class="post-toc">
-            
+            <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#int64%20%E4%B9%98%E6%B3%95%E9%97%AE%E9%A2%98"><span class="nav-number">1.</span> <span class="nav-text">int64乘法问题</span></a></li></ol>
         </div>
     </div>
 
@@ -502,7 +534,7 @@ p.spoiler {
                 <input autocomplete="off"
                        autocorrect="off"
                        autocapitalize="off"
-                       placeholder="搜尋..."
+                       placeholder="Search..."
                        spellcheck="false"
                        type="search"
                        class="search-input"

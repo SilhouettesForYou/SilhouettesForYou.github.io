@@ -225,7 +225,7 @@ mjx-container[display="true"] + br {
                             <a class=""
                                href="/"
                             >
-                                首頁
+                                HOME
                             </a>
                         </li>
                     
@@ -233,7 +233,7 @@ mjx-container[display="true"] + br {
                             <a class=""
                                href="/archives"
                             >
-                                歸檔
+                                ARCHIVES
                             </a>
                         </li>
                     
@@ -241,7 +241,7 @@ mjx-container[display="true"] + br {
                             <a class=""
                                href="/categories"
                             >
-                                分類
+                                CATEGORIES
                             </a>
                         </li>
                     
@@ -249,7 +249,7 @@ mjx-container[display="true"] + br {
                             <a class=""
                                href="/tags"
                             >
-                                標籤
+                                TAGS
                             </a>
                         </li>
                     
@@ -265,7 +265,7 @@ mjx-container[display="true"] + br {
                             <a class=""
                                href="/about"
                             >
-                                關於
+                                ABOUT
                             </a>
                         </li>
                     
@@ -292,22 +292,22 @@ mjx-container[display="true"] + br {
             
                 <li class="drawer-menu-item flex-center">
                     <a class=""
-                       href="/">首頁</a>
+                       href="/">HOME</a>
                 </li>
             
                 <li class="drawer-menu-item flex-center">
                     <a class=""
-                       href="/archives">歸檔</a>
+                       href="/archives">ARCHIVES</a>
                 </li>
             
                 <li class="drawer-menu-item flex-center">
                     <a class=""
-                       href="/categories">分類</a>
+                       href="/categories">CATEGORIES</a>
                 </li>
             
                 <li class="drawer-menu-item flex-center">
                     <a class=""
-                       href="/tags">標籤</a>
+                       href="/tags">TAGS</a>
                 </li>
             
                 <li class="drawer-menu-item flex-center">
@@ -317,7 +317,7 @@ mjx-container[display="true"] + br {
             
                 <li class="drawer-menu-item flex-center">
                     <a class=""
-                       href="/about">關於</a>
+                       href="/about">ABOUT</a>
                 </li>
             
         </ul>
@@ -393,7 +393,7 @@ mjx-container[display="true"] + br {
     
     
         <span class="article-wordcount article-meta-item">
-            <i class="fas fa-file-word"></i>&nbsp;<span>20.1k 字數</span>
+            <i class="fas fa-file-word"></i>&nbsp;<span>20.1k Words</span>
         </span>
     
     
@@ -477,7 +477,7 @@ mjx-container[display="true"] + br {
 <li>Dictionary 中发生的碰撞次数太多，会严重影响性能，也会触发扩容操作</li>
 </ul>
 <blockquote>
-<p>目前。Net Framwork 4.7 中设置的碰撞次数阈值为 100</p>
+<p>目前 .Net Framwork 4.7 中设置的碰撞次数阈值为 100</p>
 </blockquote>
 <figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">Resize</span>()</span> {</span><br><span class="line">    Resize(HashHelpers.ExpandPrime(count), <span class="literal">false</span>);</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">Resize</span>(<span class="params"><span class="built_in">int</span> newSize, <span class="built_in">bool</span> forceNewHashCodes</span>)</span> {</span><br><span class="line">    Contract.Assert(newSize &gt;= entries.Length);</span><br><span class="line">    <span class="comment">// 1. 申请新的 Buckets 和 entries</span></span><br><span class="line">    <span class="built_in">int</span>[] newBuckets = <span class="keyword">new</span> <span class="built_in">int</span>[newSize];</span><br><span class="line">    <span class="keyword">for</span> (<span class="built_in">int</span> i = <span class="number">0</span>; i &lt; newBuckets.Length; i++) newBuckets[i] = <span class="number">-1</span>;</span><br><span class="line">    Entry[] newEntries = <span class="keyword">new</span> Entry[newSize];</span><br><span class="line">    <span class="comment">// 2. 将 entries 内元素拷贝到新的 entries 总</span></span><br><span class="line">    Array.Copy(entries, <span class="number">0</span>, newEntries, <span class="number">0</span>, count);</span><br><span class="line">    <span class="comment">// 3. 如果是 Hash 碰撞扩容，使用新 HashCode 函数重新计算 Hash 值</span></span><br><span class="line">    <span class="keyword">if</span>(forceNewHashCodes) {</span><br><span class="line">        <span class="keyword">for</span> (<span class="built_in">int</span> i = <span class="number">0</span>; i &lt; count; i++) {</span><br><span class="line">            <span class="keyword">if</span>(newEntries[i].hashCode != <span class="number">-1</span>) {</span><br><span class="line">                newEntries[i].hashCode = (comparer.GetHashCode(newEntries[i].key) &amp; <span class="number">0x7FFFFFFF</span>);</span><br><span class="line">            }</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line">    <span class="comment">// 4. 确定新的 bucket 位置</span></span><br><span class="line">    <span class="comment">// 5. 重建 Hahs 单链表</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="built_in">int</span> i = <span class="number">0</span>; i &lt; count; i++) {</span><br><span class="line">        <span class="keyword">if</span> (newEntries[i].hashCode &gt;= <span class="number">0</span>) {</span><br><span class="line">            <span class="built_in">int</span> bucket = newEntries[i].hashCode % newSize;</span><br><span class="line">            newEntries[i].next = newBuckets[bucket];</span><br><span class="line">            newBuckets[bucket] = i;</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line">    buckets = newBuckets;</span><br><span class="line">    entries = newEntries;</span><br><span class="line">}</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
@@ -602,7 +602,7 @@ mjx-container[display="true"] + br {
 <li>跨语言：就是只要是面向 .Net 平台的编程语言，用其中一种语言编写的类型就可以无缝的在另外一种语言编写的应用程序中互操作。</li>
 <li>跨平台：一次编译，不需要任何代码修改，应用程序就可以运行在任意在 .Net 实现的平台上跑，即代码不依赖于操作系统，也不依赖硬件环境。一个 .Net 程序运行的核心在于 .Net</li>
 </ul>
-<p>CLR（公共语言运行时，或者称为 .Net 虚拟机，类似 Java 虚拟机的概念），为了让 .Net 程序在其他平台（目前只能在 .Net 平台，windows 系统）上跑，微软官方还推出了在其他平台上 (MacOs,Linux) 跑的<br>.Net 的实现，就推出了。Net Core。然而，Unity 引擎需求也是需要跨平台，支持多语言（C#，Js，Boo）。就参考微软开发 .Net Core 的概念，于是，推出了 Mono</p>
+<p>CLR（公共语言运行时，或者称为 .Net 虚拟机，类似 Java 虚拟机的概念），为了让 .Net 程序在其他平台（目前只能在 .Net 平台，windows 系统）上跑，微软官方还推出了在其他平台上 (MacOs,Linux) 跑的<br>.Net 的实现，就推出了 .Net Core。然而，Unity 引擎需求也是需要跨平台，支持多语言（C#，Js，Boo）。就参考微软开发 .Net Core 的概念，于是，推出了 Mono</p>
 <center>
     <img src="/2022/08/19/45/net-vs-mono.png">
 </center>
@@ -1033,7 +1033,7 @@ mjx-container[display="true"] + br {
                             </span>
                             <span class="title flex-center">
                                 <span class="post-nav-title-item">Unity Shader</span>
-                                <span class="post-nav-item">上一篇</span>
+                                <span class="post-nav-item">Prev posts</span>
                             </span>
                         </a>
                     </div>
@@ -1046,7 +1046,7 @@ mjx-container[display="true"] + br {
                         >
                             <span class="title flex-center">
                                 <span class="post-nav-title-item">Lua 小知识（转载）</span>
-                                <span class="post-nav-item">下一篇</span>
+                                <span class="post-nav-item">Next posts</span>
                             </span>
                             <span class="right arrow-icon flex-center">
                               <i class="fas fa-chevron-right"></i>
@@ -1062,7 +1062,7 @@ mjx-container[display="true"] + br {
                 <div class="comments-container">
     <div id="comment-anchor"></div>
     <div class="comment-area-title">
-        <i class="fas fa-comments">&nbsp;留言</i>
+        <i class="fas fa-comments">&nbsp;Comments</i>
     </div>
     
 
@@ -1242,7 +1242,7 @@ mjx-container[display="true"] + br {
                 <input autocomplete="off"
                        autocorrect="off"
                        autocapitalize="off"
-                       placeholder="搜尋..."
+                       placeholder="Search..."
                        spellcheck="false"
                        type="search"
                        class="search-input"
