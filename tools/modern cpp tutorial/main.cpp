@@ -35,5 +35,6 @@ int main()
     std::cout << "long long: " << sizeof(long long) << std::endl;
     std::cout << "Class A: " << sizeof(A) << std::endl;
     std::cout << "Class B: " << sizeof(B) << std::endl;
+    
     return 0;
 }
