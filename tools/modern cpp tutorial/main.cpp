@@ -1,4 +1,5 @@
 #include <iostream>
+#include <string.h>
 
 class A
 {
@@ -16,8 +17,21 @@ struct B
     double d;
 };
 
+void getMemory(char **p, int num)
+{
+    *p = (char *)malloc(num);
+}
+void testMethod()
+{
+    char *src = NULL;
+    getMemory(&src, 100);
+    strcpy(src, "hello");
+    std::cout << src << std::endl;
+}
+
 int main()
 {
+    testMethod();
     char c[] = "123";
     char *p = c;
     // char r = &p;
