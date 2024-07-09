@@ -13,3 +13,4 @@ cache/seo-link-visualizer.json
 .vscode/settings.json
 tools/modern cpp tutorial/*.exe
 .xmake/windows/x64/project.lock
+yarn.lock
