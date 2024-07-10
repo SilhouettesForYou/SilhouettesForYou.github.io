@@ -1,44 +1,87 @@
 <!DOCTYPE html>
-<html lang="zh-Hans">
+<html lang=en>
 <head><!-- hexo injector head_begin start -->
 <link rel="stylesheet" href="/css/bilicard.css">
 <link href="https://cdn.jsdelivr.net/npm/hexo-tag-common@0.0.5/css/index.css" rel="stylesheet"/><!-- hexo injector head_begin end -->
-    <!-- // 通过jsDelivr的CDN引入echarts -->
-    <script src="https://cdn.jsdelivr.net/npm/echarts@4.8.0/dist/echarts.min.js"></script>
-    <!-- // 使用GL里的各种组件时需要添加，否则可不需要 -->
-    <script src="https://cdn.jsdelivr.net/npm/echarts-gl@1.1.1/dist/echarts-gl.min.js"></script>
-
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-
-    <!-- <script type="text/javascript" src="/js/texture.js"></script>
-    <script type="text/javascript" src="/js/rose.js"></script> -->
-
+    <!-- so meta -->
     <meta charset="utf-8">
-    <meta name="baidu-site-verification" content="code-WK4Q1HDzQk" />
-    <meta name="google-site-verification" content="WV6BOVs7NRg-qgcovrSAgXFDsh8DNfm-siq4aTBYSb0" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <meta name="keywords" content="Hexo Theme Keep">
-    <meta name="description" content="Hexo Theme Keep">
-    <meta name="author" content="xiao ming">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="某次听分享提到了图像的频域分析，旁边的人问我：什么是频域？什么是时域？一时感觉无法解释清楚，只是感觉和傅里叶级数有关系，为此找了些资料，学习一下时域和频域，完全参考了《傅里叶分析之掐死教程》[1]">
+<meta property="og:type" content="article">
+<meta property="og:title" content="时域和频域">
+<meta property="og:url" content="https://silhouettesforyou.github.io/2021/11/24/22/index.html">
+<meta property="og:site_name" content="Silhouettes For You">
+<meta property="og:description" content="某次听分享提到了图像的频域分析，旁边的人问我：什么是频域？什么是时域？一时感觉无法解释清楚，只是感觉和傅里叶级数有关系，为此找了些资料，学习一下时域和频域，完全参考了《傅里叶分析之掐死教程》[1]">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://silhouettesforyou.github.io/2021/11/24/22/fourier-series-square-wave-circles-animation-2.gif">
+<meta property="og:image" content="https://silhouettesforyou.github.io/2021/11/24/22/fourier-spectrum.png">
+<meta property="og:image" content="https://silhouettesforyou.github.io/2021/11/24/22/fourier-series-and-transform.gif">
+<meta property="og:image" content="https://silhouettesforyou.github.io/2021/11/24/22/mussy-signal.png">
+<meta property="og:image" content="https://silhouettesforyou.github.io/2021/11/24/22/fourier-transform-time-shifted-signal.gif">
+<meta property="og:image" content="https://silhouettesforyou.github.io/2021/11/24/22/phase-difference-1.png">
+<meta property="og:image" content="https://silhouettesforyou.github.io/2021/11/24/22/fourier-unit-pulse.png">
+<meta property="og:image" content="https://silhouettesforyou.github.io/2021/11/24/22/plural-1.png">
+<meta property="og:image" content="https://silhouettesforyou.github.io/2021/11/24/22/plural-2.png">
+<meta property="og:image" content="https://silhouettesforyou.github.io/2021/11/24/22/triple-prism.jpg">
+<meta property="og:image" content="https://silhouettesforyou.github.io/2021/11/24/22/fft-example.png">
+<meta property="article:published_time" content="2021-11-24T02:06:28.000Z">
+<meta property="article:modified_time" content="2023-12-10T07:38:05.844Z">
+<meta property="article:author" content="Xiaoming">
+<meta property="article:tag" content="信号">
+<meta property="article:tag" content="时域">
+<meta property="article:tag" content="频域">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://silhouettesforyou.github.io/2021/11/24/22/fourier-series-square-wave-circles-animation-2.gif">
     
-    <title>
+    
+      
         
-            时域和频域 |
+          <link rel="shortcut icon" href="/images/favicon.ico">
         
-        Silhouettes For You
-    </title>
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>时域和频域</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
     
 <link rel="stylesheet" href="/css/style.css">
 
-    <link rel="shortcut icon" href="/images/breaking-bad-logo.png">
-    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/css/font-awesome.min.css">
-    <script id="hexo-configurations">
-    let KEEP = window.KEEP || {};
-    KEEP.hexo_config = {"hostname":"silhouettesforyou.github.io","root":"/","language":"zh-Hans","path":"search.json"};
-    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":false,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/avatar.jpg","favicon":"/images/breaking-bad-logo.png","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":true},"first_screen":{"enable":false,"background_img":"/images/bg.svg","description":null},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":false},"code_copy":{"enable":true,"style":"mac"},"pjax":{"enable":false},"lazyload":{"enable":false},"version":"3.4.3"};
-    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
-  </script>
+    <!-- persian styles -->
     
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+		<script type="text/x-mathjax-config">
+		  MathJax.Hub.Config({
+			tex2jax: {
+			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+			  inlineMath: [['$','$']]
+			}
+		  });
+		</script>
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+	
 <style type="text/css">
 .spoiler {
   display: inline;
@@ -184,229 +227,116 @@ mjx-container[display="true"] + br {
 </style><link rel="alternate" href="/atom.xml" title="Silhouettes For You" type="application/atom+xml">
 </head>
 
-
-
-<!--动态线条背景-->
-<script type="text/javascript" color="220,220,220" opacity='0.7' zIndex="0.5" count="200" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
-
-<body>
-<div class="progress-bar-container">
+<body class="max-width mx-auto px3 ltr">
     
-        <span class="scroll-progress-bar"></span>
-    
-
-    
-</div>
-
-
-<main class="page-container">
-
-    
-
-    <div class="page-main-content">
-
-        
-        <div class="page-main-content-top">
-            <header class="header-wrapper">
-
-    <div class="header-content">
-        <div class="left">
-            
-            <a class="logo-title" href="/">
-                Silhouettes For You
-            </a>
-        </div>
-
-        <div class="right">
-            <div class="pc">
-                <ul class="menu-list">
-                    
-                        <li class="menu-item">
-                            <a class=""
-                               href="/"
-                            >
-                                HOME
-                            </a>
-                        </li>
-                    
-                        <li class="menu-item">
-                            <a class=""
-                               href="/archives"
-                            >
-                                ARCHIVES
-                            </a>
-                        </li>
-                    
-                        <li class="menu-item">
-                            <a class=""
-                               href="/categories"
-                            >
-                                CATEGORIES
-                            </a>
-                        </li>
-                    
-                        <li class="menu-item">
-                            <a class=""
-                               href="/tags"
-                            >
-                                TAGS
-                            </a>
-                        </li>
-                    
-                        <li class="menu-item">
-                            <a class=""
-                               href="/lover"
-                            >
-                                LOVER
-                            </a>
-                        </li>
-                    
-                        <li class="menu-item">
-                            <a class=""
-                               href="/about"
-                            >
-                                ABOUT
-                            </a>
-                        </li>
-                    
-                    
-                        <li class="menu-item search search-popup-trigger">
-                            <i class="fas fa-search"></i>
-                        </li>
-                    
-                </ul>
-            </div>
-            <div class="mobile">
-                
-                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
-                
-                <div class="icon-item menu-bar">
-                    <div class="menu-bar-middle"></div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="header-drawer">
-        <ul class="drawer-menu-list">
-            
-                <li class="drawer-menu-item flex-center">
-                    <a class=""
-                       href="/">HOME</a>
-                </li>
-            
-                <li class="drawer-menu-item flex-center">
-                    <a class=""
-                       href="/archives">ARCHIVES</a>
-                </li>
-            
-                <li class="drawer-menu-item flex-center">
-                    <a class=""
-                       href="/categories">CATEGORIES</a>
-                </li>
-            
-                <li class="drawer-menu-item flex-center">
-                    <a class=""
-                       href="/tags">TAGS</a>
-                </li>
-            
-                <li class="drawer-menu-item flex-center">
-                    <a class=""
-                       href="/lover">LOVER</a>
-                </li>
-            
-                <li class="drawer-menu-item flex-center">
-                    <a class=""
-                       href="/about">ABOUT</a>
-                </li>
-            
-        </ul>
-    </div>
-
-    <div class="window-mask"></div>
-
-</header>
-
-
-        </div>
-
-        <div class="page-main-content-middle">
-
-            <div class="main-content">
-
-                
-                    <div class="fade-in-down-animation">
-    <div class="article-content-container">
-
-        <div class="article-title">
-            <span class="title-hover-animation">时域和频域</span>
-        </div>
-
-        
-            <div class="article-header">
-                <div class="avatar">
-                    <img src="/images/avatar.jpg">
-                </div>
-                <div class="info">
-                    <div class="author">
-                        <span class="name">xiao ming</span>
-                        
-                    </div>
-                    <div class="meta-info">
-                        <div class="article-meta-info">
-    <span class="article-date article-meta-item">
-        <i class="fas fa-edit"></i>&nbsp;2021-11-24 10:06:28
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     --><!--
+       --><li><a href="/lover/">Lover</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     -->
+      </ul>
     </span>
-    
-        <span class="article-categories article-meta-item">
-            <i class="fas fa-folder"></i>&nbsp;
-            <ul>
-                
-                    <li>
-                        <a href="/categories/%E7%9F%A5%E8%AF%86%E5%BA%93/">知识库</a>&nbsp;
-                    </li>
-                
-            </ul>
-        </span>
-    
-    
-        <span class="article-tags article-meta-item">
-            <i class="fas fa-tags"></i>&nbsp;
-            <ul>
-                
-                    <li>
-                        <a href="/tags/%E4%BF%A1%E5%8F%B7/">信号</a>&nbsp;
-                    </li>
-                
-                    <li>
-                        | <a href="/tags/%E6%97%B6%E5%9F%9F/">时域</a>&nbsp;
-                    </li>
-                
-                    <li>
-                        | <a href="/tags/%E9%A2%91%E5%9F%9F/">频域</a>&nbsp;
-                    </li>
-                
-            </ul>
-        </span>
-    
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="Previous post" href="/2021/11/24/23/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="Next post" href="/2021/11/22/21/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://silhouettesforyou.github.io/2021/11/24/22/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://silhouettesforyou.github.io/2021/11/24/22/&text=时域和频域"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://silhouettesforyou.github.io/2021/11/24/22/&title=时域和频域"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://silhouettesforyou.github.io/2021/11/24/22/&is_video=false&description=时域和频域"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=时域和频域&body=Check out this article: https://silhouettesforyou.github.io/2021/11/24/22/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://silhouettesforyou.github.io/2021/11/24/22/&title=时域和频域"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://silhouettesforyou.github.io/2021/11/24/22/&title=时域和频域"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://silhouettesforyou.github.io/2021/11/24/22/&title=时域和频域"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://silhouettesforyou.github.io/2021/11/24/22/&title=时域和频域"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://silhouettesforyou.github.io/2021/11/24/22/&name=时域和频域&description=&lt;p&gt;某次听分享提到了图像的频域分析，旁边的人问我：什么是频域？什么是时域？一时感觉无法解释清楚，只是感觉和傅里叶级数有关系，为此找了些资料，学习一下时域和频域，完全参考了《傅里叶分析之掐死教程》&lt;sup class=&#34;refplus-num&#34;&gt;&lt;a href=&#34;#ref-1&#34;&gt;[1]&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://silhouettesforyou.github.io/2021/11/24/22/&t=时域和频域"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
 
+    </div>
     
     
-        <span class="article-wordcount article-meta-item">
-            <i class="fas fa-file-word"></i>&nbsp;<span>2.9k Words</span>
-        </span>
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9A%84%E9%A2%91%E8%B0%B1"><span class="toc-number">1.</span> <span class="toc-text">傅里叶级数  的频谱</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9A%84%E7%9A%84%E7%9B%B8%E4%BD%8D%E8%B0%B1"><span class="toc-number">2.</span> <span class="toc-text">傅里叶级数  的的相位谱 </span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%82%85%E9%87%8C%E5%8F%B6%E5%88%86%E6%9E%90%E7%9A%84%E7%94%A8%E5%A4%84"><span class="toc-number">2.1.</span> <span class="toc-text"> 傅里叶分析的用处 </span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86"><span class="toc-number">2.1.1.</span> <span class="toc-text"> 图像处理</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%B7%A5%E7%A8%8B%E5%BA%94%E7%94%A8"><span class="toc-number">2.1.2.</span> <span class="toc-text">工程应用 </span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%B1%82%E8%A7%A3%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B"><span class="toc-number">2.1.3.</span> <span class="toc-text">求解微分方程 </span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link"><span class="toc-number">2.2.</span> <span class="toc-text">相位谱</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3D-%20%E8%A7%86%E8%A7%92"><span class="toc-number">3.</span> <span class="toc-text">3D 视角</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#-1"><span class="toc-number">4.</span> <span class="toc-text">傅里叶变换</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%AC%A7%E6%8B%89%E5%85%AC%E5%BC%8F"><span class="toc-number">5.</span> <span class="toc-text">欧拉公式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8C%87%E6%95%B0%E5%BD%A2%E5%BC%8F%E7%9A%84%E5%82%85%E9%87%8C%E5%8F%B6%E5%8F%98%E6%8D%A2"><span class="toc-number">6.</span> <span class="toc-text">指数形式的傅里叶变换 </span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%86%8D%E6%AC%A1%E7%90%86%E8%A7%A3%E6%AD%A3%E5%BC%A6%E6%B3%A2"><span class="toc-number">6.1.</span> <span class="toc-text">再次理解正弦波 </span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%AD%A3%E8%9E%BA%E6%97%8B%E9%9D%A2"><span class="toc-number">6.2.</span> <span class="toc-text">正螺旋面</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%BE%E5%83%8F%E5%82%85%E9%87%8C%E5%8F%B6%E5%8F%98%E6%8D%A2%E5%92%8C%E5%82%85%E9%87%8C%E5%8F%B6%E9%80%86%E5%8F%98%E6%8D%A2%E5%8E%9F%E7%90%86%E5%8F%8A%E5%AE%9E%E7%8E%B0"><span class="toc-number">7.</span> <span class="toc-text">图像傅里叶变换和傅里叶逆变换原理及实现 </span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%9B%B8%E5%85%B3%E4%BB%A3%E7%A0%81"><span class="toc-number">7.1.</span> <span class="toc-text">相关代码 [3]</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%99%AE%E9%80%9A%E5%9B%BE%E5%83%8F%E7%9A%84%E5%82%85%E9%87%8C%E5%8F%B6%E5%8F%98%E6%8D%A2%E7%BB%93%E6%9E%9C"><span class="toc-number">7.1.1.</span> <span class="toc-text"> 普通图像的傅里叶变换结果 </span></a></li></ol></li></ol></li></ol>
+      </div>
     
-    
-    
+  </span>
 </div>
 
-                    </div>
-                </div>
-            </div>
+    
+    <div class="content index py4 ">
         
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        时域和频域
+    </h1>
 
-        <div class="article-content markdown-body">
-            <link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>某次听分享提到了图像的频域分析，旁边的人问我：什么是频域？什么是时域？一时感觉无法解释清楚，只是感觉和傅里叶级数有关系，为此找了些资料，学习一下时域和频域，完全参考了《傅里叶分析之掐死教程》<sup class="refplus-num"><a href="#ref-1">[1]</a></sup></p>
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">Xiaoming</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2021-11-24T02:06:28.000Z" class="dt-published" itemprop="datePublished">2021-11-24</time>
+        
+        (Updated: <time datetime="2023-12-10T07:38:05.844Z" class="dt-updated" itemprop="dateModified">2023-12-10</time>)
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fa-solid fa-archive"></i>
+        <a class="category-link" href="/categories/%E7%9F%A5%E8%AF%86%E5%BA%93/">知识库</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fa-solid fa-tag"></i>
+        <a class="p-category" href="/tags/%E4%BF%A1%E5%8F%B7/" rel="tag">信号</a>, <a class="p-category" href="/tags/%E6%97%B6%E5%9F%9F/" rel="tag">时域</a>, <a class="p-category" href="/tags/%E9%A2%91%E5%9F%9F/" rel="tag">频域</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>某次听分享提到了图像的频域分析，旁边的人问我：什么是频域？什么是时域？一时感觉无法解释清楚，只是感觉和傅里叶级数有关系，为此找了些资料，学习一下时域和频域，完全参考了《傅里叶分析之掐死教程》<sup class="refplus-num"><a href="#ref-1">[1]</a></sup></p>
 <span id="more"></span>
 
 <h3 id="的频谱"><a href="# 的频谱" class="headerlink" title="的频谱"></a><span class="hint--info hint--rounded hint--top" data-hint="Fourier Series" ontouchstart="">傅里叶级数 </span> 的频谱</h3><blockquote>
@@ -482,10 +412,10 @@ item(-5, 1);
 signal();
 </script>
 
-<div id="echarts7454" style="width: 85%;height: 400px;margin: 0 auto"></div>
+<div id="echarts4411" style="width: 85%;height: 400px;margin: 0 auto"></div>
 <script type="text/javascript">
         // 基于准备好的 dom，初始化 echarts 实例
-        var myChart = echarts.init(document.getElementById('echarts7454'));
+        var myChart = echarts.init(document.getElementById('echarts4411'));
 
         // 指定图表的配置项和数据
         var option = option = {tooltip: {},
@@ -568,10 +498,10 @@ for (var t = 0; t < 25; t += 0.001) {var x = Math.cos(t);
 }
 </script>
 
-<div id="echarts9125" style="width: 85%;height: 400px;margin: 0 auto"></div>
+<div id="echarts7338" style="width: 85%;height: 400px;margin: 0 auto"></div>
 <script type="text/javascript">
         // 基于准备好的 dom，初始化 echarts 实例
-        var myChart = echarts.init(document.getElementById('echarts9125'));
+        var myChart = echarts.init(document.getElementById('echarts7338'));
 
         // 指定图表的配置项和数据
         var option = option = {tooltip: {},
@@ -633,10 +563,10 @@ for (var t = 0; t < 25; t += 0.001) {var x = Math.cos(t);
 
 <p>但不同的是，傅里叶变换出来的频谱不仅仅是 <span class="hint--info hint--rounded hint--top" data-hint="不同光波的叠加" ontouchstart=""> 可见光 </span> 这样频率范围有限的叠加，而是频率从 0 到无穷所有频率的组合。</p>
 <h4 id="再次理解正弦波"><a href="# 再次理解正弦波" class="headerlink" title="再次理解正弦波"></a>再次理解正弦波 </h4><p> 正弦波可以理解为螺线在实数轴的投影，还可以借助欧拉公式的另一种形式去理解：<br><mjx-container class="MathJax" jax="SVG" display="true"><svg style="vertical-align: -2.175ex;" xmlns="http://www.w3.org/2000/svg" width="22.742ex" height="5.482ex" role="img" focusable="false" viewbox="0 -1461.5 10051.9 2423"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mrow"><g data-mml-node="mo" transform="translate(0 -0.5)"><path data-c="7B" d="M618 -943L612 -949H582L568 -943Q472 -903 411 -841T332 -703Q327 -682 327 -653T325 -350Q324 -28 323 -18Q317 24 301 61T264 124T221 171T179 205T147 225T132 234Q130 238 130 250Q130 255 130 258T131 264T132 267T134 269T139 272T144 275Q207 308 256 367Q310 436 323 519Q324 529 325 851Q326 1124 326 1154T332 1205Q369 1358 566 1443L582 1450H612L618 1444V1429Q618 1413 616 1411L608 1406Q599 1402 585 1393T552 1372T515 1343T479 1305T449 1257T429 1200Q425 1180 425 1152T423 851Q422 579 422 549T416 498Q407 459 388 424T346 364T297 318T250 284T214 264T197 254L188 251L205 242Q290 200 345 138T416 3Q421 -18 421 -48T423 -349Q423 -397 423 -472Q424 -677 428 -694Q429 -697 429 -699Q434 -722 443 -743T465 -782T491 -816T519 -845T548 -868T574 -886T595 -899T610 -908L616 -910Q618 -912 618 -928V-943Z" /></g><g data-mml-node="mtable" transform="translate(750,0)"><g data-mml-node="mtr" transform="translate(0,600)"><g data-mml-node="mtd"><g data-mml-node="msup"><g data-mml-node="mi"><path data-c="1D452" d="M39 168Q39 225 58 272T107 350T174 402T244 433T307 442H310Q355 442 388 420T421 355Q421 265 310 237Q261 224 176 223Q139 223 138 221Q138 219 132 186T125 128Q125 81 146 54T209 26T302 45T394 111Q403 121 406 121Q410 121 419 112T429 98T420 82T390 55T344 24T281 -1T205 -11Q126 -11 83 42T39 168ZM373 353Q367 405 305 405Q272 405 244 391T199 357T170 316T154 280T149 261Q149 260 169 260Q282 260 327 284T373 353Z" /></g><g data-mml-node="TeXAtom" transform="translate(499,363) scale(0.707)" data-mjx-texclass="ORD"><g data-mml-node="mi"><path data-c="1D456" d="M184 600Q184 624 203 642T247 661Q265 661 277 649T290 619Q290 596 270 577T226 557Q211 557 198 567T184 600ZM21 287Q21 295 30 318T54 369T98 420T158 442Q197 442 223 419T250 357Q250 340 236 301T196 196T154 83Q149 61 149 51Q149 26 166 26Q175 26 185 29T208 43T235 78T260 137Q263 149 265 151T282 153Q302 153 302 143Q302 135 293 112T268 61T223 11T161 -11Q129 -11 102 10T74 74Q74 91 79 106T122 220Q160 321 166 341T173 380Q173 404 156 404H154Q124 404 99 371T61 287Q60 286 59 284T58 281T56 279T53 278T49 278T41 278H27Q21 284 21 287Z" /></g><g data-mml-node="mi" transform="translate(345,0)"><path data-c="1D703" d="M35 200Q35 302 74 415T180 610T319 704Q320 704 327 704T339 705Q393 701 423 656Q462 596 462 495Q462 380 417 261T302 66T168 -10H161Q125 -10 99 10T60 63T41 130T35 200ZM383 566Q383 668 330 668Q294 668 260 623T204 521T170 421T157 371Q206 370 254 370L351 371Q352 372 359 404T375 484T383 566ZM113 132Q113 26 166 26Q181 26 198 36T239 74T287 161T335 307L340 324H145Q145 321 136 286T120 208T113 132Z" /></g></g></g></g><g data-mml-node="mtd" transform="translate(2674.7,0)"><g data-mml-node="mo"><path data-c="3D" d="M56 347Q56 360 70 367H707Q722 359 722 347Q722 336 708 328L390 327H72Q56 332 56 347ZM56 153Q56 168 72 173H708Q722 163 722 153Q722 140 707 133H70Q56 140 56 153Z" /></g><g data-mml-node="mi" transform="translate(1055.8,0)"><path data-c="63" d="M370 305T349 305T313 320T297 358Q297 381 312 396Q317 401 317 402T307 404Q281 408 258 408Q209 408 178 376Q131 329 131 219Q131 137 162 90Q203 29 272 29Q313 29 338 55T374 117Q376 125 379 127T395 129H409Q415 123 415 120Q415 116 411 104T395 71T366 33T318 2T249 -11Q163 -11 99 53T34 214Q34 318 99 383T250 448T370 421T404 357Q404 334 387 320Z" /><path data-c="6F" d="M28 214Q28 309 93 378T250 448Q340 448 405 380T471 215Q471 120 407 55T250 -10Q153 -10 91 57T28 214ZM250 30Q372 30 372 193V225V250Q372 272 371 288T364 326T348 362T317 390T268 410Q263 411 252 411Q222 411 195 399Q152 377 139 338T126 246V226Q126 130 145 91Q177 30 250 30Z" transform="translate(444,0)" /><path data-c="73" d="M295 316Q295 356 268 385T190 414Q154 414 128 401Q98 382 98 349Q97 344 98 336T114 312T157 287Q175 282 201 278T245 269T277 256Q294 248 310 236T342 195T359 133Q359 71 321 31T198 -10H190Q138 -10 94 26L86 19L77 10Q71 4 65 -1L54 -11H46H42Q39 -11 33 -5V74V132Q33 153 35 157T45 162H54Q66 162 70 158T75 146T82 119T101 77Q136 26 198 26Q295 26 295 104Q295 133 277 151Q257 175 194 187T111 210Q75 227 54 256T33 318Q33 357 50 384T93 424T143 442T187 447H198Q238 447 268 432L283 424L292 431Q302 440 314 448H322H326Q329 448 335 442V310L329 304H301Q295 310 295 316Z" transform="translate(944,0)" /></g><g data-mml-node="mo" transform="translate(2393.8,0)"><path data-c="2061" d="" /></g><g data-mml-node="mi" transform="translate(2560.4,0)"><path data-c="1D703" d="M35 200Q35 302 74 415T180 610T319 704Q320 704 327 704T339 705Q393 701 423 656Q462 596 462 495Q462 380 417 261T302 66T168 -10H161Q125 -10 99 10T60 63T41 130T35 200ZM383 566Q383 668 330 668Q294 668 260 623T204 521T170 421T157 371Q206 370 254 370L351 371Q352 372 359 404T375 484T383 566ZM113 132Q113 26 166 26Q181 26 198 36T239 74T287 161T335 307L340 324H145Q145 321 136 286T120 208T113 132Z" /></g><g data-mml-node="mo" transform="translate(3251.7,0)"><path data-c="2B" d="M56 237T56 250T70 270H369V420L370 570Q380 583 389 583Q402 583 409 568V270H707Q722 262 722 250T707 230H409V-68Q401 -82 391 -82H389H387Q375 -82 369 -68V230H70Q56 237 56 250Z" /></g><g data-mml-node="mi" transform="translate(4251.9,0)"><path data-c="1D456" d="M184 600Q184 624 203 642T247 661Q265 661 277 649T290 619Q290 596 270 577T226 557Q211 557 198 567T184 600ZM21 287Q21 295 30 318T54 369T98 420T158 442Q197 442 223 419T250 357Q250 340 236 301T196 196T154 83Q149 61 149 51Q149 26 166 26Q175 26 185 29T208 43T235 78T260 137Q263 149 265 151T282 153Q302 153 302 143Q302 135 293 112T268 61T223 11T161 -11Q129 -11 102 10T74 74Q74 91 79 106T122 220Q160 321 166 341T173 380Q173 404 156 404H154Q124 404 99 371T61 287Q60 286 59 284T58 281T56 279T53 278T49 278T41 278H27Q21 284 21 287Z" /></g><g data-mml-node="mi" transform="translate(4763.6,0)"><path data-c="73" d="M295 316Q295 356 268 385T190 414Q154 414 128 401Q98 382 98 349Q97 344 98 336T114 312T157 287Q175 282 201 278T245 269T277 256Q294 248 310 236T342 195T359 133Q359 71 321 31T198 -10H190Q138 -10 94 26L86 19L77 10Q71 4 65 -1L54 -11H46H42Q39 -11 33 -5V74V132Q33 153 35 157T45 162H54Q66 162 70 158T75 146T82 119T101 77Q136 26 198 26Q295 26 295 104Q295 133 277 151Q257 175 194 187T111 210Q75 227 54 256T33 318Q33 357 50 384T93 424T143 442T187 447H198Q238 447 268 432L283 424L292 431Q302 440 314 448H322H326Q329 448 335 442V310L329 304H301Q295 310 295 316Z" /><path data-c="69" d="M69 609Q69 637 87 653T131 669Q154 667 171 652T188 609Q188 579 171 564T129 549Q104 549 87 564T69 609ZM247 0Q232 3 143 3Q132 3 106 3T56 1L34 0H26V46H42Q70 46 91 49Q100 53 102 60T104 102V205V293Q104 345 102 359T88 378Q74 385 41 385H30V408Q30 431 32 431L42 432Q52 433 70 434T106 436Q123 437 142 438T171 441T182 442H185V62Q190 52 197 50T232 46H255V0H247Z" transform="translate(394,0)" /><path data-c="6E" d="M41 46H55Q94 46 102 60V68Q102 77 102 91T102 122T103 161T103 203Q103 234 103 269T102 328V351Q99 370 88 376T43 385H25V408Q25 431 27 431L37 432Q47 433 65 434T102 436Q119 437 138 438T167 441T178 442H181V402Q181 364 182 364T187 369T199 384T218 402T247 421T285 437Q305 442 336 442Q450 438 463 329Q464 322 464 190V104Q464 66 466 59T477 49Q498 46 526 46H542V0H534L510 1Q487 2 460 2T422 3Q319 3 310 0H302V46H318Q379 46 379 62Q380 64 380 200Q379 335 378 343Q372 371 358 385T334 402T308 404Q263 404 229 370Q202 343 195 315T187 232V168V108Q187 78 188 68T191 55T200 49Q221 46 249 46H265V0H257L234 1Q210 2 183 2T145 3Q42 3 33 0H25V46H41Z" transform="translate(672,0)" /></g><g data-mml-node="mo" transform="translate(5991.6,0)"><path data-c="2061" d="" /></g><g data-mml-node="mi" transform="translate(6158.2,0)"><path data-c="1D703" d="M35 200Q35 302 74 415T180 610T319 704Q320 704 327 704T339 705Q393 701 423 656Q462 596 462 495Q462 380 417 261T302 66T168 -10H161Q125 -10 99 10T60 63T41 130T35 200ZM383 566Q383 668 330 668Q294 668 260 623T204 521T170 421T157 371Q206 370 254 370L351 371Q352 372 359 404T375 484T383 566ZM113 132Q113 26 166 26Q181 26 198 36T239 74T287 161T335 307L340 324H145Q145 321 136 286T120 208T113 132Z" /></g></g></g><g data-mml-node="mtr" transform="translate(0,-711.5)"><g data-mml-node="mtd"><g data-mml-node="msup"><g data-mml-node="mi"><path data-c="1D452" d="M39 168Q39 225 58 272T107 350T174 402T244 433T307 442H310Q355 442 388 420T421 355Q421 265 310 237Q261 224 176 223Q139 223 138 221Q138 219 132 186T125 128Q125 81 146 54T209 26T302 45T394 111Q403 121 406 121Q410 121 419 112T429 98T420 82T390 55T344 24T281 -1T205 -11Q126 -11 83 42T39 168ZM373 353Q367 405 305 405Q272 405 244 391T199 357T170 316T154 280T149 261Q149 260 169 260Q282 260 327 284T373 353Z" /></g><g data-mml-node="TeXAtom" transform="translate(499,363) scale(0.707)" data-mjx-texclass="ORD"><g data-mml-node="mo"><path data-c="2212" d="M84 237T84 250T98 270H679Q694 262 694 250T679 230H98Q84 237 84 250Z" /></g><g data-mml-node="mi" transform="translate(778,0)"><path data-c="1D456" d="M184 600Q184 624 203 642T247 661Q265 661 277 649T290 619Q290 596 270 577T226 557Q211 557 198 567T184 600ZM21 287Q21 295 30 318T54 369T98 420T158 442Q197 442 223 419T250 357Q250 340 236 301T196 196T154 83Q149 61 149 51Q149 26 166 26Q175 26 185 29T208 43T235 78T260 137Q263 149 265 151T282 153Q302 153 302 143Q302 135 293 112T268 61T223 11T161 -11Q129 -11 102 10T74 74Q74 91 79 106T122 220Q160 321 166 341T173 380Q173 404 156 404H154Q124 404 99 371T61 287Q60 286 59 284T58 281T56 279T53 278T49 278T41 278H27Q21 284 21 287Z" /></g><g data-mml-node="mi" transform="translate(1123,0)"><path data-c="1D703" d="M35 200Q35 302 74 415T180 610T319 704Q320 704 327 704T339 705Q393 701 423 656Q462 596 462 495Q462 380 417 261T302 66T168 -10H161Q125 -10 99 10T60 63T41 130T35 200ZM383 566Q383 668 330 668Q294 668 260 623T204 521T170 421T157 371Q206 370 254 370L351 371Q352 372 359 404T375 484T383 566ZM113 132Q113 26 166 26Q181 26 198 36T239 74T287 161T335 307L340 324H145Q145 321 136 286T120 208T113 132Z" /></g></g></g></g><g data-mml-node="mtd" transform="translate(2674.7,0)"><g data-mml-node="mo"><path data-c="3D" d="M56 347Q56 360 70 367H707Q722 359 722 347Q722 336 708 328L390 327H72Q56 332 56 347ZM56 153Q56 168 72 173H708Q722 163 722 153Q722 140 707 133H70Q56 140 56 153Z" /></g><g data-mml-node="mi" transform="translate(1055.8,0)"><path data-c="63" d="M370 305T349 305T313 320T297 358Q297 381 312 396Q317 401 317 402T307 404Q281 408 258 408Q209 408 178 376Q131 329 131 219Q131 137 162 90Q203 29 272 29Q313 29 338 55T374 117Q376 125 379 127T395 129H409Q415 123 415 120Q415 116 411 104T395 71T366 33T318 2T249 -11Q163 -11 99 53T34 214Q34 318 99 383T250 448T370 421T404 357Q404 334 387 320Z" /><path data-c="6F" d="M28 214Q28 309 93 378T250 448Q340 448 405 380T471 215Q471 120 407 55T250 -10Q153 -10 91 57T28 214ZM250 30Q372 30 372 193V225V250Q372 272 371 288T364 326T348 362T317 390T268 410Q263 411 252 411Q222 411 195 399Q152 377 139 338T126 246V226Q126 130 145 91Q177 30 250 30Z" transform="translate(444,0)" /><path data-c="73" d="M295 316Q295 356 268 385T190 414Q154 414 128 401Q98 382 98 349Q97 344 98 336T114 312T157 287Q175 282 201 278T245 269T277 256Q294 248 310 236T342 195T359 133Q359 71 321 31T198 -10H190Q138 -10 94 26L86 19L77 10Q71 4 65 -1L54 -11H46H42Q39 -11 33 -5V74V132Q33 153 35 157T45 162H54Q66 162 70 158T75 146T82 119T101 77Q136 26 198 26Q295 26 295 104Q295 133 277 151Q257 175 194 187T111 210Q75 227 54 256T33 318Q33 357 50 384T93 424T143 442T187 447H198Q238 447 268 432L283 424L292 431Q302 440 314 448H322H326Q329 448 335 442V310L329 304H301Q295 310 295 316Z" transform="translate(944,0)" /></g><g data-mml-node="mo" transform="translate(2393.8,0)"><path data-c="2061" d="" /></g><g data-mml-node="mi" transform="translate(2560.4,0)"><path data-c="1D703" d="M35 200Q35 302 74 415T180 610T319 704Q320 704 327 704T339 705Q393 701 423 656Q462 596 462 495Q462 380 417 261T302 66T168 -10H161Q125 -10 99 10T60 63T41 130T35 200ZM383 566Q383 668 330 668Q294 668 260 623T204 521T170 421T157 371Q206 370 254 370L351 371Q352 372 359 404T375 484T383 566ZM113 132Q113 26 166 26Q181 26 198 36T239 74T287 161T335 307L340 324H145Q145 321 136 286T120 208T113 132Z" /></g><g data-mml-node="mo" transform="translate(3251.7,0)"><path data-c="2212" d="M84 237T84 250T98 270H679Q694 262 694 250T679 230H98Q84 237 84 250Z" /></g><g data-mml-node="mi" transform="translate(4251.9,0)"><path data-c="1D456" d="M184 600Q184 624 203 642T247 661Q265 661 277 649T290 619Q290 596 270 577T226 557Q211 557 198 567T184 600ZM21 287Q21 295 30 318T54 369T98 420T158 442Q197 442 223 419T250 357Q250 340 236 301T196 196T154 83Q149 61 149 51Q149 26 166 26Q175 26 185 29T208 43T235 78T260 137Q263 149 265 151T282 153Q302 153 302 143Q302 135 293 112T268 61T223 11T161 -11Q129 -11 102 10T74 74Q74 91 79 106T122 220Q160 321 166 341T173 380Q173 404 156 404H154Q124 404 99 371T61 287Q60 286 59 284T58 281T56 279T53 278T49 278T41 278H27Q21 284 21 287Z" /></g><g data-mml-node="mi" transform="translate(4763.6,0)"><path data-c="73" d="M295 316Q295 356 268 385T190 414Q154 414 128 401Q98 382 98 349Q97 344 98 336T114 312T157 287Q175 282 201 278T245 269T277 256Q294 248 310 236T342 195T359 133Q359 71 321 31T198 -10H190Q138 -10 94 26L86 19L77 10Q71 4 65 -1L54 -11H46H42Q39 -11 33 -5V74V132Q33 153 35 157T45 162H54Q66 162 70 158T75 146T82 119T101 77Q136 26 198 26Q295 26 295 104Q295 133 277 151Q257 175 194 187T111 210Q75 227 54 256T33 318Q33 357 50 384T93 424T143 442T187 447H198Q238 447 268 432L283 424L292 431Q302 440 314 448H322H326Q329 448 335 442V310L329 304H301Q295 310 295 316Z" /><path data-c="69" d="M69 609Q69 637 87 653T131 669Q154 667 171 652T188 609Q188 579 171 564T129 549Q104 549 87 564T69 609ZM247 0Q232 3 143 3Q132 3 106 3T56 1L34 0H26V46H42Q70 46 91 49Q100 53 102 60T104 102V205V293Q104 345 102 359T88 378Q74 385 41 385H30V408Q30 431 32 431L42 432Q52 433 70 434T106 436Q123 437 142 438T171 441T182 442H185V62Q190 52 197 50T232 46H255V0H247Z" transform="translate(394,0)" /><path data-c="6E" d="M41 46H55Q94 46 102 60V68Q102 77 102 91T102 122T103 161T103 203Q103 234 103 269T102 328V351Q99 370 88 376T43 385H25V408Q25 431 27 431L37 432Q47 433 65 434T102 436Q119 437 138 438T167 441T178 442H181V402Q181 364 182 364T187 369T199 384T218 402T247 421T285 437Q305 442 336 442Q450 438 463 329Q464 322 464 190V104Q464 66 466 59T477 49Q498 46 526 46H542V0H534L510 1Q487 2 460 2T422 3Q319 3 310 0H302V46H318Q379 46 379 62Q380 64 380 200Q379 335 378 343Q372 371 358 385T334 402T308 404Q263 404 229 370Q202 343 195 315T187 232V168V108Q187 78 188 68T191 55T200 49Q221 46 249 46H265V0H257L234 1Q210 2 183 2T145 3Q42 3 33 0H25V46H41Z" transform="translate(672,0)" /></g><g data-mml-node="mo" transform="translate(5991.6,0)"><path data-c="2061" d="" /></g><g data-mml-node="mi" transform="translate(6158.2,0)"><path data-c="1D703" d="M35 200Q35 302 74 415T180 610T319 704Q320 704 327 704T339 705Q393 701 423 656Q462 596 462 495Q462 380 417 261T302 66T168 -10H161Q125 -10 99 10T60 63T41 130T35 200ZM383 566Q383 668 330 668Q294 668 260 623T204 521T170 421T157 371Q206 370 254 370L351 371Q352 372 359 404T375 484T383 566ZM113 132Q113 26 166 26Q181 26 198 36T239 74T287 161T335 307L340 324H145Q145 321 136 286T120 208T113 132Z" /></g></g></g></g><g data-mml-node="mo" transform="translate(10051.9,0) translate(0 250)" /></g></g></g></svg></mjx-container><br>将俩个式子相加再除 2，可得：<br><mjx-container class="MathJax" jax="SVG" display="true"><svg style="vertical-align: -1.552ex;" xmlns="http://www.w3.org/2000/svg" width="17.577ex" height="5.031ex" role="img" focusable="false" viewbox="0 -1537.5 7769 2223.5"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="63" d="M370 305T349 305T313 320T297 358Q297 381 312 396Q317 401 317 402T307 404Q281 408 258 408Q209 408 178 376Q131 329 131 219Q131 137 162 90Q203 29 272 29Q313 29 338 55T374 117Q376 125 379 127T395 129H409Q415 123 415 120Q415 116 411 104T395 71T366 33T318 2T249 -11Q163 -11 99 53T34 214Q34 318 99 383T250 448T370 421T404 357Q404 334 387 320Z" /><path data-c="6F" d="M28 214Q28 309 93 378T250 448Q340 448 405 380T471 215Q471 120 407 55T250 -10Q153 -10 91 57T28 214ZM250 30Q372 30 372 193V225V250Q372 272 371 288T364 326T348 362T317 390T268 410Q263 411 252 411Q222 411 195 399Q152 377 139 338T126 246V226Q126 130 145 91Q177 30 250 30Z" transform="translate(444,0)" /><path data-c="73" d="M295 316Q295 356 268 385T190 414Q154 414 128 401Q98 382 98 349Q97 344 98 336T114 312T157 287Q175 282 201 278T245 269T277 256Q294 248 310 236T342 195T359 133Q359 71 321 31T198 -10H190Q138 -10 94 26L86 19L77 10Q71 4 65 -1L54 -11H46H42Q39 -11 33 -5V74V132Q33 153 35 157T45 162H54Q66 162 70 158T75 146T82 119T101 77Q136 26 198 26Q295 26 295 104Q295 133 277 151Q257 175 194 187T111 210Q75 227 54 256T33 318Q33 357 50 384T93 424T143 442T187 447H198Q238 447 268 432L283 424L292 431Q302 440 314 448H322H326Q329 448 335 442V310L329 304H301Q295 310 295 316Z" transform="translate(944,0)" /></g><g data-mml-node="mo" transform="translate(1338,0)"><path data-c="2061" d="" /></g><g data-mml-node="mi" transform="translate(1504.7,0)"><path data-c="1D703" d="M35 200Q35 302 74 415T180 610T319 704Q320 704 327 704T339 705Q393 701 423 656Q462 596 462 495Q462 380 417 261T302 66T168 -10H161Q125 -10 99 10T60 63T41 130T35 200ZM383 566Q383 668 330 668Q294 668 260 623T204 521T170 421T157 371Q206 370 254 370L351 371Q352 372 359 404T375 484T383 566ZM113 132Q113 26 166 26Q181 26 198 36T239 74T287 161T335 307L340 324H145Q145 321 136 286T120 208T113 132Z" /></g><g data-mml-node="mo" transform="translate(2251.4,0)"><path data-c="3D" d="M56 347Q56 360 70 367H707Q722 359 722 347Q722 336 708 328L390 327H72Q56 332 56 347ZM56 153Q56 168 72 173H708Q722 163 722 153Q722 140 707 133H70Q56 140 56 153Z" /></g><g data-mml-node="mfrac" transform="translate(3307.2,0)"><g data-mml-node="mrow" transform="translate(220,676)"><g data-mml-node="msup"><g data-mml-node="mi"><path data-c="1D452" d="M39 168Q39 225 58 272T107 350T174 402T244 433T307 442H310Q355 442 388 420T421 355Q421 265 310 237Q261 224 176 223Q139 223 138 221Q138 219 132 186T125 128Q125 81 146 54T209 26T302 45T394 111Q403 121 406 121Q410 121 419 112T429 98T420 82T390 55T344 24T281 -1T205 -11Q126 -11 83 42T39 168ZM373 353Q367 405 305 405Q272 405 244 391T199 357T170 316T154 280T149 261Q149 260 169 260Q282 260 327 284T373 353Z" /></g><g data-mml-node="TeXAtom" transform="translate(499,363) scale(0.707)" data-mjx-texclass="ORD"><g data-mml-node="mi"><path data-c="1D456" d="M184 600Q184 624 203 642T247 661Q265 661 277 649T290 619Q290 596 270 577T226 557Q211 557 198 567T184 600ZM21 287Q21 295 30 318T54 369T98 420T158 442Q197 442 223 419T250 357Q250 340 236 301T196 196T154 83Q149 61 149 51Q149 26 166 26Q175 26 185 29T208 43T235 78T260 137Q263 149 265 151T282 153Q302 153 302 143Q302 135 293 112T268 61T223 11T161 -11Q129 -11 102 10T74 74Q74 91 79 106T122 220Q160 321 166 341T173 380Q173 404 156 404H154Q124 404 99 371T61 287Q60 286 59 284T58 281T56 279T53 278T49 278T41 278H27Q21 284 21 287Z" /></g><g data-mml-node="mi" transform="translate(345,0)"><path data-c="1D703" d="M35 200Q35 302 74 415T180 610T319 704Q320 704 327 704T339 705Q393 701 423 656Q462 596 462 495Q462 380 417 261T302 66T168 -10H161Q125 -10 99 10T60 63T41 130T35 200ZM383 566Q383 668 330 668Q294 668 260 623T204 521T170 421T157 371Q206 370 254 370L351 371Q352 372 359 404T375 484T383 566ZM113 132Q113 26 166 26Q181 26 198 36T239 74T287 161T335 307L340 324H145Q145 321 136 286T120 208T113 132Z" /></g></g></g><g data-mml-node="mo" transform="translate(1346.8,0)"><path data-c="2B" d="M56 237T56 250T70 270H369V420L370 570Q380 583 389 583Q402 583 409 568V270H707Q722 262 722 250T707 230H409V-68Q401 -82 391 -82H389H387Q375 -82 369 -68V230H70Q56 237 56 250Z" /></g><g data-mml-node="msup" transform="translate(2347,0)"><g data-mml-node="mi"><path data-c="1D452" d="M39 168Q39 225 58 272T107 350T174 402T244 433T307 442H310Q355 442 388 420T421 355Q421 265 310 237Q261 224 176 223Q139 223 138 221Q138 219 132 186T125 128Q125 81 146 54T209 26T302 45T394 111Q403 121 406 121Q410 121 419 112T429 98T420 82T390 55T344 24T281 -1T205 -11Q126 -11 83 42T39 168ZM373 353Q367 405 305 405Q272 405 244 391T199 357T170 316T154 280T149 261Q149 260 169 260Q282 260 327 284T373 353Z" /></g><g data-mml-node="TeXAtom" transform="translate(499,363) scale(0.707)" data-mjx-texclass="ORD"><g data-mml-node="mo"><path data-c="2212" d="M84 237T84 250T98 270H679Q694 262 694 250T679 230H98Q84 237 84 250Z" /></g><g data-mml-node="mi" transform="translate(778,0)"><path data-c="1D456" d="M184 600Q184 624 203 642T247 661Q265 661 277 649T290 619Q290 596 270 577T226 557Q211 557 198 567T184 600ZM21 287Q21 295 30 318T54 369T98 420T158 442Q197 442 223 419T250 357Q250 340 236 301T196 196T154 83Q149 61 149 51Q149 26 166 26Q175 26 185 29T208 43T235 78T260 137Q263 149 265 151T282 153Q302 153 302 143Q302 135 293 112T268 61T223 11T161 -11Q129 -11 102 10T74 74Q74 91 79 106T122 220Q160 321 166 341T173 380Q173 404 156 404H154Q124 404 99 371T61 287Q60 286 59 284T58 281T56 279T53 278T49 278T41 278H27Q21 284 21 287Z" /></g><g data-mml-node="mi" transform="translate(1123,0)"><path data-c="1D703" d="M35 200Q35 302 74 415T180 610T319 704Q320 704 327 704T339 705Q393 701 423 656Q462 596 462 495Q462 380 417 261T302 66T168 -10H161Q125 -10 99 10T60 63T41 130T35 200ZM383 566Q383 668 330 668Q294 668 260 623T204 521T170 421T157 371Q206 370 254 370L351 371Q352 372 359 404T375 484T383 566ZM113 132Q113 26 166 26Q181 26 198 36T239 74T287 161T335 307L340 324H145Q145 321 136 286T120 208T113 132Z" /></g></g></g></g><g data-mml-node="mn" transform="translate(1980.9,-686)"><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z" /></g><rect width="4221.7" height="60" x="120" y="220" /></g></g></g></svg></mjx-container><br><mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.025ex;" xmlns="http://www.w3.org/2000/svg" width="2.544ex" height="1.974ex" role="img" focusable="false" viewbox="0 -861.5 1124.6 872.5"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="msup"><g data-mml-node="mi"><path data-c="1D452" d="M39 168Q39 225 58 272T107 350T174 402T244 433T307 442H310Q355 442 388 420T421 355Q421 265 310 237Q261 224 176 223Q139 223 138 221Q138 219 132 186T125 128Q125 81 146 54T209 26T302 45T394 111Q403 121 406 121Q410 121 419 112T429 98T420 82T390 55T344 24T281 -1T205 -11Q126 -11 83 42T39 168ZM373 353Q367 405 305 405Q272 405 244 391T199 357T170 316T154 280T149 261Q149 260 169 260Q282 260 327 284T373 353Z" /></g><g data-mml-node="TeXAtom" transform="translate(499,363) scale(0.707)" data-mjx-texclass="ORD"><g data-mml-node="mi"><path data-c="1D456" d="M184 600Q184 624 203 642T247 661Q265 661 277 649T290 619Q290 596 270 577T226 557Q211 557 198 567T184 600ZM21 287Q21 295 30 318T54 369T98 420T158 442Q197 442 223 419T250 357Q250 340 236 301T196 196T154 83Q149 61 149 51Q149 26 166 26Q175 26 185 29T208 43T235 78T260 137Q263 149 265 151T282 153Q302 153 302 143Q302 135 293 112T268 61T223 11T161 -11Q129 -11 102 10T74 74Q74 91 79 106T122 220Q160 321 166 341T173 380Q173 404 156 404H154Q124 404 99 371T61 287Q60 286 59 284T58 281T56 279T53 278T49 278T41 278H27Q21 284 21 287Z" /></g><g data-mml-node="mi" transform="translate(345,0)"><path data-c="1D703" d="M35 200Q35 302 74 415T180 610T319 704Q320 704 327 704T339 705Q393 701 423 656Q462 596 462 495Q462 380 417 261T302 66T168 -10H161Q125 -10 99 10T60 63T41 130T35 200ZM383 566Q383 668 330 668Q294 668 260 623T204 521T170 421T157 371Q206 370 254 370L351 371Q352 372 359 404T375 484T383 566ZM113 132Q113 26 166 26Q181 26 198 36T239 74T287 161T335 307L340 324H145Q145 321 136 286T120 208T113 132Z" /></g></g></g></g></g></svg></mjx-container>可以理解为一条逆时针旋转的螺旋线，那么 <mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.025ex;" xmlns="http://www.w3.org/2000/svg" width="3.789ex" height="1.974ex" role="img" focusable="false" viewbox="0 -861.5 1674.7 872.5"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="msup"><g data-mml-node="mi"><path data-c="1D452" d="M39 168Q39 225 58 272T107 350T174 402T244 433T307 442H310Q355 442 388 420T421 355Q421 265 310 237Q261 224 176 223Q139 223 138 221Q138 219 132 186T125 128Q125 81 146 54T209 26T302 45T394 111Q403 121 406 121Q410 121 419 112T429 98T420 82T390 55T344 24T281 -1T205 -11Q126 -11 83 42T39 168ZM373 353Q367 405 305 405Q272 405 244 391T199 357T170 316T154 280T149 261Q149 260 169 260Q282 260 327 284T373 353Z" /></g><g data-mml-node="TeXAtom" transform="translate(499,363) scale(0.707)" data-mjx-texclass="ORD"><g data-mml-node="mo"><path data-c="2212" d="M84 237T84 250T98 270H679Q694 262 694 250T679 230H98Q84 237 84 250Z" /></g><g data-mml-node="mi" transform="translate(778,0)"><path data-c="1D456" d="M184 600Q184 624 203 642T247 661Q265 661 277 649T290 619Q290 596 270 577T226 557Q211 557 198 567T184 600ZM21 287Q21 295 30 318T54 369T98 420T158 442Q197 442 223 419T250 357Q250 340 236 301T196 196T154 83Q149 61 149 51Q149 26 166 26Q175 26 185 29T208 43T235 78T260 137Q263 149 265 151T282 153Q302 153 302 143Q302 135 293 112T268 61T223 11T161 -11Q129 -11 102 10T74 74Q74 91 79 106T122 220Q160 321 166 341T173 380Q173 404 156 404H154Q124 404 99 371T61 287Q60 286 59 284T58 281T56 279T53 278T49 278T41 278H27Q21 284 21 287Z" /></g><g data-mml-node="mi" transform="translate(1123,0)"><path data-c="1D703" d="M35 200Q35 302 74 415T180 610T319 704Q320 704 327 704T339 705Q393 701 423 656Q462 596 462 495Q462 380 417 261T302 66T168 -10H161Q125 -10 99 10T60 63T41 130T35 200ZM383 566Q383 668 330 668Q294 668 260 623T204 521T170 421T157 371Q206 370 254 370L351 371Q352 372 359 404T375 484T383 566ZM113 132Q113 26 166 26Q181 26 198 36T239 74T287 161T335 307L340 324H145Q145 321 136 286T120 208T113 132Z" /></g></g></g></g></g></svg></mjx-container> 可以理解为一条顺时针旋转的螺旋线。而 <mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.025ex;" xmlns="http://www.w3.org/2000/svg" width="4.465ex" height="1.62ex" role="img" focusable="false" viewbox="0 -705 1973.7 716"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="63" d="M370 305T349 305T313 320T297 358Q297 381 312 396Q317 401 317 402T307 404Q281 408 258 408Q209 408 178 376Q131 329 131 219Q131 137 162 90Q203 29 272 29Q313 29 338 55T374 117Q376 125 379 127T395 129H409Q415 123 415 120Q415 116 411 104T395 71T366 33T318 2T249 -11Q163 -11 99 53T34 214Q34 318 99 383T250 448T370 421T404 357Q404 334 387 320Z" /><path data-c="6F" d="M28 214Q28 309 93 378T250 448Q340 448 405 380T471 215Q471 120 407 55T250 -10Q153 -10 91 57T28 214ZM250 30Q372 30 372 193V225V250Q372 272 371 288T364 326T348 362T317 390T268 410Q263 411 252 411Q222 411 195 399Q152 377 139 338T126 246V226Q126 130 145 91Q177 30 250 30Z" transform="translate(444,0)" /><path data-c="73" d="M295 316Q295 356 268 385T190 414Q154 414 128 401Q98 382 98 349Q97 344 98 336T114 312T157 287Q175 282 201 278T245 269T277 256Q294 248 310 236T342 195T359 133Q359 71 321 31T198 -10H190Q138 -10 94 26L86 19L77 10Q71 4 65 -1L54 -11H46H42Q39 -11 33 -5V74V132Q33 153 35 157T45 162H54Q66 162 70 158T75 146T82 119T101 77Q136 26 198 26Q295 26 295 104Q295 133 277 151Q257 175 194 187T111 210Q75 227 54 256T33 318Q33 357 50 384T93 424T143 442T187 447H198Q238 447 268 432L283 424L292 431Q302 440 314 448H322H326Q329 448 335 442V310L329 304H301Q295 310 295 316Z" transform="translate(944,0)" /></g><g data-mml-node="mo" transform="translate(1338,0)"><path data-c="2061" d="" /></g><g data-mml-node="mi" transform="translate(1504.7,0)"><path data-c="1D703" d="M35 200Q35 302 74 415T180 610T319 704Q320 704 327 704T339 705Q393 701 423 656Q462 596 462 495Q462 380 417 261T302 66T168 -10H161Q125 -10 99 10T60 63T41 130T35 200ZM383 566Q383 668 330 668Q294 668 260 623T204 521T170 421T157 371Q206 370 254 370L351 371Q352 372 359 404T375 484T383 566ZM113 132Q113 26 166 26Q181 26 198 36T239 74T287 161T335 307L340 324H145Q145 321 136 286T120 208T113 132Z" /></g></g></g></svg></mjx-container> 则是这两条旋转方向不同的螺旋线叠加的一半（<span class="hint--info hint--rounded hint--top" data-hint="相加时带有虚部的项和为 0" ontouchstart="">因为这两条螺旋线的虚数部分相互抵消掉了</span>）。这里，逆时针旋转的称为正频率，而顺时针旋转的称为负频率。</p>
-<h4 id="正螺旋面"><a href="# 正螺旋面" class="headerlink" title="正螺旋面"></a>正螺旋面</h4><div id="echarts3171" style="width: 85%;height: 400px;margin: 0 auto"></div>
+<h4 id="正螺旋面"><a href="# 正螺旋面" class="headerlink" title="正螺旋面"></a>正螺旋面</h4><div id="echarts5987" style="width: 85%;height: 400px;margin: 0 auto"></div>
 <script type="text/javascript">
         // 基于准备好的 dom，初始化 echarts 实例
-        var myChart = echarts.init(document.getElementById('echarts3171'));
+        var myChart = echarts.init(document.getElementById('echarts5987'));
 
         // 指定图表的配置项和数据
         var option = option = {tooltip: {},
@@ -715,7 +645,7 @@ for (var t = 0; t < 25; t += 0.001) {var x = Math.cos(t);
 </center>
 
 <hr>
-<ul id="refplus"><li id="ref-1" data-num="1">[1]  <a class="link" target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/19763358?from=singlemessage&isappinstalled=1">傅里叶分析之掐死教程 <i class="fas fa-external-link-alt"></i></a></li><li id="ref-2" data-num="2">[2]  <a class="link" target="_blank" rel="noopener" href="https://www.zhihu.com/question/23175691/answer/24579168"> 关于傅里叶变换中的相位 <i class="fas fa-external-link-alt"></i></a></li><li id="ref-3" data-num="3">[3]  <a class="link" target="_blank" rel="noopener" href="https://github.com/yourwanghao/CMUComputationalPhotography/blob/master/class6/Notebook6.ipynb"> 图像的傅里叶变换<i class="fas fa-external-link-alt"></i></a></li></ul>
+<ul id="refplus"><li id="ref-1" data-num="1">[1]  <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/19763358?from=singlemessage&isappinstalled=1">傅里叶分析之掐死教程 </a></li><li id="ref-2" data-num="2">[2]  <a target="_blank" rel="noopener" href="https://www.zhihu.com/question/23175691/answer/24579168"> 关于傅里叶变换中的相位 </a></li><li id="ref-3" data-num="3">[3]  <a target="_blank" rel="noopener" href="https://github.com/yourwanghao/CMUComputationalPhotography/blob/master/class6/Notebook6.ipynb"> 图像的傅里叶变换</a></li></ul>
 
     <style>
     #refplus, #refplus li{ 
@@ -738,275 +668,143 @@ for (var t = 0; t < 25; t += 0.001) {var x = Math.cos(t);
     });
     </script>
     
-        </div>
+  </div>
+</article>
+
+
 
         
+          <div id="footer-post-container">
+  <div id="footer-post">
 
+    <div id="nav-footer" style="display: none">
+      <ul>
         
-            <div class="article-nav">
-                
-                    <div class="article-prev">
-                        <a class="prev"
-                           rel="prev"
-                           href="/2021/11/24/23/"
-                        >
-                            <span class="left arrow-icon flex-center">
-                              <i class="fas fa-chevron-left"></i>
-                            </span>
-                            <span class="title flex-center">
-                                <span class="post-nav-title-item">Accelerate Ray Tracing</span>
-                                <span class="post-nav-item">Prev posts</span>
-                            </span>
-                        </a>
-                    </div>
-                
-                
-                    <div class="article-next">
-                        <a class="next"
-                           rel="next"
-                           href="/2021/11/22/21/"
-                        >
-                            <span class="title flex-center">
-                                <span class="post-nav-title-item">Whitted Style Ray Tracing</span>
-                                <span class="post-nav-item">Next posts</span>
-                            </span>
-                            <span class="right arrow-icon flex-center">
-                              <i class="fas fa-chevron-right"></i>
-                            </span>
-                        </a>
-                    </div>
-                
-            </div>
+          <li><a href="/">Home</a></li>
         
-
+          <li><a href="/archives/">Writing</a></li>
         
-            <div class="comment-container">
-                <div class="comments-container">
-    <div id="comment-anchor"></div>
-    <div class="comment-area-title">
-        <i class="fas fa-comments">&nbsp;Comments</i>
+          <li><a href="/lover/">Lover</a></li>
+        
+          <li><a href="/about/">About</a></li>
+        
+      </ul>
     </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9A%84%E9%A2%91%E8%B0%B1"><span class="toc-number">1.</span> <span class="toc-text">傅里叶级数  的频谱</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9A%84%E7%9A%84%E7%9B%B8%E4%BD%8D%E8%B0%B1"><span class="toc-number">2.</span> <span class="toc-text">傅里叶级数  的的相位谱 </span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%82%85%E9%87%8C%E5%8F%B6%E5%88%86%E6%9E%90%E7%9A%84%E7%94%A8%E5%A4%84"><span class="toc-number">2.1.</span> <span class="toc-text"> 傅里叶分析的用处 </span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86"><span class="toc-number">2.1.1.</span> <span class="toc-text"> 图像处理</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%B7%A5%E7%A8%8B%E5%BA%94%E7%94%A8"><span class="toc-number">2.1.2.</span> <span class="toc-text">工程应用 </span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%B1%82%E8%A7%A3%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B"><span class="toc-number">2.1.3.</span> <span class="toc-text">求解微分方程 </span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link"><span class="toc-number">2.2.</span> <span class="toc-text">相位谱</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3D-%20%E8%A7%86%E8%A7%92"><span class="toc-number">3.</span> <span class="toc-text">3D 视角</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#-1"><span class="toc-number">4.</span> <span class="toc-text">傅里叶变换</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%AC%A7%E6%8B%89%E5%85%AC%E5%BC%8F"><span class="toc-number">5.</span> <span class="toc-text">欧拉公式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8C%87%E6%95%B0%E5%BD%A2%E5%BC%8F%E7%9A%84%E5%82%85%E9%87%8C%E5%8F%B6%E5%8F%98%E6%8D%A2"><span class="toc-number">6.</span> <span class="toc-text">指数形式的傅里叶变换 </span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%86%8D%E6%AC%A1%E7%90%86%E8%A7%A3%E6%AD%A3%E5%BC%A6%E6%B3%A2"><span class="toc-number">6.1.</span> <span class="toc-text">再次理解正弦波 </span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%AD%A3%E8%9E%BA%E6%97%8B%E9%9D%A2"><span class="toc-number">6.2.</span> <span class="toc-text">正螺旋面</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%BE%E5%83%8F%E5%82%85%E9%87%8C%E5%8F%B6%E5%8F%98%E6%8D%A2%E5%92%8C%E5%82%85%E9%87%8C%E5%8F%B6%E9%80%86%E5%8F%98%E6%8D%A2%E5%8E%9F%E7%90%86%E5%8F%8A%E5%AE%9E%E7%8E%B0"><span class="toc-number">7.</span> <span class="toc-text">图像傅里叶变换和傅里叶逆变换原理及实现 </span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%9B%B8%E5%85%B3%E4%BB%A3%E7%A0%81"><span class="toc-number">7.1.</span> <span class="toc-text">相关代码 [3]</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%99%AE%E9%80%9A%E5%9B%BE%E5%83%8F%E7%9A%84%E5%82%85%E9%87%8C%E5%8F%B6%E5%8F%98%E6%8D%A2%E7%BB%93%E6%9E%9C"><span class="toc-number">7.1.1.</span> <span class="toc-text"> 普通图像的傅里叶变换结果 </span></a></li></ol></li></ol></li></ol>
+      </div>
     
 
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://silhouettesforyou.github.io/2021/11/24/22/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://silhouettesforyou.github.io/2021/11/24/22/&text=时域和频域"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://silhouettesforyou.github.io/2021/11/24/22/&title=时域和频域"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://silhouettesforyou.github.io/2021/11/24/22/&is_video=false&description=时域和频域"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=时域和频域&body=Check out this article: https://silhouettesforyou.github.io/2021/11/24/22/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://silhouettesforyou.github.io/2021/11/24/22/&title=时域和频域"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://silhouettesforyou.github.io/2021/11/24/22/&title=时域和频域"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://silhouettesforyou.github.io/2021/11/24/22/&title=时域和频域"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://silhouettesforyou.github.io/2021/11/24/22/&title=时域和频域"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://silhouettesforyou.github.io/2021/11/24/22/&name=时域和频域&description=&lt;p&gt;某次听分享提到了图像的频域分析，旁边的人问我：什么是频域？什么是时域？一时感觉无法解释清楚，只是感觉和傅里叶级数有关系，为此找了些资料，学习一下时域和频域，完全参考了《傅里叶分析之掐死教程》&lt;sup class=&#34;refplus-num&#34;&gt;&lt;a href=&#34;#ref-1&#34;&gt;[1]&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://silhouettesforyou.github.io/2021/11/24/22/&t=时域和频域"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
         
-            
-    <div id="gitalk-container"></div>
-    <script 
-            src="//cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.js"></script>
-    <script >
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
 
-        function loadGitalk() {
-            let __gitalk__pathname = decodeURI(location.pathname);
-            const __gitalk__pathnameLength = __gitalk__pathname.length;
-            const __gitalk__pathnameMaxLength = 50;
-            if (__gitalk__pathnameLength > __gitalk__pathnameMaxLength) {
-                __gitalk__pathname = __gitalk__pathname.substring(0, __gitalk__pathnameMaxLength - 3) + '...';
-            }
-
-            try {
-                Gitalk && new Gitalk({
-                    clientID: '0c74e477328e28bacf97',
-                    clientSecret: '62fd1a94cf185360ac2d2947665725e2eabf5e8d',
-                    repo: 'SilhouettesForYou.github.io',
-                    owner: 'SilhouettesForYou',
-                    admin: ['SilhouettesForYou'],
-                    id: __gitalk__pathname,
-                    language: 'zh-Hans'
-                }).render('gitalk-container');
-
-            } catch (e) {
-                window.Gitalk = null;
-            }
-        }
-
-        if ('false') {
-            const loadGitalkTimeout = setTimeout(() => {
-                loadGitalk();
-                clearTimeout(loadGitalkTimeout);
-            }, 1000);
-        } else {
-            window.addEventListener('DOMContentLoaded', loadGitalk);
-        }
-    </script>
-
-
+  </div>
+</div>
 
         
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
     
-</div>
-
-            </div>
-        
-    </div>
-</div>
-
-                
-            </div>
-
-        </div>
-
-        <div class="page-main-content-bottom">
-            <footer class="footer">
-    <div class="info-container">
-        <div class="copyright-info info-item">
-            &copy;
-            
-              <span>2020</span>
-              -
-            
-            2024&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">xiao ming</a>
-        </div>
-        
-        
-        
-        
-    </div>
+    
+    2016-2024
+    Xiaoming
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     --><!--
+       --><li><a href="/lover/">Lover</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
 </footer>
 
-        </div>
     </div>
-
-    
-        <div class="post-tools">
-            <div class="post-tools-container">
-    <ul class="tools-list">
-        <!-- TOC aside toggle -->
-        
-            <li class="tools-item page-aside-toggle">
-                <i class="fas fa-outdent"></i>
-            </li>
-        
-
-        <!-- go comment -->
-        
-            <li class="go-comment">
-                <i class="fas fa-comment"></i>
-            </li>
-        
-
-        
-    </ul>
-</div>
-
-        </div>
-    
-
-    <div class="right-bottom-side-tools">
-        <div class="side-tools-container">
-    <ul class="side-tools-list">
-        <li class="tools-item tool-font-adjust-plus flex-center">
-            <i class="fas fa-search-plus"></i>
-        </li>
-
-        <li class="tools-item tool-font-adjust-minus flex-center">
-            <i class="fas fa-search-minus"></i>
-        </li>
-
-        <li class="tools-item tool-expand-width flex-center">
-            <i class="fas fa-arrows-alt-h"></i>
-        </li>
-
-        <li class="tools-item tool-dark-light-toggle flex-center">
-            <i class="fas fa-moon"></i>
-        </li>
-
-        <!-- rss -->
-        
-
-        
-            <li class="tools-item tool-scroll-to-top flex-center">
-                <i class="fas fa-arrow-up"></i>
-            </li>
-        
-
-        <li class="tools-item tool-scroll-to-bottom flex-center">
-            <i class="fas fa-arrow-down"></i>
-        </li>
-    </ul>
-
-    <ul class="exposed-tools-list">
-        <li class="tools-item tool-toggle-show flex-center">
-            <i class="fas fa-cog fa-spin"></i>
-        </li>
-        
-    </ul>
-
-</div>
-
-    </div>
-
-    
-        <aside class="page-aside">
-            
-    <div class="post-toc-wrap">
-        <div class="post-toc">
-            <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9A%84%E9%A2%91%E8%B0%B1"><span class="nav-number">1.</span> <span class="nav-text">傅里叶级数  的频谱</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9A%84%E7%9A%84%E7%9B%B8%E4%BD%8D%E8%B0%B1"><span class="nav-number">2.</span> <span class="nav-text">傅里叶级数  的的相位谱 </span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%82%85%E9%87%8C%E5%8F%B6%E5%88%86%E6%9E%90%E7%9A%84%E7%94%A8%E5%A4%84"><span class="nav-number">2.1.</span> <span class="nav-text"> 傅里叶分析的用处 </span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86"><span class="nav-number">2.1.1.</span> <span class="nav-text"> 图像处理</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%B7%A5%E7%A8%8B%E5%BA%94%E7%94%A8"><span class="nav-number">2.1.2.</span> <span class="nav-text">工程应用 </span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%B1%82%E8%A7%A3%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B"><span class="nav-number">2.1.3.</span> <span class="nav-text">求解微分方程 </span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link"><span class="nav-number">2.2.</span> <span class="nav-text">相位谱</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3D-%20%E8%A7%86%E8%A7%92"><span class="nav-number">3.</span> <span class="nav-text">3D 视角</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#-1"><span class="nav-number">4.</span> <span class="nav-text">傅里叶变换</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%AC%A7%E6%8B%89%E5%85%AC%E5%BC%8F"><span class="nav-number">5.</span> <span class="nav-text">欧拉公式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8C%87%E6%95%B0%E5%BD%A2%E5%BC%8F%E7%9A%84%E5%82%85%E9%87%8C%E5%8F%B6%E5%8F%98%E6%8D%A2"><span class="nav-number">6.</span> <span class="nav-text">指数形式的傅里叶变换 </span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%86%8D%E6%AC%A1%E7%90%86%E8%A7%A3%E6%AD%A3%E5%BC%A6%E6%B3%A2"><span class="nav-number">6.1.</span> <span class="nav-text">再次理解正弦波 </span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%AD%A3%E8%9E%BA%E6%97%8B%E9%9D%A2"><span class="nav-number">6.2.</span> <span class="nav-text">正螺旋面</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%BE%E5%83%8F%E5%82%85%E9%87%8C%E5%8F%B6%E5%8F%98%E6%8D%A2%E5%92%8C%E5%82%85%E9%87%8C%E5%8F%B6%E9%80%86%E5%8F%98%E6%8D%A2%E5%8E%9F%E7%90%86%E5%8F%8A%E5%AE%9E%E7%8E%B0"><span class="nav-number">7.</span> <span class="nav-text">图像傅里叶变换和傅里叶逆变换原理及实现 </span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%9B%B8%E5%85%B3%E4%BB%A3%E7%A0%81"><span class="nav-number">7.1.</span> <span class="nav-text">相关代码 [3]</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%99%AE%E9%80%9A%E5%9B%BE%E5%83%8F%E7%9A%84%E5%82%85%E9%87%8C%E5%8F%B6%E5%8F%98%E6%8D%A2%E7%BB%93%E6%9E%9C"><span class="nav-number">7.1.1.</span> <span class="nav-text"> 普通图像的傅里叶变换结果 </span></a></li></ol></li></ol></li></ol>
-        </div>
-    </div>
-
-
-        </aside>
-    
-
-    <div class="image-viewer-container">
-    <img src="">
-</div>
-
-
-    
-        <div class="search-pop-overlay">
-    <div class="popup search-popup">
-        <div class="search-header">
-          <span class="search-input-field-pre">
-            <i class="fas fa-keyboard"></i>
-          </span>
-            <div class="search-input-container">
-                <input autocomplete="off"
-                       autocorrect="off"
-                       autocapitalize="off"
-                       placeholder="Search..."
-                       spellcheck="false"
-                       type="search"
-                       class="search-input"
-                >
-            </div>
-            <span class="popup-btn-close">
-                <i class="fas fa-times"></i>
-            </span>
-        </div>
-        <div id="search-result">
-            <div id="no-result">
-                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
-            </div>
-        </div>
-    </div>
-</div>
-
-    
-
-</main>
+    <!-- styles -->
 
 
 
-<script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/utils.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/main.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/header-shrink.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/back2top.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/dark-light-toggle.js"></script>
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
 
 
-    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/local-search.js"></script>
+    <!-- jquery -->
 
-
-
-    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/code-copy.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
 
 
 
 
-<div class="post-scripts">
-    
-        <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/left-side-toggle.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/libs/anime.min.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/toc.js"></script>
-    
-</div>
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
 
 
+<script src="/js/main.js"></script>
 
-<!-- hexo injector body_end start --><script src="https://cdn.jsdelivr.net/npm/hexo-tag-common@0.0.5/js/index.js"></script><!-- hexo injector body_end end --><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7}});</script></body>
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+<!-- hexo injector body_end start --><script src="https://cdn.jsdelivr.net/npm/hexo-tag-common@0.0.5/js/index.js"></script><!-- hexo injector body_end end --><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"left","width":150,"height":300},"mobile":{"show":false},"react":{"opacity":0.7}});</script></body>
 </html>

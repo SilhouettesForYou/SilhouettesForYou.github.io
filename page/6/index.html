@@ -1,40 +1,66 @@
 <!DOCTYPE html>
-<html lang="zh-Hans">
+<html lang=en>
 <head>
-    <!-- // 通过jsDelivr的CDN引入echarts -->
-    <script src="https://cdn.jsdelivr.net/npm/echarts@4.8.0/dist/echarts.min.js"></script>
-    <!-- // 使用GL里的各种组件时需要添加，否则可不需要 -->
-    <script src="https://cdn.jsdelivr.net/npm/echarts-gl@1.1.1/dist/echarts-gl.min.js"></script>
-
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-
-    <!-- <script type="text/javascript" src="/js/texture.js"></script>
-    <script type="text/javascript" src="/js/rose.js"></script> -->
-
+    <!-- so meta -->
     <meta charset="utf-8">
-    <meta name="baidu-site-verification" content="code-WK4Q1HDzQk" />
-    <meta name="google-site-verification" content="WV6BOVs7NRg-qgcovrSAgXFDsh8DNfm-siq4aTBYSb0" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <meta name="keywords" content="Hexo Theme Keep">
-    <meta name="description" content="Hexo Theme Keep">
-    <meta name="author" content="xiao ming">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta property="og:type" content="website">
+<meta property="og:title" content="Silhouettes For You">
+<meta property="og:url" content="https://silhouettesforyou.github.io/page/6/index.html">
+<meta property="og:site_name" content="Silhouettes For You">
+<meta property="og:locale" content="en_US">
+<meta property="article:author" content="Xiaoming">
+<meta name="twitter:card" content="summary">
     
-    <title>
+    
+      
         
-        Silhouettes For You
-    </title>
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>Silhouettes For You</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
     
 <link rel="stylesheet" href="/css/style.css">
 
-    <link rel="shortcut icon" href="/images/breaking-bad-logo.png">
-    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/css/font-awesome.min.css">
-    <script id="hexo-configurations">
-    let KEEP = window.KEEP || {};
-    KEEP.hexo_config = {"hostname":"silhouettesforyou.github.io","root":"/","language":"zh-Hans","path":"search.json"};
-    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":false,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/avatar.jpg","favicon":"/images/breaking-bad-logo.png","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":true},"first_screen":{"enable":false,"background_img":"/images/bg.svg","description":null},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":false},"code_copy":{"enable":true,"style":"mac"},"pjax":{"enable":false},"lazyload":{"enable":false},"version":"3.4.3"};
-    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
-  </script>
+    <!-- persian styles -->
     
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+		<script type="text/x-mathjax-config">
+		  MathJax.Hub.Config({
+			tex2jax: {
+			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+			  inlineMath: [['$','$']]
+			}
+		  });
+		</script>
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+	
 <style type="text/css">
 .spoiler {
   display: inline;
@@ -180,821 +206,302 @@ mjx-container[display="true"] + br {
 </style><link rel="alternate" href="/atom.xml" title="Silhouettes For You" type="application/atom+xml">
 </head>
 
-
-
-<!--动态线条背景-->
-<script type="text/javascript" color="220,220,220" opacity='0.7' zIndex="0.5" count="200" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
-
-<body>
-<div class="progress-bar-container">
+<body class="max-width mx-auto px3 ltr">
     
-        <span class="scroll-progress-bar"></span>
-    
-
-    
-</div>
-
-
-<main class="page-container">
-
-    
-
-    <div class="page-main-content">
-
+    <div class="content index py4 h-card">
         
-        <div class="page-main-content-top">
-            <header class="header-wrapper">
-
-    <div class="header-content">
-        <div class="left">
-            
-            <a class="logo-title" href="/">
-                Silhouettes For You
-            </a>
-        </div>
-
-        <div class="right">
-            <div class="pc">
-                <ul class="menu-list">
-                    
-                        <li class="menu-item">
-                            <a class="active"
-                               href="/"
-                            >
-                                HOME
-                            </a>
-                        </li>
-                    
-                        <li class="menu-item">
-                            <a class=""
-                               href="/archives"
-                            >
-                                ARCHIVES
-                            </a>
-                        </li>
-                    
-                        <li class="menu-item">
-                            <a class=""
-                               href="/categories"
-                            >
-                                CATEGORIES
-                            </a>
-                        </li>
-                    
-                        <li class="menu-item">
-                            <a class=""
-                               href="/tags"
-                            >
-                                TAGS
-                            </a>
-                        </li>
-                    
-                        <li class="menu-item">
-                            <a class=""
-                               href="/lover"
-                            >
-                                LOVER
-                            </a>
-                        </li>
-                    
-                        <li class="menu-item">
-                            <a class=""
-                               href="/about"
-                            >
-                                ABOUT
-                            </a>
-                        </li>
-                    
-                    
-                        <li class="menu-item search search-popup-trigger">
-                            <i class="fas fa-search"></i>
-                        </li>
-                    
-                </ul>
-            </div>
-            <div class="mobile">
-                
-                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
-                
-                <div class="icon-item menu-bar">
-                    <div class="menu-bar-middle"></div>
-                </div>
-            </div>
-        </div>
+          <header id="header">
+  <a class="u-url u-uid" href="/">
+  
+    
+      <img id="logo" alt class="u-logo" src="/images/logo.png" />
+    
+  
+    <div id="title">
+      <h1 class="p-name">Silhouettes For You</h1>
     </div>
-
-    <div class="header-drawer">
-        <ul class="drawer-menu-list">
-            
-                <li class="drawer-menu-item flex-center">
-                    <a class="active"
-                       href="/">HOME</a>
-                </li>
-            
-                <li class="drawer-menu-item flex-center">
-                    <a class=""
-                       href="/archives">ARCHIVES</a>
-                </li>
-            
-                <li class="drawer-menu-item flex-center">
-                    <a class=""
-                       href="/categories">CATEGORIES</a>
-                </li>
-            
-                <li class="drawer-menu-item flex-center">
-                    <a class=""
-                       href="/tags">TAGS</a>
-                </li>
-            
-                <li class="drawer-menu-item flex-center">
-                    <a class=""
-                       href="/lover">LOVER</a>
-                </li>
-            
-                <li class="drawer-menu-item flex-center">
-                    <a class=""
-                       href="/about">ABOUT</a>
-                </li>
-            
-        </ul>
-    </div>
-
-    <div class="window-mask"></div>
-
+  </a>
+  <div id="nav">
+    <ul>
+      <li class="icon">
+        <a href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-2x"></i></a>
+      </li>
+      <!--
+     --><li><a href="/">Home</a></li><!--
+   --><!--
+     --><li><a href="/archives/">Writing</a></li><!--
+   --><!--
+     --><li><a href="/lover/">Lover</a></li><!--
+   --><!--
+     --><li><a href="/about/">About</a></li><!--
+   -->
+    </ul>
+  </div>
 </header>
 
-
-        </div>
-
-        <div class="page-main-content-middle">
-
-            <div class="main-content">
-
-                
-                    <div class="home-content-container fade-in-down-animation">
-    <ul class="home-article-list">
         
-            <li class="home-article-item">
-
-                
-
-                <h3 class="home-article-title">
-                    <a href="/2021/11/12/10/">
-                        Pipeline and Shading
-                    </a>
-                </h3>
-
-                <div class="home-article-content markdown-body">
-                    
-                        光栅化  与 Triangles and Z-Buffer 一样的流程
-
-计算三角形的包围盒（bounding box）
-遍历包围盒判断点是否在三角形内
-求解重心坐标并进行插值校正
-更新深度值
-
-这里需要计算颜色插值（color）、向量插值（norm...
-                    
-                </div>
-
-                <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Fri Nov 12 2021 09:47:40 GMT+0800">2021-11-12</span></span>
-        
-            <span class="home-article-category"><i class="fas fa-folder"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/categories/GAMES-101-Assignments/">GAMES-101 Assignments</a>&nbsp;
-                        </li>
-                    
-                    
-                </ul>
-            </span>
+        <section id="about" class="p-note">
+  
+  
+    <p>
+      Find me on
+      
+      
+      
         
         
-            <span class="home-article-tag">
-                <i class="fas fa-tags"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/tags/Graphics/">Graphics</a>&nbsp;
-                        </li>
-                    
-                        <li>
-                            | 
-                            <a href="/tags/GAMES/">GAMES</a>&nbsp;
-                        </li>
-                    
-                </ul>
-            </span>
+          <a class="icon u-url" target="_blank" rel="noopener me" href="https://github.com/SilhouettesForYou" aria-label="github" title="github">
+            <i class="fa-brands fa-github"></i><!--
+      ---></a><!--
+    ---><!--
+    --->.
         
+      
+    </p>
+  
+</section>
+
+<section id="writing">
+  <span class="h1"><a href="/archives/">Writing</a></span>
+  
+  <ul class="post-list">
+    
+    
+      
+    
+    
+      <li class="post-item">
+        
+    <div class="meta">
+      
+        
+          <time datetime="2024-07-01T13:51:03.278Z" class="dt-updated" itemprop="dateModified">2024-07-01</time>
+        
+      
     </div>
 
-    <a href="/2021/11/12/10/">Read more&nbsp;<i class="fas fa-angle-right"></i></a>
-</div>
 
-            </li>
-        
-            <li class="home-article-item">
-
-                
-
-                <h3 class="home-article-title">
-                    <a href="/2021/11/12/9/">
-                        Linux 内核 --offsetof 和 container_of
-                    </a>
-                </h3>
-
-                <div class="home-article-content markdown-body">
-                    
-                        1#define offsetof(type, member)  ((size_t)&amp;((type *)0)-&gt;member)
-
- offsetof：获取结构体中成员的偏移位置，将地址 0 强制转换为 type 类型的指针（编译器认为 ...
-                    
-                </div>
-
-                <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Fri Nov 12 2021 09:40:11 GMT+0800">2021-11-12</span></span>
-        
-            <span class="home-article-category"><i class="fas fa-folder"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/categories/Linux/">Linux</a>&nbsp;
-                        </li>
-                    
-                    
-                </ul>
-            </span>
-        
-        
-            <span class="home-article-tag">
-                <i class="fas fa-tags"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/tags/macro/">macro</a>&nbsp;
-                        </li>
-                    
-                        <li>
-                            | 
-                            <a href="/tags/linux/">linux</a>&nbsp;
-                        </li>
-                    
-                </ul>
-            </span>
-        
-    </div>
-
-    <a href="/2021/11/12/9/">Read more&nbsp;<i class="fas fa-angle-right"></i></a>
-</div>
-
-            </li>
-        
-            <li class="home-article-item">
-
-                
-
-                <h3 class="home-article-title">
-                    <a href="/2021/11/09/8/">
-                        Triangles and Z-Buffer
-                    </a>
-                </h3>
-
-                <div class="home-article-content markdown-body">
-                    
-                        投影矩阵  透视投影矩阵推导
+        <span>
+    
+        <a class="" href="/2021/11/05/3/">日常开发笔记</a>
     
 
 
-对于正交投影（Orthographic Projection）需要把长方体  进行标准化成正方体，相应的变换矩阵是先进行平移变换（将长方体的中心与原点重合），再进行缩放变换（由于标准化的正方体的边长是 2，...
-                    
-                </div>
-
-                <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Tue Nov 09 2021 10:57:06 GMT+0800">2021-11-09</span></span>
-        
-            <span class="home-article-category"><i class="fas fa-folder"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/categories/GAMES-101-Assignments/">GAMES-101 Assignments</a>&nbsp;
-                        </li>
-                    
-                    
-                </ul>
-            </span>
-        
-        
-            <span class="home-article-tag">
-                <i class="fas fa-tags"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/tags/Graphics/">Graphics</a>&nbsp;
-                        </li>
-                    
-                        <li>
-                            | 
-                            <a href="/tags/GAMES/">GAMES</a>&nbsp;
-                        </li>
-                    
-                </ul>
-            </span>
-        
-    </div>
-
-    <a href="/2021/11/09/8/">Read more&nbsp;<i class="fas fa-angle-right"></i></a>
-</div>
-
-            </li>
-        
-            <li class="home-article-item">
-
-                
-
-                <h3 class="home-article-title">
-                    <a href="/2021/11/08/6/">
-                        哈希表
-                    </a>
-                </h3>
-
-                <div class="home-article-content markdown-body">
-                    
-                        哈希表  哈希表，也叫散列表，它是基于快速存取的角度设计的，是一种典型的“空间换时间”的做法。它可以提供快速地插入和查找操作。
-哈希表函数的构造方法  直接定址法 （、 为常数），即取关键码的某个线性函数值为哈希地址，不会产生冲突，但要求地址集合与关...
-                    
-                </div>
-
-                <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Mon Nov 08 2021 09:47:40 GMT+0800">2021-11-08</span></span>
-        
-            <span class="home-article-category"><i class="fas fa-folder"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/categories/%E9%9D%A2%E8%AF%95/">面试</a>&nbsp;
-                        </li>
-                    
-                    
-                </ul>
-            </span>
-        
-        
-            <span class="home-article-tag">
-                <i class="fas fa-tags"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>&nbsp;
-                        </li>
-                    
-                        <li>
-                            | 
-                            <a href="/tags/%E5%93%88%E5%B8%8C%E8%A1%A8/">哈希表</a>&nbsp;
-                        </li>
-                    
-                </ul>
-            </span>
-        
-    </div>
-
-    <a href="/2021/11/08/6/">Read more&nbsp;<i class="fas fa-angle-right"></i></a>
-</div>
-
-            </li>
-        
-            <li class="home-article-item">
-
-                
-
-                <h3 class="home-article-title">
-                    <a href="/2021/11/08/5/">
-                        C++ 知识
-                    </a>
-                </h3>
-
-                <div class="home-article-content markdown-body">
-                    
-                        C++ 虚函数C++ 虚函数是定义在基类中的函数，子类必须对其进行覆盖。
-虚函数的作用
-定义子类对象，并调用对象中未被子类重写的基类函数 A。同时在该函数A 中，又调用了已被子类重写的基类函数B。那此时将会调用基类中的函数B，可我们本应该调用的是子类...
-                    
-                </div>
-
-                <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Mon Nov 08 2021 09:34:54 GMT+0800">2021-11-08</span></span>
-        
-            <span class="home-article-category"><i class="fas fa-folder"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/categories/%E9%9D%A2%E8%AF%95/">面试</a>&nbsp;
-                        </li>
-                    
-                    
-                </ul>
-            </span>
-        
-        
-            <span class="home-article-tag">
-                <i class="fas fa-tags"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/tags/c/">c++</a>&nbsp;
-                        </li>
-                    
-                </ul>
-            </span>
-        
-    </div>
-
-    <a href="/2021/11/08/5/">Read more&nbsp;<i class="fas fa-angle-right"></i></a>
-</div>
-
-            </li>
-        
-            <li class="home-article-item">
-
-                
-
-                <h3 class="home-article-title">
-                    <a href="/2021/11/05/4/">
-                        渲染管线
-                    </a>
-                </h3>
-
-                <div class="home-article-content markdown-body">
-                    
-                        
-
-应用阶段  准备好场景数据，包括 Camera 的位置、朝向，视锥体，场景物件、光源信息，渲染对象的渲染状态准备包括材质、纹理、Shader 等基本信息，调用渲染图元的指令。
-
-把数据加载到显存
-设置渲染状态
-调用 DrawCall
-
-几何阶段 ...
-                    
-                </div>
-
-                <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Fri Nov 05 2021 17:06:38 GMT+0800">2021-11-05</span></span>
-        
-            <span class="home-article-category"><i class="fas fa-folder"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/categories/%E5%9B%BE%E5%BD%A2%E5%AD%A6/">图形学</a>&nbsp;
-                        </li>
-                    
-                    
-                </ul>
-            </span>
-        
-        
-            <span class="home-article-tag">
-                <i class="fas fa-tags"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/tags/Graphics/">Graphics</a>&nbsp;
-                        </li>
-                    
-                </ul>
-            </span>
-        
-    </div>
-
-    <a href="/2021/11/05/4/">Read more&nbsp;<i class="fas fa-angle-right"></i></a>
-</div>
-
-            </li>
-        
-            <li class="home-article-item">
-
-                
-
-                <h3 class="home-article-title">
-                    <a href="/2021/11/05/3/">
-                        日常开发笔记
-                    </a>
-                </h3>
-
-                <div class="home-article-content markdown-body">
-                    
-                        Git 相关
-相关命令
-分支
-
-git 回退本地修改
-12git checkout &lt;filename&gt;git checkout .
-切换到分支
-12git checkout &lt;branch&gt; # 切换到 &lt;branch...
-                    
-                </div>
-
-                <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Fri Nov 05 2021 12:06:38 GMT+0800">2021-11-05</span></span>
-        
-            <span class="home-article-category"><i class="fas fa-folder"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/categories/%E6%97%A5%E5%B8%B8/">日常</a>&nbsp;
-                        </li>
-                    
-                    
-                </ul>
-            </span>
-        
-        
-            <span class="home-article-tag">
-                <i class="fas fa-tags"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/tags/git/">git</a>&nbsp;
-                        </li>
-                    
-                        <li>
-                            | 
-                            <a href="/tags/unity/">unity</a>&nbsp;
-                        </li>
-                    
-                        <li>
-                            | 
-                            <a href="/tags/c/">c#</a>&nbsp;
-                        </li>
-                    
-                        <li>
-                            | 
-                            <a href="/tags/c/">c++</a>&nbsp;
-                        </li>
-                    
-                </ul>
-            </span>
-        
-    </div>
-
-    <a href="/2021/11/05/3/">Read more&nbsp;<i class="fas fa-angle-right"></i></a>
-</div>
-
-            </li>
-        
-            <li class="home-article-item">
-
-                
-
-                <h3 class="home-article-title">
-                    <a href="/2021/11/04/2/">
-                        OpenGL 基础
-                    </a>
-                </h3>
-
-                <div class="home-article-content markdown-body">
-                    
-                        OpenGL 上下文（Context）帧缓冲区 (FrameBuffer）
-所有的运算结果最终都是需要通过图像进行输出的
-帧缓冲区  就是 OpenGL 中的画板
-帧缓冲区  并不是实际存储数据的对象
-实际存储数据的 Attachment 所指向的对...
-                    
-                </div>
-
-                <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Thu Nov 04 2021 17:54:56 GMT+0800">2021-11-04</span></span>
-        
-            <span class="home-article-category"><i class="fas fa-folder"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/categories/%E5%9B%BE%E5%BD%A2%E5%AD%A6/">图形学</a>&nbsp;
-                        </li>
-                    
-                    
-                </ul>
-            </span>
-        
-        
-            <span class="home-article-tag">
-                <i class="fas fa-tags"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/tags/Graphics/">Graphics</a>&nbsp;
-                        </li>
-                    
-                        <li>
-                            | 
-                            <a href="/tags/OpenGL/">OpenGL</a>&nbsp;
-                        </li>
-                    
-                </ul>
-            </span>
-        
-    </div>
-
-    <a href="/2021/11/04/2/">Read more&nbsp;<i class="fas fa-angle-right"></i></a>
-</div>
-
-            </li>
-        
-    </ul>
-
-    <div class="home-paginator">
-        <div class="paginator">
+</span>
+      </li>
     
-        <a class="prev btn"
-           href="/page/5/"
-        >Prev</a>
+      <li class="post-item">
+        
+    <div class="meta">
+      
+        
+          <time datetime="2024-05-14T14:39:14.626Z" class="dt-updated" itemprop="dateModified">2024-05-14</time>
+        
+      
+    </div>
+
+
+        <span>
+    
+        <a class="" href="/2021/11/04/2/">OpenGL 基础</a>
     
 
+
+</span>
+      </li>
     
-</div>
-
+      <li class="post-item">
+        
+    <div class="meta">
+      
+        
+          <time datetime="2023-12-10T07:38:09.509Z" class="dt-updated" itemprop="dateModified">2023-12-10</time>
+        
+      
     </div>
-</div>
-
-                    <!-- calendar widget -->
-
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script src="/js/calendar.js"></script>
-    <script src="/js/languages.min.js"></script>
-    <script type="text/javascript">
-    $(function() {
-        $('#CloudCalendar').aCalendar('{{theme.CloudCalendar.language}}',
-            $.extend(
-                '', {
-                    single:'{{ theme.CloudCalendar.single }}',
-                    root:'{{theme.CloudCalendar.root}}'
-                }
-            )
-        );
-    });
-    </script>
 
 
-                    <div class="widget-wrap">
-                        <div class="widget" id="CloudCalendar"></div>
-                    </div>
-                
-            </div>
+        <span>
+    
+        <a class="" href="/2021/11/12/9/">Linux 内核 --offsetof 和 container_of</a>
+    
 
-        </div>
 
-        <div class="page-main-content-bottom">
-            <footer class="footer">
-    <div class="info-container">
-        <div class="copyright-info info-item">
-            &copy;
-            
-              <span>2020</span>
-              -
-            
-            2024&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">xiao ming</a>
-        </div>
+</span>
+      </li>
+    
+      <li class="post-item">
         
+    <div class="meta">
+      
         
+          <time datetime="2023-12-10T07:38:09.503Z" class="dt-updated" itemprop="dateModified">2023-12-10</time>
         
+      
+    </div>
+
+
+        <span>
+    
+        <a class="" href="/2021/11/09/8/">Triangles and Z-Buffer</a>
+    
+
+
+</span>
+      </li>
+    
+      <li class="post-item">
+        
+    <div class="meta">
+      
+        
+          <time datetime="2023-12-10T07:38:09.412Z" class="dt-updated" itemprop="dateModified">2023-12-10</time>
+        
+      
+    </div>
+
+
+        <span>
+    
+        <a class="" href="/2021/11/08/6/">哈希表</a>
+    
+
+
+</span>
+      </li>
+    
+      <li class="post-item">
+        
+    <div class="meta">
+      
+        
+          <time datetime="2023-12-10T07:38:09.410Z" class="dt-updated" itemprop="dateModified">2023-12-10</time>
+        
+      
+    </div>
+
+
+        <span>
+    
+        <a class="" href="/2021/11/08/5/">C++ 知识</a>
+    
+
+
+</span>
+      </li>
+    
+      <li class="post-item">
+        
+    <div class="meta">
+      
+        
+          <time datetime="2023-12-10T07:38:08.744Z" class="dt-updated" itemprop="dateModified">2023-12-10</time>
+        
+      
+    </div>
+
+
+        <span>
+    
+        <a class="" href="/2021/11/05/4/">渲染管线</a>
+    
+
+
+</span>
+      </li>
+    
+      <li class="post-item">
+        
+    <div class="meta">
+      
+        
+          <time datetime="2023-12-10T07:38:04.461Z" class="dt-updated" itemprop="dateModified">2023-12-10</time>
+        
+      
+    </div>
+
+
+        <span>
+    
+        <a class="" href="/2021/11/12/10/">Pipeline and Shading</a>
+    
+
+
+</span>
+      </li>
+    
+  </ul>
+  
+    
+    <div class="pagination">
+        
+            <a href="/page/5/"><i class="fa-solid fa-angle-left"></i></a>
+        
+        <span class="page-number">Page 6 of 6</span>
         
     </div>
+
+
+  
+</section>
+
+
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2016-2024
+    Xiaoming
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     --><!--
+       --><li><a href="/lover/">Lover</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
 </footer>
 
-        </div>
     </div>
-
-    
-
-    <div class="right-bottom-side-tools">
-        <div class="side-tools-container">
-    <ul class="side-tools-list">
-        <li class="tools-item tool-font-adjust-plus flex-center">
-            <i class="fas fa-search-plus"></i>
-        </li>
-
-        <li class="tools-item tool-font-adjust-minus flex-center">
-            <i class="fas fa-search-minus"></i>
-        </li>
-
-        <li class="tools-item tool-expand-width flex-center">
-            <i class="fas fa-arrows-alt-h"></i>
-        </li>
-
-        <li class="tools-item tool-dark-light-toggle flex-center">
-            <i class="fas fa-moon"></i>
-        </li>
-
-        <!-- rss -->
-        
-
-        
-            <li class="tools-item tool-scroll-to-top flex-center">
-                <i class="fas fa-arrow-up"></i>
-            </li>
-        
-
-        <li class="tools-item tool-scroll-to-bottom flex-center">
-            <i class="fas fa-arrow-down"></i>
-        </li>
-    </ul>
-
-    <ul class="exposed-tools-list">
-        <li class="tools-item tool-toggle-show flex-center">
-            <i class="fas fa-cog fa-spin"></i>
-        </li>
-        
-    </ul>
-
-</div>
-
-    </div>
-
-    
-
-    <div class="image-viewer-container">
-    <img src="">
-</div>
+    <!-- styles -->
 
 
-    
-        <div class="search-pop-overlay">
-    <div class="popup search-popup">
-        <div class="search-header">
-          <span class="search-input-field-pre">
-            <i class="fas fa-keyboard"></i>
-          </span>
-            <div class="search-input-container">
-                <input autocomplete="off"
-                       autocorrect="off"
-                       autocapitalize="off"
-                       placeholder="Search..."
-                       spellcheck="false"
-                       type="search"
-                       class="search-input"
-                >
-            </div>
-            <span class="popup-btn-close">
-                <i class="fas fa-times"></i>
-            </span>
-        </div>
-        <div id="search-result">
-            <div id="no-result">
-                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
-            </div>
-        </div>
-    </div>
-</div>
 
-    
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
 
-</main>
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
 
 
 
 
-<script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/utils.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/main.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/header-shrink.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/back2top.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/dark-light-toggle.js"></script>
+<!-- clipboard -->
 
 
-    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/local-search.js"></script>
+<script src="/js/main.js"></script>
 
+<!-- search -->
 
+<!-- Baidu Analytics -->
 
-    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/code-copy.js"></script>
+<!-- Cloudflare Analytics -->
 
+<!-- Disqus Comments -->
 
+<!-- utterances Comments -->
 
-
-<div class="post-scripts">
-    
-</div>
-
-
-
-<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7}});</script></body>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"left","width":150,"height":300},"mobile":{"show":false},"react":{"opacity":0.7}});</script></body>
 </html>

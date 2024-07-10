@@ -1,44 +1,89 @@
 <!DOCTYPE html>
-<html lang="zh-Hans">
+<html lang=en>
 <head><!-- hexo injector head_begin start -->
 <link rel="stylesheet" href="/css/bilicard.css">
 <link href="https://cdn.jsdelivr.net/npm/hexo-tag-common@0.0.5/css/index.css" rel="stylesheet"/><!-- hexo injector head_begin end -->
-    <!-- // 通过jsDelivr的CDN引入echarts -->
-    <script src="https://cdn.jsdelivr.net/npm/echarts@4.8.0/dist/echarts.min.js"></script>
-    <!-- // 使用GL里的各种组件时需要添加，否则可不需要 -->
-    <script src="https://cdn.jsdelivr.net/npm/echarts-gl@1.1.1/dist/echarts-gl.min.js"></script>
-
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-
-    <!-- <script type="text/javascript" src="/js/texture.js"></script>
-    <script type="text/javascript" src="/js/rose.js"></script> -->
-
+    <!-- so meta -->
     <meta charset="utf-8">
-    <meta name="baidu-site-verification" content="code-WK4Q1HDzQk" />
-    <meta name="google-site-verification" content="WV6BOVs7NRg-qgcovrSAgXFDsh8DNfm-siq4aTBYSb0" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <meta name="keywords" content="Hexo Theme Keep">
-    <meta name="description" content="Hexo Theme Keep">
-    <meta name="author" content="xiao ming">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta property="og:type" content="article">
+<meta property="og:title" content="现代图形学入门">
+<meta property="og:url" content="https://silhouettesforyou.github.io/2021/11/04/1/index.html">
+<meta property="og:site_name" content="Silhouettes For You">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://silhouettesforyou.github.io/2021/11/04/1/teaser-image.png">
+<meta property="og:image" content="https://silhouettesforyou.github.io/2021/11/04/1/diffuse.png">
+<meta property="og:image" content="https://silhouettesforyou.github.io/2021/11/04/1/specular.png">
+<meta property="og:image" content="https://silhouettesforyou.github.io/2021/11/04/1/pipeline.png">
+<meta property="og:image" content="https://silhouettesforyou.github.io/2021/11/04/1/barycentric.png">
+<meta property="og:image" content="https://silhouettesforyou.github.io/2021/11/04/1/sample-texture.png">
+<meta property="og:image" content="https://silhouettesforyou.github.io/2021/11/04/1/bilinear-interpolation.png">
+<meta property="og:image" content="https://silhouettesforyou.github.io/2021/11/04/1/grid-reference.png">
+<meta property="og:image" content="https://silhouettesforyou.github.io/2021/11/04/1/screen-pixel-in-texture.png">
+<meta property="og:image" content="https://silhouettesforyou.github.io/2021/11/04/1/computing-mipmap-level.png">
+<meta property="og:image" content="https://silhouettesforyou.github.io/2021/11/04/1/trilinear-interpolation.png">
+<meta property="og:image" content="https://silhouettesforyou.github.io/2021/11/04/1/de-castekjau-algorithm.png">
+<meta property="og:image" content="https://silhouettesforyou.github.io/2021/11/04/1/solid-angle.png">
+<meta property="og:image" content="https://silhouettesforyou.github.io/2021/11/04/1/radiance.png">
+<meta property="og:image" content="https://silhouettesforyou.github.io/2021/11/04/1/brdf.png">
+<meta property="og:image" content="https://silhouettesforyou.github.io/2021/11/04/1/reflection.png">
+<meta property="article:published_time" content="2021-11-04T09:50:20.000Z">
+<meta property="article:modified_time" content="2023-12-10T07:38:04.428Z">
+<meta property="article:author" content="Xiaoming">
+<meta property="article:tag" content="Graphics">
+<meta property="article:tag" content="GAMES">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://silhouettesforyou.github.io/2021/11/04/1/teaser-image.png">
     
-    <title>
+    
+      
         
-            现代图形学入门 |
+          <link rel="shortcut icon" href="/images/favicon.ico">
         
-        Silhouettes For You
-    </title>
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>现代图形学入门</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
     
 <link rel="stylesheet" href="/css/style.css">
 
-    <link rel="shortcut icon" href="/images/breaking-bad-logo.png">
-    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/css/font-awesome.min.css">
-    <script id="hexo-configurations">
-    let KEEP = window.KEEP || {};
-    KEEP.hexo_config = {"hostname":"silhouettesforyou.github.io","root":"/","language":"zh-Hans","path":"search.json"};
-    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":false,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/avatar.jpg","favicon":"/images/breaking-bad-logo.png","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":true},"first_screen":{"enable":false,"background_img":"/images/bg.svg","description":null},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":false},"code_copy":{"enable":true,"style":"mac"},"pjax":{"enable":false},"lazyload":{"enable":false},"version":"3.4.3"};
-    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
-  </script>
+    <!-- persian styles -->
     
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+		<script type="text/x-mathjax-config">
+		  MathJax.Hub.Config({
+			tex2jax: {
+			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+			  inlineMath: [['$','$']]
+			}
+		  });
+		</script>
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+	
 <style type="text/css">
 .spoiler {
   display: inline;
@@ -184,225 +229,116 @@ mjx-container[display="true"] + br {
 </style><link rel="alternate" href="/atom.xml" title="Silhouettes For You" type="application/atom+xml">
 </head>
 
-
-
-<!--动态线条背景-->
-<script type="text/javascript" color="220,220,220" opacity='0.7' zIndex="0.5" count="200" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
-
-<body>
-<div class="progress-bar-container">
+<body class="max-width mx-auto px3 ltr">
     
-        <span class="scroll-progress-bar"></span>
-    
-
-    
-</div>
-
-
-<main class="page-container">
-
-    
-
-    <div class="page-main-content">
-
-        
-        <div class="page-main-content-top">
-            <header class="header-wrapper">
-
-    <div class="header-content">
-        <div class="left">
-            
-            <a class="logo-title" href="/">
-                Silhouettes For You
-            </a>
-        </div>
-
-        <div class="right">
-            <div class="pc">
-                <ul class="menu-list">
-                    
-                        <li class="menu-item">
-                            <a class=""
-                               href="/"
-                            >
-                                HOME
-                            </a>
-                        </li>
-                    
-                        <li class="menu-item">
-                            <a class=""
-                               href="/archives"
-                            >
-                                ARCHIVES
-                            </a>
-                        </li>
-                    
-                        <li class="menu-item">
-                            <a class=""
-                               href="/categories"
-                            >
-                                CATEGORIES
-                            </a>
-                        </li>
-                    
-                        <li class="menu-item">
-                            <a class=""
-                               href="/tags"
-                            >
-                                TAGS
-                            </a>
-                        </li>
-                    
-                        <li class="menu-item">
-                            <a class=""
-                               href="/lover"
-                            >
-                                LOVER
-                            </a>
-                        </li>
-                    
-                        <li class="menu-item">
-                            <a class=""
-                               href="/about"
-                            >
-                                ABOUT
-                            </a>
-                        </li>
-                    
-                    
-                        <li class="menu-item search search-popup-trigger">
-                            <i class="fas fa-search"></i>
-                        </li>
-                    
-                </ul>
-            </div>
-            <div class="mobile">
-                
-                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
-                
-                <div class="icon-item menu-bar">
-                    <div class="menu-bar-middle"></div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="header-drawer">
-        <ul class="drawer-menu-list">
-            
-                <li class="drawer-menu-item flex-center">
-                    <a class=""
-                       href="/">HOME</a>
-                </li>
-            
-                <li class="drawer-menu-item flex-center">
-                    <a class=""
-                       href="/archives">ARCHIVES</a>
-                </li>
-            
-                <li class="drawer-menu-item flex-center">
-                    <a class=""
-                       href="/categories">CATEGORIES</a>
-                </li>
-            
-                <li class="drawer-menu-item flex-center">
-                    <a class=""
-                       href="/tags">TAGS</a>
-                </li>
-            
-                <li class="drawer-menu-item flex-center">
-                    <a class=""
-                       href="/lover">LOVER</a>
-                </li>
-            
-                <li class="drawer-menu-item flex-center">
-                    <a class=""
-                       href="/about">ABOUT</a>
-                </li>
-            
-        </ul>
-    </div>
-
-    <div class="window-mask"></div>
-
-</header>
-
-
-        </div>
-
-        <div class="page-main-content-middle">
-
-            <div class="main-content">
-
-                
-                    <div class="fade-in-down-animation">
-    <div class="article-content-container">
-
-        <div class="article-title">
-            <span class="title-hover-animation">现代图形学入门</span>
-        </div>
-
-        
-            <div class="article-header">
-                <div class="avatar">
-                    <img src="/images/avatar.jpg">
-                </div>
-                <div class="info">
-                    <div class="author">
-                        <span class="name">xiao ming</span>
-                        
-                    </div>
-                    <div class="meta-info">
-                        <div class="article-meta-info">
-    <span class="article-date article-meta-item">
-        <i class="fas fa-edit"></i>&nbsp;2021-11-04 17:50:20
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     --><!--
+       --><li><a href="/lover/">Lover</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     -->
+      </ul>
     </span>
-    
-        <span class="article-categories article-meta-item">
-            <i class="fas fa-folder"></i>&nbsp;
-            <ul>
-                
-                    <li>
-                        <a href="/categories/%E5%9B%BE%E5%BD%A2%E5%AD%A6/">图形学</a>&nbsp;
-                    </li>
-                
-            </ul>
-        </span>
-    
-    
-        <span class="article-tags article-meta-item">
-            <i class="fas fa-tags"></i>&nbsp;
-            <ul>
-                
-                    <li>
-                        <a href="/tags/Graphics/">Graphics</a>&nbsp;
-                    </li>
-                
-                    <li>
-                        | <a href="/tags/GAMES/">GAMES</a>&nbsp;
-                    </li>
-                
-            </ul>
-        </span>
-    
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="Previous post" href="/2021/11/04/2/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://silhouettesforyou.github.io/2021/11/04/1/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://silhouettesforyou.github.io/2021/11/04/1/&text=现代图形学入门"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://silhouettesforyou.github.io/2021/11/04/1/&title=现代图形学入门"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://silhouettesforyou.github.io/2021/11/04/1/&is_video=false&description=现代图形学入门"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=现代图形学入门&body=Check out this article: https://silhouettesforyou.github.io/2021/11/04/1/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://silhouettesforyou.github.io/2021/11/04/1/&title=现代图形学入门"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://silhouettesforyou.github.io/2021/11/04/1/&title=现代图形学入门"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://silhouettesforyou.github.io/2021/11/04/1/&title=现代图形学入门"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://silhouettesforyou.github.io/2021/11/04/1/&title=现代图形学入门"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://silhouettesforyou.github.io/2021/11/04/1/&name=现代图形学入门&description=&lt;center&gt;
+    &lt;img src=&#34;/2021/11/04/1/teaser-image.png&#34;&gt;
+&lt;/center&gt;"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://silhouettesforyou.github.io/2021/11/04/1/&t=现代图形学入门"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
 
+    </div>
     
     
-        <span class="article-wordcount article-meta-item">
-            <i class="fas fa-file-word"></i>&nbsp;<span>2k Words</span>
-        </span>
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Rasterization"><span class="toc-number">1.</span> <span class="toc-text">Rasterization</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#What%E2%80%99s-After-MVP"><span class="toc-number">1.1.</span> <span class="toc-text">What’s After MVP?</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Sampling-Artifacts-in-Computer-Graphics"><span class="toc-number">1.2.</span> <span class="toc-text">Sampling Artifacts in Computer Graphics</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Visibility-Occlusion"><span class="toc-number">1.3.</span> <span class="toc-text">Visibility &#x2F; Occlusion</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Painter%E2%80%99s-Algorithm"><span class="toc-number">1.3.1.</span> <span class="toc-text">Painter’s Algorithm</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Z-Buffer"><span class="toc-number">1.3.2.</span> <span class="toc-text">Z-Buffer</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Z-Buffer-Algorithm"><span class="toc-number">1.3.3.</span> <span class="toc-text">Z-Buffer Algorithm</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Shading"><span class="toc-number">1.4.</span> <span class="toc-text">Shading</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Definition"><span class="toc-number">1.4.1.</span> <span class="toc-text">Definition</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Lambertian-Diffuse-Shading"><span class="toc-number">1.4.2.</span> <span class="toc-text">Lambertian (Diffuse) Shading</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Specular-Term-Blinn-Phong"><span class="toc-number">1.4.3.</span> <span class="toc-text">Specular Term (Blinn-Phong)</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Ambient-Term"><span class="toc-number">1.4.4.</span> <span class="toc-text">Ambient Term</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Graphics-Pipeline"><span class="toc-number">1.5.</span> <span class="toc-text">Graphics Pipeline</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Interpolation-Across-Triangles"><span class="toc-number">1.6.</span> <span class="toc-text">Interpolation Across Triangles</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Barycentric-Coordinates"><span class="toc-number">1.6.1.</span> <span class="toc-text">Barycentric Coordinates</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Texture-Mapping"><span class="toc-number">1.7.</span> <span class="toc-text">Texture Mapping</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Simple-Texture-Mapping"><span class="toc-number">1.7.1.</span> <span class="toc-text">Simple Texture Mapping</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#%E4%B8%80%E7%A7%8D%E8%A7%A3%E9%87%8A%E6%96%B9%E6%B3%95"><span class="toc-number">1.7.1.1.</span> <span class="toc-text">一种解释方法 </span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E5%8F%A6%E4%B8%80%E7%A7%8D%E8%A7%A3%E9%87%8A%E6%96%B9%E6%B3%95"><span class="toc-number">1.7.1.2.</span> <span class="toc-text">另一种解释方法 </span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Texture-Magnification-%20%E7%BA%B9%E7%90%86%E6%94%BE%E5%A4%A7"><span class="toc-number">1.7.2.</span> <span class="toc-text">Texture Magnification 纹理放大 </span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#What-if-the-texture-is-too-small"><span class="toc-number">1.7.2.1.</span> <span class="toc-text">What if the texture is too small?</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#What-if-the-texture-is-too-large"><span class="toc-number">1.7.2.2.</span> <span class="toc-text">What if the texture is too large?</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#Mipmap"><span class="toc-number">1.7.2.3.</span> <span class="toc-text">Mipmap</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#Computing-Mipmap-Level-D"><span class="toc-number">1.7.2.4.</span> <span class="toc-text">Computing Mipmap Level D</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#Trilinear-Interpolation"><span class="toc-number">1.7.2.5.</span> <span class="toc-text">Trilinear Interpolation</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Geometry"><span class="toc-number">2.</span> <span class="toc-text">Geometry</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Implicit-Geometry"><span class="toc-number">2.1.</span> <span class="toc-text">Implicit Geometry</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Explict-Geometry"><span class="toc-number">2.2.</span> <span class="toc-text">Explict Geometry</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#B-acute-e-zier-Curve"><span class="toc-number">3.</span> <span class="toc-text"> Curve</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#de-Castekjau-Algorithm"><span class="toc-number">3.1.</span> <span class="toc-text">de Castekjau Algorithm</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Evaluating-B-acute-e-zier-Curves-Algebraic-Formula"><span class="toc-number">3.2.</span> <span class="toc-text">Evaluating  Curves Algebraic Formula</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#B-acute-e-zier-Surfaces"><span class="toc-number">4.</span> <span class="toc-text"> Surfaces</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Shadow-Mapping"><span class="toc-number">5.</span> <span class="toc-text">Shadow Mapping</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Render-from-light"><span class="toc-number">5.1.</span> <span class="toc-text">Render from light</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Render-from-eye"><span class="toc-number">5.2.</span> <span class="toc-text">Render from eye</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Project-to-light"><span class="toc-number">5.3.</span> <span class="toc-text">Project to light</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Ray-Tracing"><span class="toc-number">6.</span> <span class="toc-text">Ray Tracing</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Recursive-Whitted-Style-Ray-Tracing"><span class="toc-number">6.1.</span> <span class="toc-text">Recursive (Whitted-Style) Ray Tracing</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Ray-Surface-Intersection"><span class="toc-number">6.1.1.</span> <span class="toc-text">Ray-Surface Intersection</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Spatial-Partitions%EF%BC%88%E7%A9%BA%E9%97%B4%E5%88%92%E5%88%86%EF%BC%89"><span class="toc-number">6.2.</span> <span class="toc-text">Spatial Partitions（空间划分）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Object-Partitions%EF%BC%88%E7%89%A9%E4%BD%93%E5%88%92%E5%88%86%EF%BC%89-amp-Bounding-Volume-Hierarchy-BVH"><span class="toc-number">6.3.</span> <span class="toc-text">Object Partitions（物体划分） &amp; Bounding Volume Hierarchy (BVH)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Radiometry%EF%BC%88%E8%BE%90%E5%B0%84%E5%BA%A6%E9%87%8F%E5%AD%A6%EF%BC%89"><span class="toc-number">7.</span> <span class="toc-text">Radiometry（辐射度量学）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Bidirectional-Reflectance-Distribution-Function-BRDF"><span class="toc-number">7.1.</span> <span class="toc-text">Bidirectional Reflectance Distribution Function (BRDF)</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Refection-at-a-point"><span class="toc-number">7.1.1.</span> <span class="toc-text">Refection at a point</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#The-Reflection-Equation"><span class="toc-number">7.1.2.</span> <span class="toc-text">The Reflection Equation</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#The-Rendering-Equation"><span class="toc-number">7.1.3.</span> <span class="toc-text">The Rendering Equation</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#Rendering-Equation-as-Intergral-Equation"><span class="toc-number">7.1.3.1.</span> <span class="toc-text">Rendering Equation as Intergral Equation</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Path-Tracing"><span class="toc-number">8.</span> <span class="toc-text">Path Tracing</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Materials-and-Appearances"><span class="toc-number">9.</span> <span class="toc-text">Materials and Appearances</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Diffuse-Lambertian-Material"><span class="toc-number">9.1.</span> <span class="toc-text">Diffuse &#x2F; Lambertian Material</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Glossy-Material"><span class="toc-number">9.2.</span> <span class="toc-text">Glossy Material</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Perfect-Specular-Reflection"><span class="toc-number">9.3.</span> <span class="toc-text">Perfect Specular Reflection</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Specular-Refraction"><span class="toc-number">9.4.</span> <span class="toc-text">Specular Refraction</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Fresnel-Reflection-Term"><span class="toc-number">9.5.</span> <span class="toc-text">Fresnel Reflection &#x2F; Term</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#MicroFacet-Material"><span class="toc-number">10.</span> <span class="toc-text">MicroFacet Material</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Microfacet-Theory"><span class="toc-number">10.1.</span> <span class="toc-text">Microfacet Theory</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Microface-BRDF"><span class="toc-number">10.2.</span> <span class="toc-text">Microface BRDF</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Properties-of-BRDFs"><span class="toc-number">10.3.</span> <span class="toc-text">Properties of BRDFs</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Measuring-BRDFs"><span class="toc-number">10.4.</span> <span class="toc-text">Measuring BRDFs</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Cameras-Lenses%EF%BC%88%E6%A3%B1%E9%95%9C%EF%BC%89-and-Light-Fields%EF%BC%88%E5%85%89%E5%9C%BA%EF%BC%89"><span class="toc-number">11.</span> <span class="toc-text">Cameras, Lenses（棱镜） and Light Fields（光场）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Color-and-Perception"><span class="toc-number">12.</span> <span class="toc-text">Color and Perception</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Addtive-Color%EF%BC%88%E5%8A%A0%E8%89%B2%E7%B3%BB%E7%BB%9F%EF%BC%89"><span class="toc-number">12.1.</span> <span class="toc-text">Addtive Color（加色系统）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Color-Spaces"><span class="toc-number">12.2.</span> <span class="toc-text">Color Spaces</span></a></li></ol></li></ol>
+      </div>
     
-    
-    
+  </span>
 </div>
 
-                    </div>
-                </div>
-            </div>
+    
+    <div class="content index py4 ">
         
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        现代图形学入门
+    </h1>
 
-        <div class="article-content markdown-body">
-            <link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><center>
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">Xiaoming</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2021-11-04T09:50:20.000Z" class="dt-published" itemprop="datePublished">2021-11-04</time>
+        
+        (Updated: <time datetime="2023-12-10T07:38:04.428Z" class="dt-updated" itemprop="dateModified">2023-12-10</time>)
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fa-solid fa-archive"></i>
+        <a class="category-link" href="/categories/%E5%9B%BE%E5%BD%A2%E5%AD%A6/">图形学</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fa-solid fa-tag"></i>
+        <a class="p-category" href="/tags/GAMES/" rel="tag">GAMES</a>, <a class="p-category" href="/tags/Graphics/" rel="tag">Graphics</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><center>
     <img src="/2021/11/04/1/teaser-image.png">
 </center>
 
@@ -763,260 +699,145 @@ mjx-container[display="true"] + br {
 </li>
 </ul>
 
-        </div>
+  </div>
+</article>
+
+
 
         
+          <div id="footer-post-container">
+  <div id="footer-post">
 
+    <div id="nav-footer" style="display: none">
+      <ul>
         
-            <div class="article-nav">
-                
-                    <div class="article-prev">
-                        <a class="prev"
-                           rel="prev"
-                           href="/2021/11/04/2/"
-                        >
-                            <span class="left arrow-icon flex-center">
-                              <i class="fas fa-chevron-left"></i>
-                            </span>
-                            <span class="title flex-center">
-                                <span class="post-nav-title-item">OpenGL 基础</span>
-                                <span class="post-nav-item">Prev posts</span>
-                            </span>
-                        </a>
-                    </div>
-                
-                
-            </div>
+          <li><a href="/">Home</a></li>
         
-
+          <li><a href="/archives/">Writing</a></li>
         
-            <div class="comment-container">
-                <div class="comments-container">
-    <div id="comment-anchor"></div>
-    <div class="comment-area-title">
-        <i class="fas fa-comments">&nbsp;Comments</i>
+          <li><a href="/lover/">Lover</a></li>
+        
+          <li><a href="/about/">About</a></li>
+        
+      </ul>
     </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Rasterization"><span class="toc-number">1.</span> <span class="toc-text">Rasterization</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#What%E2%80%99s-After-MVP"><span class="toc-number">1.1.</span> <span class="toc-text">What’s After MVP?</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Sampling-Artifacts-in-Computer-Graphics"><span class="toc-number">1.2.</span> <span class="toc-text">Sampling Artifacts in Computer Graphics</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Visibility-Occlusion"><span class="toc-number">1.3.</span> <span class="toc-text">Visibility &#x2F; Occlusion</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Painter%E2%80%99s-Algorithm"><span class="toc-number">1.3.1.</span> <span class="toc-text">Painter’s Algorithm</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Z-Buffer"><span class="toc-number">1.3.2.</span> <span class="toc-text">Z-Buffer</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Z-Buffer-Algorithm"><span class="toc-number">1.3.3.</span> <span class="toc-text">Z-Buffer Algorithm</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Shading"><span class="toc-number">1.4.</span> <span class="toc-text">Shading</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Definition"><span class="toc-number">1.4.1.</span> <span class="toc-text">Definition</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Lambertian-Diffuse-Shading"><span class="toc-number">1.4.2.</span> <span class="toc-text">Lambertian (Diffuse) Shading</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Specular-Term-Blinn-Phong"><span class="toc-number">1.4.3.</span> <span class="toc-text">Specular Term (Blinn-Phong)</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Ambient-Term"><span class="toc-number">1.4.4.</span> <span class="toc-text">Ambient Term</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Graphics-Pipeline"><span class="toc-number">1.5.</span> <span class="toc-text">Graphics Pipeline</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Interpolation-Across-Triangles"><span class="toc-number">1.6.</span> <span class="toc-text">Interpolation Across Triangles</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Barycentric-Coordinates"><span class="toc-number">1.6.1.</span> <span class="toc-text">Barycentric Coordinates</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Texture-Mapping"><span class="toc-number">1.7.</span> <span class="toc-text">Texture Mapping</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Simple-Texture-Mapping"><span class="toc-number">1.7.1.</span> <span class="toc-text">Simple Texture Mapping</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#%E4%B8%80%E7%A7%8D%E8%A7%A3%E9%87%8A%E6%96%B9%E6%B3%95"><span class="toc-number">1.7.1.1.</span> <span class="toc-text">一种解释方法 </span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E5%8F%A6%E4%B8%80%E7%A7%8D%E8%A7%A3%E9%87%8A%E6%96%B9%E6%B3%95"><span class="toc-number">1.7.1.2.</span> <span class="toc-text">另一种解释方法 </span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Texture-Magnification-%20%E7%BA%B9%E7%90%86%E6%94%BE%E5%A4%A7"><span class="toc-number">1.7.2.</span> <span class="toc-text">Texture Magnification 纹理放大 </span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#What-if-the-texture-is-too-small"><span class="toc-number">1.7.2.1.</span> <span class="toc-text">What if the texture is too small?</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#What-if-the-texture-is-too-large"><span class="toc-number">1.7.2.2.</span> <span class="toc-text">What if the texture is too large?</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#Mipmap"><span class="toc-number">1.7.2.3.</span> <span class="toc-text">Mipmap</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#Computing-Mipmap-Level-D"><span class="toc-number">1.7.2.4.</span> <span class="toc-text">Computing Mipmap Level D</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#Trilinear-Interpolation"><span class="toc-number">1.7.2.5.</span> <span class="toc-text">Trilinear Interpolation</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Geometry"><span class="toc-number">2.</span> <span class="toc-text">Geometry</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Implicit-Geometry"><span class="toc-number">2.1.</span> <span class="toc-text">Implicit Geometry</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Explict-Geometry"><span class="toc-number">2.2.</span> <span class="toc-text">Explict Geometry</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#B-acute-e-zier-Curve"><span class="toc-number">3.</span> <span class="toc-text"> Curve</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#de-Castekjau-Algorithm"><span class="toc-number">3.1.</span> <span class="toc-text">de Castekjau Algorithm</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Evaluating-B-acute-e-zier-Curves-Algebraic-Formula"><span class="toc-number">3.2.</span> <span class="toc-text">Evaluating  Curves Algebraic Formula</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#B-acute-e-zier-Surfaces"><span class="toc-number">4.</span> <span class="toc-text"> Surfaces</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Shadow-Mapping"><span class="toc-number">5.</span> <span class="toc-text">Shadow Mapping</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Render-from-light"><span class="toc-number">5.1.</span> <span class="toc-text">Render from light</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Render-from-eye"><span class="toc-number">5.2.</span> <span class="toc-text">Render from eye</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Project-to-light"><span class="toc-number">5.3.</span> <span class="toc-text">Project to light</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Ray-Tracing"><span class="toc-number">6.</span> <span class="toc-text">Ray Tracing</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Recursive-Whitted-Style-Ray-Tracing"><span class="toc-number">6.1.</span> <span class="toc-text">Recursive (Whitted-Style) Ray Tracing</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Ray-Surface-Intersection"><span class="toc-number">6.1.1.</span> <span class="toc-text">Ray-Surface Intersection</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Spatial-Partitions%EF%BC%88%E7%A9%BA%E9%97%B4%E5%88%92%E5%88%86%EF%BC%89"><span class="toc-number">6.2.</span> <span class="toc-text">Spatial Partitions（空间划分）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Object-Partitions%EF%BC%88%E7%89%A9%E4%BD%93%E5%88%92%E5%88%86%EF%BC%89-amp-Bounding-Volume-Hierarchy-BVH"><span class="toc-number">6.3.</span> <span class="toc-text">Object Partitions（物体划分） &amp; Bounding Volume Hierarchy (BVH)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Radiometry%EF%BC%88%E8%BE%90%E5%B0%84%E5%BA%A6%E9%87%8F%E5%AD%A6%EF%BC%89"><span class="toc-number">7.</span> <span class="toc-text">Radiometry（辐射度量学）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Bidirectional-Reflectance-Distribution-Function-BRDF"><span class="toc-number">7.1.</span> <span class="toc-text">Bidirectional Reflectance Distribution Function (BRDF)</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Refection-at-a-point"><span class="toc-number">7.1.1.</span> <span class="toc-text">Refection at a point</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#The-Reflection-Equation"><span class="toc-number">7.1.2.</span> <span class="toc-text">The Reflection Equation</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#The-Rendering-Equation"><span class="toc-number">7.1.3.</span> <span class="toc-text">The Rendering Equation</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#Rendering-Equation-as-Intergral-Equation"><span class="toc-number">7.1.3.1.</span> <span class="toc-text">Rendering Equation as Intergral Equation</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Path-Tracing"><span class="toc-number">8.</span> <span class="toc-text">Path Tracing</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Materials-and-Appearances"><span class="toc-number">9.</span> <span class="toc-text">Materials and Appearances</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Diffuse-Lambertian-Material"><span class="toc-number">9.1.</span> <span class="toc-text">Diffuse &#x2F; Lambertian Material</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Glossy-Material"><span class="toc-number">9.2.</span> <span class="toc-text">Glossy Material</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Perfect-Specular-Reflection"><span class="toc-number">9.3.</span> <span class="toc-text">Perfect Specular Reflection</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Specular-Refraction"><span class="toc-number">9.4.</span> <span class="toc-text">Specular Refraction</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Fresnel-Reflection-Term"><span class="toc-number">9.5.</span> <span class="toc-text">Fresnel Reflection &#x2F; Term</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#MicroFacet-Material"><span class="toc-number">10.</span> <span class="toc-text">MicroFacet Material</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Microfacet-Theory"><span class="toc-number">10.1.</span> <span class="toc-text">Microfacet Theory</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Microface-BRDF"><span class="toc-number">10.2.</span> <span class="toc-text">Microface BRDF</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Properties-of-BRDFs"><span class="toc-number">10.3.</span> <span class="toc-text">Properties of BRDFs</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Measuring-BRDFs"><span class="toc-number">10.4.</span> <span class="toc-text">Measuring BRDFs</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Cameras-Lenses%EF%BC%88%E6%A3%B1%E9%95%9C%EF%BC%89-and-Light-Fields%EF%BC%88%E5%85%89%E5%9C%BA%EF%BC%89"><span class="toc-number">11.</span> <span class="toc-text">Cameras, Lenses（棱镜） and Light Fields（光场）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Color-and-Perception"><span class="toc-number">12.</span> <span class="toc-text">Color and Perception</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Addtive-Color%EF%BC%88%E5%8A%A0%E8%89%B2%E7%B3%BB%E7%BB%9F%EF%BC%89"><span class="toc-number">12.1.</span> <span class="toc-text">Addtive Color（加色系统）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Color-Spaces"><span class="toc-number">12.2.</span> <span class="toc-text">Color Spaces</span></a></li></ol></li></ol>
+      </div>
     
 
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://silhouettesforyou.github.io/2021/11/04/1/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://silhouettesforyou.github.io/2021/11/04/1/&text=现代图形学入门"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://silhouettesforyou.github.io/2021/11/04/1/&title=现代图形学入门"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://silhouettesforyou.github.io/2021/11/04/1/&is_video=false&description=现代图形学入门"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=现代图形学入门&body=Check out this article: https://silhouettesforyou.github.io/2021/11/04/1/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://silhouettesforyou.github.io/2021/11/04/1/&title=现代图形学入门"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://silhouettesforyou.github.io/2021/11/04/1/&title=现代图形学入门"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://silhouettesforyou.github.io/2021/11/04/1/&title=现代图形学入门"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://silhouettesforyou.github.io/2021/11/04/1/&title=现代图形学入门"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://silhouettesforyou.github.io/2021/11/04/1/&name=现代图形学入门&description=&lt;center&gt;
+    &lt;img src=&#34;/2021/11/04/1/teaser-image.png&#34;&gt;
+&lt;/center&gt;"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://silhouettesforyou.github.io/2021/11/04/1/&t=现代图形学入门"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
         
-            
-    <div id="gitalk-container"></div>
-    <script 
-            src="//cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.js"></script>
-    <script >
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
 
-        function loadGitalk() {
-            let __gitalk__pathname = decodeURI(location.pathname);
-            const __gitalk__pathnameLength = __gitalk__pathname.length;
-            const __gitalk__pathnameMaxLength = 50;
-            if (__gitalk__pathnameLength > __gitalk__pathnameMaxLength) {
-                __gitalk__pathname = __gitalk__pathname.substring(0, __gitalk__pathnameMaxLength - 3) + '...';
-            }
-
-            try {
-                Gitalk && new Gitalk({
-                    clientID: '0c74e477328e28bacf97',
-                    clientSecret: '62fd1a94cf185360ac2d2947665725e2eabf5e8d',
-                    repo: 'SilhouettesForYou.github.io',
-                    owner: 'SilhouettesForYou',
-                    admin: ['SilhouettesForYou'],
-                    id: __gitalk__pathname,
-                    language: 'zh-Hans'
-                }).render('gitalk-container');
-
-            } catch (e) {
-                window.Gitalk = null;
-            }
-        }
-
-        if ('false') {
-            const loadGitalkTimeout = setTimeout(() => {
-                loadGitalk();
-                clearTimeout(loadGitalkTimeout);
-            }, 1000);
-        } else {
-            window.addEventListener('DOMContentLoaded', loadGitalk);
-        }
-    </script>
-
-
+  </div>
+</div>
 
         
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
     
-</div>
-
-            </div>
-        
-    </div>
-</div>
-
-                
-            </div>
-
-        </div>
-
-        <div class="page-main-content-bottom">
-            <footer class="footer">
-    <div class="info-container">
-        <div class="copyright-info info-item">
-            &copy;
-            
-              <span>2020</span>
-              -
-            
-            2024&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">xiao ming</a>
-        </div>
-        
-        
-        
-        
-    </div>
+    
+    2016-2024
+    Xiaoming
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     --><!--
+       --><li><a href="/lover/">Lover</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
 </footer>
 
-        </div>
     </div>
-
-    
-        <div class="post-tools">
-            <div class="post-tools-container">
-    <ul class="tools-list">
-        <!-- TOC aside toggle -->
-        
-            <li class="tools-item page-aside-toggle">
-                <i class="fas fa-outdent"></i>
-            </li>
-        
-
-        <!-- go comment -->
-        
-            <li class="go-comment">
-                <i class="fas fa-comment"></i>
-            </li>
-        
-
-        
-    </ul>
-</div>
-
-        </div>
-    
-
-    <div class="right-bottom-side-tools">
-        <div class="side-tools-container">
-    <ul class="side-tools-list">
-        <li class="tools-item tool-font-adjust-plus flex-center">
-            <i class="fas fa-search-plus"></i>
-        </li>
-
-        <li class="tools-item tool-font-adjust-minus flex-center">
-            <i class="fas fa-search-minus"></i>
-        </li>
-
-        <li class="tools-item tool-expand-width flex-center">
-            <i class="fas fa-arrows-alt-h"></i>
-        </li>
-
-        <li class="tools-item tool-dark-light-toggle flex-center">
-            <i class="fas fa-moon"></i>
-        </li>
-
-        <!-- rss -->
-        
-
-        
-            <li class="tools-item tool-scroll-to-top flex-center">
-                <i class="fas fa-arrow-up"></i>
-            </li>
-        
-
-        <li class="tools-item tool-scroll-to-bottom flex-center">
-            <i class="fas fa-arrow-down"></i>
-        </li>
-    </ul>
-
-    <ul class="exposed-tools-list">
-        <li class="tools-item tool-toggle-show flex-center">
-            <i class="fas fa-cog fa-spin"></i>
-        </li>
-        
-    </ul>
-
-</div>
-
-    </div>
-
-    
-        <aside class="page-aside">
-            
-    <div class="post-toc-wrap">
-        <div class="post-toc">
-            <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Rasterization"><span class="nav-number">1.</span> <span class="nav-text">Rasterization</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#What%E2%80%99s-After-MVP"><span class="nav-number">1.1.</span> <span class="nav-text">What’s After MVP?</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Sampling-Artifacts-in-Computer-Graphics"><span class="nav-number">1.2.</span> <span class="nav-text">Sampling Artifacts in Computer Graphics</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Visibility-Occlusion"><span class="nav-number">1.3.</span> <span class="nav-text">Visibility &#x2F; Occlusion</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Painter%E2%80%99s-Algorithm"><span class="nav-number">1.3.1.</span> <span class="nav-text">Painter’s Algorithm</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Z-Buffer"><span class="nav-number">1.3.2.</span> <span class="nav-text">Z-Buffer</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Z-Buffer-Algorithm"><span class="nav-number">1.3.3.</span> <span class="nav-text">Z-Buffer Algorithm</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Shading"><span class="nav-number">1.4.</span> <span class="nav-text">Shading</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Definition"><span class="nav-number">1.4.1.</span> <span class="nav-text">Definition</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Lambertian-Diffuse-Shading"><span class="nav-number">1.4.2.</span> <span class="nav-text">Lambertian (Diffuse) Shading</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Specular-Term-Blinn-Phong"><span class="nav-number">1.4.3.</span> <span class="nav-text">Specular Term (Blinn-Phong)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Ambient-Term"><span class="nav-number">1.4.4.</span> <span class="nav-text">Ambient Term</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Graphics-Pipeline"><span class="nav-number">1.5.</span> <span class="nav-text">Graphics Pipeline</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Interpolation-Across-Triangles"><span class="nav-number">1.6.</span> <span class="nav-text">Interpolation Across Triangles</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Barycentric-Coordinates"><span class="nav-number">1.6.1.</span> <span class="nav-text">Barycentric Coordinates</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Texture-Mapping"><span class="nav-number">1.7.</span> <span class="nav-text">Texture Mapping</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Simple-Texture-Mapping"><span class="nav-number">1.7.1.</span> <span class="nav-text">Simple Texture Mapping</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#%E4%B8%80%E7%A7%8D%E8%A7%A3%E9%87%8A%E6%96%B9%E6%B3%95"><span class="nav-number">1.7.1.1.</span> <span class="nav-text">一种解释方法 </span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E5%8F%A6%E4%B8%80%E7%A7%8D%E8%A7%A3%E9%87%8A%E6%96%B9%E6%B3%95"><span class="nav-number">1.7.1.2.</span> <span class="nav-text">另一种解释方法 </span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Texture-Magnification-%20%E7%BA%B9%E7%90%86%E6%94%BE%E5%A4%A7"><span class="nav-number">1.7.2.</span> <span class="nav-text">Texture Magnification 纹理放大 </span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#What-if-the-texture-is-too-small"><span class="nav-number">1.7.2.1.</span> <span class="nav-text">What if the texture is too small?</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#What-if-the-texture-is-too-large"><span class="nav-number">1.7.2.2.</span> <span class="nav-text">What if the texture is too large?</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#Mipmap"><span class="nav-number">1.7.2.3.</span> <span class="nav-text">Mipmap</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#Computing-Mipmap-Level-D"><span class="nav-number">1.7.2.4.</span> <span class="nav-text">Computing Mipmap Level D</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#Trilinear-Interpolation"><span class="nav-number">1.7.2.5.</span> <span class="nav-text">Trilinear Interpolation</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Geometry"><span class="nav-number">2.</span> <span class="nav-text">Geometry</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Implicit-Geometry"><span class="nav-number">2.1.</span> <span class="nav-text">Implicit Geometry</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Explict-Geometry"><span class="nav-number">2.2.</span> <span class="nav-text">Explict Geometry</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#B-acute-e-zier-Curve"><span class="nav-number">3.</span> <span class="nav-text"> Curve</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#de-Castekjau-Algorithm"><span class="nav-number">3.1.</span> <span class="nav-text">de Castekjau Algorithm</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Evaluating-B-acute-e-zier-Curves-Algebraic-Formula"><span class="nav-number">3.2.</span> <span class="nav-text">Evaluating  Curves Algebraic Formula</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#B-acute-e-zier-Surfaces"><span class="nav-number">4.</span> <span class="nav-text"> Surfaces</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Shadow-Mapping"><span class="nav-number">5.</span> <span class="nav-text">Shadow Mapping</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Render-from-light"><span class="nav-number">5.1.</span> <span class="nav-text">Render from light</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Render-from-eye"><span class="nav-number">5.2.</span> <span class="nav-text">Render from eye</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Project-to-light"><span class="nav-number">5.3.</span> <span class="nav-text">Project to light</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Ray-Tracing"><span class="nav-number">6.</span> <span class="nav-text">Ray Tracing</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Recursive-Whitted-Style-Ray-Tracing"><span class="nav-number">6.1.</span> <span class="nav-text">Recursive (Whitted-Style) Ray Tracing</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Ray-Surface-Intersection"><span class="nav-number">6.1.1.</span> <span class="nav-text">Ray-Surface Intersection</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Spatial-Partitions%EF%BC%88%E7%A9%BA%E9%97%B4%E5%88%92%E5%88%86%EF%BC%89"><span class="nav-number">6.2.</span> <span class="nav-text">Spatial Partitions（空间划分）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Object-Partitions%EF%BC%88%E7%89%A9%E4%BD%93%E5%88%92%E5%88%86%EF%BC%89-amp-Bounding-Volume-Hierarchy-BVH"><span class="nav-number">6.3.</span> <span class="nav-text">Object Partitions（物体划分） &amp; Bounding Volume Hierarchy (BVH)</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Radiometry%EF%BC%88%E8%BE%90%E5%B0%84%E5%BA%A6%E9%87%8F%E5%AD%A6%EF%BC%89"><span class="nav-number">7.</span> <span class="nav-text">Radiometry（辐射度量学）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Bidirectional-Reflectance-Distribution-Function-BRDF"><span class="nav-number">7.1.</span> <span class="nav-text">Bidirectional Reflectance Distribution Function (BRDF)</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Refection-at-a-point"><span class="nav-number">7.1.1.</span> <span class="nav-text">Refection at a point</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#The-Reflection-Equation"><span class="nav-number">7.1.2.</span> <span class="nav-text">The Reflection Equation</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#The-Rendering-Equation"><span class="nav-number">7.1.3.</span> <span class="nav-text">The Rendering Equation</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#Rendering-Equation-as-Intergral-Equation"><span class="nav-number">7.1.3.1.</span> <span class="nav-text">Rendering Equation as Intergral Equation</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Path-Tracing"><span class="nav-number">8.</span> <span class="nav-text">Path Tracing</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Materials-and-Appearances"><span class="nav-number">9.</span> <span class="nav-text">Materials and Appearances</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Diffuse-Lambertian-Material"><span class="nav-number">9.1.</span> <span class="nav-text">Diffuse &#x2F; Lambertian Material</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Glossy-Material"><span class="nav-number">9.2.</span> <span class="nav-text">Glossy Material</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Perfect-Specular-Reflection"><span class="nav-number">9.3.</span> <span class="nav-text">Perfect Specular Reflection</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Specular-Refraction"><span class="nav-number">9.4.</span> <span class="nav-text">Specular Refraction</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Fresnel-Reflection-Term"><span class="nav-number">9.5.</span> <span class="nav-text">Fresnel Reflection &#x2F; Term</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MicroFacet-Material"><span class="nav-number">10.</span> <span class="nav-text">MicroFacet Material</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Microfacet-Theory"><span class="nav-number">10.1.</span> <span class="nav-text">Microfacet Theory</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Microface-BRDF"><span class="nav-number">10.2.</span> <span class="nav-text">Microface BRDF</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Properties-of-BRDFs"><span class="nav-number">10.3.</span> <span class="nav-text">Properties of BRDFs</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Measuring-BRDFs"><span class="nav-number">10.4.</span> <span class="nav-text">Measuring BRDFs</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Cameras-Lenses%EF%BC%88%E6%A3%B1%E9%95%9C%EF%BC%89-and-Light-Fields%EF%BC%88%E5%85%89%E5%9C%BA%EF%BC%89"><span class="nav-number">11.</span> <span class="nav-text">Cameras, Lenses（棱镜） and Light Fields（光场）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Color-and-Perception"><span class="nav-number">12.</span> <span class="nav-text">Color and Perception</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Addtive-Color%EF%BC%88%E5%8A%A0%E8%89%B2%E7%B3%BB%E7%BB%9F%EF%BC%89"><span class="nav-number">12.1.</span> <span class="nav-text">Addtive Color（加色系统）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Color-Spaces"><span class="nav-number">12.2.</span> <span class="nav-text">Color Spaces</span></a></li></ol></li></ol>
-        </div>
-    </div>
-
-
-        </aside>
-    
-
-    <div class="image-viewer-container">
-    <img src="">
-</div>
-
-
-    
-        <div class="search-pop-overlay">
-    <div class="popup search-popup">
-        <div class="search-header">
-          <span class="search-input-field-pre">
-            <i class="fas fa-keyboard"></i>
-          </span>
-            <div class="search-input-container">
-                <input autocomplete="off"
-                       autocorrect="off"
-                       autocapitalize="off"
-                       placeholder="Search..."
-                       spellcheck="false"
-                       type="search"
-                       class="search-input"
-                >
-            </div>
-            <span class="popup-btn-close">
-                <i class="fas fa-times"></i>
-            </span>
-        </div>
-        <div id="search-result">
-            <div id="no-result">
-                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
-            </div>
-        </div>
-    </div>
-</div>
-
-    
-
-</main>
+    <!-- styles -->
 
 
 
-<script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/utils.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/main.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/header-shrink.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/back2top.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/dark-light-toggle.js"></script>
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
 
 
-    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/local-search.js"></script>
+    <!-- jquery -->
 
-
-
-    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/code-copy.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
 
 
 
 
-<div class="post-scripts">
-    
-        <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/left-side-toggle.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/libs/anime.min.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/toc.js"></script>
-    
-</div>
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
 
 
+<script src="/js/main.js"></script>
 
-<!-- hexo injector body_end start --><script src="https://cdn.jsdelivr.net/npm/hexo-tag-common@0.0.5/js/index.js"></script><!-- hexo injector body_end end --><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7}});</script></body>
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+<!-- hexo injector body_end start --><script src="https://cdn.jsdelivr.net/npm/hexo-tag-common@0.0.5/js/index.js"></script><!-- hexo injector body_end end --><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"left","width":150,"height":300},"mobile":{"show":false},"react":{"opacity":0.7}});</script></body>
 </html>

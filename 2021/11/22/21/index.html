@@ -1,44 +1,77 @@
 <!DOCTYPE html>
-<html lang="zh-Hans">
+<html lang=en>
 <head><!-- hexo injector head_begin start -->
 <link rel="stylesheet" href="/css/bilicard.css">
 <link href="https://cdn.jsdelivr.net/npm/hexo-tag-common@0.0.5/css/index.css" rel="stylesheet"/><!-- hexo injector head_begin end -->
-    <!-- // 通过jsDelivr的CDN引入echarts -->
-    <script src="https://cdn.jsdelivr.net/npm/echarts@4.8.0/dist/echarts.min.js"></script>
-    <!-- // 使用GL里的各种组件时需要添加，否则可不需要 -->
-    <script src="https://cdn.jsdelivr.net/npm/echarts-gl@1.1.1/dist/echarts-gl.min.js"></script>
-
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-
-    <!-- <script type="text/javascript" src="/js/texture.js"></script>
-    <script type="text/javascript" src="/js/rose.js"></script> -->
-
+    <!-- so meta -->
     <meta charset="utf-8">
-    <meta name="baidu-site-verification" content="code-WK4Q1HDzQk" />
-    <meta name="google-site-verification" content="WV6BOVs7NRg-qgcovrSAgXFDsh8DNfm-siq4aTBYSb0" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <meta name="keywords" content="Hexo Theme Keep">
-    <meta name="description" content="Hexo Theme Keep">
-    <meta name="author" content="xiao ming">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="从main函数开始，定义场景的参数，添加物体（球体或三角形）到场景中，并设置其材质，然后将光源添加到场景中 调用Render函数。在遍历所有像素的循环里，生成对应的光线并将返回的颜色保存在帧缓冲区中。在渲染过程结束后，帧缓冲区中的信息将被保存为图像 在生成像素对应的光线后，调用CastRay函数，该函数调用trace来查询光线与场景中最近的对象的交点">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Whitted Style Ray Tracing">
+<meta property="og:url" content="https://silhouettesforyou.github.io/2021/11/22/21/index.html">
+<meta property="og:site_name" content="Silhouettes For You">
+<meta property="og:description" content="从main函数开始，定义场景的参数，添加物体（球体或三角形）到场景中，并设置其材质，然后将光源添加到场景中 调用Render函数。在遍历所有像素的循环里，生成对应的光线并将返回的颜色保存在帧缓冲区中。在渲染过程结束后，帧缓冲区中的信息将被保存为图像 在生成像素对应的光线后，调用CastRay函数，该函数调用trace来查询光线与场景中最近的对象的交点">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://silhouettesforyou.github.io/2021/11/22/21/scene-ray-coord.png">
+<meta property="og:image" content="https://silhouettesforyou.github.io/2021/11/22/21/binary.png">
+<meta property="article:published_time" content="2021-11-22T12:43:07.000Z">
+<meta property="article:modified_time" content="2023-12-10T07:38:05.841Z">
+<meta property="article:author" content="Xiaoming">
+<meta property="article:tag" content="Graphics">
+<meta property="article:tag" content="GAMES">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://silhouettesforyou.github.io/2021/11/22/21/scene-ray-coord.png">
     
-    <title>
+    
+      
         
-            Whitted Style Ray Tracing |
+          <link rel="shortcut icon" href="/images/favicon.ico">
         
-        Silhouettes For You
-    </title>
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>Whitted Style Ray Tracing</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
     
 <link rel="stylesheet" href="/css/style.css">
 
-    <link rel="shortcut icon" href="/images/breaking-bad-logo.png">
-    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/css/font-awesome.min.css">
-    <script id="hexo-configurations">
-    let KEEP = window.KEEP || {};
-    KEEP.hexo_config = {"hostname":"silhouettesforyou.github.io","root":"/","language":"zh-Hans","path":"search.json"};
-    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":false,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/avatar.jpg","favicon":"/images/breaking-bad-logo.png","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":true},"first_screen":{"enable":false,"background_img":"/images/bg.svg","description":null},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":false},"code_copy":{"enable":true,"style":"mac"},"pjax":{"enable":false},"lazyload":{"enable":false},"version":"3.4.3"};
-    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
-  </script>
+    <!-- persian styles -->
     
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+		<script type="text/x-mathjax-config">
+		  MathJax.Hub.Config({
+			tex2jax: {
+			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+			  inlineMath: [['$','$']]
+			}
+		  });
+		</script>
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+	
 <style type="text/css">
 .spoiler {
   display: inline;
@@ -184,225 +217,120 @@ mjx-container[display="true"] + br {
 </style><link rel="alternate" href="/atom.xml" title="Silhouettes For You" type="application/atom+xml">
 </head>
 
-
-
-<!--动态线条背景-->
-<script type="text/javascript" color="220,220,220" opacity='0.7' zIndex="0.5" count="200" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
-
-<body>
-<div class="progress-bar-container">
+<body class="max-width mx-auto px3 ltr">
     
-        <span class="scroll-progress-bar"></span>
-    
-
-    
-</div>
-
-
-<main class="page-container">
-
-    
-
-    <div class="page-main-content">
-
-        
-        <div class="page-main-content-top">
-            <header class="header-wrapper">
-
-    <div class="header-content">
-        <div class="left">
-            
-            <a class="logo-title" href="/">
-                Silhouettes For You
-            </a>
-        </div>
-
-        <div class="right">
-            <div class="pc">
-                <ul class="menu-list">
-                    
-                        <li class="menu-item">
-                            <a class=""
-                               href="/"
-                            >
-                                HOME
-                            </a>
-                        </li>
-                    
-                        <li class="menu-item">
-                            <a class=""
-                               href="/archives"
-                            >
-                                ARCHIVES
-                            </a>
-                        </li>
-                    
-                        <li class="menu-item">
-                            <a class=""
-                               href="/categories"
-                            >
-                                CATEGORIES
-                            </a>
-                        </li>
-                    
-                        <li class="menu-item">
-                            <a class=""
-                               href="/tags"
-                            >
-                                TAGS
-                            </a>
-                        </li>
-                    
-                        <li class="menu-item">
-                            <a class=""
-                               href="/lover"
-                            >
-                                LOVER
-                            </a>
-                        </li>
-                    
-                        <li class="menu-item">
-                            <a class=""
-                               href="/about"
-                            >
-                                ABOUT
-                            </a>
-                        </li>
-                    
-                    
-                        <li class="menu-item search search-popup-trigger">
-                            <i class="fas fa-search"></i>
-                        </li>
-                    
-                </ul>
-            </div>
-            <div class="mobile">
-                
-                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
-                
-                <div class="icon-item menu-bar">
-                    <div class="menu-bar-middle"></div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="header-drawer">
-        <ul class="drawer-menu-list">
-            
-                <li class="drawer-menu-item flex-center">
-                    <a class=""
-                       href="/">HOME</a>
-                </li>
-            
-                <li class="drawer-menu-item flex-center">
-                    <a class=""
-                       href="/archives">ARCHIVES</a>
-                </li>
-            
-                <li class="drawer-menu-item flex-center">
-                    <a class=""
-                       href="/categories">CATEGORIES</a>
-                </li>
-            
-                <li class="drawer-menu-item flex-center">
-                    <a class=""
-                       href="/tags">TAGS</a>
-                </li>
-            
-                <li class="drawer-menu-item flex-center">
-                    <a class=""
-                       href="/lover">LOVER</a>
-                </li>
-            
-                <li class="drawer-menu-item flex-center">
-                    <a class=""
-                       href="/about">ABOUT</a>
-                </li>
-            
-        </ul>
-    </div>
-
-    <div class="window-mask"></div>
-
-</header>
-
-
-        </div>
-
-        <div class="page-main-content-middle">
-
-            <div class="main-content">
-
-                
-                    <div class="fade-in-down-animation">
-    <div class="article-content-container">
-
-        <div class="article-title">
-            <span class="title-hover-animation">Whitted Style Ray Tracing</span>
-        </div>
-
-        
-            <div class="article-header">
-                <div class="avatar">
-                    <img src="/images/avatar.jpg">
-                </div>
-                <div class="info">
-                    <div class="author">
-                        <span class="name">xiao ming</span>
-                        
-                    </div>
-                    <div class="meta-info">
-                        <div class="article-meta-info">
-    <span class="article-date article-meta-item">
-        <i class="fas fa-edit"></i>&nbsp;2021-11-22 20:43:07
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     --><!--
+       --><li><a href="/lover/">Lover</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     -->
+      </ul>
     </span>
-    
-        <span class="article-categories article-meta-item">
-            <i class="fas fa-folder"></i>&nbsp;
-            <ul>
-                
-                    <li>
-                        <a href="/categories/GAMES-101-Assignments/">GAMES-101 Assignments</a>&nbsp;
-                    </li>
-                
-            </ul>
-        </span>
-    
-    
-        <span class="article-tags article-meta-item">
-            <i class="fas fa-tags"></i>&nbsp;
-            <ul>
-                
-                    <li>
-                        <a href="/tags/Graphics/">Graphics</a>&nbsp;
-                    </li>
-                
-                    <li>
-                        | <a href="/tags/GAMES/">GAMES</a>&nbsp;
-                    </li>
-                
-            </ul>
-        </span>
-    
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="Previous post" href="/2021/11/24/22/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="Next post" href="/2021/11/22/20/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://silhouettesforyou.github.io/2021/11/22/21/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://silhouettesforyou.github.io/2021/11/22/21/&text=Whitted Style Ray Tracing"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://silhouettesforyou.github.io/2021/11/22/21/&title=Whitted Style Ray Tracing"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://silhouettesforyou.github.io/2021/11/22/21/&is_video=false&description=Whitted Style Ray Tracing"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Whitted Style Ray Tracing&body=Check out this article: https://silhouettesforyou.github.io/2021/11/22/21/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://silhouettesforyou.github.io/2021/11/22/21/&title=Whitted Style Ray Tracing"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://silhouettesforyou.github.io/2021/11/22/21/&title=Whitted Style Ray Tracing"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://silhouettesforyou.github.io/2021/11/22/21/&title=Whitted Style Ray Tracing"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://silhouettesforyou.github.io/2021/11/22/21/&title=Whitted Style Ray Tracing"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://silhouettesforyou.github.io/2021/11/22/21/&name=Whitted Style Ray Tracing&description=&lt;ul&gt;
+&lt;li&gt;从&lt;code&gt;main&lt;/code&gt;函数开始，定义场景的参数，添加物体（球体或三角形）到场景中，并设置其材质，然后将光源添加到场景中&lt;/li&gt;
+&lt;li&gt;调用&lt;code&gt;Render&lt;/code&gt;函数。在遍历所有像素的循环里，生成对应的光线并将返回的颜色保存在&lt;span class=&#34;hint--info hint--rounded hint--top&#34; data-hint=&#34;Frame Buffer&#34; ontouchstart&gt;帧缓冲区&lt;/span&gt;中。在渲染过程结束后，帧缓冲区中的信息将被保存为图像&lt;/li&gt;
+&lt;li&gt;在生成像素对应的光线后，调用&lt;code&gt;CastRay&lt;/code&gt;函数，该函数调用&lt;code&gt;trace&lt;/code&gt;来查询光线与场景中最近的对象的交点&lt;/li&gt;
+&lt;/ul&gt;"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://silhouettesforyou.github.io/2021/11/22/21/&t=Whitted Style Ray Tracing"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
 
+    </div>
     
     
-        <span class="article-wordcount article-meta-item">
-            <i class="fas fa-file-word"></i>&nbsp;<span>850 Words</span>
-        </span>
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%8E%E6%91%84%E5%83%8F%E6%9C%BA%E4%BD%8D%E7%BD%AE%E5%90%91%E5%B1%8F%E5%B9%95%E5%83%8F%E7%B4%A0%E7%82%B9%E5%8F%91%E5%B0%84%E5%85%89%E7%BA%BF"><span class="toc-number">1.</span> <span class="toc-text">从摄像机位置向屏幕像素点发射光线 </span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%98%AF%E5%90%A6%E4%B8%8E%E4%B8%89%E8%A7%92%E5%BD%A2%E7%9B%B8%E4%BA%A4"><span class="toc-number">2.</span> <span class="toc-text">是否与三角形相交 </span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%80%E7%BB%88%E7%BB%93%E6%9E%9C"><span class="toc-number">3.</span> <span class="toc-text">最终结果</span></a></li></ol>
+      </div>
     
-    
-    
+  </span>
 </div>
 
-                    </div>
-                </div>
-            </div>
+    
+    <div class="content index py4 ">
         
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        Whitted Style Ray Tracing
+    </h1>
 
-        <div class="article-content markdown-body">
-            <link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><ul>
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">Xiaoming</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2021-11-22T12:43:07.000Z" class="dt-published" itemprop="datePublished">2021-11-22</time>
+        
+        (Updated: <time datetime="2023-12-10T07:38:05.841Z" class="dt-updated" itemprop="dateModified">2023-12-10</time>)
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fa-solid fa-archive"></i>
+        <a class="category-link" href="/categories/GAMES-101-Assignments/">GAMES-101 Assignments</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fa-solid fa-tag"></i>
+        <a class="p-category" href="/tags/GAMES/" rel="tag">GAMES</a>, <a class="p-category" href="/tags/Graphics/" rel="tag">Graphics</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><ul>
 <li>从 <code>main</code> 函数开始，定义场景的参数，添加物体（球体或三角形）到场景中，并设置其材质，然后将光源添加到场景中</li>
 <li>调用 <code>Render</code> 函数。在遍历所有像素的循环里，生成对应的光线并将返回的颜色保存在 <span class="hint--info hint--rounded hint--top" data-hint="Frame Buffer" ontouchstart> 帧缓冲区 </span> 中。在渲染过程结束后，帧缓冲区中的信息将被保存为图像</li>
 <li>在生成像素对应的光线后，调用 <code>CastRay</code> 函数，该函数调用 <code>trace</code> 来查询光线与场景中最近的对象的交点</li>
@@ -428,275 +356,147 @@ mjx-container[display="true"] + br {
     <img src="/2021/11/22/21/binary.png">
 </center>
 
-        </div>
+  </div>
+</article>
+
+
 
         
+          <div id="footer-post-container">
+  <div id="footer-post">
 
+    <div id="nav-footer" style="display: none">
+      <ul>
         
-            <div class="article-nav">
-                
-                    <div class="article-prev">
-                        <a class="prev"
-                           rel="prev"
-                           href="/2021/11/24/22/"
-                        >
-                            <span class="left arrow-icon flex-center">
-                              <i class="fas fa-chevron-left"></i>
-                            </span>
-                            <span class="title flex-center">
-                                <span class="post-nav-title-item">时域和频域</span>
-                                <span class="post-nav-item">Prev posts</span>
-                            </span>
-                        </a>
-                    </div>
-                
-                
-                    <div class="article-next">
-                        <a class="next"
-                           rel="next"
-                           href="/2021/11/22/20/"
-                        >
-                            <span class="title flex-center">
-                                <span class="post-nav-title-item">Bézier Curve</span>
-                                <span class="post-nav-item">Next posts</span>
-                            </span>
-                            <span class="right arrow-icon flex-center">
-                              <i class="fas fa-chevron-right"></i>
-                            </span>
-                        </a>
-                    </div>
-                
-            </div>
+          <li><a href="/">Home</a></li>
         
-
+          <li><a href="/archives/">Writing</a></li>
         
-            <div class="comment-container">
-                <div class="comments-container">
-    <div id="comment-anchor"></div>
-    <div class="comment-area-title">
-        <i class="fas fa-comments">&nbsp;Comments</i>
+          <li><a href="/lover/">Lover</a></li>
+        
+          <li><a href="/about/">About</a></li>
+        
+      </ul>
     </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%8E%E6%91%84%E5%83%8F%E6%9C%BA%E4%BD%8D%E7%BD%AE%E5%90%91%E5%B1%8F%E5%B9%95%E5%83%8F%E7%B4%A0%E7%82%B9%E5%8F%91%E5%B0%84%E5%85%89%E7%BA%BF"><span class="toc-number">1.</span> <span class="toc-text">从摄像机位置向屏幕像素点发射光线 </span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%98%AF%E5%90%A6%E4%B8%8E%E4%B8%89%E8%A7%92%E5%BD%A2%E7%9B%B8%E4%BA%A4"><span class="toc-number">2.</span> <span class="toc-text">是否与三角形相交 </span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%80%E7%BB%88%E7%BB%93%E6%9E%9C"><span class="toc-number">3.</span> <span class="toc-text">最终结果</span></a></li></ol>
+      </div>
     
 
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://silhouettesforyou.github.io/2021/11/22/21/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://silhouettesforyou.github.io/2021/11/22/21/&text=Whitted Style Ray Tracing"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://silhouettesforyou.github.io/2021/11/22/21/&title=Whitted Style Ray Tracing"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://silhouettesforyou.github.io/2021/11/22/21/&is_video=false&description=Whitted Style Ray Tracing"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Whitted Style Ray Tracing&body=Check out this article: https://silhouettesforyou.github.io/2021/11/22/21/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://silhouettesforyou.github.io/2021/11/22/21/&title=Whitted Style Ray Tracing"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://silhouettesforyou.github.io/2021/11/22/21/&title=Whitted Style Ray Tracing"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://silhouettesforyou.github.io/2021/11/22/21/&title=Whitted Style Ray Tracing"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://silhouettesforyou.github.io/2021/11/22/21/&title=Whitted Style Ray Tracing"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://silhouettesforyou.github.io/2021/11/22/21/&name=Whitted Style Ray Tracing&description=&lt;ul&gt;
+&lt;li&gt;从&lt;code&gt;main&lt;/code&gt;函数开始，定义场景的参数，添加物体（球体或三角形）到场景中，并设置其材质，然后将光源添加到场景中&lt;/li&gt;
+&lt;li&gt;调用&lt;code&gt;Render&lt;/code&gt;函数。在遍历所有像素的循环里，生成对应的光线并将返回的颜色保存在&lt;span class=&#34;hint--info hint--rounded hint--top&#34; data-hint=&#34;Frame Buffer&#34; ontouchstart&gt;帧缓冲区&lt;/span&gt;中。在渲染过程结束后，帧缓冲区中的信息将被保存为图像&lt;/li&gt;
+&lt;li&gt;在生成像素对应的光线后，调用&lt;code&gt;CastRay&lt;/code&gt;函数，该函数调用&lt;code&gt;trace&lt;/code&gt;来查询光线与场景中最近的对象的交点&lt;/li&gt;
+&lt;/ul&gt;"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://silhouettesforyou.github.io/2021/11/22/21/&t=Whitted Style Ray Tracing"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
         
-            
-    <div id="gitalk-container"></div>
-    <script 
-            src="//cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.js"></script>
-    <script >
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
 
-        function loadGitalk() {
-            let __gitalk__pathname = decodeURI(location.pathname);
-            const __gitalk__pathnameLength = __gitalk__pathname.length;
-            const __gitalk__pathnameMaxLength = 50;
-            if (__gitalk__pathnameLength > __gitalk__pathnameMaxLength) {
-                __gitalk__pathname = __gitalk__pathname.substring(0, __gitalk__pathnameMaxLength - 3) + '...';
-            }
-
-            try {
-                Gitalk && new Gitalk({
-                    clientID: '0c74e477328e28bacf97',
-                    clientSecret: '62fd1a94cf185360ac2d2947665725e2eabf5e8d',
-                    repo: 'SilhouettesForYou.github.io',
-                    owner: 'SilhouettesForYou',
-                    admin: ['SilhouettesForYou'],
-                    id: __gitalk__pathname,
-                    language: 'zh-Hans'
-                }).render('gitalk-container');
-
-            } catch (e) {
-                window.Gitalk = null;
-            }
-        }
-
-        if ('false') {
-            const loadGitalkTimeout = setTimeout(() => {
-                loadGitalk();
-                clearTimeout(loadGitalkTimeout);
-            }, 1000);
-        } else {
-            window.addEventListener('DOMContentLoaded', loadGitalk);
-        }
-    </script>
-
-
+  </div>
+</div>
 
         
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
     
-</div>
-
-            </div>
-        
-    </div>
-</div>
-
-                
-            </div>
-
-        </div>
-
-        <div class="page-main-content-bottom">
-            <footer class="footer">
-    <div class="info-container">
-        <div class="copyright-info info-item">
-            &copy;
-            
-              <span>2020</span>
-              -
-            
-            2024&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">xiao ming</a>
-        </div>
-        
-        
-        
-        
-    </div>
+    
+    2016-2024
+    Xiaoming
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     --><!--
+       --><li><a href="/lover/">Lover</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
 </footer>
 
-        </div>
     </div>
-
-    
-        <div class="post-tools">
-            <div class="post-tools-container">
-    <ul class="tools-list">
-        <!-- TOC aside toggle -->
-        
-            <li class="tools-item page-aside-toggle">
-                <i class="fas fa-outdent"></i>
-            </li>
-        
-
-        <!-- go comment -->
-        
-            <li class="go-comment">
-                <i class="fas fa-comment"></i>
-            </li>
-        
-
-        
-    </ul>
-</div>
-
-        </div>
-    
-
-    <div class="right-bottom-side-tools">
-        <div class="side-tools-container">
-    <ul class="side-tools-list">
-        <li class="tools-item tool-font-adjust-plus flex-center">
-            <i class="fas fa-search-plus"></i>
-        </li>
-
-        <li class="tools-item tool-font-adjust-minus flex-center">
-            <i class="fas fa-search-minus"></i>
-        </li>
-
-        <li class="tools-item tool-expand-width flex-center">
-            <i class="fas fa-arrows-alt-h"></i>
-        </li>
-
-        <li class="tools-item tool-dark-light-toggle flex-center">
-            <i class="fas fa-moon"></i>
-        </li>
-
-        <!-- rss -->
-        
-
-        
-            <li class="tools-item tool-scroll-to-top flex-center">
-                <i class="fas fa-arrow-up"></i>
-            </li>
-        
-
-        <li class="tools-item tool-scroll-to-bottom flex-center">
-            <i class="fas fa-arrow-down"></i>
-        </li>
-    </ul>
-
-    <ul class="exposed-tools-list">
-        <li class="tools-item tool-toggle-show flex-center">
-            <i class="fas fa-cog fa-spin"></i>
-        </li>
-        
-    </ul>
-
-</div>
-
-    </div>
-
-    
-        <aside class="page-aside">
-            
-    <div class="post-toc-wrap">
-        <div class="post-toc">
-            <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%8E%E6%91%84%E5%83%8F%E6%9C%BA%E4%BD%8D%E7%BD%AE%E5%90%91%E5%B1%8F%E5%B9%95%E5%83%8F%E7%B4%A0%E7%82%B9%E5%8F%91%E5%B0%84%E5%85%89%E7%BA%BF"><span class="nav-number">1.</span> <span class="nav-text">从摄像机位置向屏幕像素点发射光线 </span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%98%AF%E5%90%A6%E4%B8%8E%E4%B8%89%E8%A7%92%E5%BD%A2%E7%9B%B8%E4%BA%A4"><span class="nav-number">2.</span> <span class="nav-text">是否与三角形相交 </span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%80%E7%BB%88%E7%BB%93%E6%9E%9C"><span class="nav-number">3.</span> <span class="nav-text">最终结果</span></a></li></ol>
-        </div>
-    </div>
-
-
-        </aside>
-    
-
-    <div class="image-viewer-container">
-    <img src="">
-</div>
-
-
-    
-        <div class="search-pop-overlay">
-    <div class="popup search-popup">
-        <div class="search-header">
-          <span class="search-input-field-pre">
-            <i class="fas fa-keyboard"></i>
-          </span>
-            <div class="search-input-container">
-                <input autocomplete="off"
-                       autocorrect="off"
-                       autocapitalize="off"
-                       placeholder="Search..."
-                       spellcheck="false"
-                       type="search"
-                       class="search-input"
-                >
-            </div>
-            <span class="popup-btn-close">
-                <i class="fas fa-times"></i>
-            </span>
-        </div>
-        <div id="search-result">
-            <div id="no-result">
-                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
-            </div>
-        </div>
-    </div>
-</div>
-
-    
-
-</main>
+    <!-- styles -->
 
 
 
-<script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/utils.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/main.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/header-shrink.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/back2top.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/dark-light-toggle.js"></script>
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
 
 
-    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/local-search.js"></script>
+    <!-- jquery -->
 
-
-
-    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/code-copy.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
 
 
 
 
-<div class="post-scripts">
-    
-        <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/left-side-toggle.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/libs/anime.min.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/toc.js"></script>
-    
-</div>
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
 
 
+<script src="/js/main.js"></script>
 
-<!-- hexo injector body_end start --><script src="https://cdn.jsdelivr.net/npm/hexo-tag-common@0.0.5/js/index.js"></script><!-- hexo injector body_end end --><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7}});</script></body>
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+<!-- hexo injector body_end start --><script src="https://cdn.jsdelivr.net/npm/hexo-tag-common@0.0.5/js/index.js"></script><!-- hexo injector body_end end --><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"left","width":150,"height":300},"mobile":{"show":false},"react":{"opacity":0.7}});</script></body>
 </html>

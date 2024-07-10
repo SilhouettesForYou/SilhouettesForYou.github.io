@@ -1,42 +1,66 @@
 <!DOCTYPE html>
-<html lang="zh-Hans">
+<html lang=en>
 <head>
-    <!-- // 通过jsDelivr的CDN引入echarts -->
-    <script src="https://cdn.jsdelivr.net/npm/echarts@4.8.0/dist/echarts.min.js"></script>
-    <!-- // 使用GL里的各种组件时需要添加，否则可不需要 -->
-    <script src="https://cdn.jsdelivr.net/npm/echarts-gl@1.1.1/dist/echarts-gl.min.js"></script>
-
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-
-    <!-- <script type="text/javascript" src="/js/texture.js"></script>
-    <script type="text/javascript" src="/js/rose.js"></script> -->
-
+    <!-- so meta -->
     <meta charset="utf-8">
-    <meta name="baidu-site-verification" content="code-WK4Q1HDzQk" />
-    <meta name="google-site-verification" content="WV6BOVs7NRg-qgcovrSAgXFDsh8DNfm-siq4aTBYSb0" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <meta name="keywords" content="Hexo Theme Keep">
-    <meta name="description" content="Hexo Theme Keep">
-    <meta name="author" content="xiao ming">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta property="og:type" content="website">
+<meta property="og:title" content="Silhouettes For You">
+<meta property="og:url" content="https://silhouettesforyou.github.io/archives/page/3/index.html">
+<meta property="og:site_name" content="Silhouettes For You">
+<meta property="og:locale" content="en_US">
+<meta property="article:author" content="Xiaoming">
+<meta name="twitter:card" content="summary">
     
-    <title>
+    
+      
         
-            Archive |
+          <link rel="shortcut icon" href="/images/favicon.ico">
         
-        Silhouettes For You
-    </title>
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>Writing</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
     
 <link rel="stylesheet" href="/css/style.css">
 
-    <link rel="shortcut icon" href="/images/breaking-bad-logo.png">
-    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/css/font-awesome.min.css">
-    <script id="hexo-configurations">
-    let KEEP = window.KEEP || {};
-    KEEP.hexo_config = {"hostname":"silhouettesforyou.github.io","root":"/","language":"zh-Hans","path":"search.json"};
-    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":false,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/avatar.jpg","favicon":"/images/breaking-bad-logo.png","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":true},"first_screen":{"enable":false,"background_img":"/images/bg.svg","description":null},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":false},"code_copy":{"enable":true,"style":"mac"},"pjax":{"enable":false},"lazyload":{"enable":false},"version":"3.4.3"};
-    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
-  </script>
+    <!-- persian styles -->
     
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+		<script type="text/x-mathjax-config">
+		  MathJax.Hub.Config({
+			tex2jax: {
+			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+			  inlineMath: [['$','$']]
+			}
+		  });
+		</script>
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+	
 <style type="text/css">
 .spoiler {
   display: inline;
@@ -70,744 +94,550 @@ p.spoiler {
 }</style><meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/atom.xml" title="Silhouettes For You" type="application/atom+xml">
 </head>
 
-
-
-<!--动态线条背景-->
-<script type="text/javascript" color="220,220,220" opacity='0.7' zIndex="0.5" count="200" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
-
-<body>
-<div class="progress-bar-container">
+<body class="max-width mx-auto px3 ltr">
     
-        <span class="scroll-progress-bar"></span>
-    
-
-    
-</div>
-
-
-<main class="page-container">
-
-    
-
-    <div class="page-main-content">
-
+    <div class="content index py4 ">
         
-        <div class="page-main-content-top">
-            <header class="header-wrapper">
-
-    <div class="header-content">
-        <div class="left">
-            
-            <a class="logo-title" href="/">
-                Silhouettes For You
-            </a>
-        </div>
-
-        <div class="right">
-            <div class="pc">
-                <ul class="menu-list">
-                    
-                        <li class="menu-item">
-                            <a class=""
-                               href="/"
-                            >
-                                HOME
-                            </a>
-                        </li>
-                    
-                        <li class="menu-item">
-                            <a class="active"
-                               href="/archives"
-                            >
-                                ARCHIVES
-                            </a>
-                        </li>
-                    
-                        <li class="menu-item">
-                            <a class=""
-                               href="/categories"
-                            >
-                                CATEGORIES
-                            </a>
-                        </li>
-                    
-                        <li class="menu-item">
-                            <a class=""
-                               href="/tags"
-                            >
-                                TAGS
-                            </a>
-                        </li>
-                    
-                        <li class="menu-item">
-                            <a class=""
-                               href="/lover"
-                            >
-                                LOVER
-                            </a>
-                        </li>
-                    
-                        <li class="menu-item">
-                            <a class=""
-                               href="/about"
-                            >
-                                ABOUT
-                            </a>
-                        </li>
-                    
-                    
-                        <li class="menu-item search search-popup-trigger">
-                            <i class="fas fa-search"></i>
-                        </li>
-                    
-                </ul>
-            </div>
-            <div class="mobile">
-                
-                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
-                
-                <div class="icon-item menu-bar">
-                    <div class="menu-bar-middle"></div>
-                </div>
-            </div>
-        </div>
+          <header id="header">
+  <a class="u-url u-uid" href="/">
+  
+    
+      <img id="logo" alt class="u-logo" src="/images/logo.png" />
+    
+  
+    <div id="title">
+      <h1 class="p-name">Silhouettes For You</h1>
     </div>
-
-    <div class="header-drawer">
-        <ul class="drawer-menu-list">
-            
-                <li class="drawer-menu-item flex-center">
-                    <a class=""
-                       href="/">HOME</a>
-                </li>
-            
-                <li class="drawer-menu-item flex-center">
-                    <a class="active"
-                       href="/archives">ARCHIVES</a>
-                </li>
-            
-                <li class="drawer-menu-item flex-center">
-                    <a class=""
-                       href="/categories">CATEGORIES</a>
-                </li>
-            
-                <li class="drawer-menu-item flex-center">
-                    <a class=""
-                       href="/tags">TAGS</a>
-                </li>
-            
-                <li class="drawer-menu-item flex-center">
-                    <a class=""
-                       href="/lover">LOVER</a>
-                </li>
-            
-                <li class="drawer-menu-item flex-center">
-                    <a class=""
-                       href="/about">ABOUT</a>
-                </li>
-            
-        </ul>
-    </div>
-
-    <div class="window-mask"></div>
-
+  </a>
+  <div id="nav">
+    <ul>
+      <li class="icon">
+        <a href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-2x"></i></a>
+      </li>
+      <!--
+     --><li><a href="/">Home</a></li><!--
+   --><!--
+     --><li><a href="/archives/">Writing</a></li><!--
+   --><!--
+     --><li><a href="/lover/">Lover</a></li><!--
+   --><!--
+     --><li><a href="/about/">About</a></li><!--
+   -->
+    </ul>
+  </div>
 </header>
 
-
-        </div>
-
-        <div class="page-main-content-middle">
-
-            <div class="main-content">
-
-                
-                    <div class="fade-in-down-animation">
-    <div class="archive-container ">
         
-<div class="archive-list-container">
+        <div id="archive">
+  <ul class="post-list">
     
-        <section class="archive-item">
-            <div class="archive-item-header">
-                <span class="archive-year">2024</span>
-                <span class="archive-year-post-count">[9]</span>
-            </div>
-            <ul class="article-list">
-                
-                    <li class="article-item">
-                        <a class="article-title"
-                           href="/2024/06/20/58/"
-                        >OpenGL with Xmake</a>
-                        <span class="article-date">06-20</span>
-                    </li>
-                
-                    <li class="article-item">
-                        <a class="article-title"
-                           href="/2024/06/19/57/"
-                        >Lua 问题</a>
-                        <span class="article-date">06-19</span>
-                    </li>
-                
-                    <li class="article-item">
-                        <a class="article-title"
-                           href="/2024/06/10/56/"
-                        >Unreal 基础</a>
-                        <span class="article-date">06-10</span>
-                    </li>
-                
-                    <li class="article-item">
-                        <a class="article-title"
-                           href="/2024/06/04/55/"
-                        >XLua 如何与 C# 进行交互</a>
-                        <span class="article-date">06-04</span>
-                    </li>
-                
-                    <li class="article-item">
-                        <a class="article-title"
-                           href="/2024/06/04/54/"
-                        >ProtoBuf 的基本原理</a>
-                        <span class="article-date">06-04</span>
-                    </li>
-                
-                    <li class="article-item">
-                        <a class="article-title"
-                           href="/2024/06/03/53/"
-                        >现代 C++ 基础</a>
-                        <span class="article-date">06-03</span>
-                    </li>
-                
-                    <li class="article-item">
-                        <a class="article-title"
-                           href="/2024/05/31/52/"
-                        >DIY 摆放</a>
-                        <span class="article-date">05-31</span>
-                    </li>
-                
-                    <li class="article-item">
-                        <a class="article-title"
-                           href="/2024/05/13/51/"
-                        >面经</a>
-                        <span class="article-date">05-13</span>
-                    </li>
-                
-                    <li class="article-item">
-                        <a class="article-title"
-                           href="/2024/05/09/50/"
-                        >RO 项目相关</a>
-                        <span class="article-date">05-09</span>
-                    </li>
-                
-            </ul>
-        </section>
     
-        <section class="archive-item">
-            <div class="archive-item-header">
-                <span class="archive-year">2023</span>
-                <span class="archive-year-post-count">[3]</span>
-            </div>
-            <ul class="article-list">
-                
-                    <li class="article-item">
-                        <a class="article-title"
-                           href="/2023/04/20/49/"
-                        >Life of a triangle</a>
-                        <span class="article-date">04-20</span>
-                    </li>
-                
-                    <li class="article-item">
-                        <a class="article-title"
-                           href="/2023/04/03/48/"
-                        >Lua 解释器构建：从虚拟机到编译器</a>
-                        <span class="article-date">04-03</span>
-                    </li>
-                
-                    <li class="article-item">
-                        <a class="article-title"
-                           href="/2023/04/03/47/"
-                        >Unity 技术美术 - Shader 篇</a>
-                        <span class="article-date">04-03</span>
-                    </li>
-                
-            </ul>
-        </section>
     
-        <section class="archive-item">
-            <div class="archive-item-header">
-                <span class="archive-year">2022</span>
-                <span class="archive-year-post-count">[17]</span>
-            </div>
-            <ul class="article-list">
-                
-                    <li class="article-item">
-                        <a class="article-title"
-                           href="/2022/11/25/46/"
-                        >Unity Shader</a>
-                        <span class="article-date">11-25</span>
-                    </li>
-                
-                    <li class="article-item">
-                        <a class="article-title"
-                           href="/2022/08/19/45/"
-                        >Unity 面试</a>
-                        <span class="article-date">08-19</span>
-                    </li>
-                
-                    <li class="article-item">
-                        <a class="article-title"
-                           href="/2022/08/15/44/"
-                        >Lua 小知识（转载）</a>
-                        <span class="article-date">08-15</span>
-                    </li>
-                
-                    <li class="article-item">
-                        <a class="article-title"
-                           href="/2022/08/13/43/"
-                        >游戏体系</a>
-                        <span class="article-date">08-13</span>
-                    </li>
-                
-                    <li class="article-item">
-                        <a class="article-title"
-                           href="/2022/08/06/42/"
-                        >Shader Variant</a>
-                        <span class="article-date">08-06</span>
-                    </li>
-                
-                    <li class="article-item">
-                        <a class="article-title"
-                           href="/2022/07/27/41/"
-                        >尝试 Visual Code 调试 Lua</a>
-                        <span class="article-date">07-27</span>
-                    </li>
-                
-                    <li class="article-item">
-                        <a class="article-title"
-                           href="/2022/03/08/40/"
-                        >破解 GitKraken</a>
-                        <span class="article-date">03-08</span>
-                    </li>
-                
-                    <li class="article-item">
-                        <a class="article-title"
-                           href="/2022/03/07/39/"
-                        >领域驱动设计</a>
-                        <span class="article-date">03-07</span>
-                    </li>
-                
-                    <li class="article-item">
-                        <a class="article-title"
-                           href="/2022/02/22/38/"
-                        >C++17 新特性</a>
-                        <span class="article-date">02-22</span>
-                    </li>
-                
-                    <li class="article-item">
-                        <a class="article-title"
-                           href="/2022/02/21/37/"
-                        >老照片</a>
-                        <span class="article-date">02-21</span>
-                    </li>
-                
-                    <li class="article-item">
-                        <a class="article-title"
-                           href="/2022/02/09/36/"
-                        >Git 常用命令</a>
-                        <span class="article-date">02-09</span>
-                    </li>
-                
-                    <li class="article-item">
-                        <a class="article-title"
-                           href="/2022/02/09/35/"
-                        >C++14 新特性</a>
-                        <span class="article-date">02-09</span>
-                    </li>
-                
-                    <li class="article-item">
-                        <a class="article-title"
-                           href="/2022/01/25/34/"
-                        >Perforce 学习</a>
-                        <span class="article-date">01-25</span>
-                    </li>
-                
-                    <li class="article-item">
-                        <a class="article-title"
-                           href="/2022/01/14/33/"
-                        >Lua API</a>
-                        <span class="article-date">01-14</span>
-                    </li>
-                
-                    <li class="article-item">
-                        <a class="article-title"
-                           href="/2022/01/13/32/"
-                        >C++11 新特性</a>
-                        <span class="article-date">01-13</span>
-                    </li>
-                
-                    <li class="article-item">
-                        <a class="article-title"
-                           href="/2022/01/12/31/"
-                        >tolua 原理解析</a>
-                        <span class="article-date">01-12</span>
-                    </li>
-                
-                    <li class="article-item">
-                        <a class="article-title"
-                           href="/2022/01/04/30/"
-                        >激活 Typora</a>
-                        <span class="article-date">01-04</span>
-                    </li>
-                
-            </ul>
-        </section>
     
-        <section class="archive-item">
-            <div class="archive-item-header">
-                <span class="archive-year">2021</span>
-                <span class="archive-year-post-count">[29]</span>
-            </div>
-            <ul class="article-list">
-                
-                    <li class="article-item">
-                        <a class="article-title"
-                           href="/2021/12/14/29/"
-                        >Windows Terminal 配置</a>
-                        <span class="article-date">12-14</span>
-                    </li>
-                
-                    <li class="article-item">
-                        <a class="article-title"
-                           href="/2021/12/10/28/"
-                        >实时阴影</a>
-                        <span class="article-date">12-10</span>
-                    </li>
-                
-                    <li class="article-item">
-                        <a class="article-title"
-                           href="/2021/12/09/27/"
-                        >在 Windows 中将 VSCode 添加至右键菜单</a>
-                        <span class="article-date">12-09</span>
-                    </li>
-                
-                    <li class="article-item">
-                        <a class="article-title"
-                           href="/2021/12/07/26/"
-                        >树深时见鹿，溪午不闻钟</a>
-                        <span class="article-date">12-07</span>
-                    </li>
-                
-                    <li class="article-item">
-                        <a class="article-title"
-                           href="/2021/12/02/25/"
-                        >Path Tracing</a>
-                        <span class="article-date">12-02</span>
-                    </li>
-                
-                    <li class="article-item">
-                        <a class="article-title"
-                           href="/2021/11/25/24/"
-                        >以自然之道 养自然之身</a>
-                        <span class="article-date">11-25</span>
-                    </li>
-                
-                    <li class="article-item">
-                        <a class="article-title"
-                           href="/2021/11/24/23/"
-                        >Accelerate Ray Tracing</a>
-                        <span class="article-date">11-24</span>
-                    </li>
-                
-                    <li class="article-item">
-                        <a class="article-title"
-                           href="/2021/11/24/22/"
-                        >时域和频域</a>
-                        <span class="article-date">11-24</span>
-                    </li>
-                
-                    <li class="article-item">
-                        <a class="article-title"
-                           href="/2021/11/22/21/"
-                        >Whitted Style Ray Tracing</a>
-                        <span class="article-date">11-22</span>
-                    </li>
-                
-                    <li class="article-item">
-                        <a class="article-title"
-                           href="/2021/11/22/20/"
-                        >Bézier Curve</a>
-                        <span class="article-date">11-22</span>
-                    </li>
-                
-                    <li class="article-item">
-                        <a class="article-title"
-                           href="/2021/11/22/19/"
-                        >Latex 公式</a>
-                        <span class="article-date">11-22</span>
-                    </li>
-                
-                    <li class="article-item">
-                        <a class="article-title"
-                           href="/2021/11/22/18/"
-                        >Vulkan Note</a>
-                        <span class="article-date">11-22</span>
-                    </li>
-                
-                    <li class="article-item">
-                        <a class="article-title"
-                           href="/2021/11/22/17/"
-                        >红黑树</a>
-                        <span class="article-date">11-22</span>
-                    </li>
-                
-                    <li class="article-item">
-                        <a class="article-title"
-                           href="/2021/11/22/16/"
-                        >Lua GC 机制</a>
-                        <span class="article-date">11-22</span>
-                    </li>
-                
-                    <li class="article-item">
-                        <a class="article-title"
-                           href="/2021/11/17/15/"
-                        >包围盒</a>
-                        <span class="article-date">11-17</span>
-                    </li>
-                
-                    <li class="article-item">
-                        <a class="article-title"
-                           href="/2021/11/15/14/"
-                        >蔬食戏书</a>
-                        <span class="article-date">11-15</span>
-                    </li>
-                
-                    <li class="article-item">
-                        <a class="article-title"
-                           href="/2021/11/15/13/"
-                        >B 站学习资料</a>
-                        <span class="article-date">11-15</span>
-                    </li>
-                
-                    <li class="article-item">
-                        <a class="article-title"
-                           href="/2021/11/12/12/"
-                        >各种数据结构及其底层实现</a>
-                        <span class="article-date">11-12</span>
-                    </li>
-                
-                    <li class="article-item">
-                        <a class="article-title"
-                           href="/2021/11/12/11/"
-                        >顶点着色器和片元着色器</a>
-                        <span class="article-date">11-12</span>
-                    </li>
-                
-                    <li class="article-item">
-                        <a class="article-title"
-                           href="/2021/11/12/10/"
-                        >Pipeline and Shading</a>
-                        <span class="article-date">11-12</span>
-                    </li>
-                
-                    <li class="article-item">
-                        <a class="article-title"
-                           href="/2021/11/12/9/"
-                        >Linux 内核 --offsetof 和 container_of</a>
-                        <span class="article-date">11-12</span>
-                    </li>
-                
-                    <li class="article-item">
-                        <a class="article-title"
-                           href="/2021/11/09/8/"
-                        >Triangles and Z-Buffer</a>
-                        <span class="article-date">11-09</span>
-                    </li>
-                
-                    <li class="article-item">
-                        <a class="article-title"
-                           href="/2021/11/08/7/"
-                        >高质量实时渲染</a>
-                        <span class="article-date">11-08</span>
-                    </li>
-                
-                    <li class="article-item">
-                        <a class="article-title"
-                           href="/2021/11/08/6/"
-                        >哈希表</a>
-                        <span class="article-date">11-08</span>
-                    </li>
-                
-                    <li class="article-item">
-                        <a class="article-title"
-                           href="/2021/11/08/5/"
-                        >C++ 知识</a>
-                        <span class="article-date">11-08</span>
-                    </li>
-                
-                    <li class="article-item">
-                        <a class="article-title"
-                           href="/2021/11/05/4/"
-                        >渲染管线</a>
-                        <span class="article-date">11-05</span>
-                    </li>
-                
-                    <li class="article-item">
-                        <a class="article-title"
-                           href="/2021/11/05/3/"
-                        >日常开发笔记</a>
-                        <span class="article-date">11-05</span>
-                    </li>
-                
-                    <li class="article-item">
-                        <a class="article-title"
-                           href="/2021/11/04/2/"
-                        >OpenGL 基础</a>
-                        <span class="article-date">11-04</span>
-                    </li>
-                
-                    <li class="article-item">
-                        <a class="article-title"
-                           href="/2021/11/04/1/"
-                        >现代图形学入门</a>
-                        <span class="article-date">11-04</span>
-                    </li>
-                
-            </ul>
-        </section>
-    
-</div>
-
+      
+      
+      
+      
+        <li class="post-year"><h2>2024</h2></li>
+      
+      <li class="post-item">
+        
+    <div class="meta">
+      
+        
+          <time datetime="2024-07-01T13:51:03.278Z" class="dt-updated" itemprop="dateModified">2024-07-01</time>
+        
+      
     </div>
-</div>
 
-                
-            </div>
 
-        </div>
+        <span>
+    
+        <a class="" href="/2021/11/05/3/">日常开发笔记</a>
+    
 
-        <div class="page-main-content-bottom">
-            <footer class="footer">
-    <div class="info-container">
-        <div class="copyright-info info-item">
-            &copy;
-            
-              <span>2020</span>
-              -
-            
-            2024&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">xiao ming</a>
-        </div>
+
+</span>
+      </li>
+    
+      
+      
+      
+      
+      <li class="post-item">
         
+    <div class="meta">
+      
         
+          <time datetime="2024-05-14T14:39:14.626Z" class="dt-updated" itemprop="dateModified">2024-05-14</time>
         
+      
+    </div>
+
+
+        <span>
+    
+        <a class="" href="/2021/11/04/2/">OpenGL 基础</a>
+    
+
+
+</span>
+      </li>
+    
+      
+      
+      
+      
+        <li class="post-year"><h2>2023</h2></li>
+      
+      <li class="post-item">
+        
+    <div class="meta">
+      
+        
+          <time datetime="2023-12-10T07:38:09.509Z" class="dt-updated" itemprop="dateModified">2023-12-10</time>
+        
+      
+    </div>
+
+
+        <span>
+    
+        <a class="" href="/2021/11/12/9/">Linux 内核 --offsetof 和 container_of</a>
+    
+
+
+</span>
+      </li>
+    
+      
+      
+      
+      
+      <li class="post-item">
+        
+    <div class="meta">
+      
+        
+          <time datetime="2023-12-10T07:38:09.503Z" class="dt-updated" itemprop="dateModified">2023-12-10</time>
+        
+      
+    </div>
+
+
+        <span>
+    
+        <a class="" href="/2021/11/09/8/">Triangles and Z-Buffer</a>
+    
+
+
+</span>
+      </li>
+    
+      
+      
+      
+      
+      <li class="post-item">
+        
+    <div class="meta">
+      
+        
+          <time datetime="2023-12-10T07:38:09.413Z" class="dt-updated" itemprop="dateModified">2023-12-10</time>
+        
+      
+    </div>
+
+
+        <span>
+    
+        <a class="" href="/2021/11/08/7/">高质量实时渲染</a>
+    
+
+
+</span>
+      </li>
+    
+      
+      
+      
+      
+      <li class="post-item">
+        
+    <div class="meta">
+      
+        
+          <time datetime="2023-12-10T07:38:09.412Z" class="dt-updated" itemprop="dateModified">2023-12-10</time>
+        
+      
+    </div>
+
+
+        <span>
+    
+        <a class="" href="/2021/11/08/6/">哈希表</a>
+    
+
+
+</span>
+      </li>
+    
+      
+      
+      
+      
+      <li class="post-item">
+        
+    <div class="meta">
+      
+        
+          <time datetime="2023-12-10T07:38:09.410Z" class="dt-updated" itemprop="dateModified">2023-12-10</time>
+        
+      
+    </div>
+
+
+        <span>
+    
+        <a class="" href="/2021/11/08/5/">C++ 知识</a>
+    
+
+
+</span>
+      </li>
+    
+      
+      
+      
+      
+      <li class="post-item">
+        
+    <div class="meta">
+      
+        
+          <time datetime="2023-12-10T07:38:08.744Z" class="dt-updated" itemprop="dateModified">2023-12-10</time>
+        
+      
+    </div>
+
+
+        <span>
+    
+        <a class="" href="/2021/11/05/4/">渲染管线</a>
+    
+
+
+</span>
+      </li>
+    
+      
+      
+      
+      
+      <li class="post-item">
+        
+    <div class="meta">
+      
+        
+          <time datetime="2023-12-10T07:38:05.463Z" class="dt-updated" itemprop="dateModified">2023-12-10</time>
+        
+      
+    </div>
+
+
+        <span>
+    
+        <a class="" href="/2021/11/22/18/">Vulkan Note</a>
+    
+
+
+</span>
+      </li>
+    
+      
+      
+      
+      
+      <li class="post-item">
+        
+    <div class="meta">
+      
+        
+          <time datetime="2023-12-10T07:38:05.460Z" class="dt-updated" itemprop="dateModified">2023-12-10</time>
+        
+      
+    </div>
+
+
+        <span>
+    
+        <a class="" href="/2021/11/22/17/">红黑树</a>
+    
+
+
+</span>
+      </li>
+    
+      
+      
+      
+      
+      <li class="post-item">
+        
+    <div class="meta">
+      
+        
+          <time datetime="2023-12-10T07:38:05.460Z" class="dt-updated" itemprop="dateModified">2023-12-10</time>
+        
+      
+    </div>
+
+
+        <span>
+    
+        <a class="" href="/2021/11/22/16/">Lua GC 机制</a>
+    
+
+
+</span>
+      </li>
+    
+      
+      
+      
+      
+      <li class="post-item">
+        
+    <div class="meta">
+      
+        
+          <time datetime="2023-12-10T07:38:05.460Z" class="dt-updated" itemprop="dateModified">2023-12-10</time>
+        
+      
+    </div>
+
+
+        <span>
+    
+        <a class="" href="/2021/11/17/15/">包围盒</a>
+    
+
+
+</span>
+      </li>
+    
+      
+      
+      
+      
+      <li class="post-item">
+        
+    <div class="meta">
+      
+        
+          <time datetime="2023-12-10T07:38:04.473Z" class="dt-updated" itemprop="dateModified">2023-12-10</time>
+        
+      
+    </div>
+
+
+        <span>
+    
+        <a class="" href="/2021/11/15/14/">蔬食戏书</a>
+    
+
+
+</span>
+      </li>
+    
+      
+      
+      
+      
+      <li class="post-item">
+        
+    <div class="meta">
+      
+        
+          <time datetime="2023-12-10T07:38:04.473Z" class="dt-updated" itemprop="dateModified">2023-12-10</time>
+        
+      
+    </div>
+
+
+        <span>
+    
+        <a class="" href="/2021/11/15/13/">B 站学习资料</a>
+    
+
+
+</span>
+      </li>
+    
+      
+      
+      
+      
+      <li class="post-item">
+        
+    <div class="meta">
+      
+        
+          <time datetime="2023-12-10T07:38:04.473Z" class="dt-updated" itemprop="dateModified">2023-12-10</time>
+        
+      
+    </div>
+
+
+        <span>
+    
+        <a class="" href="/2021/11/12/12/">各种数据结构及其底层实现</a>
+    
+
+
+</span>
+      </li>
+    
+      
+      
+      
+      
+      <li class="post-item">
+        
+    <div class="meta">
+      
+        
+          <time datetime="2023-12-10T07:38:04.469Z" class="dt-updated" itemprop="dateModified">2023-12-10</time>
+        
+      
+    </div>
+
+
+        <span>
+    
+        <a class="" href="/2021/11/12/11/">顶点着色器和片元着色器</a>
+    
+
+
+</span>
+      </li>
+    
+      
+      
+      
+      
+      <li class="post-item">
+        
+    <div class="meta">
+      
+        
+          <time datetime="2023-12-10T07:38:04.461Z" class="dt-updated" itemprop="dateModified">2023-12-10</time>
+        
+      
+    </div>
+
+
+        <span>
+    
+        <a class="" href="/2021/11/12/10/">Pipeline and Shading</a>
+    
+
+
+</span>
+      </li>
+    
+      
+      
+      
+      
+      <li class="post-item">
+        
+    <div class="meta">
+      
+        
+          <time datetime="2023-12-10T07:38:04.428Z" class="dt-updated" itemprop="dateModified">2023-12-10</time>
+        
+      
+    </div>
+
+
+        <span>
+    
+        <a class="" href="/2021/11/04/1/">现代图形学入门</a>
+    
+
+
+</span>
+      </li>
+    
+  </ul>
+  
+    <div class="pagination">
+        
+            <a href="/archives/page/2/"><i class="fa-solid fa-angle-left"></i></a>
+        
+        <span class="page-number">Page 3 of 3</span>
         
     </div>
+
+
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2016-2024
+    Xiaoming
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     --><!--
+       --><li><a href="/lover/">Lover</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
 </footer>
 
-        </div>
     </div>
-
-    
-
-    <div class="right-bottom-side-tools">
-        <div class="side-tools-container">
-    <ul class="side-tools-list">
-        <li class="tools-item tool-font-adjust-plus flex-center">
-            <i class="fas fa-search-plus"></i>
-        </li>
-
-        <li class="tools-item tool-font-adjust-minus flex-center">
-            <i class="fas fa-search-minus"></i>
-        </li>
-
-        <li class="tools-item tool-expand-width flex-center">
-            <i class="fas fa-arrows-alt-h"></i>
-        </li>
-
-        <li class="tools-item tool-dark-light-toggle flex-center">
-            <i class="fas fa-moon"></i>
-        </li>
-
-        <!-- rss -->
-        
-
-        
-            <li class="tools-item tool-scroll-to-top flex-center">
-                <i class="fas fa-arrow-up"></i>
-            </li>
-        
-
-        <li class="tools-item tool-scroll-to-bottom flex-center">
-            <i class="fas fa-arrow-down"></i>
-        </li>
-    </ul>
-
-    <ul class="exposed-tools-list">
-        <li class="tools-item tool-toggle-show flex-center">
-            <i class="fas fa-cog fa-spin"></i>
-        </li>
-        
-    </ul>
-
-</div>
-
-    </div>
-
-    
-
-    <div class="image-viewer-container">
-    <img src="">
-</div>
-
-
-    
-        <div class="search-pop-overlay">
-    <div class="popup search-popup">
-        <div class="search-header">
-          <span class="search-input-field-pre">
-            <i class="fas fa-keyboard"></i>
-          </span>
-            <div class="search-input-container">
-                <input autocomplete="off"
-                       autocorrect="off"
-                       autocapitalize="off"
-                       placeholder="Search..."
-                       spellcheck="false"
-                       type="search"
-                       class="search-input"
-                >
-            </div>
-            <span class="popup-btn-close">
-                <i class="fas fa-times"></i>
-            </span>
-        </div>
-        <div id="search-result">
-            <div id="no-result">
-                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
-            </div>
-        </div>
-    </div>
-</div>
-
-    
-
-</main>
+    <!-- styles -->
 
 
 
-<script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/utils.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/main.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/header-shrink.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/back2top.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/dark-light-toggle.js"></script>
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
 
 
-    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/local-search.js"></script>
+    <!-- jquery -->
 
-
-
-    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/code-copy.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
 
 
 
 
-<div class="post-scripts">
-    
-</div>
+<!-- clipboard -->
 
 
+<script src="/js/main.js"></script>
 
-<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7}});</script></body>
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"left","width":150,"height":300},"mobile":{"show":false},"react":{"opacity":0.7}});</script></body>
 </html>
