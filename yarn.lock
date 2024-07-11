@@ -2057,6 +2057,11 @@ hexo-admonition@^1.1.2:
   dependencies:
     markdown-it "^9.1.0"
 
+hexo-analytics@^0.1.1:
+  version "0.1.1"
+  resolved "https://registry.npmjs.org/hexo-analytics/-/hexo-analytics-0.1.1.tgz"
+  integrity sha512-WJK/HowOOpmR8MDQN8L42+5635qYRqtVPn64xPCd3mSN0HYJ+9HbizjoDUDb2ll3Zlb8MLqix8GF5N7fgVbK1w==
+
 "hexo-asset-image@github:CodeFalling/hexo-asset-image":
   version "0.0.5"
   resolved "git+ssh://git@github.com/CodeFalling/hexo-asset-image.git#3c114cf0c0343ab28469635085b225fcae7fb9d3"
