@@ -45,6 +45,7 @@
     "hexo-renderer-stylus": "^2.1.0",
     "hexo-server": "^2.0.0",
     "hexo-spoiler": "^1.7.3",
+    "hexo-submit-urls-to-search-engine": "^2.1.0",
     "hexo-tag-autogallery": "^0.0.1",
     "hexo-tag-color-block": "^0.0.3",
     "hexo-tag-common": "^0.0.5",
