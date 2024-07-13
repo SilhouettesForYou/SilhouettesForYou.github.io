@@ -1,75 +1,133 @@
+
+
 <!DOCTYPE html>
-<html lang=en>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
 <head><!-- hexo injector head_begin start -->
 <link rel="stylesheet" href="/css/bilicard.css">
 <link href="https://cdn.jsdelivr.net/npm/hexo-tag-common@0.0.5/css/index.css" rel="stylesheet"/><!-- hexo injector head_begin end -->
-    <!-- so meta -->
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="HandheldFriendly" content="True">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/breaking-bad.png">
+  <link rel="icon" href="/img/breaking-bad.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Xiaoming">
+  <meta name="keywords" content="">
+  
     <meta name="description" content="数组元素的插入与删除 table.insert 与table.remove方法可以从数组中间的位置插入或移除一个元素。进行此操作时，lua 核心会将插入位置开始的所有元素  逐一  向后移动一位（移除元素亦然）。因此以下代码： 1234local t &#x3D; {}for i &#x3D; 1, 10000 do    table.insert(t, 1, i)end  会移动元素  次。 一般的解决方法：  如">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Lua 小知识（转载）">
+<meta property="og:title" content="Lua 小知识">
 <meta property="og:url" content="https://silhouettesforyou.github.io/2022/08/15/44/index.html">
 <meta property="og:site_name" content="Silhouettes For You">
 <meta property="og:description" content="数组元素的插入与删除 table.insert 与table.remove方法可以从数组中间的位置插入或移除一个元素。进行此操作时，lua 核心会将插入位置开始的所有元素  逐一  向后移动一位（移除元素亦然）。因此以下代码： 1234local t &#x3D; {}for i &#x3D; 1, 10000 do    table.insert(t, 1, i)end  会移动元素  次。 一般的解决方法：  如">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://silhouettesforyou.github.io/2022/08/15/44/lua-garbage-collection.png">
 <meta property="article:published_time" content="2022-08-15T08:30:15.000Z">
-<meta property="article:modified_time" content="2023-12-10T07:38:09.384Z">
+<meta property="article:modified_time" content="2024-07-13T01:45:26.343Z">
 <meta property="article:author" content="Xiaoming">
 <meta property="article:tag" content="lua">
-<meta name="twitter:card" content="summary">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://silhouettesforyou.github.io/2022/08/15/44/lua-garbage-collection.png">
-    
-    
-      
-        
-          <link rel="shortcut icon" href="/images/favicon.ico">
-        
-      
-      
-        
-          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
-        
-      
-      
-        
-          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
-        
-      
-    
-    <!-- title -->
-    <title>Lua 小知识（转载）</title>
-    <!-- async scripts -->
-    <!-- Google Analytics -->
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>Lua 小知识 - Silhouettes For You</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
 
-    <!-- Umami Analytics -->
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
 
 
-    <!-- styles -->
-    
-<link rel="stylesheet" href="/css/style.css">
 
-    <!-- persian styles -->
-    
-    <!-- rss -->
-    
-    
-	<!-- mathjax -->
-	
-		<script type="text/x-mathjax-config">
-		  MathJax.Hub.Config({
-			tex2jax: {
-			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
-			  inlineMath: [['$','$']]
-			}
-		  });
-		</script>
-		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
-	
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"silhouettesforyou.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"62be422732dc4e6f91e7fa199aa1f3f2","google":{"measurement_id":"G-B260B2ZWXQ"},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?62be422732dc4e6f91e7fa199aa1f3f2";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=G-B260B2ZWXQ", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', 'G-B260B2ZWXQ');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
 <style type="text/css">
 .spoiler {
   display: inline;
@@ -100,7 +158,8 @@ p.spoiler {
   color: black;
   background-color: black;
   text-shadow: none;
-}</style><meta name="generator" content="Hexo 5.4.2"><style>mjx-container[jax="SVG"] {
+}</style><meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/atom.xml" title="Silhouettes For You" type="application/atom+xml">
+<style>mjx-container[jax="SVG"] {
   direction: ltr;
 }
 
@@ -212,143 +271,252 @@ mjx-container[display="true"] {
 mjx-container[display="true"] + br {
   display: none;
 }
-</style><link rel="alternate" href="/atom.xml" title="Silhouettes For You" type="application/atom+xml">
-</head>
-
-<body class="max-width mx-auto px3 ltr">
-    
-      <div id="header-post">
-  <a id="menu-icon" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
-  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
-  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
-  <span id="menu">
-    <span id="nav">
-      <ul>
-        <!--
-       --><li><a href="/">Home</a></li><!--
-     --><!--
-       --><li><a href="/archives/">Writing</a></li><!--
-     --><!--
-       --><li><a href="/lover/">Lover</a></li><!--
-     --><!--
-       --><li><a href="/about/">About</a></li><!--
-     -->
-      </ul>
-    </span>
-    <br/>
-    <span id="actions">
-      <ul>
-        
-        <li><a class="icon" aria-label="Previous post" href="/2022/08/19/45/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
-        
-        
-        <li><a class="icon" aria-label="Next post" href="/2022/08/13/43/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
-        
-        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
-        <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
-      </ul>
-      <span id="i-prev" class="info" style="display:none;">Previous post</span>
-      <span id="i-next" class="info" style="display:none;">Next post</span>
-      <span id="i-top" class="info" style="display:none;">Back to top</span>
-      <span id="i-share" class="info" style="display:none;">Share post</span>
-    </span>
-    <br/>
-    <div id="share" style="display: none">
-      <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://silhouettesforyou.github.io/2022/08/15/44/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://silhouettesforyou.github.io/2022/08/15/44/&text=Lua 小知识（转载）"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://silhouettesforyou.github.io/2022/08/15/44/&title=Lua 小知识（转载）"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://silhouettesforyou.github.io/2022/08/15/44/&is_video=false&description=Lua 小知识（转载）"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=Lua 小知识（转载）&body=Check out this article: https://silhouettesforyou.github.io/2022/08/15/44/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://silhouettesforyou.github.io/2022/08/15/44/&title=Lua 小知识（转载）"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://silhouettesforyou.github.io/2022/08/15/44/&title=Lua 小知识（转载）"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://silhouettesforyou.github.io/2022/08/15/44/&title=Lua 小知识（转载）"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://silhouettesforyou.github.io/2022/08/15/44/&title=Lua 小知识（转载）"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://silhouettesforyou.github.io/2022/08/15/44/&name=Lua 小知识（转载）&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://silhouettesforyou.github.io/2022/08/15/44/&t=Lua 小知识（转载）"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
-</ul>
-
-    </div>
-    
-    
-      <div id="toc">
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E7%BB%84%E5%85%83%E7%B4%A0%E7%9A%84%E6%8F%92%E5%85%A5%E4%B8%8E%E5%88%A0%E9%99%A4"><span class="toc-number">1.</span> <span class="toc-text">数组元素的插入与删除 </span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Try-Catch"><span class="toc-number">2.</span> <span class="toc-text">Try-Catch</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A4%E7%A9%BA"><span class="toc-number">3.</span> <span class="toc-text">判空 </span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">3.1.</span> <span class="toc-text">总结</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8F%90%E5%8D%87%E6%80%A7%E8%83%BD%E7%9A%84%E5%86%99%E6%B3%95"><span class="toc-number">4.</span> <span class="toc-text">提升性能的写法 </span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E4%BA%9B%E5%9D%91"><span class="toc-number">5.</span> <span class="toc-text">一些坑</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8B%BC%E6%8E%A5%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="toc-number">6.</span> <span class="toc-text">拼接字符串</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A9%BA%EF%BC%88none%EF%BC%89%E4%B8%8E%20nil"><span class="toc-number">7.</span> <span class="toc-text">空（none）与 nil</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8D%E5%AE%9A%E5%8F%82"><span class="toc-number">8.</span> <span class="toc-text">不定参 </span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%8E%AF%E5%A2%83%E4%B8%8E%E6%B2%99%E7%9B%92"><span class="toc-number">9.</span> <span class="toc-text">环境与沙盒 </span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6"><span class="toc-number">10.</span> <span class="toc-text">垃圾回收 </span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%A2%9E%E9%87%8F%E5%9B%9E%E6%94%B6"><span class="toc-number">10.1.</span> <span class="toc-text">增量回收 </span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%86%99%E5%B1%8F%E9%9A%9C"><span class="toc-number">10.2.</span> <span class="toc-text">写屏障 </span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%86%8D%E6%AC%A1%E7%81%B0%E8%89%B2"><span class="toc-number">10.3.</span> <span class="toc-text">再次灰色 </span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BC%B1%E5%BC%95%E7%94%A8"><span class="toc-number">10.4.</span> <span class="toc-text">弱引用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B8%85%E7%90%86%E5%BC%B1%E8%A1%A8"><span class="toc-number">10.5.</span> <span class="toc-text">清理弱表 </span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BB%88%E7%BB%93%E5%99%A8%EF%BC%88%E8%A7%A3%E6%9E%90%E5%99%A8%EF%BC%89"><span class="toc-number">10.6.</span> <span class="toc-text">终结器（解析器）</span></a></li></ol></li></ol>
-      </div>
-    
-  </span>
-</div>
-
-    
-    <div class="content index py4 ">
-        
-        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
-  <header>
-    
-    <h1 class="posttitle p-name" itemprop="name headline">
-        Lua 小知识（转载）
-    </h1>
+</style></head>
 
 
-
-    <div class="meta">
-      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <span class="p-name" itemprop="name">Xiaoming</span>
-      </span>
-      
-    <div class="postdate">
-      
-        <time datetime="2022-08-15T08:30:15.000Z" class="dt-published" itemprop="datePublished">2022-08-15</time>
-        
-        (Updated: <time datetime="2023-12-10T07:38:09.384Z" class="dt-updated" itemprop="dateModified">2023-12-10</time>)
-        
-      
-    </div>
-
-
-      
-    <div class="article-category">
-        <i class="fa-solid fa-archive"></i>
-        <a class="category-link" href="/categories/%E6%97%A5%E5%B8%B8/">日常</a>
-    </div>
-
-
-      
-    <div class="article-tag">
-        <i class="fa-solid fa-tag"></i>
-        <a class="p-category" href="/tags/lua/" rel="tag">lua</a>
-    </div>
-
-
-    </div>
-  </header>
+<body>
   
 
-  <div class="content e-content" itemprop="articleBody">
-    <link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h3 id="数组元素的插入与删除"><a href="# 数组元素的插入与删除" class="headerlink" title="数组元素的插入与删除"></a>数组元素的插入与删除 </h3><p><code>table.insert</code> 与<code>table.remove</code>方法可以从数组中间的位置插入或移除一个元素。进行此操作时，lua 核心会将插入位置开始的所有元素 <strong> 逐一 </strong> 向后移动一位（移除元素亦然）。因此以下代码：</p>
-<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">local</span> t = {}</span><br><span class="line"><span class="keyword">for</span> i = <span class="number">1</span>, <span class="number">10000</span> <span class="keyword">do</span></span><br><span class="line">    <span class="built_in">table</span>.<span class="built_in">insert</span>(t, <span class="number">1</span>, i)</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Silhouettes For You</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Tags</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/lover/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>Lover</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/post.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Lua 小知识"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-08-15 16:30" pubdate>
+          August 15, 2022 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          7.1k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          60 mins
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> views
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Lua 小知识</h1>
+            
+              <p id="updated-time" class="note note-info" style="display: none">
+                
+                  
+                    Last updated on 2024-07-13T09:45:26+08:00
+                  
+                  
+
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h3 id="数组元素的插入与删除"><a href="# 数组元素的插入与删除" class="headerlink" title="数组元素的插入与删除"></a>数组元素的插入与删除 </h3><p><code>table.insert</code> 与<code>table.remove</code>方法可以从数组中间的位置插入或移除一个元素。进行此操作时，lua 核心会将插入位置开始的所有元素 <strong> 逐一 </strong> 向后移动一位（移除元素亦然）。因此以下代码：</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs lua"><span class="hljs-keyword">local</span> t = {}<br><span class="hljs-keyword">for</span> i = <span class="hljs-number">1</span>, <span class="hljs-number">10000</span> <span class="hljs-keyword">do</span><br>    <span class="hljs-built_in">table</span>.<span class="hljs-built_in">insert</span>(t, <span class="hljs-number">1</span>, i)<br><span class="hljs-keyword">end</span><br></code></pre></td></tr></table></figure>
 
 <p>会移动元素 <mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -1.552ex;" xmlns="http://www.w3.org/2000/svg" width="15.073ex" height="4.588ex" role="img" focusable="false" viewbox="0 -1342 6662.4 2028"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mstyle"><g data-mml-node="mfrac"><g data-mml-node="mrow" transform="translate(220,676)"><g data-mml-node="mn"><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"/><path data-c="30" d="M96 585Q152 666 249 666Q297 666 345 640T423 548Q460 465 460 320Q460 165 417 83Q397 41 362 16T301 -15T250 -22Q224 -22 198 -16T137 16T82 83Q39 165 39 320Q39 494 96 585ZM321 597Q291 629 250 629Q208 629 178 597Q153 571 145 525T137 333Q137 175 145 125T181 46Q209 16 250 16Q290 16 318 46Q347 76 354 130T362 333Q362 478 354 524T321 597Z" transform="translate(500,0)"/><path data-c="30" d="M96 585Q152 666 249 666Q297 666 345 640T423 548Q460 465 460 320Q460 165 417 83Q397 41 362 16T301 -15T250 -22Q224 -22 198 -16T137 16T82 83Q39 165 39 320Q39 494 96 585ZM321 597Q291 629 250 629Q208 629 178 597Q153 571 145 525T137 333Q137 175 145 125T181 46Q209 16 250 16Q290 16 318 46Q347 76 354 130T362 333Q362 478 354 524T321 597Z" transform="translate(1000,0)"/><path data-c="30" d="M96 585Q152 666 249 666Q297 666 345 640T423 548Q460 465 460 320Q460 165 417 83Q397 41 362 16T301 -15T250 -22Q224 -22 198 -16T137 16T82 83Q39 165 39 320Q39 494 96 585ZM321 597Q291 629 250 629Q208 629 178 597Q153 571 145 525T137 333Q137 175 145 125T181 46Q209 16 250 16Q290 16 318 46Q347 76 354 130T362 333Q362 478 354 524T321 597Z" transform="translate(1500,0)"/><path data-c="30" d="M96 585Q152 666 249 666Q297 666 345 640T423 548Q460 465 460 320Q460 165 417 83Q397 41 362 16T301 -15T250 -22Q224 -22 198 -16T137 16T82 83Q39 165 39 320Q39 494 96 585ZM321 597Q291 629 250 629Q208 629 178 597Q153 571 145 525T137 333Q137 175 145 125T181 46Q209 16 250 16Q290 16 318 46Q347 76 354 130T362 333Q362 478 354 524T321 597Z" transform="translate(2000,0)"/></g><g data-mml-node="mo" transform="translate(2722.2,0)"><path data-c="D7" d="M630 29Q630 9 609 9Q604 9 587 25T493 118L389 222L284 117Q178 13 175 11Q171 9 168 9Q160 9 154 15T147 29Q147 36 161 51T255 146L359 250L255 354Q174 435 161 449T147 471Q147 480 153 485T168 490Q173 490 175 489Q178 487 284 383L389 278L493 382Q570 459 587 475T609 491Q630 491 630 471Q630 464 620 453T522 355L418 250L522 145Q606 61 618 48T630 29Z"/></g><g data-mml-node="mn" transform="translate(3722.4,0)"><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"/><path data-c="30" d="M96 585Q152 666 249 666Q297 666 345 640T423 548Q460 465 460 320Q460 165 417 83Q397 41 362 16T301 -15T250 -22Q224 -22 198 -16T137 16T82 83Q39 165 39 320Q39 494 96 585ZM321 597Q291 629 250 629Q208 629 178 597Q153 571 145 525T137 333Q137 175 145 125T181 46Q209 16 250 16Q290 16 318 46Q347 76 354 130T362 333Q362 478 354 524T321 597Z" transform="translate(500,0)"/><path data-c="30" d="M96 585Q152 666 249 666Q297 666 345 640T423 548Q460 465 460 320Q460 165 417 83Q397 41 362 16T301 -15T250 -22Q224 -22 198 -16T137 16T82 83Q39 165 39 320Q39 494 96 585ZM321 597Q291 629 250 629Q208 629 178 597Q153 571 145 525T137 333Q137 175 145 125T181 46Q209 16 250 16Q290 16 318 46Q347 76 354 130T362 333Q362 478 354 524T321 597Z" transform="translate(1000,0)"/><path data-c="30" d="M96 585Q152 666 249 666Q297 666 345 640T423 548Q460 465 460 320Q460 165 417 83Q397 41 362 16T301 -15T250 -22Q224 -22 198 -16T137 16T82 83Q39 165 39 320Q39 494 96 585ZM321 597Q291 629 250 629Q208 629 178 597Q153 571 145 525T137 333Q137 175 145 125T181 46Q209 16 250 16Q290 16 318 46Q347 76 354 130T362 333Q362 478 354 524T321 597Z" transform="translate(1500,0)"/><path data-c="30" d="M96 585Q152 666 249 666Q297 666 345 640T423 548Q460 465 460 320Q460 165 417 83Q397 41 362 16T301 -15T250 -22Q224 -22 198 -16T137 16T82 83Q39 165 39 320Q39 494 96 585ZM321 597Q291 629 250 629Q208 629 178 597Q153 571 145 525T137 333Q137 175 145 125T181 46Q209 16 250 16Q290 16 318 46Q347 76 354 130T362 333Q362 478 354 524T321 597Z" transform="translate(2000,0)"/></g></g><g data-mml-node="mn" transform="translate(3081.2,-686)"><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"/></g><rect width="6422.4" height="60" x="120" y="220"/></g></g></g></g></svg></mjx-container> 次。</p>
 <p>一般的解决方法：</p>
 <ol>
 <li><p>如果你并不要求这是一个数组（比如你不会去遍历这个表），那么你可以直接将元素置空，或是插入到表的空位中：</p>
-<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 删除元素</span></span><br><span class="line">t[<span class="number">100</span>] = <span class="literal">nil</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- 插入到表的空位中</span></span><br><span class="line">t[#t+<span class="number">1</span>] = object</span><br><span class="line"><span class="comment">-- 上下 2 种写法等价，但是上面的写法略微高效一些</span></span><br><span class="line"><span class="built_in">table</span>.<span class="built_in">insert</span>(t, object)</span><br></pre></td></tr></table></figure>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs lua"><span class="hljs-comment">-- 删除元素</span><br>t[<span class="hljs-number">100</span>] = <span class="hljs-literal">nil</span><br><br><span class="hljs-comment">-- 插入到表的空位中</span><br>t[#t+<span class="hljs-number">1</span>] = object<br><span class="hljs-comment">-- 上下 2 种写法等价，但是上面的写法略微高效一些</span><br><span class="hljs-built_in">table</span>.<span class="hljs-built_in">insert</span>(t, object)<br></code></pre></td></tr></table></figure>
 
 <p>注意这里插入到表的空位中的写法，lua 规定只有当数组是紧密的时候， <code>#t</code>才能返回数组的长度。当数组为稀疏的时候，<code>#t</code>会返回任意一个边界（<code>#t</code>非空，但 <code>#t+1</code> 为空），因此使用 <code>#t+1</code> 不会覆盖已有数据。</p>
 </li>
 <li><p>如果你要求他一定是数组，但是不要求保持顺序，那么可以在移除时将尾部的元素挪过来填补空位：</p>
-<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 删除元素</span></span><br><span class="line">t[<span class="number">100</span>] = t[#t]</span><br><span class="line">t[#t]  = <span class="literal">nil</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- 新的元素总是添加到末尾</span></span><br><span class="line">t[#t+<span class="number">1</span>] = object</span><br><span class="line"><span class="comment">-- 上下 2 种写法等价，但是上面的写法略微高效一些</span></span><br><span class="line"><span class="built_in">table</span>.<span class="built_in">insert</span>(t, object)</span><br></pre></td></tr></table></figure></li>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs lua"><span class="hljs-comment">-- 删除元素</span><br>t[<span class="hljs-number">100</span>] = t[#t]<br>t[#t]  = <span class="hljs-literal">nil</span><br><br><span class="hljs-comment">-- 新的元素总是添加到末尾</span><br>t[#t+<span class="hljs-number">1</span>] = object<br><span class="hljs-comment">-- 上下 2 种写法等价，但是上面的写法略微高效一些</span><br><span class="hljs-built_in">table</span>.<span class="hljs-built_in">insert</span>(t, object)<br></code></pre></td></tr></table></figure></li>
 <li><p>如果你要求他一定是数组，但是不要求保持顺序，那么可以在移除时将尾部的元素挪过来填补空位：</p>
-<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 删除元素</span></span><br><span class="line">t[<span class="number">100</span>] = <span class="literal">false</span> <span class="comment">-- 往原来的位置放置一个占位符，遍历时过滤掉此占位符</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- 在适当的时候，清理掉数组中的所有占位符</span></span><br><span class="line"><span class="keyword">local</span> count = <span class="number">0</span></span><br><span class="line"><span class="keyword">for</span> i = <span class="number">1</span>, #t <span class="keyword">do</span></span><br><span class="line">    <span class="keyword">if</span> t[i] == <span class="literal">false</span> <span class="keyword">then</span></span><br><span class="line">        t[i] = <span class="literal">nil</span></span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        count = count + <span class="number">1</span></span><br><span class="line">        t[count] = t[i]</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure></li>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs lua"><span class="hljs-comment">-- 删除元素</span><br>t[<span class="hljs-number">100</span>] = <span class="hljs-literal">false</span> <span class="hljs-comment">-- 往原来的位置放置一个占位符，遍历时过滤掉此占位符</span><br><br><span class="hljs-comment">-- 在适当的时候，清理掉数组中的所有占位符</span><br><span class="hljs-keyword">local</span> count = <span class="hljs-number">0</span><br><span class="hljs-keyword">for</span> i = <span class="hljs-number">1</span>, #t <span class="hljs-keyword">do</span><br>    <span class="hljs-keyword">if</span> t[i] == <span class="hljs-literal">false</span> <span class="hljs-keyword">then</span><br>        t[i] = <span class="hljs-literal">nil</span><br>    <span class="hljs-keyword">else</span><br>        count = count + <span class="hljs-number">1</span><br>        t[count] = t[i]<br>    <span class="hljs-keyword">end</span><br><span class="hljs-keyword">end</span><br></code></pre></td></tr></table></figure></li>
 </ol>
 <h3 id="Try-Catch"><a href="#Try-Catch" class="headerlink" title="Try-Catch"></a>Try-Catch</h3><p>你可以使用 <code>pcall</code> 与 <code>xpcall</code> 以保护模式运行一段代码，当代码发生异常后会带着错误消息回到此函数的调用处，例如：</p>
-   <figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">local</span> suc, res = <span class="built_in">pcall</span>(<span class="function"><span class="keyword">function</span> <span class="params">()</span></span></span><br><span class="line">    <span class="keyword">local</span> n = <span class="literal">nil</span> + <span class="number">1</span></span><br><span class="line">    <span class="built_in">print</span>(n) <span class="comment">-- 不会执行到</span></span><br><span class="line"><span class="keyword">end</span>)</span><br><span class="line"><span class="built_in">print</span>(suc, res) <span class="comment">-- false, error message</span></span><br></pre></td></tr></table></figure>
+   <figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs lua"><span class="hljs-keyword">local</span> suc, res = <span class="hljs-built_in">pcall</span>(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span></span><br>    <span class="hljs-keyword">local</span> n = <span class="hljs-literal">nil</span> + <span class="hljs-number">1</span><br>    <span class="hljs-built_in">print</span>(n) <span class="hljs-comment">-- 不会执行到</span><br><span class="hljs-keyword">end</span>)<br><span class="hljs-built_in">print</span>(suc, res) <span class="hljs-comment">-- false, error message</span><br></code></pre></td></tr></table></figure>
 
 <p>   <code>xpcall</code> 则可以再传入一个 <code>catch</code> ，使得你可以在现场捕获错误并查看堆栈</p>
-   <figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">xpcall</span>(<span class="function"><span class="keyword">function</span> <span class="params">()</span></span> </span><br><span class="line">    <span class="keyword">local</span> n = <span class="literal">nil</span> + <span class="number">1</span></span><br><span class="line">    <span class="built_in">print</span>(n) <span class="comment">-- 不会执行到</span></span><br><span class="line"><span class="keyword">end</span>, <span class="function"><span class="keyword">function</span> <span class="params">(error_message)</span></span></span><br><span class="line">    <span class="built_in">print</span>(<span class="built_in">debug</span>.<span class="built_in">traceback</span>(error_message))</span><br><span class="line"><span class="keyword">end</span>)</span><br></pre></td></tr></table></figure>
+   <figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs lua"><span class="hljs-built_in">xpcall</span>(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span></span> <br>    <span class="hljs-keyword">local</span> n = <span class="hljs-literal">nil</span> + <span class="hljs-number">1</span><br>    <span class="hljs-built_in">print</span>(n) <span class="hljs-comment">-- 不会执行到</span><br><span class="hljs-keyword">end</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(error_message)</span></span><br>    <span class="hljs-built_in">print</span>(<span class="hljs-built_in">debug</span>.<span class="hljs-built_in">traceback</span>(error_message))<br><span class="hljs-keyword">end</span>)<br></code></pre></td></tr></table></figure>
 
 <blockquote>
 <p>你可以直接把 <code>debug.traceback</code> 当做 <code>catch</code> 传给 <code>xpcall</code> ，因为 <code>debug.traceback</code> 的功能之一是接收一个错误消息，然后把堆栈信息拼在错误消息后面返回回来；而 <code>xpcall</code> 会将 <code>catch</code> 的返回值作为新的错误消息返回出来，这样一来就可以在调用处查看错误堆栈。</p>
-<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">local</span> suc, res = <span class="built_in">xpcall</span>(<span class="function"><span class="keyword">function</span> <span class="params">()</span></span> </span><br><span class="line">    <span class="keyword">local</span> n = <span class="literal">nil</span> + <span class="number">1</span></span><br><span class="line">    <span class="built_in">print</span>(n) <span class="comment">-- 不会执行到</span></span><br><span class="line"><span class="keyword">end</span>, <span class="built_in">debug</span>.<span class="built_in">traceback</span>)</span><br><span class="line"><span class="built_in">print</span>(suc, res) <span class="comment">-- false, error message with traceback</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs lua"><span class="hljs-keyword">local</span> suc, res = <span class="hljs-built_in">xpcall</span>(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span></span> <br>    <span class="hljs-keyword">local</span> n = <span class="hljs-literal">nil</span> + <span class="hljs-number">1</span><br>    <span class="hljs-built_in">print</span>(n) <span class="hljs-comment">-- 不会执行到</span><br><span class="hljs-keyword">end</span>, <span class="hljs-built_in">debug</span>.<span class="hljs-built_in">traceback</span>)<br><span class="hljs-built_in">print</span>(suc, res) <span class="hljs-comment">-- false, error message with traceback</span><br></code></pre></td></tr></table></figure>
 </blockquote>
 <h3 id="判空"><a href="# 判空" class="headerlink" title="判空"></a>判空 </h3><p> 在 Lua 中只有 <code>nil</code> 与 <code>false</code> 会被认为是假值，而所有其他值都是真值，包括 <code>0</code> <code>''</code> <code>{}</code> 。</p>
 <p>因此大部分情况下你只需要简单的通过 <code>if x then</code> 来进行判空。</p>
@@ -356,23 +524,23 @@ mjx-container[display="true"] + br {
 <p>常见的几种解决方案如下：</p>
 <ol>
 <li><p>依次判空，最朴素的思路，TS 中的可选操作符最终也是编译为依次判空的</p>
-<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">local</span> x</span><br><span class="line"><span class="keyword">if</span> t <span class="keyword">and</span> t.x <span class="keyword">and</span> t.x.y <span class="keyword">and</span> t.x.y.z <span class="keyword">then</span> <span class="comment">-- 这里需要确定取字段没有副作用</span></span><br><span class="line">    <span class="keyword">local</span> _r = t.x.y.z() <span class="comment">-- 函数调用通常有副作用，因此需要缓存结果</span></span><br><span class="line">    <span class="keyword">if</span> _r <span class="keyword">then</span></span><br><span class="line">        x = _r[<span class="number">1</span>]</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        catchError(<span class="string">'z() is nil'</span>)</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">    catchError(<span class="string">'x or y or z is nil'</span>)</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs lua"><span class="hljs-keyword">local</span> x<br><span class="hljs-keyword">if</span> t <span class="hljs-keyword">and</span> t.x <span class="hljs-keyword">and</span> t.x.y <span class="hljs-keyword">and</span> t.x.y.z <span class="hljs-keyword">then</span> <span class="hljs-comment">-- 这里需要确定取字段没有副作用</span><br>    <span class="hljs-keyword">local</span> _r = t.x.y.z() <span class="hljs-comment">-- 函数调用通常有副作用，因此需要缓存结果</span><br>    <span class="hljs-keyword">if</span> _r <span class="hljs-keyword">then</span><br>        x = _r[<span class="hljs-number">1</span>]<br>    <span class="hljs-keyword">else</span><br>        catchError(<span class="hljs-string">'z() is nil'</span>)<br>    <span class="hljs-keyword">end</span><br><span class="hljs-keyword">else</span><br>    catchError(<span class="hljs-string">'x or y or z is nil'</span>)<br><span class="hljs-keyword">end</span><br></code></pre></td></tr></table></figure>
 
 <p>这个写法简单易懂，几乎没有额外开销，但是显然写起来很复杂，很不优美</p>
 </li>
 <li><p>创建默认值，这是来自《Lua 程序设计》作者的方案</p>
-<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">local</span> x = ((((t <span class="keyword">or</span> {}).x <span class="keyword">or</span> {}).z <span class="keyword">or</span> <span class="function"><span class="keyword">function</span> <span class="params">()</span></span> <span class="keyword">end</span>)() <span class="keyword">or</span> {})[<span class="number">1</span>]</span><br></pre></td></tr></table></figure>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs lua"><span class="hljs-keyword">local</span> x = ((((t <span class="hljs-keyword">or</span> {}).x <span class="hljs-keyword">or</span> {}).z <span class="hljs-keyword">or</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span></span> <span class="hljs-keyword">end</span>)() <span class="hljs-keyword">or</span> {})[<span class="hljs-number">1</span>]<br></code></pre></td></tr></table></figure>
 
 <p>根据我们人工预测，每步操作大概率不会是空值，根据 Lua 的短路规则一般不会真的创建出很多对象，基本没有额外开销。而当出现空值时，作为出错情况创建一点对象也不是很有所谓。不过缺点就是括号实在是太多了，很难看清是否写对</p>
 <p>如果想捕获错误需要再加个捕获（假设捕获函数 <code>catchError</code> 没有返回值）：</p>
-<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">local</span> x = ((((</span><br><span class="line">     t <span class="keyword">or</span> catchError(<span class="string">'t is nil'</span>)   <span class="keyword">or</span> {})</span><br><span class="line">    .x <span class="keyword">or</span> catchError(<span class="string">'x is nil'</span>)   <span class="keyword">or</span> {})</span><br><span class="line">    .z <span class="keyword">or</span> catchError(<span class="string">'z is nil'</span>)   <span class="keyword">or</span> <span class="function"><span class="keyword">function</span> <span class="params">()</span></span> <span class="keyword">end</span>)</span><br><span class="line">    () <span class="keyword">or</span> catchError(<span class="string">'z() is nil'</span>) <span class="keyword">or</span> {})</span><br><span class="line">    [<span class="number">1</span>]</span><br></pre></td></tr></table></figure></li>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs lua"><span class="hljs-keyword">local</span> x = ((((<br>     t <span class="hljs-keyword">or</span> catchError(<span class="hljs-string">'t is nil'</span>)   <span class="hljs-keyword">or</span> {})<br>    .x <span class="hljs-keyword">or</span> catchError(<span class="hljs-string">'x is nil'</span>)   <span class="hljs-keyword">or</span> {})<br>    .z <span class="hljs-keyword">or</span> catchError(<span class="hljs-string">'z is nil'</span>)   <span class="hljs-keyword">or</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span></span> <span class="hljs-keyword">end</span>)<br>    () <span class="hljs-keyword">or</span> catchError(<span class="hljs-string">'z() is nil'</span>) <span class="hljs-keyword">or</span> {})<br>    [<span class="hljs-number">1</span>]<br></code></pre></td></tr></table></figure></li>
 <li><p>封装成函数</p>
-<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">local</span> <span class="function"><span class="keyword">function</span> <span class="title">getValue</span><span class="params">(v, ...)</span></span></span><br><span class="line">    <span class="keyword">local</span> n = <span class="built_in">select</span>(<span class="string">'#'</span>, ...)</span><br><span class="line">    <span class="keyword">for</span> i = <span class="number">1</span>, n <span class="keyword">do</span></span><br><span class="line">        <span class="keyword">local</span> k = <span class="built_in">select</span>(i, ...)</span><br><span class="line">        <span class="keyword">if</span> v[k] <span class="keyword">then</span></span><br><span class="line">            v = v[k]</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            catchError(k .. <span class="string">'is nil'</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">nil</span></span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">return</span> v</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="comment">-- 以上整个函数由 copilot 生成，我没仔细看，有问题告诉我</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">local</span> x = getValue(t, <span class="string">'x'</span>, <span class="string">'y'</span>, <span class="string">'z'</span>, <span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs lua"><span class="hljs-keyword">local</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getValue</span><span class="hljs-params">(v, ...)</span></span><br>    <span class="hljs-keyword">local</span> n = <span class="hljs-built_in">select</span>(<span class="hljs-string">'#'</span>, ...)<br>    <span class="hljs-keyword">for</span> i = <span class="hljs-number">1</span>, n <span class="hljs-keyword">do</span><br>        <span class="hljs-keyword">local</span> k = <span class="hljs-built_in">select</span>(i, ...)<br>        <span class="hljs-keyword">if</span> v[k] <span class="hljs-keyword">then</span><br>            v = v[k]<br>        <span class="hljs-keyword">else</span><br>            catchError(k .. <span class="hljs-string">'is nil'</span>)<br>            <span class="hljs-keyword">return</span> <span class="hljs-literal">nil</span><br>        <span class="hljs-keyword">end</span><br>    <span class="hljs-keyword">end</span><br>    <span class="hljs-keyword">return</span> v<br><span class="hljs-keyword">end</span><br><span class="hljs-comment">-- 以上整个函数由 copilot 生成，我没仔细看，有问题告诉我</span><br><br><span class="hljs-keyword">local</span> x = getValue(t, <span class="hljs-string">'x'</span>, <span class="hljs-string">'y'</span>, <span class="hljs-string">'z'</span>, <span class="hljs-number">1</span>)<br></code></pre></td></tr></table></figure>
 
 <p>这个方法只能支持取字段操作，没法实现函数调用。但考虑到实际工程中很少会把函数调用放到长操作链中，这也是个不错的解决方案。缺点是语义不太清晰，而且无论是不是空都需要付出很多额外的函数调用的开销</p>
 </li>
 <li><p>所有的操作都 try 1 try</p>
-<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">local</span> x</span><br><span class="line"><span class="built_in">xpcall</span>(<span class="function"><span class="keyword">function</span> <span class="params">()</span></span></span><br><span class="line">    x = t.x.y.z()[<span class="number">1</span>]</span><br><span class="line"><span class="keyword">end</span>, catchError)</span><br></pre></td></tr></table></figure></li>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs lua"><span class="hljs-keyword">local</span> x<br><span class="hljs-built_in">xpcall</span>(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span></span><br>    x = t.x.y.z()[<span class="hljs-number">1</span>]<br><span class="hljs-keyword">end</span>, catchError)<br></code></pre></td></tr></table></figure></li>
 <li><p>重写 <code>nil</code> 的操作。实际工程中我们经常会遇到需要连续大段的读表，直接让 Lua 对 <code>nil</code> 进行读字段 / 函数调用等操作</p>
 <p>Lua 可以通过 <code>debug.setmetatable</code> 给基础类型添加元表，所有该类型的值会共享同一个元表，因此我们可以给 <code>nil</code> 添加一个重载了所有运算符的元表，具体代码比较长就不贴出来了，可以到这里看：<a target="_blank" rel="noopener" href="https://github.com/sumneko/lua-without-check-nil/blob/master/without-check-nil.lua">https://github.com/sumneko/lua-without-check-nil/blob/master/without-check-nil.lua</a></p>
 <blockquote>
@@ -381,7 +549,7 @@ mjx-container[display="true"] + br {
 <li>另外由于 Lua 无法重载 <code>asindex</code> ，因此无法处理 <code>t[nil] = 1</code> 这种情况</li>
 </ul>
 </blockquote>
-<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">local</span> nonil = <span class="built_in">require</span> <span class="string">'without-check-nil'</span></span><br><span class="line">nonil.watch = <span class="function"><span class="keyword">function</span> <span class="params">(ev, exp1, exp2)</span></span></span><br><span class="line">    catchError(<span class="built_in">string</span>.<span class="built_in">format</span>(<span class="string">'[%s] error, exp1 = %s, exp2 = %s'</span>, ev, exp1, exp2))</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">nonil.enable()</span><br><span class="line"><span class="keyword">local</span> x = t.x.y.z()[<span class="number">1</span>]</span><br><span class="line">nonil.disable()</span><br></pre></td></tr></table></figure></li>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs lua"><span class="hljs-keyword">local</span> nonil = <span class="hljs-built_in">require</span> <span class="hljs-string">'without-check-nil'</span><br>nonil.watch = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(ev, exp1, exp2)</span></span><br>    catchError(<span class="hljs-built_in">string</span>.<span class="hljs-built_in">format</span>(<span class="hljs-string">'[%s] error, exp1 = %s, exp2 = %s'</span>, ev, exp1, exp2))<br><span class="hljs-keyword">end</span><br><br>nonil.enable()<br><span class="hljs-keyword">local</span> x = t.x.y.z()[<span class="hljs-number">1</span>]<br>nonil.disable()<br></code></pre></td></tr></table></figure></li>
 </ol>
 <h4 id="总结"><a href="# 总结" class="headerlink" title="总结"></a>总结</h4><table>
 <thead>
@@ -434,40 +602,40 @@ mjx-container[display="true"] + br {
 <li><p>使用 <code>t[#t+1] = n</code> 代替 <code>table.insert(t, n)</code> ；使用 <code>t[#t] = nil</code> 代替 <code>table.remove(t)</code> 。这是因为 Lua 调用函数的开销比运算符要高。但是使用这种写法时请注意，如果你的 <code>t</code> 是个表达式，那么这个表达式会被求 2 次</p>
 </li>
 <li><p>使用局部变量代替全局变量，如：</p>
-<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">local</span> tinsert = <span class="built_in">table</span>.<span class="built_in">insert</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">local</span> t = {}</span><br><span class="line"><span class="keyword">for</span> i = <span class="number">1</span>, <span class="number">10000</span> <span class="keyword">do</span></span><br><span class="line">    tinsert(t, i)</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs lua"><span class="hljs-keyword">local</span> tinsert = <span class="hljs-built_in">table</span>.<span class="hljs-built_in">insert</span><br><br><span class="hljs-keyword">local</span> t = {}<br><span class="hljs-keyword">for</span> i = <span class="hljs-number">1</span>, <span class="hljs-number">10000</span> <span class="hljs-keyword">do</span><br>    tinsert(t, i)<br><span class="hljs-keyword">end</span><br></code></pre></td></tr></table></figure>
 
 <p>该写法的提升很小，只有在非常密集的循环运算中才有改写的价值</p>
 </li>
 <li><p>使用局部变量缓存结果，如：</p>
-<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 原本的代码：</span></span><br><span class="line">a.b.c.d[#a.b.c.d+<span class="number">1</span>] = n</span><br><span class="line">call(a.b.c.d)</span><br><span class="line">a.b.c.d[#a.b.c.d] = <span class="literal">nil</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- 可以改写成：</span></span><br><span class="line"><span class="keyword">local</span> t = a.b.c.d</span><br><span class="line">t[#t+<span class="number">1</span>] = n</span><br><span class="line">call(t)</span><br><span class="line">t[#t] = <span class="literal">nil</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs lua"><span class="hljs-comment">-- 原本的代码：</span><br>a.b.c.d[#a.b.c.d+<span class="hljs-number">1</span>] = n<br>call(a.b.c.d)<br>a.b.c.d[#a.b.c.d] = <span class="hljs-literal">nil</span><br><br><span class="hljs-comment">-- 可以改写成：</span><br><span class="hljs-keyword">local</span> t = a.b.c.d<br>t[#t+<span class="hljs-number">1</span>] = n<br>call(t)<br>t[#t] = <span class="hljs-literal">nil</span><br></code></pre></td></tr></table></figure>
 
 <p>Lua 的局部变量是没有额外开销的，因为 Lua 本身就会通过隐藏的局部变量（寄存器）来保存中间结果。例如上面例子中原本的代码，Lua 生成的字节码伪代码如下：</p>
-<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">local</span> a1, a2, a3</span><br><span class="line">a1 = getglobal(<span class="string">'a'</span>)</span><br><span class="line">a1 = getfield(a1, <span class="string">'b'</span>)</span><br><span class="line">a1 = getfield(a1, <span class="string">'c'</span>)</span><br><span class="line">a1 = getfield(a1, <span class="string">'d'</span>)</span><br><span class="line">a2 = getglobal(<span class="string">'a'</span>)</span><br><span class="line">a2 = getfield(a2, <span class="string">'b'</span>)</span><br><span class="line">a2 = getfield(a2, <span class="string">'c'</span>)</span><br><span class="line">a2 = getfield(a2, <span class="string">'d'</span>)</span><br><span class="line">a2 = getlen(a2)</span><br><span class="line">a2 = binary(<span class="string">'+'</span>, a2, <span class="number">1</span>)</span><br><span class="line">a3 = getglobal(<span class="string">'n'</span>)</span><br><span class="line">setfield(a1, a2, a3)</span><br></pre></td></tr></table></figure></li>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs lua"><span class="hljs-keyword">local</span> a1, a2, a3<br>a1 = getglobal(<span class="hljs-string">'a'</span>)<br>a1 = getfield(a1, <span class="hljs-string">'b'</span>)<br>a1 = getfield(a1, <span class="hljs-string">'c'</span>)<br>a1 = getfield(a1, <span class="hljs-string">'d'</span>)<br>a2 = getglobal(<span class="hljs-string">'a'</span>)<br>a2 = getfield(a2, <span class="hljs-string">'b'</span>)<br>a2 = getfield(a2, <span class="hljs-string">'c'</span>)<br>a2 = getfield(a2, <span class="hljs-string">'d'</span>)<br>a2 = getlen(a2)<br>a2 = binary(<span class="hljs-string">'+'</span>, a2, <span class="hljs-number">1</span>)<br>a3 = getglobal(<span class="hljs-string">'n'</span>)<br>setfield(a1, a2, a3)<br></code></pre></td></tr></table></figure></li>
 <li><p>避免创建对象，主要是表</p>
-<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">local</span> <span class="function"><span class="keyword">function</span> <span class="title">isSupported</span><span class="params">(t)</span></span></span><br><span class="line">    <span class="keyword">for</span> _, v <span class="keyword">in</span> <span class="built_in">ipairs</span> {<span class="string">'Windows'</span>, <span class="string">'macOS'</span>, <span class="string">'Linux'</span>} <span class="keyword">do</span></span><br><span class="line">        <span class="keyword">if</span> t[v] <span class="keyword">then</span></span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- 改写为</span></span><br><span class="line"><span class="keyword">local</span> supported = {<span class="string">'Windows'</span>, <span class="string">'macOS'</span>, <span class="string">'Linux'</span>}</span><br><span class="line"><span class="keyword">local</span> <span class="function"><span class="keyword">function</span> <span class="title">isSupported</span><span class="params">(t)</span></span></span><br><span class="line">    <span class="keyword">for</span> _, v <span class="keyword">in</span> <span class="built_in">ipairs</span>(supported) <span class="keyword">do</span></span><br><span class="line">        <span class="keyword">if</span> t[v] <span class="keyword">then</span></span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- 其实调用 ipairs 也会创建一个新的闭包，如果你非常在意，可以就改写为</span></span><br><span class="line"><span class="keyword">local</span> supported = {<span class="string">'Windows'</span>, <span class="string">'macOS'</span>, <span class="string">'Linux'</span>}</span><br><span class="line"><span class="keyword">local</span> <span class="function"><span class="keyword">function</span> <span class="title">isSupported</span><span class="params">(t)</span></span></span><br><span class="line">    <span class="keyword">for</span> i = <span class="number">1</span>, #supported <span class="keyword">do</span></span><br><span class="line">        <span class="keyword">local</span> v = supported[i]</span><br><span class="line">        <span class="keyword">if</span> t[v] <span class="keyword">then</span></span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- 如果你连循环都不想要，那么可以使用终极手段 - 手动展开</span></span><br><span class="line"><span class="keyword">local</span> supported = {<span class="string">'Windows'</span>, <span class="string">'macOS'</span>, <span class="string">'Linux'</span>}</span><br><span class="line"><span class="keyword">local</span> codes = {<span class="string">'local t = ...'</span>}</span><br><span class="line"><span class="keyword">for</span> _, v <span class="keyword">in</span> <span class="built_in">ipairs</span>(supported) <span class="keyword">do</span></span><br><span class="line">    codes[#codes+<span class="number">1</span>] = <span class="built_in">string</span>.<span class="built_in">format</span>(<span class="string">[[</span></span><br><span class="line"><span class="string">if t[%q] then</span></span><br><span class="line"><span class="string">    return true</span></span><br><span class="line"><span class="string">end</span></span><br><span class="line"><span class="string">]]</span>, v)</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">codes[#codes+<span class="number">1</span>] = <span class="string">'return false'</span></span><br><span class="line"><span class="keyword">local</span> code = <span class="built_in">table</span>.<span class="built_in">concat</span>(codes, <span class="string">'\n'</span>)</span><br><span class="line"><span class="keyword">local</span> isSupported = <span class="built_in">load</span>(code) <span class="comment">-- Lua 5.1 用 loadstring</span></span><br></pre></td></tr></table></figure></li>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><code class="hljs lua"><span class="hljs-keyword">local</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isSupported</span><span class="hljs-params">(t)</span></span><br>    <span class="hljs-keyword">for</span> _, v <span class="hljs-keyword">in</span> <span class="hljs-built_in">ipairs</span> {<span class="hljs-string">'Windows'</span>, <span class="hljs-string">'macOS'</span>, <span class="hljs-string">'Linux'</span>} <span class="hljs-keyword">do</span><br>        <span class="hljs-keyword">if</span> t[v] <span class="hljs-keyword">then</span><br>            <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span><br>        <span class="hljs-keyword">end</span><br>    <span class="hljs-keyword">end</span><br>    <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span><br><span class="hljs-keyword">end</span><br><br><span class="hljs-comment">-- 改写为</span><br><span class="hljs-keyword">local</span> supported = {<span class="hljs-string">'Windows'</span>, <span class="hljs-string">'macOS'</span>, <span class="hljs-string">'Linux'</span>}<br><span class="hljs-keyword">local</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isSupported</span><span class="hljs-params">(t)</span></span><br>    <span class="hljs-keyword">for</span> _, v <span class="hljs-keyword">in</span> <span class="hljs-built_in">ipairs</span>(supported) <span class="hljs-keyword">do</span><br>        <span class="hljs-keyword">if</span> t[v] <span class="hljs-keyword">then</span><br>            <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span><br>        <span class="hljs-keyword">end</span><br>    <span class="hljs-keyword">end</span><br>    <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span><br><span class="hljs-keyword">end</span><br><br><span class="hljs-comment">-- 其实调用 ipairs 也会创建一个新的闭包，如果你非常在意，可以就改写为</span><br><span class="hljs-keyword">local</span> supported = {<span class="hljs-string">'Windows'</span>, <span class="hljs-string">'macOS'</span>, <span class="hljs-string">'Linux'</span>}<br><span class="hljs-keyword">local</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isSupported</span><span class="hljs-params">(t)</span></span><br>    <span class="hljs-keyword">for</span> i = <span class="hljs-number">1</span>, #supported <span class="hljs-keyword">do</span><br>        <span class="hljs-keyword">local</span> v = supported[i]<br>        <span class="hljs-keyword">if</span> t[v] <span class="hljs-keyword">then</span><br>            <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span><br>        <span class="hljs-keyword">end</span><br>    <span class="hljs-keyword">end</span><br>    <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span><br><span class="hljs-keyword">end</span><br><br><span class="hljs-comment">-- 如果你连循环都不想要，那么可以使用终极手段 - 手动展开</span><br><span class="hljs-keyword">local</span> supported = {<span class="hljs-string">'Windows'</span>, <span class="hljs-string">'macOS'</span>, <span class="hljs-string">'Linux'</span>}<br><span class="hljs-keyword">local</span> codes = {<span class="hljs-string">'local t = ...'</span>}<br><span class="hljs-keyword">for</span> _, v <span class="hljs-keyword">in</span> <span class="hljs-built_in">ipairs</span>(supported) <span class="hljs-keyword">do</span><br>    codes[#codes+<span class="hljs-number">1</span>] = <span class="hljs-built_in">string</span>.<span class="hljs-built_in">format</span>(<span class="hljs-string">[[</span><br><span class="hljs-string">if t[%q] then</span><br><span class="hljs-string">    return true</span><br><span class="hljs-string">end</span><br><span class="hljs-string">]]</span>, v)<br><span class="hljs-keyword">end</span><br>codes[#codes+<span class="hljs-number">1</span>] = <span class="hljs-string">'return false'</span><br><span class="hljs-keyword">local</span> code = <span class="hljs-built_in">table</span>.<span class="hljs-built_in">concat</span>(codes, <span class="hljs-string">'\n'</span>)<br><span class="hljs-keyword">local</span> isSupported = <span class="hljs-built_in">load</span>(code) <span class="hljs-comment">-- Lua 5.1 用 loadstring</span><br></code></pre></td></tr></table></figure></li>
 </ol>
 <h3 id="一些坑"><a href="# 一些坑" class="headerlink" title="一些坑"></a>一些坑</h3><ol>
 <li><p>Lua 的数组索引是从 1 开始的</p>
 </li>
 <li><p>如果数组构造的最后一个元素是一个函数调用，要注意这个函数调用的所有返回值都保存到表里，例如：</p>
-<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">local</span> username = <span class="string">'sumneko'</span></span><br><span class="line"><span class="keyword">local</span> platform = <span class="string">'Windows11'</span></span><br><span class="line"><span class="keyword">local</span> t = {username, <span class="built_in">string</span>.<span class="built_in">gsub</span>(platform, <span class="string">'%d+'</span>, <span class="string">''</span>) }</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(t[<span class="number">1</span>]) <span class="comment">--"sumneko"</span></span><br><span class="line"><span class="built_in">print</span>(t[<span class="number">2</span>]) <span class="comment">--"Windows"</span></span><br><span class="line"><span class="built_in">print</span>(t[<span class="number">3</span>]) <span class="comment">-- 1           -- 这是 string.gsub 的第二个返回值，表示成功替换了 1 次</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs lua"><span class="hljs-keyword">local</span> username = <span class="hljs-string">'sumneko'</span><br><span class="hljs-keyword">local</span> platform = <span class="hljs-string">'Windows11'</span><br><span class="hljs-keyword">local</span> t = {username, <span class="hljs-built_in">string</span>.<span class="hljs-built_in">gsub</span>(platform, <span class="hljs-string">'%d+'</span>, <span class="hljs-string">''</span>) }<br><br><span class="hljs-built_in">print</span>(t[<span class="hljs-number">1</span>]) <span class="hljs-comment">--"sumneko"</span><br><span class="hljs-built_in">print</span>(t[<span class="hljs-number">2</span>]) <span class="hljs-comment">--"Windows"</span><br><span class="hljs-built_in">print</span>(t[<span class="hljs-number">3</span>]) <span class="hljs-comment">-- 1           -- 这是 string.gsub 的第二个返回值，表示成功替换了 1 次</span><br></code></pre></td></tr></table></figure>
 
 <p>同理函数调用的最后一个参数也有这个问题，例如：</p>
-<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">local</span> <span class="built_in">input</span> = <span class="string">'#ffcc00'</span></span><br><span class="line"><span class="keyword">local</span> n = <span class="built_in">tonumber</span>(<span class="built_in">string</span>.<span class="built_in">gsub</span>(<span class="built_in">input</span>, <span class="string">'#'</span>, <span class="string">'0x'</span>))</span><br><span class="line"><span class="comment">-- 上面这行会报错，因为 string.gsub 会返回 2 个返回值 "0xffcc00" 与 1，</span></span><br><span class="line"><span class="comment">-- 之后相当于调用了 tonumber("0xffcc00", 1) ，表示以 1 进制转换该字符串</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs lua"><span class="hljs-keyword">local</span> <span class="hljs-built_in">input</span> = <span class="hljs-string">'#ffcc00'</span><br><span class="hljs-keyword">local</span> n = <span class="hljs-built_in">tonumber</span>(<span class="hljs-built_in">string</span>.<span class="hljs-built_in">gsub</span>(<span class="hljs-built_in">input</span>, <span class="hljs-string">'#'</span>, <span class="hljs-string">'0x'</span>))<br><span class="hljs-comment">-- 上面这行会报错，因为 string.gsub 会返回 2 个返回值 "0xffcc00" 与 1，</span><br><span class="hljs-comment">-- 之后相当于调用了 tonumber("0xffcc00", 1) ，表示以 1 进制转换该字符串</span><br></code></pre></td></tr></table></figure>
 
 <p>解决办法：</p>
-<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 1. 分成 2 行写</span></span><br><span class="line"><span class="keyword">local</span> <span class="built_in">input</span> = <span class="string">'#ffcc00'</span></span><br><span class="line"><span class="keyword">local</span> int16 = <span class="built_in">string</span>.<span class="built_in">gsub</span>(<span class="built_in">input</span>, <span class="string">'#'</span>, <span class="string">'0x'</span>)</span><br><span class="line"><span class="keyword">local</span> n = <span class="built_in">tonumber</span>(int16)</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 2. 加个括号强制，强制只保留第一个返回值</span></span><br><span class="line"><span class="keyword">local</span> <span class="built_in">input</span> = <span class="string">'#ffcc00'</span></span><br><span class="line"><span class="keyword">local</span> n = <span class="built_in">tonumber</span>((<span class="built_in">string</span>.<span class="built_in">gsub</span>(<span class="built_in">input</span>, <span class="string">'#'</span>, <span class="string">'0x'</span>)))</span><br></pre></td></tr></table></figure></li>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs lua"><span class="hljs-comment">-- 1. 分成 2 行写</span><br><span class="hljs-keyword">local</span> <span class="hljs-built_in">input</span> = <span class="hljs-string">'#ffcc00'</span><br><span class="hljs-keyword">local</span> int16 = <span class="hljs-built_in">string</span>.<span class="hljs-built_in">gsub</span>(<span class="hljs-built_in">input</span>, <span class="hljs-string">'#'</span>, <span class="hljs-string">'0x'</span>)<br><span class="hljs-keyword">local</span> n = <span class="hljs-built_in">tonumber</span>(int16)<br><br><span class="hljs-comment">-- 2. 加个括号强制，强制只保留第一个返回值</span><br><span class="hljs-keyword">local</span> <span class="hljs-built_in">input</span> = <span class="hljs-string">'#ffcc00'</span><br><span class="hljs-keyword">local</span> n = <span class="hljs-built_in">tonumber</span>((<span class="hljs-built_in">string</span>.<span class="hljs-built_in">gsub</span>(<span class="hljs-built_in">input</span>, <span class="hljs-string">'#'</span>, <span class="hljs-string">'0x'</span>)))<br></code></pre></td></tr></table></figure></li>
 <li><p><code>pairs</code> 遍历哈希表时，顺序未定义</p>
-<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">local</span> t = {</span><br><span class="line">    a = <span class="number">1</span>,</span><br><span class="line">    b = <span class="number">2</span>,</span><br><span class="line">    c = <span class="number">3</span>,</span><br><span class="line">    d = <span class="number">4</span>,</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> k <span class="keyword">in</span> <span class="built_in">pairs</span>(t) <span class="keyword">do</span></span><br><span class="line">    <span class="built_in">print</span>(k)</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure></li>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs lua"><span class="hljs-keyword">local</span> t = {<br>    a = <span class="hljs-number">1</span>,<br>    b = <span class="hljs-number">2</span>,<br>    c = <span class="hljs-number">3</span>,<br>    d = <span class="hljs-number">4</span>,<br>}<br><br><span class="hljs-keyword">for</span> k <span class="hljs-keyword">in</span> <span class="hljs-built_in">pairs</span>(t) <span class="hljs-keyword">do</span><br>    <span class="hljs-built_in">print</span>(k)<br><span class="hljs-keyword">end</span><br></code></pre></td></tr></table></figure></li>
 <li><p><code>pairs</code> 遍历哈希表时，不能往这张表里保存新的字段</p>
-<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> k <span class="keyword">in</span> <span class="built_in">pairs</span>(t) <span class="keyword">do</span></span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">string</span>.<span class="built_in">sub</span>(k, <span class="number">1</span>, <span class="number">2</span>) == <span class="string">'m_'</span> <span class="keyword">then</span></span><br><span class="line">        <span class="keyword">local</span> realKey = <span class="built_in">string</span>.<span class="built_in">sub</span>(<span class="number">3</span>)</span><br><span class="line">        <span class="keyword">for</span> i = <span class="number">1</span>, <span class="number">100</span> <span class="keyword">do</span></span><br><span class="line">            <span class="keyword">local</span> newKey = realKey .. <span class="built_in">tostring</span>(i)</span><br><span class="line">            t[newKey] = <span class="literal">true</span></span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- 这种写法会导致未定义行为，通常表现为同一个 key 被遍历到多次，甚至是死循环</span></span><br><span class="line"><span class="comment">-- 这种写法其实比较容易看出遍历时保存了数据，麻烦的是下面这种：</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> id, unit <span class="keyword">in</span> <span class="built_in">pairs</span>(AllUnitsMap) <span class="keyword">do</span></span><br><span class="line">    <span class="keyword">if</span> unit:isRemoved() <span class="keyword">then</span></span><br><span class="line">        allUnitsMap[id] = <span class="literal">nil</span> <span class="comment">-- 遍历表的时候修改或移除存在的字段是 OK 的</span></span><br><span class="line">        eventDispatch(<span class="string">'单位 - 移除'</span>, unit)</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- 上面这段代码在遍历中移除元素后向外抛出了一个事件，</span></span><br><span class="line"><span class="comment">-- 这是非常危险的，因为事件中可能会往表中添加元素。</span></span><br><span class="line"><span class="comment">-- 在这个例子中，有可能是策划希望在某个单位被移除后创建一个新的单位出来，</span></span><br><span class="line"><span class="comment">-- 而新建的单位会被添加到正在遍历的全局表中。</span></span><br></pre></td></tr></table></figure></li>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs lua"><span class="hljs-keyword">for</span> k <span class="hljs-keyword">in</span> <span class="hljs-built_in">pairs</span>(t) <span class="hljs-keyword">do</span><br>    <span class="hljs-keyword">if</span> <span class="hljs-built_in">string</span>.<span class="hljs-built_in">sub</span>(k, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>) == <span class="hljs-string">'m_'</span> <span class="hljs-keyword">then</span><br>        <span class="hljs-keyword">local</span> realKey = <span class="hljs-built_in">string</span>.<span class="hljs-built_in">sub</span>(<span class="hljs-number">3</span>)<br>        <span class="hljs-keyword">for</span> i = <span class="hljs-number">1</span>, <span class="hljs-number">100</span> <span class="hljs-keyword">do</span><br>            <span class="hljs-keyword">local</span> newKey = realKey .. <span class="hljs-built_in">tostring</span>(i)<br>            t[newKey] = <span class="hljs-literal">true</span><br>        <span class="hljs-keyword">end</span><br>    <span class="hljs-keyword">end</span><br><span class="hljs-keyword">end</span><br><br><span class="hljs-comment">-- 这种写法会导致未定义行为，通常表现为同一个 key 被遍历到多次，甚至是死循环</span><br><span class="hljs-comment">-- 这种写法其实比较容易看出遍历时保存了数据，麻烦的是下面这种：</span><br><br><span class="hljs-keyword">for</span> id, unit <span class="hljs-keyword">in</span> <span class="hljs-built_in">pairs</span>(AllUnitsMap) <span class="hljs-keyword">do</span><br>    <span class="hljs-keyword">if</span> unit:isRemoved() <span class="hljs-keyword">then</span><br>        allUnitsMap[id] = <span class="hljs-literal">nil</span> <span class="hljs-comment">-- 遍历表的时候修改或移除存在的字段是 OK 的</span><br>        eventDispatch(<span class="hljs-string">'单位 - 移除'</span>, unit)<br>    <span class="hljs-keyword">end</span><br><span class="hljs-keyword">end</span><br><br><span class="hljs-comment">-- 上面这段代码在遍历中移除元素后向外抛出了一个事件，</span><br><span class="hljs-comment">-- 这是非常危险的，因为事件中可能会往表中添加元素。</span><br><span class="hljs-comment">-- 在这个例子中，有可能是策划希望在某个单位被移除后创建一个新的单位出来，</span><br><span class="hljs-comment">-- 而新建的单位会被添加到正在遍历的全局表中。</span><br></code></pre></td></tr></table></figure></li>
 <li><p>局部函数的声明方式</p>
-<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">local</span> f = <span class="function"><span class="keyword">function</span> <span class="params">()</span></span></span><br><span class="line">    f() <span class="comment">-- 这里的 f 是全局变量，因此无法递归当前函数</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">local</span> <span class="function"><span class="keyword">function</span> <span class="title">f</span><span class="params">()</span></span></span><br><span class="line">    f() <span class="comment">-- 这里的 f 是局部变量，会递归当前函数</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="comment">-- 上下 2 个写法是等价的，上者是下者的语法糖</span></span><br><span class="line"><span class="keyword">local</span> f;f = <span class="function"><span class="keyword">function</span> <span class="params">()</span></span></span><br><span class="line">    f() <span class="comment">-- 这里的 f 是局部变量，会递归当前函数</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure></li>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs lua"><span class="hljs-keyword">local</span> f = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span></span><br>    f() <span class="hljs-comment">-- 这里的 f 是全局变量，因此无法递归当前函数</span><br><span class="hljs-keyword">end</span><br><br><span class="hljs-keyword">local</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">f</span><span class="hljs-params">()</span></span><br>    f() <span class="hljs-comment">-- 这里的 f 是局部变量，会递归当前函数</span><br><span class="hljs-keyword">end</span><br><span class="hljs-comment">-- 上下 2 个写法是等价的，上者是下者的语法糖</span><br><span class="hljs-keyword">local</span> f;f = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span></span><br>    f() <span class="hljs-comment">-- 这里的 f 是局部变量，会递归当前函数</span><br><span class="hljs-keyword">end</span><br></code></pre></td></tr></table></figure></li>
 <li><p><code>require</code> 只会执行文件一次，且只接受一个返回值</p>
-<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 文件 A.lua</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">'loaded'</span>)</span><br><span class="line"><span class="keyword">return</span> <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- 文件 B.lua</span></span><br><span class="line"><span class="keyword">local</span> x1, y1, z1 = <span class="built_in">require</span> <span class="string">'A'</span></span><br><span class="line"><span class="built_in">print</span>(x1) <span class="comment">-- 1</span></span><br><span class="line"><span class="built_in">print</span>(y1) <span class="comment">-- "@A.lua" # 第一次 require 文件时，会返回文件路径 （仅 Lua 5.4）</span></span><br><span class="line"><span class="built_in">print</span>(z1) <span class="comment">-- nil</span></span><br><span class="line"><span class="keyword">local</span> x2, y2, z2 = <span class="built_in">require</span> <span class="string">'A'</span></span><br><span class="line"><span class="built_in">print</span>(x1) <span class="comment">-- 1</span></span><br><span class="line"><span class="built_in">print</span>(y1) <span class="comment">-- nil</span></span><br><span class="line"><span class="built_in">print</span>(z1) <span class="comment">-- nil</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- 只会打印一次 'loaded' ，因为文件 A 只被执行了一次</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs lua"><span class="hljs-comment">-- 文件 A.lua</span><br><span class="hljs-built_in">print</span>(<span class="hljs-string">'loaded'</span>)<br><span class="hljs-keyword">return</span> <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span><br><br><span class="hljs-comment">-- 文件 B.lua</span><br><span class="hljs-keyword">local</span> x1, y1, z1 = <span class="hljs-built_in">require</span> <span class="hljs-string">'A'</span><br><span class="hljs-built_in">print</span>(x1) <span class="hljs-comment">-- 1</span><br><span class="hljs-built_in">print</span>(y1) <span class="hljs-comment">-- "@A.lua" # 第一次 require 文件时，会返回文件路径 （仅 Lua 5.4）</span><br><span class="hljs-built_in">print</span>(z1) <span class="hljs-comment">-- nil</span><br><span class="hljs-keyword">local</span> x2, y2, z2 = <span class="hljs-built_in">require</span> <span class="hljs-string">'A'</span><br><span class="hljs-built_in">print</span>(x1) <span class="hljs-comment">-- 1</span><br><span class="hljs-built_in">print</span>(y1) <span class="hljs-comment">-- nil</span><br><span class="hljs-built_in">print</span>(z1) <span class="hljs-comment">-- nil</span><br><br><span class="hljs-comment">-- 只会打印一次 'loaded' ，因为文件 A 只被执行了一次</span><br></code></pre></td></tr></table></figure>
 
 <p>但是，如果你用不同的名字加载同一个文件，那么这个文件就会被加载多次，这是一定要避免的！</p>
-<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 文件 A/init.lua</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">require</span> <span class="string">'A.init'</span> <span class="comment">-- 通过 '?.lua' 搜索到 'A/init.lua'</span></span><br><span class="line"><span class="built_in">require</span> <span class="string">'A/init'</span> <span class="comment">-- 通过 '?.lua' 搜索到 'A/init.lua'</span></span><br><span class="line"><span class="built_in">require</span> <span class="string">'A'</span>      <span class="comment">-- 通过 '?/init.lua' 搜索到 'A/init.lua'</span></span><br><span class="line"><span class="built_in">require</span> <span class="string">'a'</span>      <span class="comment">-- 通过 '?/init.lua' 搜索到 'a/init.lua'，在 Windows 平台下会映射到 'A/init.lua'</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs lua"><span class="hljs-comment">-- 文件 A/init.lua</span><br><br><span class="hljs-built_in">require</span> <span class="hljs-string">'A.init'</span> <span class="hljs-comment">-- 通过 '?.lua' 搜索到 'A/init.lua'</span><br><span class="hljs-built_in">require</span> <span class="hljs-string">'A/init'</span> <span class="hljs-comment">-- 通过 '?.lua' 搜索到 'A/init.lua'</span><br><span class="hljs-built_in">require</span> <span class="hljs-string">'A'</span>      <span class="hljs-comment">-- 通过 '?/init.lua' 搜索到 'A/init.lua'</span><br><span class="hljs-built_in">require</span> <span class="hljs-string">'a'</span>      <span class="hljs-comment">-- 通过 '?/init.lua' 搜索到 'a/init.lua'，在 Windows 平台下会映射到 'A/init.lua'</span><br></code></pre></td></tr></table></figure>
 
 <p>例子中的 4 行代码最终使得同一个文件被执行了 4 次</p>
 </li>
@@ -476,10 +644,10 @@ mjx-container[display="true"] + br {
 </li>
 </ol>
 <h3 id="拼接字符串"><a href="# 拼接字符串" class="headerlink" title="拼接字符串"></a>拼接字符串</h3><p>Lua 的字符串是不可变对象，因此对字符串进行的操作需要创建新的字符串，例如：</p>
-<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">local</span> str = <span class="string">'a'</span> .. <span class="string">'b'</span> .. <span class="string">'c'</span> .. <span class="string">'d'</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- 这段代码会创建 'ab' 'abc' 'abcd' 3 个字符串</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs lua"><span class="hljs-keyword">local</span> str = <span class="hljs-string">'a'</span> .. <span class="hljs-string">'b'</span> .. <span class="hljs-string">'c'</span> .. <span class="hljs-string">'d'</span><br><br><span class="hljs-comment">-- 这段代码会创建 'ab' 'abc' 'abcd' 3 个字符串</span><br></code></pre></td></tr></table></figure>
 
 <p>一般来说，如果你的字符串比较短或是拼接次数比较少，那么无需在意。但如果需要再循环中进行大量拼接，那么应当使用 <code>table.concat</code> 来实现，例如：</p>
-<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">local</span> <span class="function"><span class="keyword">function</span> <span class="title">f</span><span class="params">(units)</span></span></span><br><span class="line">    <span class="keyword">local</span> str = <span class="string">''</span></span><br><span class="line">    <span class="keyword">for</span> _, u <span class="keyword">in</span> <span class="built_in">ipairs</span>(units) <span class="keyword">do</span></span><br><span class="line">        str = str .. u:getUUID() .. <span class="string">','</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">return</span> str</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="comment">-- 假设 units 的数组长度为 1000，且每个 unit 的 UUID 长度为 16 个字节，</span></span><br><span class="line"><span class="comment">-- 那么上述代码一共会创建 2000 个字符串，共申请 17M 的内存。</span></span><br><span class="line"><span class="comment">-- 因此将其改写为：</span></span><br><span class="line"><span class="keyword">local</span> <span class="function"><span class="keyword">function</span> <span class="title">f</span><span class="params">(units)</span></span></span><br><span class="line">    <span class="keyword">local</span> buf = {}</span><br><span class="line">    <span class="keyword">for</span> _, u <span class="keyword">in</span> <span class="built_in">ipairs</span>(units) <span class="keyword">do</span></span><br><span class="line">        buf[#buf+<span class="number">1</span>] = u:getUUID()</span><br><span class="line">        buf[#buf+<span class="number">1</span>] = <span class="string">','</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">table</span>.<span class="built_in">concat</span>(buf)</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="comment">-- 如此一来就只会创建一个字符串，申请 17K 的内存</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs lua"><span class="hljs-keyword">local</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">f</span><span class="hljs-params">(units)</span></span><br>    <span class="hljs-keyword">local</span> str = <span class="hljs-string">''</span><br>    <span class="hljs-keyword">for</span> _, u <span class="hljs-keyword">in</span> <span class="hljs-built_in">ipairs</span>(units) <span class="hljs-keyword">do</span><br>        str = str .. u:getUUID() .. <span class="hljs-string">','</span><br>    <span class="hljs-keyword">end</span><br>    <span class="hljs-keyword">return</span> str<br><span class="hljs-keyword">end</span><br><span class="hljs-comment">-- 假设 units 的数组长度为 1000，且每个 unit 的 UUID 长度为 16 个字节，</span><br><span class="hljs-comment">-- 那么上述代码一共会创建 2000 个字符串，共申请 17M 的内存。</span><br><span class="hljs-comment">-- 因此将其改写为：</span><br><span class="hljs-keyword">local</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">f</span><span class="hljs-params">(units)</span></span><br>    <span class="hljs-keyword">local</span> buf = {}<br>    <span class="hljs-keyword">for</span> _, u <span class="hljs-keyword">in</span> <span class="hljs-built_in">ipairs</span>(units) <span class="hljs-keyword">do</span><br>        buf[#buf+<span class="hljs-number">1</span>] = u:getUUID()<br>        buf[#buf+<span class="hljs-number">1</span>] = <span class="hljs-string">','</span><br>    <span class="hljs-keyword">end</span><br>    <span class="hljs-keyword">return</span> <span class="hljs-built_in">table</span>.<span class="hljs-built_in">concat</span>(buf)<br><span class="hljs-keyword">end</span><br><span class="hljs-comment">-- 如此一来就只会创建一个字符串，申请 17K 的内存</span><br></code></pre></td></tr></table></figure>
 
 <h3 id="空（none）与 nil"><a href="# 空（none）与 nil" class="headerlink" title="空（none）与 nil"></a>空（none）与 <code>nil</code></h3><p> 在 Lua 层，由于获取一个空值时会返回 <code>nil</code>，因此很难察觉到空值的存在。而在 C 层则是提供了<code>lua_isnil</code>/<code>lua_isnone</code>/<code>lua_isnoneornil</code> 这 3 个 API 进行区分。大部分情况下我们确实不需要关心他们的区别，但还是有一个地方需要用到。</p>
 <p>Lua 默认提供的几个 API 会根据参数的数量决定不同的行为，例如 <code>table.insert</code>：</p>
@@ -494,49 +662,49 @@ mjx-container[display="true"] + br {
 <li><code>table.insert(t, getValue())</code></li>
 </ul>
 <p>前一种不定参会导致你的参数数量由当前函数的调用者决定，因此你需要做好判断的工作。判断不定参的参数数量需要用到 <code>select</code> 方法：</p>
-<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">local</span> <span class="function"><span class="keyword">function</span> <span class="title">count</span><span class="params">(...)</span></span></span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">select</span>(<span class="string">'#'</span>, ...)</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(count()) <span class="comment">--&gt; 0</span></span><br><span class="line"><span class="built_in">print</span>(count(<span class="number">1</span>, <span class="number">2</span>)) <span class="comment">--&gt; 2</span></span><br><span class="line"><span class="built_in">print</span>(count(<span class="number">1</span>, <span class="number">2</span>, <span class="literal">nil</span>, <span class="literal">nil</span>)) <span class="comment">--&gt; 4</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs lua"><span class="hljs-keyword">local</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">count</span><span class="hljs-params">(...)</span></span><br>    <span class="hljs-keyword">return</span> <span class="hljs-built_in">select</span>(<span class="hljs-string">'#'</span>, ...)<br><span class="hljs-keyword">end</span><br><br><span class="hljs-built_in">print</span>(count()) <span class="hljs-comment">--&gt; 0</span><br><span class="hljs-built_in">print</span>(count(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>)) <span class="hljs-comment">--&gt; 2</span><br><span class="hljs-built_in">print</span>(count(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-literal">nil</span>, <span class="hljs-literal">nil</span>)) <span class="hljs-comment">--&gt; 4</span><br></code></pre></td></tr></table></figure>
 
 <p>后一种则是要保证好目标函数的返回值数量：</p>
-<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">local</span> <span class="function"><span class="keyword">function</span> <span class="title">getValue</span><span class="params">(n)</span></span></span><br><span class="line">    <span class="keyword">if</span> n == <span class="number">0</span> <span class="keyword">then</span></span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    <span class="keyword">elseif</span> n == <span class="number">1</span> <span class="keyword">then</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">nil</span></span><br><span class="line">    <span class="keyword">elseif</span> n == <span class="number">2</span> <span class="keyword">then</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">nil</span>, <span class="literal">nil</span></span><br><span class="line">    <span class="keyword">elseif</span> n == <span class="number">3</span> <span class="keyword">then</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">nil</span>, <span class="literal">nil</span>, <span class="literal">nil</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">select</span>(<span class="string">'#'</span>, getValue(<span class="number">0</span>))) <span class="comment">--&gt; 0</span></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">select</span>(<span class="string">'#'</span>, getValue(<span class="number">1</span>))) <span class="comment">--&gt; 1</span></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">select</span>(<span class="string">'#'</span>, getValue(<span class="number">2</span>))) <span class="comment">--&gt; 2</span></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">select</span>(<span class="string">'#'</span>, getValue(<span class="number">3</span>))) <span class="comment">--&gt; 3</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs lua"><span class="hljs-keyword">local</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getValue</span><span class="hljs-params">(n)</span></span><br>    <span class="hljs-keyword">if</span> n == <span class="hljs-number">0</span> <span class="hljs-keyword">then</span><br>        <span class="hljs-keyword">return</span><br>    <span class="hljs-keyword">elseif</span> n == <span class="hljs-number">1</span> <span class="hljs-keyword">then</span><br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">nil</span><br>    <span class="hljs-keyword">elseif</span> n == <span class="hljs-number">2</span> <span class="hljs-keyword">then</span><br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">nil</span>, <span class="hljs-literal">nil</span><br>    <span class="hljs-keyword">elseif</span> n == <span class="hljs-number">3</span> <span class="hljs-keyword">then</span><br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">nil</span>, <span class="hljs-literal">nil</span>, <span class="hljs-literal">nil</span><br>    <span class="hljs-keyword">end</span><br><span class="hljs-keyword">end</span><br><br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">select</span>(<span class="hljs-string">'#'</span>, getValue(<span class="hljs-number">0</span>))) <span class="hljs-comment">--&gt; 0</span><br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">select</span>(<span class="hljs-string">'#'</span>, getValue(<span class="hljs-number">1</span>))) <span class="hljs-comment">--&gt; 1</span><br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">select</span>(<span class="hljs-string">'#'</span>, getValue(<span class="hljs-number">2</span>))) <span class="hljs-comment">--&gt; 2</span><br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">select</span>(<span class="hljs-string">'#'</span>, getValue(<span class="hljs-number">3</span>))) <span class="hljs-comment">--&gt; 3</span><br></code></pre></td></tr></table></figure>
 
 <p>前文“一些坑”中有提到过，尽量使用中间变量来明确函数返回值的数量</p>
 <h3 id="不定参"><a href="# 不定参" class="headerlink" title="不定参"></a>不定参 </h3><p> 不定参是不能跨越函数（作为闭包的上值）的，也就是你无法这么写：</p>
-<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">local</span> <span class="function"><span class="keyword">function</span> <span class="title">factory</span><span class="params">(...)</span></span></span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> <span class="params">()</span></span></span><br><span class="line">        <span class="keyword">return</span> ... <span class="comment">--&gt; 语法错误</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs lua"><span class="hljs-keyword">local</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">factory</span><span class="hljs-params">(...)</span></span><br>    <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span></span><br>        <span class="hljs-keyword">return</span> ... <span class="hljs-comment">--&gt; 语法错误</span><br>    <span class="hljs-keyword">end</span><br><span class="hljs-keyword">end</span><br></code></pre></td></tr></table></figure>
 
 <blockquote>
 <p>有时你会在网上的教程中看到不定参会被存到隐藏参数 arg（表）中，这是旧版 Lua 的功能，出于性能考虑已被废弃（当然 C 代码中有宏可以启用这个功能）</p>
 </blockquote>
 <p>如果有这个需求的话，需要将不定参包装到一个表中，一般来说这么写就足够了</p>
-<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">local</span> <span class="function"><span class="keyword">function</span> <span class="title">factory</span><span class="params">(...)</span></span></span><br><span class="line">    <span class="keyword">local</span> vars = {...}</span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> <span class="params">()</span></span></span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">table</span>.<span class="built_in">unpack</span>(vars) <span class="comment">--&gt; Lua 5.1 为 `unpack`</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs lua"><span class="hljs-keyword">local</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">factory</span><span class="hljs-params">(...)</span></span><br>    <span class="hljs-keyword">local</span> vars = {...}<br>    <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span></span><br>        <span class="hljs-keyword">return</span> <span class="hljs-built_in">table</span>.<span class="hljs-built_in">unpack</span>(vars) <span class="hljs-comment">--&gt; Lua 5.1 为 `unpack`</span><br>    <span class="hljs-keyword">end</span><br><span class="hljs-keyword">end</span><br></code></pre></td></tr></table></figure>
 
 <p>但有的时候我们需要保证不定参需要被 <strong> 原样 </strong> 返回出去，比如转发 / 代理任意消息。如果不定参的末尾跟着<code>nil</code>，上面的写法会导致返回出去的值的数量不同，因此需要保存不定参的数量：</p>
-<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">local</span> <span class="function"><span class="keyword">function</span> <span class="title">factory</span><span class="params">(...)</span></span></span><br><span class="line">    <span class="keyword">local</span> vars = {...}</span><br><span class="line">    <span class="keyword">local</span> num  = <span class="built_in">select</span>(<span class="string">'#'</span>, ...)</span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> <span class="params">()</span></span></span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">table</span>.<span class="built_in">unpack</span>(vars, <span class="number">1</span>, num)</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs lua"><span class="hljs-keyword">local</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">factory</span><span class="hljs-params">(...)</span></span><br>    <span class="hljs-keyword">local</span> vars = {...}<br>    <span class="hljs-keyword">local</span> num  = <span class="hljs-built_in">select</span>(<span class="hljs-string">'#'</span>, ...)<br>    <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span></span><br>        <span class="hljs-keyword">return</span> <span class="hljs-built_in">table</span>.<span class="hljs-built_in">unpack</span>(vars, <span class="hljs-number">1</span>, num)<br>    <span class="hljs-keyword">end</span><br><span class="hljs-keyword">end</span><br></code></pre></td></tr></table></figure>
 
 <p>此外也可以用 <code>table.pack</code> 实现相同的功能：</p>
-<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">local</span> <span class="function"><span class="keyword">function</span> <span class="title">factory</span><span class="params">(...)</span></span></span><br><span class="line">    <span class="keyword">local</span> vars = <span class="built_in">table</span>.pack(...) <span class="comment">--&gt; Lua 5.1 不可用；LuaJIT 可用</span></span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> <span class="params">()</span></span></span><br><span class="line">       <span class="keyword">return</span> <span class="built_in">table</span>.<span class="built_in">unpack</span>(vars, <span class="number">1</span>, vars.n) <span class="comment">--&gt; 不定参长度保存在字段 `n` 中</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs lua"><span class="hljs-keyword">local</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">factory</span><span class="hljs-params">(...)</span></span><br>    <span class="hljs-keyword">local</span> vars = <span class="hljs-built_in">table</span>.pack(...) <span class="hljs-comment">--&gt; Lua 5.1 不可用；LuaJIT 可用</span><br>    <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span></span><br>       <span class="hljs-keyword">return</span> <span class="hljs-built_in">table</span>.<span class="hljs-built_in">unpack</span>(vars, <span class="hljs-number">1</span>, vars.n) <span class="hljs-comment">--&gt; 不定参长度保存在字段 `n` 中</span><br>    <span class="hljs-keyword">end</span><br><span class="hljs-keyword">end</span><br></code></pre></td></tr></table></figure>
 
 <p>这 2 种写法根据使用场景会有一点点的性能区别，例如：</p>
-<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">local</span> <span class="function"><span class="keyword">function</span> <span class="title">getSum1</span><span class="params">(...)</span></span></span><br><span class="line">    <span class="keyword">local</span> sum = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> i = <span class="number">1</span>, <span class="built_in">select</span>(<span class="string">'#'</span>, ...) <span class="keyword">do</span></span><br><span class="line">        sum = sum + (<span class="built_in">select</span>(<span class="string">'#'</span>, i) <span class="keyword">or</span> <span class="number">0</span>)</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">return</span> sum</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">local</span> <span class="function"><span class="keyword">function</span> <span class="title">getSum2</span><span class="params">(...)</span></span></span><br><span class="line">    <span class="keyword">local</span> sum = <span class="number">0</span></span><br><span class="line">    <span class="keyword">local</span> vars = <span class="built_in">table</span>.pack(...)</span><br><span class="line">    <span class="keyword">for</span> i = <span class="number">1</span>, vars.n <span class="keyword">do</span></span><br><span class="line">        sum = sum + (vars[i] <span class="keyword">or</span> <span class="number">0</span>)</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">return</span> sum</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs lua"><span class="hljs-keyword">local</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getSum1</span><span class="hljs-params">(...)</span></span><br>    <span class="hljs-keyword">local</span> sum = <span class="hljs-number">0</span><br>    <span class="hljs-keyword">for</span> i = <span class="hljs-number">1</span>, <span class="hljs-built_in">select</span>(<span class="hljs-string">'#'</span>, ...) <span class="hljs-keyword">do</span><br>        sum = sum + (<span class="hljs-built_in">select</span>(<span class="hljs-string">'#'</span>, i) <span class="hljs-keyword">or</span> <span class="hljs-number">0</span>)<br>    <span class="hljs-keyword">end</span><br>    <span class="hljs-keyword">return</span> sum<br><span class="hljs-keyword">end</span><br><br><span class="hljs-keyword">local</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getSum2</span><span class="hljs-params">(...)</span></span><br>    <span class="hljs-keyword">local</span> sum = <span class="hljs-number">0</span><br>    <span class="hljs-keyword">local</span> vars = <span class="hljs-built_in">table</span>.pack(...)<br>    <span class="hljs-keyword">for</span> i = <span class="hljs-number">1</span>, vars.n <span class="hljs-keyword">do</span><br>        sum = sum + (vars[i] <span class="hljs-keyword">or</span> <span class="hljs-number">0</span>)<br>    <span class="hljs-keyword">end</span><br>    <span class="hljs-keyword">return</span> sum<br><span class="hljs-keyword">end</span><br></code></pre></td></tr></table></figure>
 
 <p>肉眼可见，第一种写法每个参数都要调用一次函数，第二种写法则固定要创建一张表，所以你可以根据实际情况预估一下参数数量决定使用哪种写法。不过说实话差别很小，不需要特别在意</p>
 <h3 id="环境与沙盒"><a href="# 环境与沙盒" class="headerlink" title="环境与沙盒"></a>环境与沙盒 </h3><p>Lua 通过全局表与环境表来实现全局变量。在 Lua 5.1 与 LuaJIT 中每个函数都会绑定一个环境表 (env，默认就是<code>_G</code>)，当你读写全局变量时，其实修改的是环境表中的对象。新建的函数会继承父函数的环境，同时也提供了函数<code>setfenv</code> 来修改函数的环境</p>
-<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">X = <span class="number">1</span> </span><br><span class="line"><span class="keyword">local</span> <span class="function"><span class="keyword">function</span> <span class="title">f</span><span class="params">()</span></span></span><br><span class="line">    Y = X</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs lua">X = <span class="hljs-number">1</span> <br><span class="hljs-keyword">local</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">f</span><span class="hljs-params">()</span></span><br>    Y = X<br><span class="hljs-keyword">end</span><br></code></pre></td></tr></table></figure>
 
-<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 上面的代码在 Lua 5.1 中会被这样解释（伪代码）：</span></span><br><span class="line"><span class="built_in">setfenv</span>(<span class="number">1</span>, env) <span class="comment">-- `env` 是当前环境，默认为 `_G`. `env` 并不存在于变量列表中。</span></span><br><span class="line"><span class="built_in">getfenv</span>(<span class="number">1</span>)[<span class="string">'X'</span>] = <span class="number">1</span></span><br><span class="line"><span class="keyword">local</span> <span class="function"><span class="keyword">function</span> <span class="title">f</span><span class="params">()</span></span></span><br><span class="line">    <span class="built_in">getfenv</span>(<span class="number">1</span>)[<span class="string">'Y'</span>] = <span class="built_in">getfenv</span>(<span class="number">1</span>)[<span class="string">'X'</span>]</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="built_in">setfenv</span>(f, <span class="built_in">getfenv</span>(<span class="number">1</span>))</span><br></pre></td></tr></table></figure>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs lua"><span class="hljs-comment">-- 上面的代码在 Lua 5.1 中会被这样解释（伪代码）：</span><br><span class="hljs-built_in">setfenv</span>(<span class="hljs-number">1</span>, env) <span class="hljs-comment">-- `env` 是当前环境，默认为 `_G`. `env` 并不存在于变量列表中。</span><br><span class="hljs-built_in">getfenv</span>(<span class="hljs-number">1</span>)[<span class="hljs-string">'X'</span>] = <span class="hljs-number">1</span><br><span class="hljs-keyword">local</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">f</span><span class="hljs-params">()</span></span><br>    <span class="hljs-built_in">getfenv</span>(<span class="hljs-number">1</span>)[<span class="hljs-string">'Y'</span>] = <span class="hljs-built_in">getfenv</span>(<span class="hljs-number">1</span>)[<span class="hljs-string">'X'</span>]<br><span class="hljs-keyword">end</span><br><span class="hljs-built_in">setfenv</span>(f, <span class="hljs-built_in">getfenv</span>(<span class="hljs-number">1</span>))<br></code></pre></td></tr></table></figure>
 
 <p>然而这个设计引发了很多困惑，你无法准确的判断出当前函数的内的全局变量到底是从哪个环境里读取的，因为任何人都有权限随时修改你的环境。</p>
 <p>另一方面，如果一个函数返回了一个闭包，创建闭包的时候闭包会继承父函数的环境，但之后修改父函数的环境将无法再影响闭包。相对之下修改上值（upvalue）是可以作用于闭包的，因此这又引发了“变量作用域”规则的不一致性，引发了困扰</p>
 <p>因此从 Lua 5.2 开始，环境改为通过上值来实现，从而统一了概念，减少了特例</p>
-<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 上面的代码在 Lua 5.2 中会被这样解释（伪代码）：</span></span><br><span class="line"><span class="keyword">local</span> <span class="built_in">_ENV</span> = env <span class="comment">-- `env` 是当前环境，默认为 `_G`.</span></span><br><span class="line"><span class="built_in">_ENV</span>[<span class="string">'x'</span>] = <span class="number">1</span></span><br><span class="line"><span class="keyword">local</span> <span class="function"><span class="keyword">function</span> <span class="title">f</span><span class="params">()</span></span></span><br><span class="line">    <span class="built_in">_ENV</span>[<span class="string">'Y'</span>] = <span class="built_in">_ENV</span>[<span class="string">'X'</span>]</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs lua"><span class="hljs-comment">-- 上面的代码在 Lua 5.2 中会被这样解释（伪代码）：</span><br><span class="hljs-keyword">local</span> <span class="hljs-built_in">_ENV</span> = env <span class="hljs-comment">-- `env` 是当前环境，默认为 `_G`.</span><br><span class="hljs-built_in">_ENV</span>[<span class="hljs-string">'x'</span>] = <span class="hljs-number">1</span><br><span class="hljs-keyword">local</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">f</span><span class="hljs-params">()</span></span><br>    <span class="hljs-built_in">_ENV</span>[<span class="hljs-string">'Y'</span>] = <span class="hljs-built_in">_ENV</span>[<span class="hljs-string">'X'</span>]<br><span class="hljs-keyword">end</span><br></code></pre></td></tr></table></figure>
 
 <p>其中 <code>_ENV</code> 是真实存在于局部变量列表中的，这使得环境的基础概念由每个函数单独一个环境变为了同一个文件共享同一个环境。这个方案使得函数的环境由代码写法决定，而不是由运行时的状态决定。当你修改环境时，所有的函数与闭包的环境也会被一并修改</p>
-<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">local</span> <span class="built_in">print</span> = <span class="built_in">print</span></span><br><span class="line"><span class="keyword">local</span> <span class="built_in">pairs</span> = <span class="built_in">pairs</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">_ENV</span> = <span class="literal">nil</span> <span class="comment">-- 禁止下面的代码使用全局变量，避免拼写错误导致的误用</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">pairs</span>)</span><br><span class="line"><span class="built_in">print</span>(paris) <span class="comment">-- 运行时这里会报错，因为被解释为了 `_ENV['paris']`，而此时的 `_ENV` 为 `nil`</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs lua"><span class="hljs-keyword">local</span> <span class="hljs-built_in">print</span> = <span class="hljs-built_in">print</span><br><span class="hljs-keyword">local</span> <span class="hljs-built_in">pairs</span> = <span class="hljs-built_in">pairs</span><br><br><span class="hljs-built_in">_ENV</span> = <span class="hljs-literal">nil</span> <span class="hljs-comment">-- 禁止下面的代码使用全局变量，避免拼写错误导致的误用</span><br><br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">pairs</span>)<br><span class="hljs-built_in">print</span>(paris) <span class="hljs-comment">-- 运行时这里会报错，因为被解释为了 `_ENV['paris']`，而此时的 `_ENV` 为 `nil`</span><br></code></pre></td></tr></table></figure>
 
 <h3 id="垃圾回收"><a href="# 垃圾回收" class="headerlink" title="垃圾回收"></a>垃圾回收 </h3><p> 目前主流的垃圾回收有 2 种，分别是引用计数与标记清理。</p>
 <p>引用计数的原理很朴素，每当对象被持有时计数 +1，当持有被解除后 -1，归 0 即释放。这种朴素的思想自然会产生很多问题，包括难以解决循环引用以及对于动态语言来说浪费性能等。但 Lua 没有使用这种方式的主要原因是 Lua 设计为需要频繁和 C 交互，而引用计数势必会侵入 CAPI 的部分，会给 C 的代码带来额外的心智负担。</p>
 <p>标记清理则是从目的出发：既然垃圾回收的目的是为了清理掉无法再访问到的内存，那么我们只要进行一次可达性测试，即可找出要收集的垃圾，如图所示：</p>
 <center>
-    <img src="/2022/08/15/44/lua-garbage-collection.png">
+    <img src="/2022/08/15/44/lua-garbage-collection.png" srcset="/img/loading.gif" lazyload>
 </center>
 
 <p>我们只需要从根集（注册表）出发，顺着应用链往下递归，将访问到的对象全部标记为黑色。当递归结束后，那些没有被标记到的对象便成为了垃圾可以释放掉了。这个流程实现起来很简单，因为 Lua 的结构简单，并且提供了完善的调试与反射功能，甚至使用纯 Lua 也能实现扫描，可以用于内存分析等功能</p>
@@ -555,18 +723,18 @@ mjx-container[display="true"] + br {
 <p>程序开发中一直有所谓的“二八原则”，垃圾回收也不例外。到目前为止我描述的都是垃圾回收中最基础的思想和最主要的实现，它们占据了 80% 的情况，只需要付出 20% 的经历与代码量即可完成。在这之后我们会遇到 20% 的边界情况，为了对付他们，我们需要引入大量复杂的设计，付出 80% 的精力与代码量</p>
 <h4 id="写屏障"><a href="# 写屏障" class="headerlink" title="写屏障"></a>写屏障 </h4><p> 在上面的增量回收流程中，我们看到了一个理想的模型：在纯白的地图上，一个黑色出现，之后灰色边界产生并慢慢扩散，并且灰色慢慢转换为黑色，最终将地图分割为非黑即白的世界。其中灰色作为缓冲带分割了黑色与白色，黑色对象不会指向白色对象</p>
 <p>但实际运行中，我们完全有可能在垃圾回收暂停的过程中，通过赋值操作直接将黑色对象指向白色对象，例如</p>
-<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">_G</span>[<span class="string">'X'</span>] = {} <span class="comment">-- _G 表作为根集之一，很可能是黑色的；而新建的空表一定是白色的</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs lua"><span class="hljs-built_in">_G</span>[<span class="hljs-string">'X'</span>] = {} <span class="hljs-comment">-- _G 表作为根集之一，很可能是黑色的；而新建的空表一定是白色的</span><br></code></pre></td></tr></table></figure>
 
 <p>因此我们需要引入写屏障来解决这个问题。写屏障这个名字听着很厉害，实际上就是在赋值操作里面加了个判断，发现白色对象被赋值到了黑色对象的引用中时，将其中一个对象改为灰色。到底把谁改为灰色，这个一般是根据概率统计出来的经验（分支预测），因此这里不再展开说了，理论上改谁都可以</p>
 <h4 id="再次灰色"><a href="# 再次灰色" class="headerlink" title="再次灰色"></a>再次灰色 </h4><p> 如果一个对象被反复改为灰色（每次从黑改灰都意味着需要重新扫描这个对象），那么这个对象会被标记为一个特殊的灰色，之后增量阶段不再扫描此对象（避免反复扫描这个对象），改为增量阶段结束后使用一个原子阶段一次性扫描</p>
 <h4 id="弱引用"><a href="# 弱引用" class="headerlink" title="弱引用"></a>弱引用</h4><p>Lua 使用弱表实现了弱引用，但弱表本身也是需要扫描的，因为字符串本身虽然是个可回收对象，但是在作为弱表的键值时总是强引用。此外弱表还有个特殊的情况，考虑以下情况：</p>
-<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">local</span> t = <span class="built_in">setmetatable</span>({}, { <span class="built_in">__mode</span> = <span class="string">'k'</span> }) <span class="comment">-- 构造一个弱键表</span></span><br><span class="line"></span><br><span class="line">t[X] = Y</span><br><span class="line">t[Y] = X</span><br></pre></td></tr></table></figure>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs lua"><span class="hljs-keyword">local</span> t = <span class="hljs-built_in">setmetatable</span>({}, { <span class="hljs-built_in">__mode</span> = <span class="hljs-string">'k'</span> }) <span class="hljs-comment">-- 构造一个弱键表</span><br><br>t[X] = Y<br>t[Y] = X<br></code></pre></td></tr></table></figure>
 
 <p>在这个例子中，表的键为弱引用，值为强引用。当扫描此表时，发现 <code>X</code> 与 <code>Y</code>都作为值，而该表的值为强引用，于是认为他们被引用住了，因此不会回收这 2 个对象。但实际上这是一个弱循环引用，应当被回收。</p>
 <p>为此，Lua 引入了一个叫做“蜉蝣表”的概念，可以正确发现并回收这种弱循环引用。你问我这个“蜉蝣表”的原理？请自己去啃 <a target="_blank" rel="noopener" href="http://www.inf.puc-rio.br/~roberto/docs/ry08-06.pdf">论文</a> 吧，这玩意儿没人翻译，我看了一眼就睡着了</p>
 <blockquote>
 <p>值得注意的是论文中提到蜉蝣表存在一些“最坏情况”，例如这个例子：</p>
-<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">collectgarbage</span> <span class="string">'stop'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">local</span> oo = {}</span><br><span class="line"><span class="keyword">for</span> i = <span class="number">1</span>, <span class="number">5000</span> <span class="keyword">do</span></span><br><span class="line">    oo[i] = {}</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">local</span> t = <span class="built_in">setmetatable</span>({}, { <span class="built_in">__mode</span> = <span class="string">'k'</span> })</span><br><span class="line"><span class="keyword">for</span> i = <span class="number">1</span>, #oo <span class="keyword">do</span></span><br><span class="line">    <span class="keyword">local</span> k = oo[i]</span><br><span class="line">    <span class="keyword">local</span> v = oo[i+<span class="number">1</span>]</span><br><span class="line">    t[k] = v <span class="comment">-- t[o1] = o2, t[o2] = o3, t[o3] = o4 ...</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">local</span> ref = oo[<span class="number">1</span>] <span class="comment">-- 确保 o1 有个强引用</span></span><br><span class="line"></span><br><span class="line">oo = <span class="literal">nil</span> <span class="comment">-- 确保其他对象都没有外部引用</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">local</span> <span class="built_in">clock</span> = <span class="built_in">os</span>.<span class="built_in">clock</span>()</span><br><span class="line"><span class="built_in">collectgarbage</span>()</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">os</span>.<span class="built_in">clock</span>() - <span class="built_in">clock</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs lua"><span class="hljs-built_in">collectgarbage</span> <span class="hljs-string">'stop'</span><br><br><span class="hljs-keyword">local</span> oo = {}<br><span class="hljs-keyword">for</span> i = <span class="hljs-number">1</span>, <span class="hljs-number">5000</span> <span class="hljs-keyword">do</span><br>    oo[i] = {}<br><span class="hljs-keyword">end</span><br><br><span class="hljs-keyword">local</span> t = <span class="hljs-built_in">setmetatable</span>({}, { <span class="hljs-built_in">__mode</span> = <span class="hljs-string">'k'</span> })<br><span class="hljs-keyword">for</span> i = <span class="hljs-number">1</span>, #oo <span class="hljs-keyword">do</span><br>    <span class="hljs-keyword">local</span> k = oo[i]<br>    <span class="hljs-keyword">local</span> v = oo[i+<span class="hljs-number">1</span>]<br>    t[k] = v <span class="hljs-comment">-- t[o1] = o2, t[o2] = o3, t[o3] = o4 ...</span><br><span class="hljs-keyword">end</span><br><br><span class="hljs-keyword">local</span> ref = oo[<span class="hljs-number">1</span>] <span class="hljs-comment">-- 确保 o1 有个强引用</span><br><br>oo = <span class="hljs-literal">nil</span> <span class="hljs-comment">-- 确保其他对象都没有外部引用</span><br><br><span class="hljs-keyword">local</span> <span class="hljs-built_in">clock</span> = <span class="hljs-built_in">os</span>.<span class="hljs-built_in">clock</span>()<br><span class="hljs-built_in">collectgarbage</span>()<br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">os</span>.<span class="hljs-built_in">clock</span>() - <span class="hljs-built_in">clock</span>)<br></code></pre></td></tr></table></figure>
 
 <p>在这个例子中，我构造了一个蜉蝣表，表中所有的所有的键值对形成一个链，并确保只有第一个对象有外部的强引用。分别对蜉蝣表与正常表进行了垃圾回收测试：</p>
 <table>
@@ -635,143 +803,401 @@ mjx-container[display="true"] + br {
 <p>为了保证一致性，所有带有终结器的的对象会在一个原子阶段依次调用（按照创建顺序的反序）。由于调用终结器时需要传入被回收的对象，因此会让这个对象活过这轮。在下一轮垃圾回收时，如果发现该对象依然没有引用就会正式删除（当然不会再调用终结器了），但如果发现该对象重新有了引用（你在终结器中将其重新引用住了，例如将其保存到了全局变量中），那么这个对象就会被正式复活，以后再被回收的话会重新触发终结器</p>
 <p>由于调用终结器是原子操作，因此我们必须要保证终结器内的运行尽量简单以减少停顿。另外为了避免垃圾回收重入，此时的垃圾回收是暂停状态，因此不要创建太多的临时内存。说到底还是要让终结器内的操作尽量简单，复杂的事情要加入到队列中以后再做</p>
 
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Lua/" class="category-chain-item">Lua</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/lua/" class="print-no-link">#lua</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Lua 小知识</div>
+      <div>https://silhouettesforyou.github.io/2022/08/15/44/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Xiaoming</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>August 15, 2022</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
   </div>
-</article>
 
 
 
-        
-          <div id="footer-post-container">
-  <div id="footer-post">
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/08/19/45/" title="Unity 面试">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Unity 面试</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/08/13/43/" title="游戏体系">
+                        <span class="hidden-mobile">游戏体系</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
 
-    <div id="nav-footer" style="display: none">
-      <ul>
-        
-          <li><a href="/">Home</a></li>
-        
-          <li><a href="/archives/">Writing</a></li>
-        
-          <li><a href="/lover/">Lover</a></li>
-        
-          <li><a href="/about/">About</a></li>
-        
-      </ul>
-    </div>
-
-    
-    
-      <div id="toc-footer" style="display: none">
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E7%BB%84%E5%85%83%E7%B4%A0%E7%9A%84%E6%8F%92%E5%85%A5%E4%B8%8E%E5%88%A0%E9%99%A4"><span class="toc-number">1.</span> <span class="toc-text">数组元素的插入与删除 </span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Try-Catch"><span class="toc-number">2.</span> <span class="toc-text">Try-Catch</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A4%E7%A9%BA"><span class="toc-number">3.</span> <span class="toc-text">判空 </span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">3.1.</span> <span class="toc-text">总结</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8F%90%E5%8D%87%E6%80%A7%E8%83%BD%E7%9A%84%E5%86%99%E6%B3%95"><span class="toc-number">4.</span> <span class="toc-text">提升性能的写法 </span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E4%BA%9B%E5%9D%91"><span class="toc-number">5.</span> <span class="toc-text">一些坑</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8B%BC%E6%8E%A5%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="toc-number">6.</span> <span class="toc-text">拼接字符串</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A9%BA%EF%BC%88none%EF%BC%89%E4%B8%8E%20nil"><span class="toc-number">7.</span> <span class="toc-text">空（none）与 nil</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8D%E5%AE%9A%E5%8F%82"><span class="toc-number">8.</span> <span class="toc-text">不定参 </span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%8E%AF%E5%A2%83%E4%B8%8E%E6%B2%99%E7%9B%92"><span class="toc-number">9.</span> <span class="toc-text">环境与沙盒 </span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6"><span class="toc-number">10.</span> <span class="toc-text">垃圾回收 </span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%A2%9E%E9%87%8F%E5%9B%9E%E6%94%B6"><span class="toc-number">10.1.</span> <span class="toc-text">增量回收 </span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%86%99%E5%B1%8F%E9%9A%9C"><span class="toc-number">10.2.</span> <span class="toc-text">写屏障 </span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%86%8D%E6%AC%A1%E7%81%B0%E8%89%B2"><span class="toc-number">10.3.</span> <span class="toc-text">再次灰色 </span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BC%B1%E5%BC%95%E7%94%A8"><span class="toc-number">10.4.</span> <span class="toc-text">弱引用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B8%85%E7%90%86%E5%BC%B1%E8%A1%A8"><span class="toc-number">10.5.</span> <span class="toc-text">清理弱表 </span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BB%88%E7%BB%93%E5%99%A8%EF%BC%88%E8%A7%A3%E6%9E%90%E5%99%A8%EF%BC%89"><span class="toc-number">10.6.</span> <span class="toc-text">终结器（解析器）</span></a></li></ol></li></ol>
+            
+          </article>
+        </div>
       </div>
-    
-
-    <div id="share-footer" style="display: none">
-      <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://silhouettesforyou.github.io/2022/08/15/44/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://silhouettesforyou.github.io/2022/08/15/44/&text=Lua 小知识（转载）"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://silhouettesforyou.github.io/2022/08/15/44/&title=Lua 小知识（转载）"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://silhouettesforyou.github.io/2022/08/15/44/&is_video=false&description=Lua 小知识（转载）"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=Lua 小知识（转载）&body=Check out this article: https://silhouettesforyou.github.io/2022/08/15/44/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://silhouettesforyou.github.io/2022/08/15/44/&title=Lua 小知识（转载）"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://silhouettesforyou.github.io/2022/08/15/44/&title=Lua 小知识（转载）"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://silhouettesforyou.github.io/2022/08/15/44/&title=Lua 小知识（转载）"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://silhouettesforyou.github.io/2022/08/15/44/&title=Lua 小知识（转载）"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://silhouettesforyou.github.io/2022/08/15/44/&name=Lua 小知识（转载）&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://silhouettesforyou.github.io/2022/08/15/44/&t=Lua 小知识（转载）"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
-</ul>
-
     </div>
 
-    <div id="actions-footer">
-        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
-        
-          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> TOC</a>
-        
-        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
-        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
-    </div>
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
 
+
+
+  </aside>
+
+
+    </div>
   </div>
 </div>
 
-        
-        <footer id="footer">
-  <div class="footer-left">
-    Copyright &copy;
-    
-    
-    2016-2024
-    Xiaoming
-  </div>
-  <div class="footer-right">
-    <nav>
-      <ul>
-        <!--
-       --><li><a href="/">Home</a></li><!--
-     --><!--
-       --><li><a href="/archives/">Writing</a></li><!--
-     --><!--
-       --><li><a href="/lover/">Lover</a></li><!--
-     --><!--
-       --><li><a href="/about/">About</a></li><!--
-     -->
-      </ul>
-    </nav>
-  </div>
-</footer>
 
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
     </div>
-    <!-- styles -->
+  </div>
+</div>
 
+    
 
+    
+  </main>
 
-  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
-
-
-    <!-- jquery -->
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
-
-
-
-
-<!-- clipboard -->
-
+  <footer>
+    <div class="footer-inner">
   
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+    <div class="footer-content">
+      <i class="iconfont icon-love"></i>
+    </div>
   
-  <script type="text/javascript">
-  $(function() {
-    // copy-btn HTML
-    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
-    btn += '<i class="fa-regular fa-clone"></i>';
-    btn += '</span>';
-    // mount it!
-    $(".highlight table").before(btn);
-    var clip = new ClipboardJS('.btn-copy', {
-      text: function(trigger) {
-        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
-      }
-    });
-    clip.on('success', function(e) {
-      e.trigger.setAttribute('aria-label', "Copied!");
-      e.clearSelection();
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
     })
-  })
   </script>
 
 
-<script src="/js/main.js"></script>
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
 
-<!-- search -->
 
-<!-- Baidu Analytics -->
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
 
-<!-- Cloudflare Analytics -->
 
-<!-- Disqus Comments -->
 
-<!-- utterances Comments -->
 
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  var relativeDate = function() {
+    var updatedTime = document.getElementById('updated-time');
+    if (updatedTime) {
+      var text = updatedTime.textContent;
+      var reg = /\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:Z|[+-]\d{2}:\d{2})/;
+      var matchs = text.match(reg);
+      if (matchs) {
+        var relativeTime = moment(matchs[0]).fromNow();
+        updatedTime.textContent = text.replace(reg, relativeTime);
+      }
+      updatedTime.style.display = '';
+    }
+  };
+  Fluid.utils.createScript('https://lib.baomitu.com/moment.js/2.29.4/moment.min.js', function() {
+    if (!'en'.startsWith('en')) {
+      Fluid.utils.createScript('https://lib.baomitu.com/moment.js/2.29.4/locale/en.min.js', function() {
+        relativeDate();
+      });
+    } else {
+      relativeDate();
+    }
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
 <!-- hexo injector body_end start --><script src="https://cdn.jsdelivr.net/npm/hexo-tag-common@0.0.5/js/index.js"></script><!-- hexo injector body_end end --><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"left","width":150,"height":300},"mobile":{"show":false},"react":{"opacity":0.7}});</script></body>
 </html>

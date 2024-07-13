@@ -1,13 +1,23 @@
+
+
 <!DOCTYPE html>
-<html lang=en>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
 <head><!-- hexo injector head_begin start -->
 <link rel="stylesheet" href="/css/bilicard.css">
 <link href="https://cdn.jsdelivr.net/npm/hexo-tag-common@0.0.5/css/index.css" rel="stylesheet"/><!-- hexo injector head_begin end -->
-    <!-- so meta -->
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="HandheldFriendly" content="True">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/breaking-bad.png">
+  <link rel="icon" href="/img/breaking-bad.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Xiaoming">
+  <meta name="keywords" content="">
+  
     <meta name="description" content="增量式标记清除算法  整个 GC 执行的过程中，大致经历以下几个阶段  pause 阶段 mainthread 和 global table 包含 GC 起始点，因此要将它们插入到 gray 链表中，并将它们标记为灰色，进入到 propagate 阶段  propagate 阶段  不断从 gray 链表中取出对象，然后把它从灰色变为黑色，再遍历它所引用的对象，并将其插入到 gray 链表中 pr">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Lua 解释器构建：从虚拟机到编译器">
@@ -20,55 +30,103 @@
 <meta property="article:author" content="Xiaoming">
 <meta property="article:tag" content="lua">
 <meta property="article:tag" content="源码">
-<meta name="twitter:card" content="summary">
-    
-    
-      
-        
-          <link rel="shortcut icon" href="/images/favicon.ico">
-        
-      
-      
-        
-          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
-        
-      
-      
-        
-          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
-        
-      
-    
-    <!-- title -->
-    <title>Lua 解释器构建：从虚拟机到编译器</title>
-    <!-- async scripts -->
-    <!-- Google Analytics -->
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>Lua 解释器构建：从虚拟机到编译器 - Silhouettes For You</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
 
-    <!-- Umami Analytics -->
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
 
 
-    <!-- styles -->
-    
-<link rel="stylesheet" href="/css/style.css">
 
-    <!-- persian styles -->
-    
-    <!-- rss -->
-    
-    
-	<!-- mathjax -->
-	
-		<script type="text/x-mathjax-config">
-		  MathJax.Hub.Config({
-			tex2jax: {
-			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
-			  inlineMath: [['$','$']]
-			}
-		  });
-		</script>
-		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
-	
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"silhouettesforyou.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"62be422732dc4e6f91e7fa199aa1f3f2","google":{"measurement_id":"G-B260B2ZWXQ"},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?62be422732dc4e6f91e7fa199aa1f3f2";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=G-B260B2ZWXQ", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', 'G-B260B2ZWXQ');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
 <style type="text/css">
 .spoiler {
   display: inline;
@@ -102,116 +160,226 @@ p.spoiler {
 }</style><meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/atom.xml" title="Silhouettes For You" type="application/atom+xml">
 </head>
 
-<body class="max-width mx-auto px3 ltr">
-    
-      <div id="header-post">
-  <a id="menu-icon" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
-  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
-  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
-  <span id="menu">
-    <span id="nav">
-      <ul>
-        <!--
-       --><li><a href="/">Home</a></li><!--
-     --><!--
-       --><li><a href="/archives/">Writing</a></li><!--
-     --><!--
-       --><li><a href="/lover/">Lover</a></li><!--
-     --><!--
-       --><li><a href="/about/">About</a></li><!--
-     -->
-      </ul>
-    </span>
-    <br/>
-    <span id="actions">
-      <ul>
-        
-        <li><a class="icon" aria-label="Previous post" href="/2023/04/20/49/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
-        
-        
-        <li><a class="icon" aria-label="Next post" href="/2023/04/03/47/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
-        
-        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
-        <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
-      </ul>
-      <span id="i-prev" class="info" style="display:none;">Previous post</span>
-      <span id="i-next" class="info" style="display:none;">Next post</span>
-      <span id="i-top" class="info" style="display:none;">Back to top</span>
-      <span id="i-share" class="info" style="display:none;">Share post</span>
-    </span>
-    <br/>
-    <div id="share" style="display: none">
-      <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://silhouettesforyou.github.io/2023/04/03/48/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://silhouettesforyou.github.io/2023/04/03/48/&text=Lua 解释器构建：从虚拟机到编译器"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://silhouettesforyou.github.io/2023/04/03/48/&title=Lua 解释器构建：从虚拟机到编译器"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://silhouettesforyou.github.io/2023/04/03/48/&is_video=false&description=Lua 解释器构建：从虚拟机到编译器"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=Lua 解释器构建：从虚拟机到编译器&body=Check out this article: https://silhouettesforyou.github.io/2023/04/03/48/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://silhouettesforyou.github.io/2023/04/03/48/&title=Lua 解释器构建：从虚拟机到编译器"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://silhouettesforyou.github.io/2023/04/03/48/&title=Lua 解释器构建：从虚拟机到编译器"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://silhouettesforyou.github.io/2023/04/03/48/&title=Lua 解释器构建：从虚拟机到编译器"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://silhouettesforyou.github.io/2023/04/03/48/&title=Lua 解释器构建：从虚拟机到编译器"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://silhouettesforyou.github.io/2023/04/03/48/&name=Lua 解释器构建：从虚拟机到编译器&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://silhouettesforyou.github.io/2023/04/03/48/&t=Lua 解释器构建：从虚拟机到编译器"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
-</ul>
 
-    </div>
-    
-    
-      <div id="toc">
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A2%9E%E9%87%8F%E5%BC%8F%E6%A0%87%E8%AE%B0%E6%B8%85%E9%99%A4%E7%AE%97%E6%B3%95"><span class="toc-number">1.</span> <span class="toc-text">增量式标记清除算法 </span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Lua-%20%E8%99%9A%E6%8B%9F%E6%9C%BA%E7%9A%84%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="toc-number">2.</span> <span class="toc-text">Lua 虚拟机的字符串</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Lua-%20%E8%99%9A%E6%8B%9F%E6%9C%BA%E7%9A%84%E8%A1%A8"><span class="toc-number">3.</span> <span class="toc-text">Lua 虚拟机的表</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Lua-%20%E8%A1%A8%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84"><span class="toc-number">3.1.</span> <span class="toc-text">Lua 表的基本数据结构</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%94%AE%E5%80%BC%E7%9A%84%E5%93%88%E5%B8%8C%E8%BF%90%E7%AE%97"><span class="toc-number">3.2.</span> <span class="toc-text">键值的哈希运算 </span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%B0%83%E6%95%B4%E8%A1%A8%E7%9A%84%E5%A4%A7%E5%B0%8F"><span class="toc-number">3.3.</span> <span class="toc-text">调整表的大小</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Lua-%20%E4%B8%AD%E7%9A%84%E4%B8%89%E7%A7%8D%E5%87%BD%E6%95%B0%E7%B1%BB%E5%88%AB"><span class="toc-number">4.</span> <span class="toc-text">Lua 中的三种函数类别 </span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Light-C-Function"><span class="toc-number">4.1.</span> <span class="toc-text">Light C Function</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#C-%20%E9%97%AD%E5%8C%85"><span class="toc-number">4.2.</span> <span class="toc-text">C 闭包</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Lua-%20%E9%97%AD%E5%8C%85"><span class="toc-number">4.3.</span> <span class="toc-text">Lua 闭包 </span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Proto%20%E7%BB%93%E6%9E%84"><span class="toc-number">5.</span> <span class="toc-text">Proto结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8A%E5%80%BC%E7%94%9F%E6%88%90%E8%BF%87%E7%A8%8B"><span class="toc-number">6.</span> <span class="toc-text">上值生成过程 </span></a></li></ol>
-      </div>
-    
-  </span>
-</div>
-
-    
-    <div class="content index py4 ">
-        
-        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
-  <header>
-    
-    <h1 class="posttitle p-name" itemprop="name headline">
-        Lua 解释器构建：从虚拟机到编译器
-    </h1>
-
-
-
-    <div class="meta">
-      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <span class="p-name" itemprop="name">Xiaoming</span>
-      </span>
-      
-    <div class="postdate">
-      
-        <time datetime="2023-04-03T11:36:58.000Z" class="dt-published" itemprop="datePublished">2023-04-03</time>
-        
-        (Updated: <time datetime="2024-05-10T14:34:23.114Z" class="dt-updated" itemprop="dateModified">2024-05-10</time>)
-        
-      
-    </div>
-
-
-      
-    <div class="article-category">
-        <i class="fa-solid fa-archive"></i>
-        <a class="category-link" href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a>
-    </div>
-
-
-      
-    <div class="article-tag">
-        <i class="fa-solid fa-tag"></i>
-        <a class="p-category" href="/tags/lua/" rel="tag">lua</a>, <a class="p-category" href="/tags/%E6%BA%90%E7%A0%81/" rel="tag">源码</a>
-    </div>
-
-
-    </div>
-  </header>
+<body>
   
 
-  <div class="content e-content" itemprop="articleBody">
-    <link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h3 id="增量式标记清除算法"><a href="# 增量式标记清除算法" class="headerlink" title="增量式标记清除算法"></a>增量式标记清除算法 </h3><p> 整个 GC 执行的过程中，大致经历以下几个阶段</p>
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Silhouettes For You</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Tags</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/lover/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>Lover</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/post.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Lua 解释器构建：从虚拟机到编译器"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-04-03 19:36" pubdate>
+          April 3, 2023 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.9k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          17 mins
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> views
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Lua 解释器构建：从虚拟机到编译器</h1>
+            
+              <p id="updated-time" class="note note-info" style="display: none">
+                
+                  
+                    Last updated on 2024-05-10T22:34:23+08:00
+                  
+                  
+
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h3 id="增量式标记清除算法"><a href="# 增量式标记清除算法" class="headerlink" title="增量式标记清除算法"></a>增量式标记清除算法 </h3><p> 整个 GC 执行的过程中，大致经历以下几个阶段</p>
 <ul>
 <li><p><strong><font color="#FF6000">pause</font></strong> 阶段</p>
 <p><font color="#FFA559">mainthread</font> 和 <font color="#FFA559">global table</font> 包含 GC 起始点，因此要将它们插入到 <font color="#2E4F4F">gray</font> 链表中，并将它们标记为灰色，进入到 <strong><font color="#FF6000">propagate</font></strong> 阶段</p>
@@ -243,7 +411,7 @@ p.spoiler {
 <li>字符串内部化的本质就是为每个字符串创建唯一的实例</li>
 <li>在 Lua 中，字符串 Body 长度小于或等于 40B 的是短字符串，大于 40B 的是长字符串；在 Lua-5.3 中，短字符串的大小限制由 <code>LUAI_MAXSHORTLEN</code> 决定，这个宏定义在 llimits.h 中定义</li>
 </ul>
-<h3 id="Lua- 虚拟机的表"><a href="#Lua- 虚拟机的表" class="headerlink" title="Lua 虚拟机的表"></a>Lua 虚拟机的表</h3><h4 id="Lua- 表的基本数据结构"><a href="#Lua- 表的基本数据结构" class="headerlink" title="Lua 表的基本数据结构"></a>Lua 表的基本数据结构</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// luaobject.h</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">union</span> <span class="title">lua_Value</span> &#123;</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">GCObject</span>* <span class="title">gc</span>;</span></span><br><span class="line">    <span class="type">void</span>* p;</span><br><span class="line">    <span class="type">int</span> b;</span><br><span class="line">    lua_Interger i;</span><br><span class="line">    lua_Number n;</span><br><span class="line">    lua_CFunction f;</span><br><span class="line">&#125; Value;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">lua_TValue</span> &#123;</span></span><br><span class="line">    Value value_;</span><br><span class="line">    <span class="type">int</span> tt_;</span><br><span class="line">&#125; TValue;</span><br><span class="line"></span><br><span class="line"><span class="comment">// lua Table</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">union</span> <span class="title">TKey</span> &#123;</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line">        Value value_;</span><br><span class="line">        <span class="type">int</span> tt; <span class="comment">// 用来标记 value_是什么类型</span></span><br><span class="line">        <span class="type">int</span> next;</span><br><span class="line">    &#125; nk;</span><br><span class="line">    TValue tvk;</span><br><span class="line">&#125; TKey;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">Node</span> &#123;</span></span><br><span class="line">    TKey key;</span><br><span class="line">    TValue value;</span><br><span class="line">&#125; Node;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Table</span> &#123;</span></span><br><span class="line">    CommonHeader;               <span class="comment">// GC 部分</span></span><br><span class="line">    TValue* <span class="built_in">array</span>;              <span class="comment">// 数组部分</span></span><br><span class="line">    <span class="type">unsigned</span> <span class="type">int</span> arraysize;     <span class="comment">// 数组大小</span></span><br><span class="line">    Node* node;                 <span class="comment">// hash 部分</span></span><br><span class="line">    <span class="type">unsigned</span> <span class="type">int</span> lsizenode;     <span class="comment">// hash 大小，实际大小为 2&lt;sup&gt;lsizenode</span></span><br><span class="line">    Node* lastfree;             <span class="comment">// 空闲指针</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">GCObject</span>* <span class="title">gclist</span>;</span>    <span class="comment">// GC 部分</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Lua- 虚拟机的表"><a href="#Lua- 虚拟机的表" class="headerlink" title="Lua 虚拟机的表"></a>Lua 虚拟机的表</h3><h4 id="Lua- 表的基本数据结构"><a href="#Lua- 表的基本数据结构" class="headerlink" title="Lua 表的基本数据结构"></a>Lua 表的基本数据结构</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-comment">// luaobject.h</span><br><span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">union</span> <span class="hljs-title">lua_Value</span> &#123;</span><br>    <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">GCObject</span>* <span class="hljs-title">gc</span>;</span><br>    <span class="hljs-type">void</span>* p;<br>    <span class="hljs-type">int</span> b;<br>    lua_Interger i;<br>    lua_Number n;<br>    lua_CFunction f;<br>&#125; Value;<br><br><span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">lua_TValue</span> &#123;</span><br>    Value value_;<br>    <span class="hljs-type">int</span> tt_;<br>&#125; TValue;<br><br><span class="hljs-comment">// lua Table</span><br><span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">union</span> <span class="hljs-title">TKey</span> &#123;</span><br>    <span class="hljs-class"><span class="hljs-keyword">struct</span> &#123;</span><br>        Value value_;<br>        <span class="hljs-type">int</span> tt; <span class="hljs-comment">// 用来标记 value_是什么类型</span><br>        <span class="hljs-type">int</span> next;<br>    &#125; nk;<br>    TValue tvk;<br>&#125; TKey;<br><br><span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Node</span> &#123;</span><br>    TKey key;<br>    TValue value;<br>&#125; Node;<br><br><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Table</span> &#123;</span><br>    CommonHeader;               <span class="hljs-comment">// GC 部分</span><br>    TValue* <span class="hljs-built_in">array</span>;              <span class="hljs-comment">// 数组部分</span><br>    <span class="hljs-type">unsigned</span> <span class="hljs-type">int</span> arraysize;     <span class="hljs-comment">// 数组大小</span><br>    Node* node;                 <span class="hljs-comment">// hash 部分</span><br>    <span class="hljs-type">unsigned</span> <span class="hljs-type">int</span> lsizenode;     <span class="hljs-comment">// hash 大小，实际大小为 2&lt;sup&gt;lsizenode</span><br>    Node* lastfree;             <span class="hljs-comment">// 空闲指针</span><br>    <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">GCObject</span>* <span class="hljs-title">gclist</span>;</span>    <span class="hljs-comment">// GC 部分</span><br>&#125;<br></code></pre></td></tr></table></figure>
 
 <h4 id="键值的哈希运算"><a href="# 键值的哈希运算" class="headerlink" title="键值的哈希运算"></a>键值的哈希运算 </h4><p><code>Node</code> 结构的 <code>key</code> 可以是任意 Lua 类型。<code>key</code>值是如何和哈希表的索引对应起来</p>
 <ul>
@@ -268,7 +436,7 @@ p.spoiler {
 <li><p>判断新插入的元素的 <code>key</code> 值是否为整数类型，如果是则对应区间总数增加 1：<code>nums[i]++</code></p>
 </li>
 <li><p>完成 <code>nums</code> 的统计后，根据 <code>nums</code> 计算新的数组大小。在数组大小范围内，<font color="#FF6D60">值不为 <code>nil</code> 的元素要超过数组大小的一半</font>：</p>
-  <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> i = <span class="number">0</span>;</span><br><span class="line"><span class="type">int</span> asize = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">for</span> (; i &lt; <span class="number">32</span>; i++) &#123;</span><br><span class="line">    asize += nums[i];</span><br><span class="line">    <span class="keyword">if</span> (asize &gt; <span class="built_in">pow</span>(<span class="number">2</span>, i) / <span class="number">2</span>) &#123;</span><br><span class="line">        arraysize = <span class="built_in">pow</span>(<span class="number">2</span>, i)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+  <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">int</span> i = <span class="hljs-number">0</span>;<br><span class="hljs-type">int</span> asize = <span class="hljs-number">0</span>;<br><span class="hljs-keyword">for</span> (; i &lt; <span class="hljs-number">32</span>; i++) &#123;<br>    asize += nums[i];<br>    <span class="hljs-keyword">if</span> (asize &gt; <span class="hljs-built_in">pow</span>(<span class="hljs-number">2</span>, i) / <span class="hljs-number">2</span>) &#123;<br>        arraysize = <span class="hljs-built_in">pow</span>(<span class="hljs-number">2</span>, i)<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure></li>
 <li><p>计算在数组大小范围内有效元素的个数，记为<code>array_used_num</code></p>
 </li>
 <li><p>当数组比原来大时，<font color="#FF6D60">扩展 </font> 原来的数组到新的大小，并将哈希表中 <code>key</code> 值小于等于 <code>arraysize</code>，且大于 0 的元素转移到数组中，并将哈希表大小调整为 $\lceil \log_2^{total - array_used_num} \rceil$，同时对每个<code>node</code> 重新定位</p>
@@ -277,23 +445,23 @@ p.spoiler {
 </li>
 </ul>
 <h3 id="Lua- 中的三种函数类别"><a href="#Lua- 中的三种函数类别" class="headerlink" title="Lua 中的三种函数类别"></a>Lua 中的三种函数类别 </h3><h4 id="Light-C-Function"><a href="#Light-C-Function" class="headerlink" title="Light C Function"></a>Light C Function</h4><p> 可以理解为普通的 C 函数，如</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">static</span> <span class="type">int</span> <span class="title function_">test_main</span><span class="params">(<span class="keyword">struct</span> lua_State* L)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">int</span> arg1 = (<span class="type">int</span>)luaL_tointeger(L, <span class="number">1</span>);</span><br><span class="line">    <span class="type">int</span> arg2 = (<span class="type">int</span>)luaL_tointeger(L, <span class="number">2</span>);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;test main arg1:%d arg2%d \n&quot;</span>, arg1, arg2);</span><br><span class="line">    lua_pushinteger(L, arg1 + arg2);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">static</span> <span class="hljs-type">int</span> <span class="hljs-title function_">test_main</span><span class="hljs-params">(<span class="hljs-keyword">struct</span> lua_State* L)</span><br>&#123;<br>    <span class="hljs-type">int</span> arg1 = (<span class="hljs-type">int</span>)luaL_tointeger(L, <span class="hljs-number">1</span>);<br>    <span class="hljs-type">int</span> arg2 = (<span class="hljs-type">int</span>)luaL_tointeger(L, <span class="hljs-number">2</span>);<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;test main arg1:%d arg2%d \n&quot;</span>, arg1, arg2);<br>    lua_pushinteger(L, arg1 + arg2);<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p>要在 Lua 虚拟机中运行 <code>test_main</code> 函数，需要调用<code>lua_pcall</code>，其声明如下</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// L 表示 Lua 线程</span></span><br><span class="line"><span class="comment">// narg 表示在 Lua 线程里执行的函数有多少个参数</span></span><br><span class="line"><span class="comment">// nresult 表示在 Lua 线程里执行的函数有多少个返回值</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">lua_pcall</span><span class="params">(<span class="keyword">struct</span> lau_State* L, <span class="type">int</span> narg, <span class="type">int</span> nresult)</span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-comment">// L 表示 Lua 线程</span><br><span class="hljs-comment">// narg 表示在 Lua 线程里执行的函数有多少个参数</span><br><span class="hljs-comment">// nresult 表示在 Lua 线程里执行的函数有多少个返回值</span><br><span class="hljs-type">int</span> <span class="hljs-title function_">lua_pcall</span><span class="hljs-params">(<span class="hljs-keyword">struct</span> lau_State* L, <span class="hljs-type">int</span> narg, <span class="hljs-type">int</span> nresult)</span>;<br></code></pre></td></tr></table></figure>
 
-<h4 id="C- 闭包"><a href="#C- 闭包" class="headerlink" title="C 闭包"></a>C 闭包</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> ClosureHeader \ </span></span><br><span class="line">  CommonHeader; lu_byte nupvalues; GCObject* gclist</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">CClosure</span> &#123;</span></span><br><span class="line">    ClosureHeader;</span><br><span class="line">    lua_Function f;</span><br><span class="line">    TValue upvalue[<span class="number">1</span>]; <span class="comment">// upvalue 列表</span></span><br><span class="line">&#125; CClosure;</span><br></pre></td></tr></table></figure>
+<h4 id="C- 闭包"><a href="#C- 闭包" class="headerlink" title="C 闭包"></a>C 闭包</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">define</span> ClosureHeader \ </span><br>  CommonHeader; lu_byte nupvalues; GCObject* gclist<br><br><span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">CClosure</span> &#123;</span><br>    ClosureHeader;<br>    lua_Function f;<br>    TValue upvalue[<span class="hljs-number">1</span>]; <span class="hljs-comment">// upvalue 列表</span><br>&#125; CClosure;<br></code></pre></td></tr></table></figure>
 
 <p>一个 C 闭包和 Light C Function 函数相比，除了受 GC 托管并且拥有上值列表外，其他功能和 Light C Function 函数差不多</p>
 <h4 id="Lua- 闭包"><a href="#Lua- 闭包" class="headerlink" title="Lua 闭包"></a>Lua 闭包 </h4><p>Lua 闭包是受 Lua 虚拟机的 GC 托管的，Lua 脚本代码经过编译生成的虚拟指令，以及其他一些编译相关的信息会存放在 LClosure 中的<code>Proto</code> 类型变量中</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">LClosure</span> &#123;</span></span><br><span class="line">    ClosureHeader;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">Proto</span>* <span class="title">p</span>;</span></span><br><span class="line">    UpVal* upvals[<span class="number">1</span>];</span><br><span class="line">&#125; LClosure;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">LClosure</span> &#123;</span><br>    ClosureHeader;<br>    <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Proto</span>* <span class="hljs-title">p</span>;</span><br>    UpVal* upvals[<span class="hljs-number">1</span>];<br>&#125; LClosure;<br></code></pre></td></tr></table></figure>
 
-<h3 id="Proto 结构"><a href="#Proto 结构" class="headerlink" title="Proto 结构"></a><code>Proto</code>结构</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// common/luaobject.h</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">Proto</span> &#123;</span></span><br><span class="line">    CommonHeader;</span><br><span class="line">    <span class="type">int</span> is_vararg;          <span class="comment">// 标记 Lua 函数参数列表是否为可变参，0 表示否，1 表示是</span></span><br><span class="line">    <span class="type">int</span> nparam;             <span class="comment">// 当 is_varrag 为 0 时生效，它表示该函数参数的数量</span></span><br><span class="line">    Instruction* code;      <span class="comment">// Lua 函数经过编译后，生成的虚拟机指令列表</span></span><br><span class="line">    <span class="type">int</span> sizecode;           <span class="comment">// 指明 code 列表的大小</span></span><br><span class="line">    TValue* k               <span class="comment">// 常量列表，如数值、字符串等</span></span><br><span class="line">    <span class="type">int</span> sizek;              <span class="comment">// 常量列表大小</span></span><br><span class="line">    LocVar* localvars;      <span class="comment">// local 变量列表</span></span><br><span class="line">    <span class="type">int</span> sizelocvar;         <span class="comment">// local 变量列表大小</span></span><br><span class="line">    Upvaldesc* upvalues;    <span class="comment">// upvalue 信息列表，主要记录 upvalue 的名称，以及其所在的地址，并不是 upvalue 实际值的列表</span></span><br><span class="line">    <span class="type">int</span> sizeupvalues;       <span class="comment">// upvalue 列表大小</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">Proto</span>** <span class="title">p</span>;</span>       <span class="comment">// 内嵌定义的函数列表</span></span><br><span class="line">    <span class="type">int</span> sizep;              <span class="comment">// proto 列表长度</span></span><br><span class="line">    TString* source;        <span class="comment">// 脚本路径</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">GCObjects</span>* <span class="title">gclist</span>;</span></span><br><span class="line">    <span class="type">int</span> maxstacksize;       <span class="comment">// Proto 所对应的 Lua 函数被调用时，函数栈的最大尺寸</span></span><br><span class="line">&#125; Proto;</span><br></pre></td></tr></table></figure>
+<h3 id="Proto 结构"><a href="#Proto 结构" class="headerlink" title="Proto 结构"></a><code>Proto</code>结构</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-comment">// common/luaobject.h</span><br><span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Proto</span> &#123;</span><br>    CommonHeader;<br>    <span class="hljs-type">int</span> is_vararg;          <span class="hljs-comment">// 标记 Lua 函数参数列表是否为可变参，0 表示否，1 表示是</span><br>    <span class="hljs-type">int</span> nparam;             <span class="hljs-comment">// 当 is_varrag 为 0 时生效，它表示该函数参数的数量</span><br>    Instruction* code;      <span class="hljs-comment">// Lua 函数经过编译后，生成的虚拟机指令列表</span><br>    <span class="hljs-type">int</span> sizecode;           <span class="hljs-comment">// 指明 code 列表的大小</span><br>    TValue* k               <span class="hljs-comment">// 常量列表，如数值、字符串等</span><br>    <span class="hljs-type">int</span> sizek;              <span class="hljs-comment">// 常量列表大小</span><br>    LocVar* localvars;      <span class="hljs-comment">// local 变量列表</span><br>    <span class="hljs-type">int</span> sizelocvar;         <span class="hljs-comment">// local 变量列表大小</span><br>    Upvaldesc* upvalues;    <span class="hljs-comment">// upvalue 信息列表，主要记录 upvalue 的名称，以及其所在的地址，并不是 upvalue 实际值的列表</span><br>    <span class="hljs-type">int</span> sizeupvalues;       <span class="hljs-comment">// upvalue 列表大小</span><br>    <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Proto</span>** <span class="hljs-title">p</span>;</span>       <span class="hljs-comment">// 内嵌定义的函数列表</span><br>    <span class="hljs-type">int</span> sizep;              <span class="hljs-comment">// proto 列表长度</span><br>    TString* source;        <span class="hljs-comment">// 脚本路径</span><br>    <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">GCObjects</span>* <span class="hljs-title">gclist</span>;</span><br>    <span class="hljs-type">int</span> maxstacksize;       <span class="hljs-comment">// Proto 所对应的 Lua 函数被调用时，函数栈的最大尺寸</span><br>&#125; Proto;<br></code></pre></td></tr></table></figure>
 
 <h3 id="上值生成过程"><a href="# 上值生成过程" class="headerlink" title="上值生成过程"></a>上值生成过程 </h3><p> 上值实际上是再编译时确定（位置信息和外层函数的关联等）、在运行时生成的。用来表示上值的数据结构有两个，一个是编译时期存储上值信息的 <code>Upvaldesc</code>（这个结构并不存储上值的实际值，只是用来标记上值的位置信息），另一个是在运行时实际存储上值的<code>UpVal</code> 结构</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// luaobject.h</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">Upvaldesc</span> &#123;</span></span><br><span class="line">    <span class="comment">// 本函数的上值是否指向外层函数的栈（如果不是则指向外层函数的某个上值）</span></span><br><span class="line">    <span class="type">int</span> in_stack;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 上值在外层函数中的位置（栈的位置或 upval 列表中的位置，根据 in_stack 确定）</span></span><br><span class="line">    <span class="type">int</span> idx;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 上值的名称</span></span><br><span class="line">    TString* name; </span><br><span class="line">&#125; Upvaldesc；</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-comment">// luaobject.h</span><br><span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Upvaldesc</span> &#123;</span><br>    <span class="hljs-comment">// 本函数的上值是否指向外层函数的栈（如果不是则指向外层函数的某个上值）</span><br>    <span class="hljs-type">int</span> in_stack;<br><br>    <span class="hljs-comment">// 上值在外层函数中的位置（栈的位置或 upval 列表中的位置，根据 in_stack 确定）</span><br>    <span class="hljs-type">int</span> idx;<br><br>    <span class="hljs-comment">// 上值的名称</span><br>    TString* name; <br>&#125; Upvaldesc；<br></code></pre></td></tr></table></figure>
 
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// luafunc.h</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Upval</span> &#123;</span></span><br><span class="line">    <span class="comment">// 指向外层函数的 local 变量（开放上值），或者指向自己（上值关闭时）</span></span><br><span class="line">    TValue* v;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Upval 实例被引用的次数</span></span><br><span class="line">    <span class="type">int</span> refcount;</span><br><span class="line"></span><br><span class="line">    <span class="class"><span class="keyword">union</span> &#123;</span></span><br><span class="line">        <span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line">            <span class="class"><span class="keyword">struct</span> <span class="title">UpVal</span>* <span class="title">next</span>;</span> .. 下一个开放上值</span><br><span class="line">            <span class="type">int</span> touched;</span><br><span class="line">        &#125; open;</span><br><span class="line">        Tvalue value;</span><br><span class="line">    &#125; u;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-comment">// luafunc.h</span><br><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Upval</span> &#123;</span><br>    <span class="hljs-comment">// 指向外层函数的 local 变量（开放上值），或者指向自己（上值关闭时）</span><br>    TValue* v;<br><br>    <span class="hljs-comment">// Upval 实例被引用的次数</span><br>    <span class="hljs-type">int</span> refcount;<br><br>    <span class="hljs-class"><span class="hljs-keyword">union</span> &#123;</span><br>        <span class="hljs-class"><span class="hljs-keyword">struct</span> &#123;</span><br>            <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">UpVal</span>* <span class="hljs-title">next</span>;</span> .. 下一个开放上值<br>            <span class="hljs-type">int</span> touched;<br>        &#125; open;<br>        Tvalue value;<br>    &#125; u;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p>Lua 脚本的编译信息会被存储到 Proto 结构实例中，当一个 Lua 函数的某个变量不是 <code>local</code> 变量时，如果希望获得它的值，实际上就要查找这个变量的位置，如果在 <code>local</code> 列表中找不到，则进入一下流程：</p>
 <ul>
@@ -302,143 +470,403 @@ p.spoiler {
 <li>如果一直到顶级函数都找不到，那么表示这个上值不存在，此时需要去 <code>_ENV</code> 中查找</li>
 </ul>
 
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" class="category-chain-item">读书笔记</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/lua/" class="print-no-link">#lua</a>
+      
+        <a href="/tags/%E6%BA%90%E7%A0%81/" class="print-no-link">#源码</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Lua 解释器构建：从虚拟机到编译器</div>
+      <div>https://silhouettesforyou.github.io/2023/04/03/48/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Xiaoming</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>April 3, 2023</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
   </div>
-</article>
 
 
 
-        
-          <div id="footer-post-container">
-  <div id="footer-post">
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2023/04/20/49/" title="Life of a triangle">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Life of a triangle</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/04/03/47/" title="Unity 技术美术 - Shader 篇">
+                        <span class="hidden-mobile">Unity 技术美术 - Shader 篇</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
 
-    <div id="nav-footer" style="display: none">
-      <ul>
-        
-          <li><a href="/">Home</a></li>
-        
-          <li><a href="/archives/">Writing</a></li>
-        
-          <li><a href="/lover/">Lover</a></li>
-        
-          <li><a href="/about/">About</a></li>
-        
-      </ul>
-    </div>
-
-    
-    
-      <div id="toc-footer" style="display: none">
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A2%9E%E9%87%8F%E5%BC%8F%E6%A0%87%E8%AE%B0%E6%B8%85%E9%99%A4%E7%AE%97%E6%B3%95"><span class="toc-number">1.</span> <span class="toc-text">增量式标记清除算法 </span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Lua-%20%E8%99%9A%E6%8B%9F%E6%9C%BA%E7%9A%84%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="toc-number">2.</span> <span class="toc-text">Lua 虚拟机的字符串</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Lua-%20%E8%99%9A%E6%8B%9F%E6%9C%BA%E7%9A%84%E8%A1%A8"><span class="toc-number">3.</span> <span class="toc-text">Lua 虚拟机的表</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Lua-%20%E8%A1%A8%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84"><span class="toc-number">3.1.</span> <span class="toc-text">Lua 表的基本数据结构</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%94%AE%E5%80%BC%E7%9A%84%E5%93%88%E5%B8%8C%E8%BF%90%E7%AE%97"><span class="toc-number">3.2.</span> <span class="toc-text">键值的哈希运算 </span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%B0%83%E6%95%B4%E8%A1%A8%E7%9A%84%E5%A4%A7%E5%B0%8F"><span class="toc-number">3.3.</span> <span class="toc-text">调整表的大小</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Lua-%20%E4%B8%AD%E7%9A%84%E4%B8%89%E7%A7%8D%E5%87%BD%E6%95%B0%E7%B1%BB%E5%88%AB"><span class="toc-number">4.</span> <span class="toc-text">Lua 中的三种函数类别 </span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Light-C-Function"><span class="toc-number">4.1.</span> <span class="toc-text">Light C Function</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#C-%20%E9%97%AD%E5%8C%85"><span class="toc-number">4.2.</span> <span class="toc-text">C 闭包</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Lua-%20%E9%97%AD%E5%8C%85"><span class="toc-number">4.3.</span> <span class="toc-text">Lua 闭包 </span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Proto%20%E7%BB%93%E6%9E%84"><span class="toc-number">5.</span> <span class="toc-text">Proto结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8A%E5%80%BC%E7%94%9F%E6%88%90%E8%BF%87%E7%A8%8B"><span class="toc-number">6.</span> <span class="toc-text">上值生成过程 </span></a></li></ol>
+            
+          </article>
+        </div>
       </div>
-    
-
-    <div id="share-footer" style="display: none">
-      <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://silhouettesforyou.github.io/2023/04/03/48/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://silhouettesforyou.github.io/2023/04/03/48/&text=Lua 解释器构建：从虚拟机到编译器"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://silhouettesforyou.github.io/2023/04/03/48/&title=Lua 解释器构建：从虚拟机到编译器"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://silhouettesforyou.github.io/2023/04/03/48/&is_video=false&description=Lua 解释器构建：从虚拟机到编译器"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=Lua 解释器构建：从虚拟机到编译器&body=Check out this article: https://silhouettesforyou.github.io/2023/04/03/48/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://silhouettesforyou.github.io/2023/04/03/48/&title=Lua 解释器构建：从虚拟机到编译器"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://silhouettesforyou.github.io/2023/04/03/48/&title=Lua 解释器构建：从虚拟机到编译器"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://silhouettesforyou.github.io/2023/04/03/48/&title=Lua 解释器构建：从虚拟机到编译器"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://silhouettesforyou.github.io/2023/04/03/48/&title=Lua 解释器构建：从虚拟机到编译器"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://silhouettesforyou.github.io/2023/04/03/48/&name=Lua 解释器构建：从虚拟机到编译器&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://silhouettesforyou.github.io/2023/04/03/48/&t=Lua 解释器构建：从虚拟机到编译器"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
-</ul>
-
     </div>
 
-    <div id="actions-footer">
-        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
-        
-          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> TOC</a>
-        
-        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
-        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
-    </div>
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
 
+
+
+  </aside>
+
+
+    </div>
   </div>
 </div>
 
-        
-        <footer id="footer">
-  <div class="footer-left">
-    Copyright &copy;
-    
-    
-    2016-2024
-    Xiaoming
-  </div>
-  <div class="footer-right">
-    <nav>
-      <ul>
-        <!--
-       --><li><a href="/">Home</a></li><!--
-     --><!--
-       --><li><a href="/archives/">Writing</a></li><!--
-     --><!--
-       --><li><a href="/lover/">Lover</a></li><!--
-     --><!--
-       --><li><a href="/about/">About</a></li><!--
-     -->
-      </ul>
-    </nav>
-  </div>
-</footer>
 
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
     </div>
-    <!-- styles -->
+  </div>
+</div>
 
+    
 
+    
+  </main>
 
-  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
-
-
-    <!-- jquery -->
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
-
-
-
-
-<!-- clipboard -->
-
+  <footer>
+    <div class="footer-inner">
   
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+    <div class="footer-content">
+      <i class="iconfont icon-love"></i>
+    </div>
   
-  <script type="text/javascript">
-  $(function() {
-    // copy-btn HTML
-    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
-    btn += '<i class="fa-regular fa-clone"></i>';
-    btn += '</span>';
-    // mount it!
-    $(".highlight table").before(btn);
-    var clip = new ClipboardJS('.btn-copy', {
-      text: function(trigger) {
-        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
-      }
-    });
-    clip.on('success', function(e) {
-      e.trigger.setAttribute('aria-label', "Copied!");
-      e.clearSelection();
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
     })
-  })
   </script>
 
 
-<script src="/js/main.js"></script>
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
 
-<!-- search -->
 
-<!-- Baidu Analytics -->
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
 
-<!-- Cloudflare Analytics -->
 
-<!-- Disqus Comments -->
 
-<!-- utterances Comments -->
 
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  var relativeDate = function() {
+    var updatedTime = document.getElementById('updated-time');
+    if (updatedTime) {
+      var text = updatedTime.textContent;
+      var reg = /\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:Z|[+-]\d{2}:\d{2})/;
+      var matchs = text.match(reg);
+      if (matchs) {
+        var relativeTime = moment(matchs[0]).fromNow();
+        updatedTime.textContent = text.replace(reg, relativeTime);
+      }
+      updatedTime.style.display = '';
+    }
+  };
+  Fluid.utils.createScript('https://lib.baomitu.com/moment.js/2.29.4/moment.min.js', function() {
+    if (!'en'.startsWith('en')) {
+      Fluid.utils.createScript('https://lib.baomitu.com/moment.js/2.29.4/locale/en.min.js', function() {
+        relativeDate();
+      });
+    } else {
+      relativeDate();
+    }
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
 <!-- hexo injector body_end start --><script src="https://cdn.jsdelivr.net/npm/hexo-tag-common@0.0.5/js/index.js"></script><!-- hexo injector body_end end --><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"left","width":150,"height":300},"mobile":{"show":false},"react":{"opacity":0.7}});</script></body>
 </html>

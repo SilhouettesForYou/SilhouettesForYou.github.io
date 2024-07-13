@@ -1,74 +1,132 @@
+
+
 <!DOCTYPE html>
-<html lang=en>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
 <head><!-- hexo injector head_begin start -->
 <link rel="stylesheet" href="/css/bilicard.css">
 <link href="https://cdn.jsdelivr.net/npm/hexo-tag-common@0.0.5/css/index.css" rel="stylesheet"/><!-- hexo injector head_begin end -->
-    <!-- so meta -->
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="HandheldFriendly" content="True">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/breaking-bad.png">
+  <link rel="icon" href="/img/breaking-bad.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Xiaoming">
+  <meta name="keywords" content="">
+  
     <meta property="og:type" content="article">
-<meta property="og:title" content="C++11 新特性">
+<meta property="og:title" content="C++ 11 新特性">
 <meta property="og:url" content="https://silhouettesforyou.github.io/2022/01/13/32/index.html">
 <meta property="og:site_name" content="Silhouettes For You">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://silhouettesforyou.github.io/2022/01/13/32/teaser-image.png">
 <meta property="article:published_time" content="2022-01-13T02:06:02.000Z">
-<meta property="article:modified_time" content="2023-12-10T07:38:08.726Z">
+<meta property="article:modified_time" content="2024-07-13T01:45:26.333Z">
 <meta property="article:author" content="Xiaoming">
-<meta property="article:tag" content="c++">
-<meta property="article:tag" content="c++11">
-<meta name="twitter:card" content="summary">
+<meta property="article:tag" content="C++">
+<meta property="article:tag" content="C++ 11">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://silhouettesforyou.github.io/2022/01/13/32/teaser-image.png">
-    
-    
-      
-        
-          <link rel="shortcut icon" href="/images/favicon.ico">
-        
-      
-      
-        
-          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
-        
-      
-      
-        
-          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
-        
-      
-    
-    <!-- title -->
-    <title>C++11 新特性</title>
-    <!-- async scripts -->
-    <!-- Google Analytics -->
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>C++ 11 新特性 - Silhouettes For You</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
 
-    <!-- Umami Analytics -->
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
 
 
-    <!-- styles -->
-    
-<link rel="stylesheet" href="/css/style.css">
 
-    <!-- persian styles -->
-    
-    <!-- rss -->
-    
-    
-	<!-- mathjax -->
-	
-		<script type="text/x-mathjax-config">
-		  MathJax.Hub.Config({
-			tex2jax: {
-			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
-			  inlineMath: [['$','$']]
-			}
-		  });
-		</script>
-		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
-	
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"silhouettesforyou.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"62be422732dc4e6f91e7fa199aa1f3f2","google":{"measurement_id":"G-B260B2ZWXQ"},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?62be422732dc4e6f91e7fa199aa1f3f2";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=G-B260B2ZWXQ", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', 'G-B260B2ZWXQ');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
 <style type="text/css">
 .spoiler {
   display: inline;
@@ -102,119 +160,227 @@ p.spoiler {
 }</style><meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/atom.xml" title="Silhouettes For You" type="application/atom+xml">
 </head>
 
-<body class="max-width mx-auto px3 ltr">
-    
-      <div id="header-post">
-  <a id="menu-icon" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
-  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
-  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
-  <span id="menu">
-    <span id="nav">
-      <ul>
-        <!--
-       --><li><a href="/">Home</a></li><!--
-     --><!--
-       --><li><a href="/archives/">Writing</a></li><!--
-     --><!--
-       --><li><a href="/lover/">Lover</a></li><!--
-     --><!--
-       --><li><a href="/about/">About</a></li><!--
-     -->
-      </ul>
-    </span>
-    <br/>
-    <span id="actions">
-      <ul>
-        
-        <li><a class="icon" aria-label="Previous post" href="/2022/01/14/33/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
-        
-        
-        <li><a class="icon" aria-label="Next post" href="/2022/01/12/31/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
-        
-        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
-        <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
-      </ul>
-      <span id="i-prev" class="info" style="display:none;">Previous post</span>
-      <span id="i-next" class="info" style="display:none;">Next post</span>
-      <span id="i-top" class="info" style="display:none;">Back to top</span>
-      <span id="i-share" class="info" style="display:none;">Share post</span>
-    </span>
-    <br/>
-    <div id="share" style="display: none">
-      <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://silhouettesforyou.github.io/2022/01/13/32/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://silhouettesforyou.github.io/2022/01/13/32/&text=C++11 新特性"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://silhouettesforyou.github.io/2022/01/13/32/&title=C++11 新特性"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://silhouettesforyou.github.io/2022/01/13/32/&is_video=false&description=C++11 新特性"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=C++11 新特性&body=Check out this article: https://silhouettesforyou.github.io/2022/01/13/32/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://silhouettesforyou.github.io/2022/01/13/32/&title=C++11 新特性"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://silhouettesforyou.github.io/2022/01/13/32/&title=C++11 新特性"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://silhouettesforyou.github.io/2022/01/13/32/&title=C++11 新特性"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://silhouettesforyou.github.io/2022/01/13/32/&title=C++11 新特性"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://silhouettesforyou.github.io/2022/01/13/32/&name=C++11 新特性&description=&lt;center&gt;
-    &lt;img src=&#34;/2022/01/13/32/teaser-image.png&#34;&gt;
-&lt;/center&gt;"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://silhouettesforyou.github.io/2022/01/13/32/&t=C++11 新特性"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
-</ul>
 
-    </div>
-    
-    
-      <div id="toc">
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#auto-amp-decltype"><span class="toc-number">1.</span> <span class="toc-text">auto &amp; decltype</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#auto"><span class="toc-number">1.1.</span> <span class="toc-text">auto</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#decltype"><span class="toc-number">1.2.</span> <span class="toc-text">decltype</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B7%A6%E5%80%BC%E5%92%8C%E5%8F%B3%E5%80%BC"><span class="toc-number">2.</span> <span class="toc-text">左值和右值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%97%E8%A1%A8%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="toc-number">3.</span> <span class="toc-text">列表初始化 </span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%97%E8%A1%A8%E5%88%9D%E5%A7%8B%E5%8C%96%E7%9A%84%E4%B8%80%E4%BA%9B%E8%A7%84%E5%88%99"><span class="toc-number">3.1.</span> <span class="toc-text">列表初始化的一些规则 </span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#std-initializer-list"><span class="toc-number">3.2.</span> <span class="toc-text">std::initializer_list</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#std-function-amp-std-bind-amp-lambda%20%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="toc-number">4.</span> <span class="toc-text">std::function &amp; std::bind &amp; lambda表达式 </span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#std-function"><span class="toc-number">4.1.</span> <span class="toc-text">std::function</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#std-bind"><span class="toc-number">4.2.</span> <span class="toc-text">std::bind</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#lambda%20%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="toc-number">4.3.</span> <span class="toc-text">lambda表达式 </span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B0%8F%E7%BB%93"><span class="toc-number">4.4.</span> <span class="toc-text">小结 </span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A8%A1%E6%9D%BF%E7%9A%84%E6%94%B9%E8%BF%9B"><span class="toc-number">5.</span> <span class="toc-text">模板的改进 </span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A8%A1%E6%9D%BF%E7%9A%84%E5%8F%B3%E5%B0%96%E6%8B%AC%E5%8F%B7"><span class="toc-number">5.1.</span> <span class="toc-text"> 模板的右尖括号</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A8%A1%E6%9D%BF%E7%9A%84%E5%88%AB%E5%90%8D"><span class="toc-number">5.2.</span> <span class="toc-text">模板的别名</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%87%BD%E6%95%B0%E6%A8%A1%E6%9D%BF%E7%9A%84%E9%BB%98%E8%AE%A4%E6%A8%A1%E6%9D%BF%E5%8F%82%E6%95%B0"><span class="toc-number">5.3.</span> <span class="toc-text">函数模板的默认模板参数</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B9%B6%E5%8F%91"><span class="toc-number">6.</span> <span class="toc-text">并发 </span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88"><span class="toc-number">7.</span> <span class="toc-text"> 智能指针 </span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E4%BA%8E%E8%8C%83%E5%9B%B4%E7%9A%84%20-for-%20%E5%BE%AA%E7%8E%AF"><span class="toc-number">8.</span> <span class="toc-text"> 基于范围的 for 循环</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A7%94%E6%89%98%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0"><span class="toc-number">9.</span> <span class="toc-text">委托构造函数 </span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%A7%E6%89%BF%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0"><span class="toc-number">10.</span> <span class="toc-text">继承构造函数 </span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B3%E9%94%AE%E5%AD%97"><span class="toc-number">11.</span> <span class="toc-text">关键字 </span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#nullptr"><span class="toc-number">11.1.</span> <span class="toc-text">nullptr</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#final-amp-override"><span class="toc-number">11.2.</span> <span class="toc-text">final &amp; override</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#default"><span class="toc-number">11.3.</span> <span class="toc-text">default</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#delete"><span class="toc-number">11.4.</span> <span class="toc-text">delete</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#explicit"><span class="toc-number">11.5.</span> <span class="toc-text">explicit</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%B8%8D%E7%94%A8%20explicit"><span class="toc-number">11.5.1.</span> <span class="toc-text">不用explicit</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%20explicit"><span class="toc-number">11.5.2.</span> <span class="toc-text">使用explicit</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#constexpr"><span class="toc-number">12.</span> <span class="toc-text">constexpr</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#enum-class"><span class="toc-number">13.</span> <span class="toc-text">enum class</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#sizeof"><span class="toc-number">13.1.</span> <span class="toc-text">sizeof</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#assertion"><span class="toc-number">13.2.</span> <span class="toc-text">assertion</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%86%85%E5%AD%98%E5%AF%B9%E9%BD%90"><span class="toc-number">14.</span> <span class="toc-text">内存对齐 </span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E5%86%85%E5%AD%98%E5%AF%B9%E9%BD%90"><span class="toc-number">14.1.</span> <span class="toc-text"> 什么是内存对齐 </span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E5%86%85%E5%AD%98%E5%AF%B9%E9%BD%90"><span class="toc-number">14.2.</span> <span class="toc-text">为什么要内存对齐</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9A%8F%E6%9C%BA%E6%95%B0%E5%8A%9F%E8%83%BD"><span class="toc-number">15.</span> <span class="toc-text">随机数功能</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="toc-number">16.</span> <span class="toc-text">正则表达式</span></a></li></ol>
-      </div>
-    
-  </span>
-</div>
-
-    
-    <div class="content index py4 ">
-        
-        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
-  <header>
-    
-    <h1 class="posttitle p-name" itemprop="name headline">
-        C++11 新特性
-    </h1>
-
-
-
-    <div class="meta">
-      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <span class="p-name" itemprop="name">Xiaoming</span>
-      </span>
-      
-    <div class="postdate">
-      
-        <time datetime="2022-01-13T02:06:02.000Z" class="dt-published" itemprop="datePublished">2022-01-13</time>
-        
-        (Updated: <time datetime="2023-12-10T07:38:08.726Z" class="dt-updated" itemprop="dateModified">2023-12-10</time>)
-        
-      
-    </div>
-
-
-      
-    <div class="article-category">
-        <i class="fa-solid fa-archive"></i>
-        <a class="category-link" href="/categories/C/">C++</a>
-    </div>
-
-
-      
-    <div class="article-tag">
-        <i class="fa-solid fa-tag"></i>
-        <a class="p-category" href="/tags/c/" rel="tag">c++</a>, <a class="p-category" href="/tags/c-11/" rel="tag">c++11</a>
-    </div>
-
-
-    </div>
-  </header>
+<body>
   
 
-  <div class="content e-content" itemprop="articleBody">
-    <link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><center>
-    <img src="/2022/01/13/32/teaser-image.png">
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Silhouettes For You</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Tags</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/lover/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>Lover</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/post.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="C++ 11 新特性"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-01-13 10:06" pubdate>
+          January 13, 2022 am
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          3.4k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          29 mins
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> views
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">C++ 11 新特性</h1>
+            
+              <p id="updated-time" class="note note-info" style="display: none">
+                
+                  
+                    Last updated on 2024-07-13T09:45:26+08:00
+                  
+                  
+
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><center>
+    <img src="/2022/01/13/32/teaser-image.png" srcset="/img/loading.gif" lazyload>
 </center>
 
 <span id="more"></span>
@@ -251,9 +417,9 @@ p.spoiler {
 <li>没有 {} 和 = 直接初始化的非静态数据成员</li>
 <li>没有默认成员初始化器</li>
 </ul>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">A</span> &#123;</span><br><span class="line">    <span class="type">int</span> a;</span><br><span class="line">    <span class="type">int</span> b;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="type">void</span> <span class="title">func</span><span class="params">()</span> </span>&#123;&#125; <span class="comment">// 含有虚函数，不是聚合类</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">Base</span> &#123;&#125;;</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">B</span> : <span class="keyword">public</span> Base &#123; <span class="comment">// 有基类，不是聚合类</span></span><br><span class="line">      <span class="type">int</span> a;</span><br><span class="line">    <span class="type">int</span> b;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">C</span> &#123;</span><br><span class="line">    <span class="type">int</span> a;</span><br><span class="line">    <span class="type">int</span> b = <span class="number">10</span>; <span class="comment">// 有等号初始化，不是聚合类</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">D</span> &#123;</span><br><span class="line">    <span class="type">int</span> a;</span><br><span class="line">    <span class="type">int</span> b;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="type">int</span> c; <span class="comment">// 含有私有的非静态数据成员，不是聚合类</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">E</span> &#123;</span><br><span class="line">      <span class="type">int</span> a;</span><br><span class="line">    <span class="type">int</span> b;</span><br><span class="line">    <span class="built_in">E</span>() : <span class="built_in">a</span>(<span class="number">0</span>), <span class="built_in">b</span>(<span class="number">0</span>) &#123;&#125; <span class="comment">// 含有默认成员初始化器，不是聚合类</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></li>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">struct</span> <span class="hljs-title class_">A</span> &#123;<br>    <span class="hljs-type">int</span> a;<br>    <span class="hljs-type">int</span> b;<br>    <span class="hljs-function"><span class="hljs-keyword">virtual</span> <span class="hljs-type">void</span> <span class="hljs-title">func</span><span class="hljs-params">()</span> </span>&#123;&#125; <span class="hljs-comment">// 含有虚函数，不是聚合类</span><br>&#125;;<br><br><span class="hljs-keyword">struct</span> <span class="hljs-title class_">Base</span> &#123;&#125;;<br><span class="hljs-keyword">struct</span> <span class="hljs-title class_">B</span> : <span class="hljs-keyword">public</span> Base &#123; <span class="hljs-comment">// 有基类，不是聚合类</span><br>      <span class="hljs-type">int</span> a;<br>    <span class="hljs-type">int</span> b;<br>&#125;;<br><br><span class="hljs-keyword">struct</span> <span class="hljs-title class_">C</span> &#123;<br>    <span class="hljs-type">int</span> a;<br>    <span class="hljs-type">int</span> b = <span class="hljs-number">10</span>; <span class="hljs-comment">// 有等号初始化，不是聚合类</span><br>&#125;;<br><br><span class="hljs-keyword">struct</span> <span class="hljs-title class_">D</span> &#123;<br>    <span class="hljs-type">int</span> a;<br>    <span class="hljs-type">int</span> b;<br><span class="hljs-keyword">private</span>:<br>    <span class="hljs-type">int</span> c; <span class="hljs-comment">// 含有私有的非静态数据成员，不是聚合类</span><br>&#125;;<br><br><span class="hljs-keyword">struct</span> <span class="hljs-title class_">E</span> &#123;<br>      <span class="hljs-type">int</span> a;<br>    <span class="hljs-type">int</span> b;<br>    <span class="hljs-built_in">E</span>() : <span class="hljs-built_in">a</span>(<span class="hljs-number">0</span>), <span class="hljs-built_in">b</span>(<span class="hljs-number">0</span>) &#123;&#125; <span class="hljs-comment">// 含有默认成员初始化器，不是聚合类</span><br>&#125;;<br></code></pre></td></tr></table></figure></li>
 </ul>
-<h4 id="std-initializer-list"><a href="#std-initializer-list" class="headerlink" title="std::initializer_list"></a><code>std::initializer_list</code></h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">CustomVec</span> &#123;</span><br><span class="line">    std::vector&lt;<span class="type">int</span>&gt; data;</span><br><span class="line">    <span class="built_in">CustomVec</span>(std::initializer_list&lt;<span class="type">int</span>&gt; list) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> iter = list.<span class="built_in">begin</span>(); iter != list.<span class="built_in">end</span>(); ++iter) &#123;</span><br><span class="line">            data.<span class="built_in">push_back</span>(*iter);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h4 id="std-initializer-list"><a href="#std-initializer-list" class="headerlink" title="std::initializer_list"></a><code>std::initializer_list</code></h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">struct</span> <span class="hljs-title class_">CustomVec</span> &#123;<br>    std::vector&lt;<span class="hljs-type">int</span>&gt; data;<br>    <span class="hljs-built_in">CustomVec</span>(std::initializer_list&lt;<span class="hljs-type">int</span>&gt; list) &#123;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">auto</span> iter = list.<span class="hljs-built_in">begin</span>(); iter != list.<span class="hljs-built_in">end</span>(); ++iter) &#123;<br>            data.<span class="hljs-built_in">push_back</span>(*iter);<br>        &#125;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
 
 <h3 id="std-function-amp-std-bind-amp-lambda 表达式"><a href="#std-function-amp-std-bind-amp-lambda 表达式" class="headerlink" title="std::function &amp; std::bind &amp; lambda 表达式"></a><code>std::function</code> &amp; <code>std::bind</code> &amp; <code>lambda</code>表达式 </h3><h4 id="std-function"><a href="#std-function" class="headerlink" title="std::function"></a><code>std::function</code></h4><p> 满足以下条件之一就可称为可调用对象：</p>
 <ul>
@@ -270,7 +436,7 @@ p.spoiler {
 <li>将 n 元可调用对象转成 m(m &lt; n) 元可调用对象，绑定一部分参数，这里需要使用<code>std::placeholders</code></li>
 </ul>
 <h4 id="lambda 表达式"><a href="#lambda 表达式" class="headerlink" title="lambda 表达式"></a><code>lambda</code>表达式 </h4><p><code>lambda</code> 表达式可以说是 c++11 引用的最重要的特性之一，它定义了一个匿名函数，可以捕获一定范围的变量在函数内部使用，一般有如下语法形式：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">auto</span> func = [capture] (params) opt -&gt; ret &#123; func_body; &#125;;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">auto</span> func = [capture] (params) opt -&gt; ret &#123; func_body; &#125;;<br></code></pre></td></tr></table></figure>
 
 <p>其中 <code>func</code> 是可以当作 <code>lambda</code> 表达式的名字，作为一个函数使用，<code>capture</code>是捕获列表，<code>params</code>是参数表，<code>opt</code>是函数选项 (<code>mutable</code>之类）， <code>ret</code>是返回值类型，<code>func_body</code>是函数体。</p>
 <p>lambda 表达式允许捕获一定范围内的变量：</p>
@@ -286,25 +452,25 @@ p.spoiler {
 <h3 id="模板的改进"><a href="# 模板的改进" class="headerlink" title="模板的改进"></a>模板的改进 </h3><h4 id="模板的右尖括号"><a href="# 模板的右尖括号" class="headerlink" title="模板的右尖括号"></a> 模板的右尖括号</h4><p>C++11 之前是不允许两个右尖括号出现的，会被认为是右移操作符，所以需要中间加个空格进行分割，避免发生编译错误。</p>
 <h4 id="模板的别名"><a href="# 模板的别名" class="headerlink" title="模板的别名"></a>模板的别名</h4><p>C++11 引入了<code>using</code>，可以轻松的定义别名，而不是使用繁琐的<code>typedef</code></p>
 <h4 id="函数模板的默认模板参数"><a href="# 函数模板的默认模板参数" class="headerlink" title="函数模板的默认模板参数"></a>函数模板的默认模板参数</h4><p>C++11 之前只有类模板支持默认模板参数，函数模板是不支持默认模板参数的，C++11 后都支持；同时 C++11 支持变长参数模板</p>
-<h3 id="并发"><a href="# 并发" class="headerlink" title="并发"></a>并发 </h3><h3 id="智能指针"><a href="# 智能指针" class="headerlink" title="智能指针"></a> 智能指针 </h3><h3 id="基于范围的 -for- 循环"><a href="# 基于范围的 -for- 循环" class="headerlink" title="基于范围的 for 循环"></a> 基于范围的 for 循环</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">vector&lt;<span class="type">int</span>&gt; vec;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">auto</span> iter = vec.<span class="built_in">begin</span>(); iter != vec.<span class="built_in">end</span>(); iter++) &#123; <span class="comment">// before c++11</span></span><br><span class="line">    cout &lt;&lt; *iter &lt;&lt; endl;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="type">int</span> i : vec) &#123; <span class="comment">// c++11 基于范围的 for 循环</span></span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;i&quot;</span> &lt;&lt; endl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="并发"><a href="# 并发" class="headerlink" title="并发"></a>并发 </h3><h3 id="智能指针"><a href="# 智能指针" class="headerlink" title="智能指针"></a> 智能指针 </h3><h3 id="基于范围的 -for- 循环"><a href="# 基于范围的 -for- 循环" class="headerlink" title="基于范围的 for 循环"></a> 基于范围的 for 循环</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs c++">vector&lt;<span class="hljs-type">int</span>&gt; vec;<br><br><span class="hljs-keyword">for</span> (<span class="hljs-keyword">auto</span> iter = vec.<span class="hljs-built_in">begin</span>(); iter != vec.<span class="hljs-built_in">end</span>(); iter++) &#123; <span class="hljs-comment">// before c++11</span><br>    cout &lt;&lt; *iter &lt;&lt; endl;<br>&#125;<br><br><span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i : vec) &#123; <span class="hljs-comment">// c++11 基于范围的 for 循环</span><br>    cout &lt;&lt; <span class="hljs-string">&quot;i&quot;</span> &lt;&lt; endl;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <h3 id="委托构造函数"><a href="# 委托构造函数" class="headerlink" title="委托构造函数"></a>委托构造函数 </h3><p> 委托构造函数允许在同一个类中一个构造函数调用另外一个构造函数，可以在变量初始化时简化操作</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">A</span> &#123;</span><br><span class="line">    <span class="built_in">A</span>()&#123;&#125;</span><br><span class="line">    <span class="built_in">A</span>(<span class="type">int</span> a) &#123; a_ = a; &#125;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">A</span>(<span class="type">int</span> a, <span class="type">int</span> b) : <span class="built_in">A</span>(a) &#123; b_ = b; &#125;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">A</span>(<span class="type">int</span> a, <span class="type">int</span> b, <span class="type">int</span> c) : <span class="built_in">A</span>(a, b) &#123; c_ = c; &#125;</span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> a_;</span><br><span class="line">    <span class="type">int</span> b_;</span><br><span class="line">    <span class="type">int</span> c_;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">struct</span> <span class="hljs-title class_">A</span> &#123;<br>    <span class="hljs-built_in">A</span>()&#123;&#125;<br>    <span class="hljs-built_in">A</span>(<span class="hljs-type">int</span> a) &#123; a_ = a; &#125;<br><br>    <span class="hljs-built_in">A</span>(<span class="hljs-type">int</span> a, <span class="hljs-type">int</span> b) : <span class="hljs-built_in">A</span>(a) &#123; b_ = b; &#125;<br><br>    <span class="hljs-built_in">A</span>(<span class="hljs-type">int</span> a, <span class="hljs-type">int</span> b, <span class="hljs-type">int</span> c) : <span class="hljs-built_in">A</span>(a, b) &#123; c_ = c; &#125;<br><br>    <span class="hljs-type">int</span> a_;<br>    <span class="hljs-type">int</span> b_;<br>    <span class="hljs-type">int</span> c_;<br>&#125;;<br></code></pre></td></tr></table></figure>
 
 <h3 id="继承构造函数"><a href="# 继承构造函数" class="headerlink" title="继承构造函数"></a>继承构造函数 </h3><p> 继承构造函数可以让派生类直接使用基类的构造函数，如果有一个派生类，我们希望派生类采用和基类一样的构造方式，可以直接使用基类的构造函数，而不是再重新写一遍构造函数</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">Base</span> &#123;</span><br><span class="line">    <span class="built_in">Base</span>() &#123;&#125;</span><br><span class="line">    <span class="built_in">Base</span>(<span class="type">int</span> a) &#123; a_ = a; &#125;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">Base</span>(<span class="type">int</span> a, <span class="type">int</span> b) : <span class="built_in">Base</span>(a) &#123; b_ = b; &#125;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">Base</span>(<span class="type">int</span> a, <span class="type">int</span> b, <span class="type">int</span> c) : <span class="built_in">Base</span>(a, b) &#123; c_ = c; &#125;</span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> a_;</span><br><span class="line">    <span class="type">int</span> b_;</span><br><span class="line">    <span class="type">int</span> c_;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">Derived</span> : Base &#123;</span><br><span class="line">    <span class="keyword">using</span> Base::Base;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="function">Derived <span class="title">a</span><span class="params">(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>)</span></span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">struct</span> <span class="hljs-title class_">Base</span> &#123;<br>    <span class="hljs-built_in">Base</span>() &#123;&#125;<br>    <span class="hljs-built_in">Base</span>(<span class="hljs-type">int</span> a) &#123; a_ = a; &#125;<br><br>    <span class="hljs-built_in">Base</span>(<span class="hljs-type">int</span> a, <span class="hljs-type">int</span> b) : <span class="hljs-built_in">Base</span>(a) &#123; b_ = b; &#125;<br><br>    <span class="hljs-built_in">Base</span>(<span class="hljs-type">int</span> a, <span class="hljs-type">int</span> b, <span class="hljs-type">int</span> c) : <span class="hljs-built_in">Base</span>(a, b) &#123; c_ = c; &#125;<br><br>    <span class="hljs-type">int</span> a_;<br>    <span class="hljs-type">int</span> b_;<br>    <span class="hljs-type">int</span> c_;<br>&#125;;<br><br><span class="hljs-keyword">struct</span> <span class="hljs-title class_">Derived</span> : Base &#123;<br>    <span class="hljs-keyword">using</span> Base::Base;<br>&#125;;<br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>    <span class="hljs-function">Derived <span class="hljs-title">a</span><span class="hljs-params">(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>)</span></span>;<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <h3 id="关键字"><a href="# 关键字" class="headerlink" title="关键字"></a>关键字 </h3><h4 id="nullptr"><a href="#nullptr" class="headerlink" title="nullptr"></a><code>nullptr</code></h4><p><code>nullptr</code> 是 c++11 用来表示空指针新引入的常量值，在 c++ 中如果表示空指针语义时建议使用 <code>nullptr</code> 而不要使用 <code>NULL</code>，因为<code>NULL</code> 本质上是个 <code>int</code> 型的 0，其实不是个指针</p>
 <h4 id="final-amp-override"><a href="#final-amp-override" class="headerlink" title="final &amp; override"></a><code>final</code> &amp; <code>override</code></h4><p>c++11 关于继承新增了两个关键字，<code>final</code>用于修饰一个类，表示禁止该类进一步派生和虚函数的进一步重载，<code>override</code>用于修饰派生类中的成员函数，标明该函数重写了基类函数，如果一个函数声明了 <code>override</code> 但父类却没有这个虚函数，编译报错，使用 <code>override</code> 关键字可以避免开发者在重写基类函数时无意产生的错误</p>
 <h4 id="default"><a href="#default" class="headerlink" title="default"></a><code>default</code></h4><p>c++11 引入 <code>default</code> 特性，多数时候用于声明构造函数为默认构造函数，如果类中有了自定义的构造函数，编译器就不会隐式生成默认构造函数</p>
 <h4 id="delete"><a href="#delete" class="headerlink" title="delete"></a><code>delete</code></h4><p>c++ 中，如果开发人员没有定义特殊成员函数，那么编译器在需要特殊成员函数时候会隐式自动生成一个默认的特殊成员函数，例如拷贝构造函数或者拷贝赋值操作符。有时候想禁止对象的拷贝与赋值，可以使用 <code>delete</code> 修饰</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">A</span> &#123;</span><br><span class="line">    <span class="built_in">A</span>() = <span class="keyword">default</span>;</span><br><span class="line">    <span class="built_in">A</span>(<span class="type">const</span> A&amp;) = <span class="keyword">delete</span>;</span><br><span class="line">    A&amp; <span class="keyword">operator</span>=(<span class="type">const</span> A&amp;) = <span class="keyword">delete</span>;</span><br><span class="line">    <span class="type">int</span> a;</span><br><span class="line">    <span class="built_in">A</span>(<span class="type">int</span> i) &#123; a = i; &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    A a1;</span><br><span class="line">    A a2 = a1;  <span class="comment">// 错误，拷贝构造函数被禁用</span></span><br><span class="line">    A a3;</span><br><span class="line">    a3 = a1;  <span class="comment">// 错误，拷贝赋值操作符被禁用</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">struct</span> <span class="hljs-title class_">A</span> &#123;<br>    <span class="hljs-built_in">A</span>() = <span class="hljs-keyword">default</span>;<br>    <span class="hljs-built_in">A</span>(<span class="hljs-type">const</span> A&amp;) = <span class="hljs-keyword">delete</span>;<br>    A&amp; <span class="hljs-keyword">operator</span>=(<span class="hljs-type">const</span> A&amp;) = <span class="hljs-keyword">delete</span>;<br>    <span class="hljs-type">int</span> a;<br>    <span class="hljs-built_in">A</span>(<span class="hljs-type">int</span> i) &#123; a = i; &#125;<br>&#125;;<br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>    A a1;<br>    A a2 = a1;  <span class="hljs-comment">// 错误，拷贝构造函数被禁用</span><br>    A a3;<br>    a3 = a1;  <span class="hljs-comment">// 错误，拷贝赋值操作符被禁用</span><br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p><code>delele</code>关键字在 c++11 中很常用，<code>std::unique_ptr</code>就是通过 <code>delete</code> 修饰来禁止对象的拷贝的</p>
 <h4 id="explicit"><a href="#explicit" class="headerlink" title="explicit"></a><code>explicit</code></h4><p><code>explicit</code>专用于修饰构造函数，表示只能显式构造，不可以被隐式转换</p>
-<h5 id="不用 explicit"><a href="# 不用 explicit" class="headerlink" title="不用 explicit"></a>不用<code>explicit</code></h5><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">A</span> &#123;</span><br><span class="line">    <span class="built_in">A</span>(<span class="type">int</span> value) &#123; <span class="comment">// 没有 explicit 关键字</span></span><br><span class="line">        cout &lt;&lt; <span class="string">&quot;value&quot;</span> &lt;&lt; endl;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    A a = <span class="number">1</span>; <span class="comment">// 可以隐式转换</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="不用 explicit"><a href="# 不用 explicit" class="headerlink" title="不用 explicit"></a>不用<code>explicit</code></h5><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">struct</span> <span class="hljs-title class_">A</span> &#123;<br>    <span class="hljs-built_in">A</span>(<span class="hljs-type">int</span> value) &#123; <span class="hljs-comment">// 没有 explicit 关键字</span><br>        cout &lt;&lt; <span class="hljs-string">&quot;value&quot;</span> &lt;&lt; endl;<br>    &#125;<br>&#125;;<br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>    A a = <span class="hljs-number">1</span>; <span class="hljs-comment">// 可以隐式转换</span><br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
 
-<h5 id="使用 explicit"><a href="# 使用 explicit" class="headerlink" title="使用 explicit"></a>使用<code>explicit</code></h5><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">A</span> &#123;</span><br><span class="line">    <span class="function"><span class="keyword">explicit</span> <span class="title">A</span><span class="params">(<span class="type">int</span> value)</span> </span>&#123;</span><br><span class="line">        cout &lt;&lt; <span class="string">&quot;value&quot;</span> &lt;&lt; endl;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    A a = <span class="number">1</span>; <span class="comment">// error，不可以隐式转换</span></span><br><span class="line">    <span class="function">A <span class="title">aa</span><span class="params">(<span class="number">2</span>)</span></span>; <span class="comment">// ok</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="使用 explicit"><a href="# 使用 explicit" class="headerlink" title="使用 explicit"></a>使用<code>explicit</code></h5><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">struct</span> <span class="hljs-title class_">A</span> &#123;<br>    <span class="hljs-function"><span class="hljs-keyword">explicit</span> <span class="hljs-title">A</span><span class="hljs-params">(<span class="hljs-type">int</span> value)</span> </span>&#123;<br>        cout &lt;&lt; <span class="hljs-string">&quot;value&quot;</span> &lt;&lt; endl;<br>    &#125;<br>&#125;;<br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>    A a = <span class="hljs-number">1</span>; <span class="hljs-comment">// error，不可以隐式转换</span><br>    <span class="hljs-function">A <span class="hljs-title">aa</span><span class="hljs-params">(<span class="hljs-number">2</span>)</span></span>; <span class="hljs-comment">// ok</span><br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <h3 id="constexpr"><a href="#constexpr" class="headerlink" title="constexpr"></a><code>constexpr</code></h3><p><code>constexpr</code>是 c++11 新引入的关键字，用于编译时的常量和常量函数，这里直接介绍 <code>constexpr</code> 和<code>const</code>的区别：两者都代表可读，<code>const</code>只表示 <code>read only</code> 的语义，只保证了运行时不可以被修改，但它修饰的仍然有可能是个动态变量，而 <code>constexpr</code> 修饰的才是真正的常量，它会在编译期间就会被计算出来，整个运行过程中都不可以被改变，<code>constexpr</code>可以用于修饰函数，这个函数的返回值会尽可能在编译期间被计算出来当作一个常量，但是如果编译期间此函数不能被计算出来，那它就会当作一个普通函数被处理</p>
 <h3 id="enum-class"><a href="#enum-class" class="headerlink" title="enum class"></a><code>enum class</code></h3><p>c++11 新增有作用域的枚举类型，不带作用域的枚举类型可以自动转换成整形，且不同的枚举可以相互比较，可能会存在潜在的难以调试的 bug；使用带有作用域的枚举类型后，对不同的枚举进行比较会导致编译失败，使用带有作用域的枚举类型后，对不同的枚举进行比较会导致编译失败，同时带作用域的枚举类型可以选择底层类型，默认是<code>int</code>，可以改成其他类型</p>
@@ -312,7 +478,7 @@ p.spoiler {
 </div>
 
 <h4 id="sizeof"><a href="#sizeof" class="headerlink" title="sizeof"></a><code>sizeof</code></h4><p>c++11 中 <code>sizeof</code> 可以用的类的数据成员上</p>
-<h4 id="assertion"><a href="#assertion" class="headerlink" title="assertion"></a><code>assertion</code></h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">static_assert</span>(<span class="literal">true</span>/<span class="literal">false</span>, message);</span><br></pre></td></tr></table></figure>
+<h4 id="assertion"><a href="#assertion" class="headerlink" title="assertion"></a><code>assertion</code></h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-built_in">static_assert</span>(<span class="hljs-literal">true</span>/<span class="hljs-literal">false</span>, message);<br></code></pre></td></tr></table></figure>
 
 <p>c++11 引入 <code>static_assert</code> 声明，用于在编译期间检查，如果第一个参数值为<code>false</code>，则打印<code>message</code>，编译失败</p>
 <h3 id="内存对齐"><a href="# 内存对齐" class="headerlink" title="内存对齐"></a>内存对齐 </h3><h4 id="什么是内存对齐"><a href="# 什么是内存对齐" class="headerlink" title="什么是内存对齐"></a> 什么是内存对齐 </h4><p> 理论上计算机对于任何变量的访问都可以从任意位置开始，然而实际上系统会对这些变量的存放地址有限制，通常将变量首地址设为某个数 N 的倍数，这就是内存对齐</p>
@@ -321,152 +487,410 @@ p.spoiler {
 <li>提高 CPU 内存访问速度，一般处理器的内存存取粒度都是 N 的整数倍，假如访问 N 大小的数据，没有进行内存对齐，有可能就需要两次访问才可以读取出数据，而进行内存对齐可以一次性把数据全部读取出来，提高效率</li>
 </ul>
 <p>c++11 关于内存对齐新增了一些函数</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">func</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">static</span> std::aligned_storage&lt;<span class="built_in">sizeof</span>(A), <span class="built_in">alignof</span>(A)&gt;::type data;</span><br><span class="line">    A *attr = <span class="built_in">new</span> (&amp;data) A;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">func</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-type">static</span> std::aligned_storage&lt;<span class="hljs-built_in">sizeof</span>(A), <span class="hljs-built_in">alignof</span>(A)&gt;::type data;<br>    A *attr = <span class="hljs-built_in">new</span> (&amp;data) A;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <h3 id="随机数功能"><a href="# 随机数功能" class="headerlink" title="随机数功能"></a>随机数功能</h3><p>c++11 关于随机数功能则较之前丰富了很多，典型的可以选择概率分布类型</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;time.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;random&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="function">std::default_random_engine <span class="title">random</span><span class="params">(time(<span class="literal">nullptr</span>))</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="function">std::uniform_int_distribution&lt;<span class="type">int</span>&gt; <span class="title">int_dis</span><span class="params">(<span class="number">0</span>, <span class="number">100</span>)</span></span>; <span class="comment">// 整数均匀分布</span></span><br><span class="line">    <span class="function">std::uniform_real_distribution&lt;<span class="type">float</span>&gt; <span class="title">real_dis</span><span class="params">(<span class="number">0.0</span>, <span class="number">1.0</span>)</span></span>; <span class="comment">// 浮点数均匀分布</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; ++i) &#123;</span><br><span class="line">        cout &lt;&lt; <span class="built_in">int_dis</span>(random) &lt;&lt; <span class="string">&#x27; &#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    cout &lt;&lt; endl;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; ++i) &#123;</span><br><span class="line">        cout &lt;&lt; <span class="built_in">real_dis</span>(random) &lt;&lt; <span class="string">&#x27; &#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    cout &lt;&lt; endl;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;time.h&gt;</span></span><br><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;random&gt;</span></span><br><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>    <span class="hljs-function">std::default_random_engine <span class="hljs-title">random</span><span class="hljs-params">(time(<span class="hljs-literal">nullptr</span>))</span></span>;<br><br>    <span class="hljs-function">std::uniform_int_distribution&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">int_dis</span><span class="hljs-params">(<span class="hljs-number">0</span>, <span class="hljs-number">100</span>)</span></span>; <span class="hljs-comment">// 整数均匀分布</span><br>    <span class="hljs-function">std::uniform_real_distribution&lt;<span class="hljs-type">float</span>&gt; <span class="hljs-title">real_dis</span><span class="hljs-params">(<span class="hljs-number">0.0</span>, <span class="hljs-number">1.0</span>)</span></span>; <span class="hljs-comment">// 浮点数均匀分布</span><br><br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">10</span>; ++i) &#123;<br>        cout &lt;&lt; <span class="hljs-built_in">int_dis</span>(random) &lt;&lt; <span class="hljs-string">&#x27; &#x27;</span>;<br>    &#125;<br>    cout &lt;&lt; endl;<br><br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">10</span>; ++i) &#123;<br>        cout &lt;&lt; <span class="hljs-built_in">real_dis</span>(random) &lt;&lt; <span class="hljs-string">&#x27; &#x27;</span>;<br>    &#125;<br>    cout &lt;&lt; endl;<br><br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
 
-<h3 id="正则表达式"><a href="# 正则表达式" class="headerlink" title="正则表达式"></a>正则表达式</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iterator&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;regex&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    std::string s = <span class="string">&quot;I know, I&#x27;ll use2 regular expressions.&quot;</span>;</span><br><span class="line">    <span class="comment">// 忽略大小写</span></span><br><span class="line">    <span class="function">std::regex <span class="title">self_regex</span><span class="params">(<span class="string">&quot;REGULAR EXPRESSIONS&quot;</span>, std::regex_constants::icase)</span></span>; </span><br><span class="line">    <span class="keyword">if</span> (std::<span class="built_in">regex_search</span>(s, self_regex)) &#123;</span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;Text contains the phrase &#x27;regular expressions&#x27;\n&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function">std::regex <span class="title">word_regex</span><span class="params">(<span class="string">&quot;(\\w+)&quot;</span>)</span></span>;  <span class="comment">// 匹配字母数字等字符</span></span><br><span class="line">    <span class="keyword">auto</span> words_begin = std::<span class="built_in">sregex_iterator</span>(s.<span class="built_in">begin</span>(), s.<span class="built_in">end</span>(), word_regex);</span><br><span class="line">    <span class="keyword">auto</span> words_end = std::<span class="built_in">sregex_iterator</span>();</span><br><span class="line"></span><br><span class="line">    std::cout &lt;&lt; <span class="string">&quot;Found &quot;</span> &lt;&lt; std::<span class="built_in">distance</span>(words_begin, words_end) &lt;&lt; <span class="string">&quot; words\n&quot;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="type">const</span> <span class="type">int</span> N = <span class="number">6</span>;</span><br><span class="line">    std::cout &lt;&lt; <span class="string">&quot;Words longer than &quot;</span> &lt;&lt; N &lt;&lt; <span class="string">&quot; characters:\n&quot;</span>;</span><br><span class="line">    <span class="keyword">for</span> (std::sregex_iterator i = words_begin; i != words_end; ++i) &#123;</span><br><span class="line">        std::smatch match = *i;</span><br><span class="line">        std::string match_str = match.<span class="built_in">str</span>();</span><br><span class="line">        <span class="keyword">if</span> (match_str.<span class="built_in">size</span>() &gt; N) &#123;</span><br><span class="line">            std::cout &lt;&lt; <span class="string">&quot;  &quot;</span> &lt;&lt; match_str &lt;&lt; <span class="string">&#x27;\n&#x27;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function">std::regex <span class="title">long_word_regex</span><span class="params">(<span class="string">&quot;(\\w&#123;7,&#125;)&quot;</span>)</span></span>;</span><br><span class="line">    <span class="comment">// 超过 7 个字符的单词用 [] 包围</span></span><br><span class="line">    std::string new_s = std::<span class="built_in">regex_replace</span>(s, long_word_regex, <span class="string">&quot;[$&amp;]&quot;</span>);</span><br><span class="line">    std::cout &lt;&lt; new_s &lt;&lt; <span class="string">&#x27;\n&#x27;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="正则表达式"><a href="# 正则表达式" class="headerlink" title="正则表达式"></a>正则表达式</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iterator&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;regex&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;string&gt;</span></span><br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>    std::string s = <span class="hljs-string">&quot;I know, I&#x27;ll use2 regular expressions.&quot;</span>;<br>    <span class="hljs-comment">// 忽略大小写</span><br>    <span class="hljs-function">std::regex <span class="hljs-title">self_regex</span><span class="hljs-params">(<span class="hljs-string">&quot;REGULAR EXPRESSIONS&quot;</span>, std::regex_constants::icase)</span></span>; <br>    <span class="hljs-keyword">if</span> (std::<span class="hljs-built_in">regex_search</span>(s, self_regex)) &#123;<br>        std::cout &lt;&lt; <span class="hljs-string">&quot;Text contains the phrase &#x27;regular expressions&#x27;\n&quot;</span>;<br>    &#125;<br><br>    <span class="hljs-function">std::regex <span class="hljs-title">word_regex</span><span class="hljs-params">(<span class="hljs-string">&quot;(\\w+)&quot;</span>)</span></span>;  <span class="hljs-comment">// 匹配字母数字等字符</span><br>    <span class="hljs-keyword">auto</span> words_begin = std::<span class="hljs-built_in">sregex_iterator</span>(s.<span class="hljs-built_in">begin</span>(), s.<span class="hljs-built_in">end</span>(), word_regex);<br>    <span class="hljs-keyword">auto</span> words_end = std::<span class="hljs-built_in">sregex_iterator</span>();<br><br>    std::cout &lt;&lt; <span class="hljs-string">&quot;Found &quot;</span> &lt;&lt; std::<span class="hljs-built_in">distance</span>(words_begin, words_end) &lt;&lt; <span class="hljs-string">&quot; words\n&quot;</span>;<br><br>    <span class="hljs-type">const</span> <span class="hljs-type">int</span> N = <span class="hljs-number">6</span>;<br>    std::cout &lt;&lt; <span class="hljs-string">&quot;Words longer than &quot;</span> &lt;&lt; N &lt;&lt; <span class="hljs-string">&quot; characters:\n&quot;</span>;<br>    <span class="hljs-keyword">for</span> (std::sregex_iterator i = words_begin; i != words_end; ++i) &#123;<br>        std::smatch match = *i;<br>        std::string match_str = match.<span class="hljs-built_in">str</span>();<br>        <span class="hljs-keyword">if</span> (match_str.<span class="hljs-built_in">size</span>() &gt; N) &#123;<br>            std::cout &lt;&lt; <span class="hljs-string">&quot;  &quot;</span> &lt;&lt; match_str &lt;&lt; <span class="hljs-string">&#x27;\n&#x27;</span>;<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-function">std::regex <span class="hljs-title">long_word_regex</span><span class="hljs-params">(<span class="hljs-string">&quot;(\\w&#123;7,&#125;)&quot;</span>)</span></span>;<br>    <span class="hljs-comment">// 超过 7 个字符的单词用 [] 包围</span><br>    std::string new_s = std::<span class="hljs-built_in">regex_replace</span>(s, long_word_regex, <span class="hljs-string">&quot;[$&amp;]&quot;</span>);<br>    std::cout &lt;&lt; new_s &lt;&lt; <span class="hljs-string">&#x27;\n&#x27;</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
 
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/C/" class="category-chain-item">C++</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/C/" class="print-no-link">#C++</a>
+      
+        <a href="/tags/C-11/" class="print-no-link">#C++ 11</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>C++ 11 新特性</div>
+      <div>https://silhouettesforyou.github.io/2022/01/13/32/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Xiaoming</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>January 13, 2022</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
   </div>
-</article>
 
 
 
-        
-          <div id="footer-post-container">
-  <div id="footer-post">
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/01/14/33/" title="Lua API">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Lua API</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/01/12/31/" title="tolua 原理解析">
+                        <span class="hidden-mobile">tolua 原理解析</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
 
-    <div id="nav-footer" style="display: none">
-      <ul>
-        
-          <li><a href="/">Home</a></li>
-        
-          <li><a href="/archives/">Writing</a></li>
-        
-          <li><a href="/lover/">Lover</a></li>
-        
-          <li><a href="/about/">About</a></li>
-        
-      </ul>
-    </div>
-
-    
-    
-      <div id="toc-footer" style="display: none">
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#auto-amp-decltype"><span class="toc-number">1.</span> <span class="toc-text">auto &amp; decltype</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#auto"><span class="toc-number">1.1.</span> <span class="toc-text">auto</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#decltype"><span class="toc-number">1.2.</span> <span class="toc-text">decltype</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B7%A6%E5%80%BC%E5%92%8C%E5%8F%B3%E5%80%BC"><span class="toc-number">2.</span> <span class="toc-text">左值和右值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%97%E8%A1%A8%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="toc-number">3.</span> <span class="toc-text">列表初始化 </span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%97%E8%A1%A8%E5%88%9D%E5%A7%8B%E5%8C%96%E7%9A%84%E4%B8%80%E4%BA%9B%E8%A7%84%E5%88%99"><span class="toc-number">3.1.</span> <span class="toc-text">列表初始化的一些规则 </span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#std-initializer-list"><span class="toc-number">3.2.</span> <span class="toc-text">std::initializer_list</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#std-function-amp-std-bind-amp-lambda%20%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="toc-number">4.</span> <span class="toc-text">std::function &amp; std::bind &amp; lambda表达式 </span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#std-function"><span class="toc-number">4.1.</span> <span class="toc-text">std::function</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#std-bind"><span class="toc-number">4.2.</span> <span class="toc-text">std::bind</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#lambda%20%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="toc-number">4.3.</span> <span class="toc-text">lambda表达式 </span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B0%8F%E7%BB%93"><span class="toc-number">4.4.</span> <span class="toc-text">小结 </span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A8%A1%E6%9D%BF%E7%9A%84%E6%94%B9%E8%BF%9B"><span class="toc-number">5.</span> <span class="toc-text">模板的改进 </span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A8%A1%E6%9D%BF%E7%9A%84%E5%8F%B3%E5%B0%96%E6%8B%AC%E5%8F%B7"><span class="toc-number">5.1.</span> <span class="toc-text"> 模板的右尖括号</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A8%A1%E6%9D%BF%E7%9A%84%E5%88%AB%E5%90%8D"><span class="toc-number">5.2.</span> <span class="toc-text">模板的别名</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%87%BD%E6%95%B0%E6%A8%A1%E6%9D%BF%E7%9A%84%E9%BB%98%E8%AE%A4%E6%A8%A1%E6%9D%BF%E5%8F%82%E6%95%B0"><span class="toc-number">5.3.</span> <span class="toc-text">函数模板的默认模板参数</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B9%B6%E5%8F%91"><span class="toc-number">6.</span> <span class="toc-text">并发 </span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88"><span class="toc-number">7.</span> <span class="toc-text"> 智能指针 </span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E4%BA%8E%E8%8C%83%E5%9B%B4%E7%9A%84%20-for-%20%E5%BE%AA%E7%8E%AF"><span class="toc-number">8.</span> <span class="toc-text"> 基于范围的 for 循环</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A7%94%E6%89%98%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0"><span class="toc-number">9.</span> <span class="toc-text">委托构造函数 </span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%A7%E6%89%BF%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0"><span class="toc-number">10.</span> <span class="toc-text">继承构造函数 </span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B3%E9%94%AE%E5%AD%97"><span class="toc-number">11.</span> <span class="toc-text">关键字 </span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#nullptr"><span class="toc-number">11.1.</span> <span class="toc-text">nullptr</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#final-amp-override"><span class="toc-number">11.2.</span> <span class="toc-text">final &amp; override</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#default"><span class="toc-number">11.3.</span> <span class="toc-text">default</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#delete"><span class="toc-number">11.4.</span> <span class="toc-text">delete</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#explicit"><span class="toc-number">11.5.</span> <span class="toc-text">explicit</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%B8%8D%E7%94%A8%20explicit"><span class="toc-number">11.5.1.</span> <span class="toc-text">不用explicit</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%20explicit"><span class="toc-number">11.5.2.</span> <span class="toc-text">使用explicit</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#constexpr"><span class="toc-number">12.</span> <span class="toc-text">constexpr</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#enum-class"><span class="toc-number">13.</span> <span class="toc-text">enum class</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#sizeof"><span class="toc-number">13.1.</span> <span class="toc-text">sizeof</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#assertion"><span class="toc-number">13.2.</span> <span class="toc-text">assertion</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%86%85%E5%AD%98%E5%AF%B9%E9%BD%90"><span class="toc-number">14.</span> <span class="toc-text">内存对齐 </span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E5%86%85%E5%AD%98%E5%AF%B9%E9%BD%90"><span class="toc-number">14.1.</span> <span class="toc-text"> 什么是内存对齐 </span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E5%86%85%E5%AD%98%E5%AF%B9%E9%BD%90"><span class="toc-number">14.2.</span> <span class="toc-text">为什么要内存对齐</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9A%8F%E6%9C%BA%E6%95%B0%E5%8A%9F%E8%83%BD"><span class="toc-number">15.</span> <span class="toc-text">随机数功能</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="toc-number">16.</span> <span class="toc-text">正则表达式</span></a></li></ol>
+            
+          </article>
+        </div>
       </div>
-    
-
-    <div id="share-footer" style="display: none">
-      <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://silhouettesforyou.github.io/2022/01/13/32/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://silhouettesforyou.github.io/2022/01/13/32/&text=C++11 新特性"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://silhouettesforyou.github.io/2022/01/13/32/&title=C++11 新特性"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://silhouettesforyou.github.io/2022/01/13/32/&is_video=false&description=C++11 新特性"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=C++11 新特性&body=Check out this article: https://silhouettesforyou.github.io/2022/01/13/32/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://silhouettesforyou.github.io/2022/01/13/32/&title=C++11 新特性"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://silhouettesforyou.github.io/2022/01/13/32/&title=C++11 新特性"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://silhouettesforyou.github.io/2022/01/13/32/&title=C++11 新特性"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://silhouettesforyou.github.io/2022/01/13/32/&title=C++11 新特性"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://silhouettesforyou.github.io/2022/01/13/32/&name=C++11 新特性&description=&lt;center&gt;
-    &lt;img src=&#34;/2022/01/13/32/teaser-image.png&#34;&gt;
-&lt;/center&gt;"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://silhouettesforyou.github.io/2022/01/13/32/&t=C++11 新特性"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
-</ul>
-
     </div>
 
-    <div id="actions-footer">
-        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
-        
-          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> TOC</a>
-        
-        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
-        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
-    </div>
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
 
+
+
+  </aside>
+
+
+    </div>
   </div>
 </div>
 
-        
-        <footer id="footer">
-  <div class="footer-left">
-    Copyright &copy;
-    
-    
-    2016-2024
-    Xiaoming
-  </div>
-  <div class="footer-right">
-    <nav>
-      <ul>
-        <!--
-       --><li><a href="/">Home</a></li><!--
-     --><!--
-       --><li><a href="/archives/">Writing</a></li><!--
-     --><!--
-       --><li><a href="/lover/">Lover</a></li><!--
-     --><!--
-       --><li><a href="/about/">About</a></li><!--
-     -->
-      </ul>
-    </nav>
-  </div>
-</footer>
 
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
     </div>
-    <!-- styles -->
+  </div>
+</div>
 
+    
 
+    
+  </main>
 
-  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
-
-
-    <!-- jquery -->
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
-
-
-
-
-<!-- clipboard -->
-
+  <footer>
+    <div class="footer-inner">
   
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+    <div class="footer-content">
+      <i class="iconfont icon-love"></i>
+    </div>
   
-  <script type="text/javascript">
-  $(function() {
-    // copy-btn HTML
-    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
-    btn += '<i class="fa-regular fa-clone"></i>';
-    btn += '</span>';
-    // mount it!
-    $(".highlight table").before(btn);
-    var clip = new ClipboardJS('.btn-copy', {
-      text: function(trigger) {
-        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
-      }
-    });
-    clip.on('success', function(e) {
-      e.trigger.setAttribute('aria-label', "Copied!");
-      e.clearSelection();
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
     })
-  })
   </script>
 
 
-<script src="/js/main.js"></script>
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
 
-<!-- search -->
 
-<!-- Baidu Analytics -->
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
 
-<!-- Cloudflare Analytics -->
 
-<!-- Disqus Comments -->
 
-<!-- utterances Comments -->
 
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  var relativeDate = function() {
+    var updatedTime = document.getElementById('updated-time');
+    if (updatedTime) {
+      var text = updatedTime.textContent;
+      var reg = /\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:Z|[+-]\d{2}:\d{2})/;
+      var matchs = text.match(reg);
+      if (matchs) {
+        var relativeTime = moment(matchs[0]).fromNow();
+        updatedTime.textContent = text.replace(reg, relativeTime);
+      }
+      updatedTime.style.display = '';
+    }
+  };
+  Fluid.utils.createScript('https://lib.baomitu.com/moment.js/2.29.4/moment.min.js', function() {
+    if (!'en'.startsWith('en')) {
+      Fluid.utils.createScript('https://lib.baomitu.com/moment.js/2.29.4/locale/en.min.js', function() {
+        relativeDate();
+      });
+    } else {
+      relativeDate();
+    }
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
 <!-- hexo injector body_end start --><script src="https://cdn.jsdelivr.net/npm/hexo-tag-common@0.0.5/js/index.js"></script><!-- hexo injector body_end end --><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"left","width":150,"height":300},"mobile":{"show":false},"react":{"opacity":0.7}});</script></body>
 </html>
