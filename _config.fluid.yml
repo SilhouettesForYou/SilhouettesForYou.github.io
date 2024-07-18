@@ -237,6 +237,8 @@ custom_js:
 # The usage is the same as custom_js
 custom_css:
 
+custom_html: '<link rel="stylesheet" href="//at.alicdn.com/t/c/font_4625503_lmam43j6xt.css">'
+
 # 网页访问统计
 # Analysis of website visitors
 web_analytics:  # 网页访问统计
@@ -346,10 +348,16 @@ navbar:
     - { key: "category", link: "/categories/", icon: "iconfont icon-category-fill" }
     - { key: "tag", link: "/tags/", icon: "iconfont icon-tags-fill" }
     - { key: "about", link: "/about/", icon: "iconfont icon-user-fill" }
-    - { key: "Lover", link: "/lover/", icon: "iconfont icon-friends" }
-    - { key: "OneDrive", link: "https://onedrive-vercel-index-xi-liard.vercel.app/", icon: "iconfont icon-books", target: "_blank" }
-    - { key: "Aliyun", link: "https://fyddxwmx.cloud.sealos.io/", icon: "iconfont icon-books", target: "_blank" }
-    - { key: "Other Storages", link: "https://manual-maryl-silhouette-7fc7ff34.koyeb.app/", icon: "iconfont icon-books", target: "_blank" }
+    - { key: "Lover", link: "/lover/", icon: "iconfont icon-heart" }
+    - {
+        key: "Cloud Disk",
+        icon: "iconfont icon-buyecsstorage",
+        submenu: [
+          { key: "OneDrive", link: "https://onedrive-vercel-index-xi-liard.vercel.app/", icon: "iconfont icon-onedrive", target: "_blank" },
+          { key: "Aliyun", link: "https://fyddxwmx.cloud.sealos.io/", icon: "iconfont icon-aliyun", target: "_blank" },
+          { key: "Other Storages", link: "https://manual-maryl-silhouette-7fc7ff34.koyeb.app/", icon: "iconfont icon-storage", target: "_blank" }
+        ]
+      }
 
 # 搜索功能，基于 hexo-generator-search 插件，若已安装其他搜索插件请关闭此功能，以避免生成多余的索引文件
 # Search feature, based on hexo-generator-search. If you have installed other search plugins, please disable this feature to avoid generating redundant index files
