@@ -1,0 +1,95 @@
+{
+    "root": {
+        "data": {
+            "id": "d2vxg0rc3vc0",
+            "created": 1721637177592,
+            "text": "expression",
+            "resource": [
+                "表达式"
+            ]
+        },
+        "children": [
+            {
+                "data": {
+                    "id": "d2vxgs3ei6w0",
+                    "created": 1721637237095,
+                    "text": "glvalue",
+                    "resource": [
+                        "泛左值"
+                    ],
+                    "layout": null
+                },
+                "children": [
+                    {
+                        "data": {
+                            "id": "d2vxh47reu80",
+                            "created": 1721637263480,
+                            "text": "lvalue",
+                            "resource": [
+                                "左值"
+                            ],
+                            "layout": null
+                        },
+                        "children": []
+                    },
+                    {
+                        "data": {
+                            "id": "d2vxhhfnusg0",
+                            "created": 1721637292256,
+                            "text": "xvalue",
+                            "priority": null,
+                            "background": "#73a1bf",
+                            "resource": [
+                                "将亡值"
+                            ],
+                            "layout": null
+                        },
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "data": {
+                    "id": "d2vxh0aq2lc0",
+                    "created": 1721637254952,
+                    "text": "rvalue",
+                    "expandState": "expand",
+                    "resource": [
+                        "右值"
+                    ],
+                    "layout": null
+                },
+                "children": [
+                    {
+                        "data": {
+                            "id": "d2vxhhfnusg0",
+                            "created": 1721637292256,
+                            "text": "xvalue",
+                            "background": "#73a1bf",
+                            "resource": [
+                                "将亡值"
+                            ],
+                            "layout": null
+                        },
+                        "children": []
+                    },
+                    {
+                        "data": {
+                            "id": "d2vxh7mf00w0",
+                            "created": 1721637270896,
+                            "text": "prvalue",
+                            "layout": null,
+                            "resource": [
+                                "纯右值"
+                            ]
+                        },
+                        "children": []
+                    }
+                ]
+            }
+        ]
+    },
+    "template": "right",
+    "theme": "fresh-green-compat",
+    "version": "1.4.43"
+}
