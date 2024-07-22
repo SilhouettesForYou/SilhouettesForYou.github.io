@@ -23,29 +23,14 @@
 <meta property="og:url" content="https://silhouettesforyou.github.io/2021/11/04/1/index.html">
 <meta property="og:site_name" content="Silhouettes For You">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://silhouettesforyou.github.io/2021/11/04/1/teaser-image.png">
-<meta property="og:image" content="https://silhouettesforyou.github.io/2021/11/04/1/diffuse.png">
-<meta property="og:image" content="https://silhouettesforyou.github.io/2021/11/04/1/specular.png">
-<meta property="og:image" content="https://silhouettesforyou.github.io/2021/11/04/1/pipeline.png">
-<meta property="og:image" content="https://silhouettesforyou.github.io/2021/11/04/1/barycentric.png">
-<meta property="og:image" content="https://silhouettesforyou.github.io/2021/11/04/1/sample-texture.png">
-<meta property="og:image" content="https://silhouettesforyou.github.io/2021/11/04/1/bilinear-interpolation.png">
-<meta property="og:image" content="https://silhouettesforyou.github.io/2021/11/04/1/grid-reference.png">
-<meta property="og:image" content="https://silhouettesforyou.github.io/2021/11/04/1/screen-pixel-in-texture.png">
-<meta property="og:image" content="https://silhouettesforyou.github.io/2021/11/04/1/computing-mipmap-level.png">
-<meta property="og:image" content="https://silhouettesforyou.github.io/2021/11/04/1/trilinear-interpolation.png">
-<meta property="og:image" content="https://silhouettesforyou.github.io/2021/11/04/1/de-castekjau-algorithm.png">
-<meta property="og:image" content="https://silhouettesforyou.github.io/2021/11/04/1/solid-angle.png">
-<meta property="og:image" content="https://silhouettesforyou.github.io/2021/11/04/1/radiance.png">
-<meta property="og:image" content="https://silhouettesforyou.github.io/2021/11/04/1/brdf.png">
-<meta property="og:image" content="https://silhouettesforyou.github.io/2021/11/04/1/reflection.png">
+<meta property="og:image" content="https://silhouettesforyou.github.io/img/teasers/1-teaser.png">
 <meta property="article:published_time" content="2021-11-04T09:50:20.000Z">
-<meta property="article:modified_time" content="2023-12-10T07:38:04.428Z">
+<meta property="article:modified_time" content="2024-07-22T12:32:52.780Z">
 <meta property="article:author" content="Xiaoming">
 <meta property="article:tag" content="Graphics">
 <meta property="article:tag" content="GAMES">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://silhouettesforyou.github.io/2021/11/04/1/teaser-image.png">
+<meta name="twitter:image" content="https://silhouettesforyou.github.io/img/teasers/1-teaser.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
@@ -89,7 +74,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"silhouettesforyou.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"62be422732dc4e6f91e7fa199aa1f3f2","google":{"measurement_id":"G-B260B2ZWXQ"},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"silhouettesforyou.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":6},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"62be422732dc4e6f91e7fa199aa1f3f2","google":{"measurement_id":"G-B260B2ZWXQ"},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -172,7 +157,8 @@ p.spoiler {
   color: black;
   background-color: black;
   text-shadow: none;
-}</style><meta name="generator" content="Hexo 5.4.2"><style>mjx-container[jax="SVG"] {
+}</style><meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/atom.xml" title="Silhouettes For You" type="application/atom+xml">
+<style>mjx-container[jax="SVG"] {
   direction: ltr;
 }
 
@@ -284,8 +270,7 @@ mjx-container[display="true"] {
 mjx-container[display="true"] + br {
   display: none;
 }
-</style><link rel="alternate" href="/atom.xml" title="Silhouettes For You" type="application/atom+xml">
-</head>
+</style></head>
 
 
 <body>
@@ -533,10 +518,10 @@ mjx-container[display="true"] + br {
           <article class="post-content mx-auto">
             <h1 id="seo-header">现代图形学入门</h1>
             
-              <p id="updated-time" class="note note-info" style="display: none">
+              <p id="updated-time" class="note note-light" style="display: none">
                 
                   
-                    Last updated on 2023-12-10T15:38:04+08:00
+                    Last updated on 2024-07-22T20:32:52+08:00
                   
                   
 
