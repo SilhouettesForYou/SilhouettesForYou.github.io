@@ -8,11 +8,9 @@ refplus: true
 
 * https://github.com/SilhouettesForYou
 
-
 ## E-mail
 
 * mgze.wang@gmail.com
-
 
 ## Education
 
@@ -21,11 +19,8 @@ refplus: true
 
 ## Research
 
-
-
 * An effective ROI extracting method for color brain slice in assisting the diagnostic analysis of epilepsy{% ref 1 %}
 * A Fragment Fracture Surface Segmentation Method Based on Learning of Local Geometric Features on Margins Used for Automatic Utensil Reassembly{% ref 2 %}
-
 
 ## Experience
 
@@ -36,8 +31,6 @@ refplus: true
 
 **🏸Badminton** | **💪Fitness** | **🏊‍Swimming** | **🚲Cycling** | **🥘Cooking**
 
-
-
 ***
 
 {% references %}
@@ -47,4 +40,3 @@ refplus: true
 [2] <a href="https://www.sciencedirect.com/science/article/abs/pii/S0010448520301561">A Fragment Fracture Surface Segmentation Method Based on Learning of Local Geometric Features on Margins Used for Automatic Utensil Reassembly</a>
 
 {% endreferences %}
-
