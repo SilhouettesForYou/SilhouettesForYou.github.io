@@ -26,7 +26,7 @@
 <meta property="og:description" content="▶generic composition                                  “generic composition”可以拆分为两部分来解释，即“generic”和“composition”。Generic：含义：通用的、普遍的。应用领域：计算机编程：用于描述可以处理不同种类数据类型的程序或类。商业领域：许多公司选择采用通用">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2024-07-18T09:21:18.000Z">
-<meta property="article:modified_time" content="2024-07-18T12:48:09.193Z">
+<meta property="article:modified_time" content="2024-07-23T12:46:53.587Z">
 <meta property="article:author" content="Xiaoming">
 <meta property="article:tag" content="翻译">
 <meta property="article:tag" content="Terminology">
@@ -74,7 +74,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"silhouettesforyou.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":6},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"62be422732dc4e6f91e7fa199aa1f3f2","google":{"measurement_id":"G-B260B2ZWXQ"},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"silhouettesforyou.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"62be422732dc4e6f91e7fa199aa1f3f2","google":{"measurement_id":"G-B260B2ZWXQ"},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -348,7 +348,7 @@ p.spoiler {
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.6k words
+          2.2k words
         
       </span>
     
@@ -359,7 +359,7 @@ p.spoiler {
         
         
         
-          14 mins
+          19 mins
         
       </span>
     
@@ -409,7 +409,7 @@ p.spoiler {
               <p id="updated-time" class="note note-light" style="display: none">
                 
                   
-                    Last updated on 2024-07-18T20:48:09+08:00
+                    Last updated on 2024-07-23T20:46:53+08:00
                   
                   
 
@@ -451,6 +451,18 @@ p.spoiler {
       <div class="fold-collapse collapse" id="collapse-ed26cd80">
         <div class="fold-content">
           <p>“In-Place Transformations”（原地变换）在计算机科学中，通常指的是一种算法设计技巧，它指的是在变换数据或执行操作时，尽可能地使用少量的额外空间，甚至是不使用任何额外空间，而是在原数据上进行直接修改。这样的算法设计可以有效地减少内存使用，提高算法的效率。</p><p>以下是关于“In-Place Transformations”的详细说明：</p><ul><li><strong>定义 </strong>：<ul><li> 原地变换是一种算法策略，其中输入数据在算法执行过程中被直接修改，以产生所需的输出。这意味着算法不需要额外的空间（或仅需要极少的额外空间）来存储中间结果或最终输出。</li></ul></li><li><strong>特点 </strong>：<ul><li><strong> 空间效率 </strong>：原地变换的主要优点之一是它们能够显著减少内存使用。这在处理大型数据集或内存受限的环境中尤为重要。</li><li><strong> 直接修改 </strong>：由于直接在原数据上进行操作，原地变换通常比非原地变换更快，因为它们避免了数据的复制和移动。</li><li><strong> 挑战性 </strong>：设计原地变换算法通常比设计非原地变换算法更具挑战性，因为需要仔细考虑如何在不引入额外空间的情况下进行数据的修改和重新组织。</li></ul></li><li><strong> 示例 </strong>：<ul><li><strong> 矩阵转置 </strong>：矩阵的原地转置是一个常见的原地变换示例。在某些情况下，可以通过使用循环和交换元素的方式，在不分配额外内存的情况下实现矩阵的转置。</li><li><strong> 数组排序 </strong>：许多排序算法（如快速排序、堆排序等）也可以被设计为原地算法，它们通过在数组中直接交换元素来排序，而不需要额外的数组来存储中间结果。</li></ul></li><li><strong> 注意事项 </strong>：<ul><li> 虽然原地变换具有显著的优点，但在某些情况下，它们可能不适合使用。例如，如果算法需要保留原始数据的副本以供后续使用，则无法使用原地变换。</li><li>原地变换算法的正确性通常更加难以验证和调试，因为它们直接修改了原始数据。</li></ul></li></ul><p>总之，“In-Place Transformations”是一种重要的算法设计策略，它可以帮助我们更加有效地利用内存和计算资源，特别是在处理大型数据集或内存受限的环境中。然而，设计原地变换算法需要仔细考虑和精心规划，以确保算法的正确性和效率。</p>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="fold">
+      <div class="fold-title fold-light collapsed" data-toggle="collapse" href="#collapse-843260ee" role="button" aria-expanded="false" aria-controls="collapse-843260ee">
+        <div class="fold-arrow">▶</div>Trivial Types
+      </div>
+      <div class="fold-collapse collapse" id="collapse-843260ee">
+        <div class="fold-content">
+          <p>Trivial types（平凡类型）在 C++ 中是一个重要的概念，特别是在处理对象复制和内存布局时。以下是对 Trivial types 的详细解释：</p><ul><li><strong>定义 </strong>：<ul><li>Trivial types 指的是在内存中表示连续的一片空间，可以像内置类型或者 C 的结构体、联合体一样进行操作的对象。它可以是一个类（class）或结构体（struct）。</li><li> 它拥有编译器生成的默认构造、析构、拷贝构造和赋值运算符，这些函数都是平凡的（即它们没有执行任何额外的操作，仅仅是按照内存布局进行复制或销毁）。</li></ul></li><li><strong>特性 </strong>：<ul><li> 平凡类型的对象可以直接拷贝到 <code>char</code> 或<code>unsigned char</code>数组，然后再拷贝回来，其类型仍然保持不变。这意味着它们可以安全地进行序列化和反序列化。</li><li>平凡类型通常用于需要对数据进行底层操作和通过 <code>memcpy</code> 等内存复制函数进行快速复制的情况。</li></ul></li><li><strong>条件 </strong>：<ul><li> 一个类型要被认为是 Trivial type，它必须满足以下条件：</li><li>有默认构造、析构、拷贝构造、赋值运算符，这些函数可以是编译器自动生成的，也可以是用户显式地通过 <code>default</code> 关键字声明的。</li><li>没有虚函数、虚基类和虚继承。</li></ul></li><li><strong>与其他类型的关系 </strong>：<ul><li>Trivial types 是标准布局类型（Standard Layout Types）的一个子集，它们除了满足标准布局类型的条件外，还需要满足上述的平凡性条件。</li><li>POD（Plain Old Data）类型在 C++11 之前是一个更广泛的概念，它包含了 Trivial types 和标准布局类型。但从 C++11 开始，POD 的概念逐渐被更细致的 Trivial types 和 Standard-Layout types 概念所替代。</li></ul></li><li><strong> 用途 </strong>：<ul><li> 由于其平凡性，Trivial types 在内存管理和对象复制方面提供了很大的灵活性。它们可以直接通过内存操作函数（如 <code>memcpy</code>、<code>memmove</code>）进行复制，而无需考虑对象的内部结构和状态。</li><li> 这种类型在与其他语言或系统交互时特别有用，因为它们具有确定的内存布局和简单的复制语义。</li></ul></li><li><strong>示例 </strong>：<ul><li> 一个只包含基础数据类型（如 <code>int</code>、<code>float</code>）和 / 或平凡类型的数组作为成员的类，可以被视为一个 Trivial type。</li></ul></li></ul><p> 总之，Trivial types 是 C++ 中一个非常重要的概念，它们在内存管理、对象复制以及与其他系统交互等方面具有重要的作用。</p>
         </div>
       </div>
     </div>
@@ -656,7 +668,7 @@ p.spoiler {
     
       <div class="col-lg-7 mx-auto nopadding-x-md">
         <div class="container custom mx-auto">
-          <link rel="stylesheet" href="//at.alicdn.com/t/c/font_4625503_lmam43j6xt.css">
+          <link rel="stylesheet" href="//at.alicdn.com/t/c/font_4625503_lmam43j6xt.css">,<script src="https://kit.fontawesome.com/8e800a3a44.js" crossorigin="anonymous"></script>
         </div>
       </div>
     
