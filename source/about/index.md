@@ -4,7 +4,7 @@ date: 2021-11-08 14:27:59
 refplus: true
 ---
 
-### <i class="fa-solid fa-graduation-cap"></i>Education
+### <i class="fa-solid fa-graduation-cap"></i> Education
 
 ***
 
@@ -13,7 +13,7 @@ refplus: true
   <li><span class="fa-li"><i class="fa-solid fa-fan fa-spin-pulse"></i></span>2016/09 - 2019/06 | Postgraduate , Software Engineering, Dalian University of Technology</li>
 </ul>
 
-### <i class="fa-solid fa-dna "></i>Research
+### <i class="fa-solid fa-dna "></i> Research
 
 ***
 
@@ -22,7 +22,7 @@ refplus: true
   <li><span class="fa-li"><i class="fa-solid fa-atom fa-spin-pulse"></i></span>A Fragment Fracture Surface Segmentation Method Based on Learning of Local Geometric Features on Margins Used for Automatic Utensil Reassembly{% ref 2 %}</li>
 </ul>
 
-### <i class="fa-solid fa-city "></i>Experience
+### <i class="fa-solid fa-city "></i> Experience
 
 ***
 
@@ -31,7 +31,7 @@ refplus: true
   <li><span class="fa-li"><i class="fa-solid fa-asterisk fa-spin-pulse"></i></span>2021/10 - by far | Huanle Entertainment (Shanghai) Technology co., Ltd.</li>
 </ul>
 
-### <i class="fa-solid fa-gears"></i></i>Skills
+### <i class="fa-solid fa-gears"></i></i> Skills
 
 ***
 
@@ -58,7 +58,7 @@ refplus: true
   </div>
 </ul>
 
-### <i class="fa-solid fa-share-nodes"></i>Social Relationships
+### <i class="fa-solid fa-share-nodes"></i> Social Relationships
 
 ***
 
@@ -94,7 +94,7 @@ refplus: true
   </div>
 </ul>
 
-### <i class="fa-solid fa-landmark"></i>Courses
+### <i class="fa-solid fa-landmark"></i> Courses
 
 ***
 
@@ -107,7 +107,7 @@ refplus: true
   <li><span class="fa-li"><i class="fa-solid fa-spinner fa-pulse"></i></span>Modern C++</li>
 </ul>
 
-### <i class="fa-regular fa-face-grin-stars"></i>Hobbies
+### <i class="fa-regular fa-face-grin-stars"></i> Hobbies
 
 ***
 
