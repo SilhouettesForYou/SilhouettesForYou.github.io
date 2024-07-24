@@ -1,0 +1,961 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head><!-- hexo injector head_begin start -->
+<link rel="stylesheet" href="/css/bilicard.css">
+<link href="https://cdn.jsdelivr.net/npm/hexo-tag-common@0.0.5/css/index.css" rel="stylesheet"/><!-- hexo injector head_begin end -->
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/breaking-bad.png">
+  <link rel="icon" href="/img/breaking-bad.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Xiaoming">
+  <meta name="keywords" content="">
+  
+    <meta property="og:type" content="article">
+<meta property="og:title" content="C++ 20 新特性">
+<meta property="og:url" content="https://silhouettesforyou.github.io/2024/07/11/2ed7adeb8fce/index.html">
+<meta property="og:site_name" content="Silhouettes For You">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://silhouettesforyou.github.io/img/teasers/c++-teaser.png">
+<meta property="article:published_time" content="2024-07-11T10:04:16.000Z">
+<meta property="article:modified_time" content="2024-07-23T12:46:53.573Z">
+<meta property="article:author" content="Xiaoming">
+<meta property="article:tag" content="C++">
+<meta property="article:tag" content="C++ 20">
+<meta property="article:tag" content="Modern C++">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://silhouettesforyou.github.io/img/teasers/c++-teaser.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>C++ 20 新特性 - Silhouettes For You</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"silhouettesforyou.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"62be422732dc4e6f91e7fa199aa1f3f2","google":{"measurement_id":"G-B260B2ZWXQ"},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?62be422732dc4e6f91e7fa199aa1f3f2";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=G-B260B2ZWXQ", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', 'G-B260B2ZWXQ');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<style type="text/css">
+.spoiler {
+  display: inline;
+}
+p.spoiler {
+  display: flex;
+}
+.spoiler a {
+  pointer-events: none;
+}
+.spoiler-blur, .spoiler-blur > * {
+  transition: text-shadow .5s ease;
+}
+.spoiler .spoiler-blur, .spoiler .spoiler-blur > * {
+  color: rgba(0, 0, 0, 0);
+  background-color: rgba(0, 0, 0, 0);
+  text-shadow: 0 0 10px grey;
+  cursor: pointer;
+}
+.spoiler .spoiler-blur:hover, .spoiler .spoiler-blur:hover > * {
+  text-shadow: 0 0 5px grey;
+}
+.spoiler-box, .spoiler-box > * {
+  transition: color .5s ease,
+  background-color .5s ease;
+}
+.spoiler .spoiler-box, .spoiler .spoiler-box > * {
+  color: black;
+  background-color: black;
+  text-shadow: none;
+}</style><meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/atom.xml" title="Silhouettes For You" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Silhouettes For You</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Tags</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/lover/" target="_self">
+                <i class="iconfont icon-heart"></i>
+                <span>Lover</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" href="javascript:;" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="iconfont icon-buyecsstorage"></i>
+                <span>Cloud Disk</span>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="https://onedrive-vercel-index-xi-liard.vercel.app/" target="_blank">
+                    <i class="iconfont icon-onedrive"></i>
+                    <span>OneDrive</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="https://fyddxwmx.cloud.sealos.io/" target="_blank">
+                    <i class="iconfont icon-aliyun"></i>
+                    <span>Aliyun</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="https://manual-maryl-silhouette-7fc7ff34.koyeb.app/" target="_blank">
+                    <i class="iconfont icon-storage"></i>
+                    <span>Other Storages</span>
+                  </a>
+                
+              </div>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/post.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="C++ 20 新特性"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-07-11 18:04" pubdate>
+          July 11, 2024 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          3.6k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          31 mins
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> views
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">C++ 20 新特性</h1>
+            
+              <p id="updated-time" class="note note-light" style="display: none">
+                
+                  
+                    Last updated on 2024-07-23T20:46:53+08:00
+                  
+                  
+
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><center>
+    <img src="/2024/07/11/2ed7adeb8fce/teaser-image.png" srcset="/img/loading.gif" lazyload>
+</center>
+
+<span id="more"></span>
+
+<h2 id="语言特性"><a href="# 语言特性" class="headerlink" title="语言特性"></a>语言特性 </h2><h3 id="三路比较运算符"><a href="# 三路比较运算符" class="headerlink" title="三路比较运算符"></a> 三路比较运算符 </h3><p> 三路比较运算符表达式的形式为：<code>左操作数 &lt;=&gt; 右操作数</code>，表达式返回一个对象，使得</p>
+<ul>
+<li>若左操作数 <code>&lt;</code> 右操作数则<code>(a &lt;=&gt; b) &lt; 0</code></li>
+<li>若左操作数 <code>&gt;</code> 右操作数则<code>(a &lt;=&gt; b) &gt; 0</code></li>
+<li>而若左操作数和右操作数相等 / 等价则<code>(a &lt;=&gt; b) == 0</code></li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>    <span class="hljs-type">double</span> foo = <span class="hljs-number">-0.0</span>;<br>    <span class="hljs-type">double</span> bar = <span class="hljs-number">0.0</span>;<br> <br>    <span class="hljs-keyword">auto</span> res = foo &lt;=&gt; bar;<br> <br>    <span class="hljs-keyword">if</span> (res &lt; <span class="hljs-number">0</span>)<br>        std::cout &lt;&lt; <span class="hljs-string">&quot;-0 小于 0&quot;</span>;<br>    <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (res &gt; <span class="hljs-number">0</span>)<br>        std::cout &lt;&lt; <span class="hljs-string">&quot;-0 大于 0&quot;</span>;<br>    <span class="hljs-keyword">else</span> <span class="hljs-comment">// (res == 0)</span><br>        std::cout &lt;&lt; <span class="hljs-string">&quot;-0 与 0 相等 &quot;</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="范围 for 中的初始化语句和初始化器"><a href="# 范围 for 中的初始化语句和初始化器" class="headerlink" title="范围 for 中的初始化语句和初始化器"></a>范围 <code>for</code> 中的初始化语句和初始化器 </h3><p> 继 C++ 17 中在 <code>if</code> 和<code>switch</code>语句中添加初始化器后，C++ 20 在范围 <code>for</code> 中也实现了这个功能</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">for</span> (<span class="hljs-keyword">auto</span> n = v.<span class="hljs-built_in">size</span>(); <span class="hljs-keyword">auto</span> i : v) <span class="hljs-comment">// 初始化语句（C++20）</span><br>    std::cout &lt;&lt; --n + i &lt;&lt; <span class="hljs-string">&#x27; &#x27;</span>;<br></code></pre></td></tr></table></figure>
+
+<h3 id="consteval"><a href="#consteval" class="headerlink" title="consteval"></a><code>consteval</code></h3><p><code>consteval</code>指定函数是立即函数（immediate function），即每次调用该函数必须产生编译时常量。如果不能在编译期间执行，则编译失败</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-keyword">consteval</span> <span class="hljs-type">int</span> <span class="hljs-title">sqr</span><span class="hljs-params">(<span class="hljs-type">int</span> n)</span> </span>&#123;<br>  <span class="hljs-keyword">return</span> n * n;<br>&#125;<br><span class="hljs-keyword">constexpr</span> <span class="hljs-type">int</span> r = <span class="hljs-built_in">sqr</span>(<span class="hljs-number">100</span>);  <span class="hljs-comment">// OK</span><br> <br><span class="hljs-type">int</span> x = <span class="hljs-number">100</span>;<br><span class="hljs-type">int</span> r2 = <span class="hljs-built_in">sqr</span>(x);  <span class="hljs-comment">// 错误：调用不产生常量</span><br> <br><span class="hljs-function"><span class="hljs-keyword">consteval</span> <span class="hljs-type">int</span> <span class="hljs-title">sqrsqr</span><span class="hljs-params">(<span class="hljs-type">int</span> n)</span> </span>&#123;<br>  <span class="hljs-keyword">return</span> <span class="hljs-built_in">sqr</span>(<span class="hljs-built_in">sqr</span>(n)); <span class="hljs-comment">// 在此点非常量表达式，但是 OK</span><br>&#125;<br> <br><span class="hljs-function"><span class="hljs-keyword">constexpr</span> <span class="hljs-type">int</span> <span class="hljs-title">dblsqr</span><span class="hljs-params">(<span class="hljs-type">int</span> n)</span> </span>&#123;<br>  <span class="hljs-keyword">return</span> <span class="hljs-number">2</span> * <span class="hljs-built_in">sqr</span>(n); <span class="hljs-comment">// 错误：外围函数并非 consteval 且 sqr(n) 不是常量</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="constint"><a href="#constint" class="headerlink" title="constint"></a><code>constint</code></h3><p><code>constinit</code>断言变量拥有静态初始化，即零初始化与常量初始化，否则程序非良构</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-type">const</span> <span class="hljs-type">char</span> *<span class="hljs-title">g</span><span class="hljs-params">()</span> </span>&#123; <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;dynamic initialization&quot;</span>; &#125;<br><span class="hljs-function"><span class="hljs-keyword">constexpr</span> <span class="hljs-type">const</span> <span class="hljs-type">char</span> *<span class="hljs-title">f</span><span class="hljs-params">(<span class="hljs-type">bool</span> p)</span> </span>&#123; <span class="hljs-keyword">return</span> p ? <span class="hljs-string">&quot;constant initializer&quot;</span> : <span class="hljs-built_in">g</span>(); &#125;<br> <br><span class="hljs-keyword">constinit</span> <span class="hljs-type">const</span> <span class="hljs-type">char</span> *c = <span class="hljs-built_in">f</span>(<span class="hljs-literal">true</span>); <span class="hljs-comment">// OK</span><br><span class="hljs-comment">// constinit const char *d = f(false); // 错误</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="概念（concepts）"><a href="# 概念（concepts）" class="headerlink" title="概念（concepts）"></a>概念（concepts）</h3><p>概念（concepts）就是一种编译时谓词，指出一个或多个类型应如何使用，其能用于进行模板实参的编译时校验，以及基于类型属性的函数派发。</p>
+<p>例如在老版本的 C++，如果想要定义一个只针对某个类型的函数模板，就只能通过类型萃取机制如 <code>enable_if_t</code> 写一些又臭又长的代码。例如想声明一个只针对整数的函数模板</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">template</span> &lt;<span class="hljs-keyword">typename</span> T&gt;<br><span class="hljs-function"><span class="hljs-keyword">auto</span> <span class="hljs-title">mod</span><span class="hljs-params">(std::<span class="hljs-type">enable_if_t</span>&lt;std::is_integral_v&lt;T&gt;, T&gt; d)</span></span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-keyword">return</span> d % <span class="hljs-number">10</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>如果约束条件简单还行，但是如果条件复杂，则代码就会又臭又长，且难以进行复用。而在 C++ 20 中引入了 concepts，此时我们就可以用 concepts 来指定函数类型，例如：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">template</span> &lt;<span class="hljs-keyword">class</span> <span class="hljs-title class_">T</span>&gt;<br><span class="hljs-keyword">concept</span> integral = std::is_integral_v&lt;T&gt;;<br> <br><span class="hljs-keyword">template</span> &lt;integral T&gt;<br><span class="hljs-function"><span class="hljs-keyword">auto</span> <span class="hljs-title">mod</span><span class="hljs-params">(T d)</span></span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-keyword">return</span> d % <span class="hljs-number">10</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="约束"><a href="# 约束" class="headerlink" title="约束"></a>约束 </h3><p> 约束是逻辑操作和操作数的序列，它了指定对模板实参的要求。它们可以在 <code>requires</code> 表达式中出现，也可以直接作为概念的主体。例如这里使用 <code>requires</code> 约束表达式写一个针对 utf-8 的 <code>string</code> 的约束类型<code>u8string_t</code></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">template</span> &lt;<span class="hljs-keyword">typename</span> T&gt;<br><span class="hljs-keyword">concept</span> <span class="hljs-type">u8string_t</span> = <span class="hljs-built_in">requires</span> (T t)<br>&#123;<br>    t += <span class="hljs-string">u8&quot;&quot;</span>;<br>&#125;;<br></code></pre></td></tr></table></figure>
+
+<p>接着以这个约束类型声明一个模板函数 <code>print</code>，此时只能能够满足<code>u8string_t</code> 约束的类型才能够匹配当前模板</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">template</span> &lt;<span class="hljs-type">u8string_t</span> T&gt;<br><span class="hljs-function"><span class="hljs-keyword">auto</span> <span class="hljs-title">print</span><span class="hljs-params">(T t)</span></span><br><span class="hljs-function"></span>&#123;<br>    cout &lt;&lt; t &lt;&lt; endl;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>此时以不同类型的 <code>string</code> 来尝试调用，此时只有 <code>u8string</code> 调用成功</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>    string str;<br>    u8string str_u8;<br>    u16string str_u16;<br>    u32string str_u32;<br><br>    <span class="hljs-built_in">print</span>(str);     <span class="hljs-comment">// 调用失败</span><br>    <span class="hljs-built_in">print</span>(str_u8);  <span class="hljs-comment">// 调用成功</span><br>    <span class="hljs-built_in">print</span>(str_u16); <span class="hljs-comment">// 调用失败</span><br>    <span class="hljs-built_in">print</span>(str_u32); <span class="hljs-comment">// 调用失败</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="协程"><a href="# 协程" class="headerlink" title="协程"></a>协程 </h3><p> 协程是能暂停执行以在之后恢复的函数。协程是无栈的：它们通过返回到调用方暂停执行，并且从栈分离存储恢复执行需要的数据。这样就可以编写异步执行的顺序代码（例如不使用显式的回调来处理非阻塞 I/O），还支持对惰性计算的无限序列上的算法及其他用途</p>
+<p>如果函数的定义进行了下列操作之一，那么它是协程：</p>
+<ul>
+<li><code>co_await</code> 暂停执行，直到恢复</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs c++">task&lt;&gt; <span class="hljs-built_in">tcp_echo_server</span>() &#123;<br>  <span class="hljs-type">char</span> data[<span class="hljs-number">1024</span>];<br>  <span class="hljs-keyword">while</span> (<span class="hljs-literal">true</span>) &#123;<br>    std::<span class="hljs-type">size_t</span> n = <span class="hljs-keyword">co_await</span> socket.<span class="hljs-built_in">async_read_some</span>(<span class="hljs-built_in">buffer</span>(data));<br>    <span class="hljs-function"><span class="hljs-keyword">co_await</span> <span class="hljs-title">async_write</span><span class="hljs-params">(socket, buffer(data, n))</span></span>;<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li><code>co_yield</code> 暂停执行并返回一个值（协程无法<code>return</code>）</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-function">generator&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">iota</span><span class="hljs-params">(<span class="hljs-type">int</span> n = <span class="hljs-number">0</span>)</span> </span>&#123;<br>  <span class="hljs-keyword">while</span>(<span class="hljs-literal">true</span>)<br>    <span class="hljs-keyword">co_yield</span> n++;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li><code>co_return</code>完成执行并返回一个值</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-function">lazy&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">f</span><span class="hljs-params">()</span> </span>&#123;<br>  <span class="hljs-keyword">co_return</span> <span class="hljs-number">7</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>注意：协程不能使用变长实参，普通的 <code>return</code> 语句，或占位符返回类型（<code>auto</code>或 <code>Concept</code>）。<code>constexpr</code>函数、构造函数、析构函数及 <code>main</code> 函数不能是协程</p>
+</blockquote>
+<h3 id="模块"><a href="# 模块" class="headerlink" title="模块"></a>模块</h3><p>C++ 20 中正式引入了模块的概念，模块是一个用于在翻译单元间分享声明和定义的语言特性。它们可以在某些地方替代使用头文件。其主要优点如下：</p>
+<ul>
+<li>没有头文件</li>
+<li>声明实现仍然可分离，但非必要</li>
+<li>可以显式指定导出哪些类或函数</li>
+<li>不需要头文件重复引入宏（<code>include guards</code>）</li>
+<li>模块之间名称可以相同，并且不会冲突</li>
+<li>模块只处理一次，编译更快（头文件每次引入都需要处理，需要通过 <code>pragma once</code> 约束）</li>
+<li>预处理宏只在模块内有效</li>
+<li>模块的引入与引入顺序无关</li>
+</ul>
+<h4 id="创建模块"><a href="# 创建模块" class="headerlink" title="创建模块"></a>创建模块</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-comment">// helloworld.cpp</span><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">module</span> helloworld;  <span class="hljs-comment">// 模块声明</span><br><span class="hljs-keyword">import</span> &lt;iostream&gt;;         <span class="hljs-comment">// 导入声明</span><br> <br><span class="hljs-function"><span class="hljs-keyword">export</span> <span class="hljs-type">void</span> <span class="hljs-title">hello</span><span class="hljs-params">()</span> </span>&#123;      <span class="hljs-comment">// 导出声明</span><br>    std::cout &lt;&lt; <span class="hljs-string">&quot;Hello world!\n&quot;</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h4 id="导入模块"><a href="# 导入模块" class="headerlink" title="导入模块"></a>导入模块</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-comment">// main.cpp</span><br><span class="hljs-keyword">import</span> helloworld;  <span class="hljs-comment">// 导入声明</span><br> <br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>    <span class="hljs-built_in">hello</span>();<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="库特性"><a href="# 库特性" class="headerlink" title="库特性"></a>库特性 </h2><h3 id="format"><a href="#format" class="headerlink" title="format"></a><code>format</code></h3><p> 文本格式化库提供 <code>printf</code> 函数族的安全且可扩展的替用品。有意使之补充既存的 C++ I/O 流库并复用其基础设施，例如对用户定义类型重载的流插入运算符</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs c++">std::string message = std::format(<span class="hljs-string">&quot;The answer is &#123;&#125;.&quot;</span>, <span class="hljs-number">42</span>);<br>osyncstream<br><span class="hljs-keyword">template</span>&lt;<br>    <span class="hljs-keyword">class</span> <span class="hljs-title class_">CharT</span>,<br>    <span class="hljs-keyword">class</span> <span class="hljs-title class_">Traits</span> = std::char_traits&lt;CharT&gt;,<br>    <span class="hljs-keyword">class</span> Allocator = std::allocator&lt;CharT&gt;<br>&gt; <span class="hljs-keyword">class</span> basic_osyncstream: <span class="hljs-keyword">public</span> std::basic_ostream&lt;CharT, Traits&gt;<br></code></pre></td></tr></table></figure>
+
+<p>类模板 <code>std::basic_osyncstream</code> 是<code>std::basic_syncbuf</code>的便利包装。它提供机制以同步写入同一流的线程（主要用于解决 <code>std::cout</code> 线程不安全问题）</p>
+<p>用法如下：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs c++">&#123;<br>    <span class="hljs-function">std::osyncstream <span class="hljs-title">sync_out</span><span class="hljs-params">(std::cout)</span></span>; <span class="hljs-comment">// std::cout 的同步包装</span><br>    sync_out &lt;&lt; <span class="hljs-string">&quot;Hello, &quot;</span>;<br>    sync_out &lt;&lt; <span class="hljs-string">&quot;World!&quot;</span>;<br>    sync_out &lt;&lt; std::endl; <span class="hljs-comment">// 注意有冲入，但仍未进行</span><br>    sync_out &lt;&lt; <span class="hljs-string">&quot;and more!\n&quot;</span>;<br>&#125; <span class="hljs-comment">// 转移字符并冲入 std::cout</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="span"><a href="#span" class="headerlink" title="span"></a><code>span</code></h3><p><code>span</code>是对象的连续序列上的无所有权视图。其所描述的对象能指代对象的相接序列，序列的首元素在零位置。<code>span</code>能拥有静态长度，该情况下序列中的元素数已知并编码于类型中，或拥有动态长度</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;algorithm&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;cstddef&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;span&gt;</span></span><br> <br><span class="hljs-keyword">template</span>&lt;<span class="hljs-keyword">class</span> <span class="hljs-title class_">T</span>, std::<span class="hljs-type">size_t</span> N&gt; [[nodiscard]]<br><span class="hljs-function"><span class="hljs-keyword">constexpr</span> <span class="hljs-keyword">auto</span> <span class="hljs-title">slide</span><span class="hljs-params">(std::span&lt;T,N&gt; s, std::<span class="hljs-type">size_t</span> offset, std::<span class="hljs-type">size_t</span> width)</span> </span>&#123;<br>    <span class="hljs-keyword">return</span> s.<span class="hljs-built_in">subspan</span>(offset, offset + width &lt;= s.<span class="hljs-built_in">size</span>() ? width : <span class="hljs-number">0U</span>);<br>&#125;<br> <br><span class="hljs-keyword">template</span>&lt;<span class="hljs-keyword">class</span> <span class="hljs-title class_">T</span>, std::<span class="hljs-type">size_t</span> N, std::<span class="hljs-type">size_t</span> M&gt; [[nodiscard]]<br><span class="hljs-function"><span class="hljs-keyword">constexpr</span> <span class="hljs-type">bool</span> <span class="hljs-title">starts_with</span><span class="hljs-params">(std::span&lt;T,N&gt; data, std::span&lt;T,M&gt; prefix)</span> </span>&#123;<br>    <span class="hljs-keyword">return</span> data.<span class="hljs-built_in">size</span>() &gt;= prefix.<span class="hljs-built_in">size</span>() <br>        &amp;&amp; std::<span class="hljs-built_in">equal</span>(prefix.<span class="hljs-built_in">begin</span>(), prefix.<span class="hljs-built_in">end</span>(), data.<span class="hljs-built_in">begin</span>());<br>&#125;<br> <br><span class="hljs-keyword">template</span>&lt;<span class="hljs-keyword">class</span> <span class="hljs-title class_">T</span>, std::<span class="hljs-type">size_t</span> N, std::<span class="hljs-type">size_t</span> M&gt; [[nodiscard]]<br><span class="hljs-function"><span class="hljs-keyword">constexpr</span> <span class="hljs-type">bool</span> <span class="hljs-title">ends_with</span><span class="hljs-params">(std::span&lt;T,N&gt; data, std::span&lt;T,M&gt; suffix)</span> </span>&#123;<br>    <span class="hljs-keyword">return</span> data.<span class="hljs-built_in">size</span>() &gt;= suffix.<span class="hljs-built_in">size</span>() <br>        &amp;&amp; std::<span class="hljs-built_in">equal</span>(data.<span class="hljs-built_in">end</span>() - suffix.<span class="hljs-built_in">size</span>(), data.<span class="hljs-built_in">end</span>(), <br>                      suffix.<span class="hljs-built_in">end</span>() - suffix.<span class="hljs-built_in">size</span>());<br>&#125;<br> <br><span class="hljs-keyword">template</span>&lt;<span class="hljs-keyword">class</span> <span class="hljs-title class_">T</span>, std::<span class="hljs-type">size_t</span> N, std::<span class="hljs-type">size_t</span> M&gt; [[nodiscard]]<br><span class="hljs-function"><span class="hljs-keyword">constexpr</span> <span class="hljs-type">bool</span> <span class="hljs-title">contains</span><span class="hljs-params">(std::span&lt;T,N&gt; span, std::span&lt;T,M&gt; sub)</span> </span>&#123;<br>    <span class="hljs-keyword">return</span> std::<span class="hljs-built_in">search</span>(span.<span class="hljs-built_in">begin</span>(), span.<span class="hljs-built_in">end</span>(), sub.<span class="hljs-built_in">begin</span>(), sub.<span class="hljs-built_in">end</span>()) != span.<span class="hljs-built_in">end</span>();<br><span class="hljs-comment">//  return std::ranges::search(span, sub).begin() != span.end();</span><br>&#125;<br> <br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">print</span><span class="hljs-params">(<span class="hljs-type">const</span> <span class="hljs-keyword">auto</span>&amp; seq)</span> </span>&#123;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">const</span> <span class="hljs-keyword">auto</span>&amp; elem : seq) std::cout &lt;&lt; elem &lt;&lt; <span class="hljs-string">&#x27; &#x27;</span>;<br>    std::cout &lt;&lt; <span class="hljs-string">&#x27;\n&#x27;</span>;<br>&#125;<br> <br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-keyword">constexpr</span> <span class="hljs-type">int</span> a[] &#123; <span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>, <span class="hljs-number">7</span>, <span class="hljs-number">8</span> &#125;;<br>    <span class="hljs-keyword">constexpr</span> <span class="hljs-type">int</span> b[] &#123; <span class="hljs-number">8</span>, <span class="hljs-number">7</span>, <span class="hljs-number">6</span> &#125;;<br> <br>    <span class="hljs-keyword">for</span> (std::<span class="hljs-type">size_t</span> offset&#123;&#125;; ; ++offset) &#123;<br>        <span class="hljs-keyword">constexpr</span> std::<span class="hljs-type">size_t</span> width&#123;<span class="hljs-number">6</span>&#125;;<br>        <span class="hljs-keyword">auto</span> s = <span class="hljs-built_in">slide</span>(std::span&#123;a&#125;, offset, width);<br>        <span class="hljs-keyword">if</span> (s.<span class="hljs-built_in">empty</span>())<br>            <span class="hljs-keyword">break</span>;<br>        <span class="hljs-built_in">print</span>(s);<br>    &#125;<br> <br>    <span class="hljs-built_in">static_assert</span>(<span class="hljs-built_in">starts_with</span>(std::span&#123;a&#125;, std::span&#123;a,<span class="hljs-number">4</span>&#125;)<br>        &amp;&amp; <span class="hljs-built_in">starts_with</span>(std::span&#123;a+<span class="hljs-number">1</span>, <span class="hljs-number">4</span>&#125;, std::span&#123;a+<span class="hljs-number">1</span>,<span class="hljs-number">3</span>&#125;)<br>        &amp;&amp; !<span class="hljs-built_in">starts_with</span>(std::span&#123;a&#125;, std::span&#123;b&#125;)<br>        &amp;&amp; !<span class="hljs-built_in">starts_with</span>(std::span&#123;a,<span class="hljs-number">8</span>&#125;, std::span&#123;a+<span class="hljs-number">1</span>,<span class="hljs-number">3</span>&#125;)<br>        &amp;&amp; <span class="hljs-built_in">ends_with</span>(std::span&#123;a&#125;, std::span&#123;a+<span class="hljs-number">6</span>,<span class="hljs-number">3</span>&#125;)<br>        &amp;&amp; !<span class="hljs-built_in">ends_with</span>(std::span&#123;a&#125;, std::span&#123;a+<span class="hljs-number">6</span>,<span class="hljs-number">2</span>&#125;)<br>        &amp;&amp; <span class="hljs-built_in">contains</span>(std::span&#123;a&#125;, std::span&#123;a+<span class="hljs-number">1</span>,<span class="hljs-number">4</span>&#125;)<br>        &amp;&amp; !<span class="hljs-built_in">contains</span>(std::span&#123;a,<span class="hljs-number">8</span>&#125;, std::span&#123;a,<span class="hljs-number">9</span>&#125;));<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="endian"><a href="#endian" class="headerlink" title="endian"></a><code>endian</code></h3><p><code>endian</code>主要用于判断当前机器是大端还是小端（之前只能通过整型截断或者 <code>union</code> 判断，较为麻烦）</p>
+<ul>
+<li>若所有标量类型均为小端，则 <code>std::endian::native</code> 等于<code>std::endian::little</code></li>
+<li>若所有标量类型均为大端，则 <code>std::endian::native</code> 等于<code>std::endian::big</code></li>
+<li>若所有标量类型拥有等于 1 的 <code>sizeof</code>，则端序无影响，且<code>std::endian::little</code>，<code>std::endian::big</code> 及<code>std::endian::native</code>三个值相同</li>
+<li>若平台使用混合端序，则 <code>std::endian::native</code> 既不等于 <code>std::endian::big</code> 亦不等于<code>std::endian::little</code></li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;bit&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span><br> <br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br> <br>    <span class="hljs-function"><span class="hljs-keyword">if</span> <span class="hljs-title">constexpr</span> <span class="hljs-params">(std::endian::native == std::endian::big)</span></span><br><span class="hljs-function">        std::cout &lt;&lt; &quot;big-endian\n&quot;</span>;<br>    <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> <span class="hljs-built_in">constexpr</span> (std::endian::native == std::endian::little)<br>        std::cout &lt;&lt; <span class="hljs-string">&quot;little-endian\n&quot;</span>;<br>    <span class="hljs-keyword">else</span> std::cout &lt;&lt; <span class="hljs-string">&quot;mixed-endian\n&quot;</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="jthread"><a href="#jthread" class="headerlink" title="jthread"></a><code>jthread</code></h3><p><code>jthread</code>即是通过 RAII 机制封装的 <code>thread</code>，其会在析构时自动调用<code>join</code> 防止线程 crash。同时其也是可中断的，可以搭配这些中断线程执行的相关类使用：</p>
+<ul>
+<li><code>stop_token</code>：查询线程是否中断</li>
+<li><code>stop_source</code>：请求线程停止运行</li>
+<li><code>stop_callback</code>：<code>stop_token</code>执行时，可以触发的回调函数</li>
+</ul>
+<h3 id="semaphore"><a href="#semaphore" class="headerlink" title="semaphore"></a>semaphore</h3><p>信号量是一个轻量级的同步原语，可用来实现任何其他同步概念如 <code>mutex</code>、<code>shared_mutex</code>、<code>latches</code>、<code>barriers</code> 等</p>
+<p>根据 <code>LeastMaxValue</code> 不同，主要分为两种：</p>
+<ul>
+<li><code>counting_semaphore</code>（多元信号量）：<code>counting_semaphore</code>允许同一资源有多于一个同时访问，至少允许 <code>LeastMaxValue</code> 个同时的访问者</li>
+<li><code>binary_semaphore</code>（二元信号量）：是 <code>counting_semaphore</code> 的特化的别名，其 <code>LeastMaxValue</code> 为 1 。实现可能将 <code>binary_semaphore</code> 实现得比 <code>counting_semaphore</code> 的默认实现更高效</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-comment">// 全局二元信号量实例</span><br><span class="hljs-comment">// 设置对象计数为零</span><br><span class="hljs-comment">// 对象在未被发信状态</span><br><span class="hljs-function">std::binary_semaphore <span class="hljs-title">smphSignal</span><span class="hljs-params">(<span class="hljs-number">0</span>)</span></span>;<br> <br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">ThreadProc</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-comment">// 通过尝试减少信号量的计数等待来自主程序的信号</span><br>    smphSignal.<span class="hljs-built_in">acquire</span>();<br> <br>    <span class="hljs-comment">// 此调用阻塞直至信号量的计数被从主程序增加</span><br> <br>    std::cout &lt;&lt; <span class="hljs-string">&quot;[thread] Got the signal&quot;</span> &lt;&lt; std::endl; <span class="hljs-comment">// 回应消息</span><br> <br>    <span class="hljs-comment">// 等待 3 秒以模仿某种线程正在进行的工作</span><br>    std::this_thread::<span class="hljs-built_in">sleep_for</span>(<span class="hljs-number">3</span>s);<br> <br>    std::cout &lt;&lt; <span class="hljs-string">&quot;[thread] Send the signal\n&quot;</span>; <span class="hljs-comment">// 消息</span><br> <br>    <span class="hljs-comment">// 对主程序回复发信</span><br>    smphSignal.<span class="hljs-built_in">release</span>();<br>&#125;<br> <br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-comment">// 创建某个背景工作线程，它将长期存在</span><br>    <span class="hljs-function">std::jthread <span class="hljs-title">thrWorker</span><span class="hljs-params">(ThreadProc)</span></span>;<br> <br>    std::cout &lt;&lt; <span class="hljs-string">&quot;[main] Send the signal\n&quot;</span>; <span class="hljs-comment">// 消息</span><br> <br>    <span class="hljs-comment">// 通过增加信号量的计数对工作线程发信以开始工作</span><br>    smphSignal.<span class="hljs-built_in">release</span>();<br> <br>    <span class="hljs-comment">// release() 后随 acquire() 可以阻止工作线程获取信号量，所以添加延迟：</span><br>    std::this_thread::<span class="hljs-built_in">sleep_for</span>(<span class="hljs-number">50</span>ms);<br> <br>    <span class="hljs-comment">// 通过试图减少信号量的计数等待直至工作线程完成工作</span><br>    smphSignal.<span class="hljs-built_in">acquire</span>();<br> <br>    std::cout &lt;&lt; <span class="hljs-string">&quot;[main] Got the signal\n&quot;</span>; <span class="hljs-comment">// 回应消息</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="latch"><a href="#latch" class="headerlink" title="latch"></a><code>latch</code></h3><p><code>latch</code>是 <code>std::ptrdiff_t</code> 类型的向下计数器，它能用于同步线程。在创建时初始化计数器的值。其主要有以下特点：</p>
+<ul>
+<li>线程可能在 latch 上阻塞直至计数器减少到零。没有可能增加或重置计数器，这使得 latch 为单次使用的屏障</li>
+<li>同时调用 latch 的成员函数，除了析构函数，不引入数据竞争</li>
+<li>不同于 <code>std::barrier</code>，参与线程能减少<code>std::latch</code> 多于一次</li>
+</ul>
+<h3 id="barrier"><a href="#barrier" class="headerlink" title="barrier"></a><code>barrier</code></h3><p>类模板 <code>barrier</code> 提供允许至多为期待数量的线程阻塞直至期待数量的线程到达该屏障。不同于 <code>latch</code>，屏障可重用：一旦到达的线程从屏障阶段的同步点除阻，则可重用同一屏障。屏障对象的生存期由屏障阶段的序列组成。每个阶段定义一个阶段同步点。在阶段中到达屏障的线程能通过调用<code>wait</code> 在阶段同步点上阻塞，而且将保持阻塞直至运行阶段完成步骤</p>
+<p>屏障阶段由以下步骤组成：</p>
+<ul>
+<li>每次调用 <code>arrive</code> 或<code>arrive_and_drop</code>减少期待计数</li>
+<li>期待计数抵达零时，运行阶段完成步骤。完成步骤调用完成函数对象，并除阻所有在阶段同步点上阻塞的线程。完成步骤的结束强先发生于所有从完成步骤所除阻的调用的返回<ul>
+<li>对于特化 <code>std::barrier&lt;&gt;</code>（使用默认模板实参），完成步骤作为对<code>arrive</code> 或<code>arrive_and_drop</code>的导致期待计数抵达零的调用的一部分运行</li>
+<li>对于其他特化，完成步骤在该阶段期间到达屏障的线程之一上运行。而若在完成步骤中调用屏障对象的 <code>wait</code> 以外的成员函数，则行为未定义</li>
+</ul>
+</li>
+<li>完成步骤结束时，重置期待计数为构造中指定的值，可能为 <code>arrive_and_drop</code> 调用所调整，并开始下一阶段</li>
+</ul>
+<p>同时调用 <code>barrier</code> 的成员函数，除了析构函数，不引入数据竞争</p>
+<h3 id="位运算库"><a href="# 位运算库" class="headerlink" title="位运算库"></a>位运算库 </h3><p><code>bit</code> 库封装了一些常用的位操作。包括：</p>
+<p><code>bit_cast</code>：将一个类型的对象表示重解释为另一类型的对象表示<br><code>byteswap</code>：反转给定整数值中的字节<br><code>has_single_bit</code>：检查一个数是否为二的整数次幂<br><code>bit_ceil</code>：寻找不小于给定值的最小的二的整数次幂<br><code>bit_floor</code>：寻找不大于给定值的最大的二的整数次幂<br><code>bit_width</code>：寻找表示给定值所需的最小位数<br><code>rotl</code>：计算逐位左旋转的结果<br><code>rotr</code>：计算逐位右旋转的结果<br><code>countl_zero</code>：从最高位起计量连续的 0 位的数量<br><code>countl_one</code>：从最高位起计量连续的 1 位的数量<br><code>countr_zero</code>：从最低位起计量连续的 0 位的数量<br><code>countr_one</code>：从最低位起计量连续的 1 位的数量<br><code>popcount</code>：计量无符号整数中为 1 的位的数量</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">namespace</span> std &#123;<br>  <span class="hljs-comment">// bit_­cast</span><br>  <span class="hljs-function"><span class="hljs-keyword">template</span>&lt;<span class="hljs-keyword">class</span> To, <span class="hljs-keyword">class</span> From&gt;</span><br><span class="hljs-function">    <span class="hljs-keyword">constexpr</span> To <span class="hljs-title">bit_cast</span><span class="hljs-params">(<span class="hljs-type">const</span> From&amp; from)</span> <span class="hljs-keyword">noexcept</span></span>;<br> <br>  <span class="hljs-comment">// 位交换</span><br>  <span class="hljs-keyword">template</span> &lt;<span class="hljs-keyword">class</span> <span class="hljs-title class_">T</span>&gt;<br>  <span class="hljs-function"><span class="hljs-keyword">constexpr</span> T <span class="hljs-title">byteswap</span> <span class="hljs-params">(T value)</span> <span class="hljs-keyword">noexcept</span></span>;<br> <br>  <span class="hljs-comment">// 2 的整数次幂</span><br>  <span class="hljs-function"><span class="hljs-keyword">template</span>&lt;<span class="hljs-keyword">class</span> T&gt;</span><br><span class="hljs-function">    <span class="hljs-keyword">constexpr</span> <span class="hljs-type">bool</span> <span class="hljs-title">has_single_bit</span><span class="hljs-params">(T x)</span> <span class="hljs-keyword">noexcept</span></span>;<br>  <span class="hljs-function"><span class="hljs-keyword">template</span>&lt;<span class="hljs-keyword">class</span> T&gt;</span><br><span class="hljs-function">    <span class="hljs-keyword">constexpr</span> T <span class="hljs-title">bit_ceil</span><span class="hljs-params">(T x)</span></span>;<br>  <span class="hljs-function"><span class="hljs-keyword">template</span>&lt;<span class="hljs-keyword">class</span> T&gt;</span><br><span class="hljs-function">    <span class="hljs-keyword">constexpr</span> T <span class="hljs-title">bit_floor</span><span class="hljs-params">(T x)</span> <span class="hljs-keyword">noexcept</span></span>;<br>  <span class="hljs-function"><span class="hljs-keyword">template</span>&lt;<span class="hljs-keyword">class</span> T&gt;</span><br><span class="hljs-function">    <span class="hljs-keyword">constexpr</span> T <span class="hljs-title">bit_width</span><span class="hljs-params">(T x)</span> <span class="hljs-keyword">noexcept</span></span>;<br> <br>  <span class="hljs-comment">// 旋转</span><br>  <span class="hljs-keyword">template</span>&lt;<span class="hljs-keyword">class</span> <span class="hljs-title class_">T</span>&gt;<br>    [[nodiscard]] <span class="hljs-function"><span class="hljs-keyword">constexpr</span> T <span class="hljs-title">rotl</span><span class="hljs-params">(T x, <span class="hljs-type">int</span> s)</span> <span class="hljs-keyword">noexcept</span></span>;<br>  <span class="hljs-keyword">template</span>&lt;<span class="hljs-keyword">class</span> <span class="hljs-title class_">T</span>&gt;<br>    [[nodiscard]] <span class="hljs-function"><span class="hljs-keyword">constexpr</span> T <span class="hljs-title">rotr</span><span class="hljs-params">(T x, <span class="hljs-type">int</span> s)</span> <span class="hljs-keyword">noexcept</span></span>;<br> <br>  <span class="hljs-comment">// 计数</span><br>  <span class="hljs-function"><span class="hljs-keyword">template</span>&lt;<span class="hljs-keyword">class</span> T&gt;</span><br><span class="hljs-function">    <span class="hljs-keyword">constexpr</span> <span class="hljs-type">int</span> <span class="hljs-title">countl_zero</span><span class="hljs-params">(T x)</span> <span class="hljs-keyword">noexcept</span></span>;<br>  <span class="hljs-function"><span class="hljs-keyword">template</span>&lt;<span class="hljs-keyword">class</span> T&gt;</span><br><span class="hljs-function">    <span class="hljs-keyword">constexpr</span> <span class="hljs-type">int</span> <span class="hljs-title">countl_one</span><span class="hljs-params">(T x)</span> <span class="hljs-keyword">noexcept</span></span>;<br>  <span class="hljs-function"><span class="hljs-keyword">template</span>&lt;<span class="hljs-keyword">class</span> T&gt;</span><br><span class="hljs-function">    <span class="hljs-keyword">constexpr</span> <span class="hljs-type">int</span> <span class="hljs-title">countr_zero</span><span class="hljs-params">(T x)</span> <span class="hljs-keyword">noexcept</span></span>;<br>  <span class="hljs-function"><span class="hljs-keyword">template</span>&lt;<span class="hljs-keyword">class</span> T&gt;</span><br><span class="hljs-function">    <span class="hljs-keyword">constexpr</span> <span class="hljs-type">int</span> <span class="hljs-title">countr_one</span><span class="hljs-params">(T x)</span> <span class="hljs-keyword">noexcept</span></span>;<br>  <span class="hljs-function"><span class="hljs-keyword">template</span>&lt;<span class="hljs-keyword">class</span> T&gt;</span><br><span class="hljs-function">    <span class="hljs-keyword">constexpr</span> <span class="hljs-type">int</span> <span class="hljs-title">popcount</span><span class="hljs-params">(T x)</span> <span class="hljs-keyword">noexcept</span></span>;<br> <br>  <span class="hljs-comment">// 端序</span><br>  <span class="hljs-keyword">enum class</span> <span class="hljs-title class_">endian</span> &#123;<br>    little = <span class="hljs-comment">/* 见描述 */</span>,<br>    big    = <span class="hljs-comment">/* 见描述 */</span>,<br>    native = <span class="hljs-comment">/* 见描述 */</span><br>  &#125;;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="ranges"><a href="#ranges" class="headerlink" title="ranges"></a><code>ranges</code></h3><p><code>ranges</code>提供处理元素范围的组件，包括各种视图适配器。其最大的作用就是让我们可以像组装函数一样组装算法，使代码更加高效、便利、可读。提供命名空间别名 <code>std::views</code>，作为<code>std::ranges::views</code> 的缩写</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;ranges&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span><br> <br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-keyword">auto</span> <span class="hljs-type">const</span> ints = &#123;<span class="hljs-number">0</span>,<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>&#125;;<br>    <span class="hljs-keyword">auto</span> even = [](<span class="hljs-type">int</span> i) &#123; <span class="hljs-keyword">return</span> <span class="hljs-number">0</span> == i % <span class="hljs-number">2</span>; &#125;;<br>    <span class="hljs-keyword">auto</span> square = [](<span class="hljs-type">int</span> i) &#123; <span class="hljs-keyword">return</span> i * i; &#125;;<br> <br>    <span class="hljs-comment">// 组合视图的“管道”语法：</span><br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i : ints | std::views::<span class="hljs-built_in">filter</span>(even) | std::views::<span class="hljs-built_in">transform</span>(square)) &#123;<br>        std::cout &lt;&lt; i &lt;&lt; <span class="hljs-string">&#x27; &#x27;</span>;<br>    &#125;<br> <br>    std::cout &lt;&lt; <span class="hljs-string">&#x27;\n&#x27;</span>;<br> <br>    <span class="hljs-comment">// 传统的“函数式”组合语法：</span><br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i : std::views::<span class="hljs-built_in">transform</span>(std::views::<span class="hljs-built_in">filter</span>(ints, even), square)) &#123;<br>        std::cout &lt;&lt; i &lt;&lt; <span class="hljs-string">&#x27; &#x27;</span>;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/C/" class="category-chain-item">C++</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/C/" class="print-no-link">#C++</a>
+      
+        <a href="/tags/C-20/" class="print-no-link">#C++ 20</a>
+      
+        <a href="/tags/Modern-C/" class="print-no-link">#Modern C++</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>C++ 20 新特性</div>
+      <div>https://silhouettesforyou.github.io/2024/07/11/2ed7adeb8fce/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Xiaoming</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>July 11, 2024</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/07/12/4b66769f26f4/" title="满堂花醉三千客，一剑霜寒十四州">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">满堂花醉三千客，一剑霜寒十四州</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/06/20/355478969c9d/" title="OpenGL with Xmake">
+                        <span class="hidden-mobile">OpenGL with Xmake</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+      <div class="col-lg-7 mx-auto nopadding-x-md">
+        <div class="container custom mx-auto">
+          <link rel="stylesheet" href="//at.alicdn.com/t/c/font_4625503_lmam43j6xt.css">,<script src="https://kit.fontawesome.com/8e800a3a44.js" crossorigin="anonymous"></script>
+        </div>
+      </div>
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+      <i class="iconfont icon-love"></i>
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  var relativeDate = function() {
+    var updatedTime = document.getElementById('updated-time');
+    if (updatedTime) {
+      var text = updatedTime.textContent;
+      var reg = /\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:Z|[+-]\d{2}:\d{2})/;
+      var matchs = text.match(reg);
+      if (matchs) {
+        var relativeTime = moment(matchs[0]).fromNow();
+        updatedTime.textContent = text.replace(reg, relativeTime);
+      }
+      updatedTime.style.display = '';
+    }
+  };
+  Fluid.utils.createScript('https://lib.baomitu.com/moment.js/2.29.4/moment.min.js', function() {
+    if (!'en'.startsWith('en')) {
+      Fluid.utils.createScript('https://lib.baomitu.com/moment.js/2.29.4/locale/en.min.js', function() {
+        relativeDate();
+      });
+    } else {
+      relativeDate();
+    }
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+<!-- hexo injector body_end start --><script src="https://cdn.jsdelivr.net/npm/hexo-tag-common@0.0.5/js/index.js"></script><!-- hexo injector body_end end --><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"left","width":150,"height":300},"mobile":{"show":false},"react":{"opacity":0.7}});</script></body>
+</html>

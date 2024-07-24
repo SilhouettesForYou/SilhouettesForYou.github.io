@@ -1,0 +1,892 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head><!-- hexo injector head_begin start -->
+<link rel="stylesheet" href="/css/bilicard.css">
+<link href="https://cdn.jsdelivr.net/npm/hexo-tag-common@0.0.5/css/index.css" rel="stylesheet"/><!-- hexo injector head_begin end -->
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/breaking-bad.png">
+  <link rel="icon" href="/img/breaking-bad.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Xiaoming">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="垃圾回收  采用了自动内存管理。 这意味着你不用操心新创建的对象需要的内存如何分配出来， 也不用考虑在对象不再被使用后怎样释放它们所占用的内存。 Lua 运行了一个垃圾收集器来收集所有死对象 （即在 Lua 中不可能再访问到的对象）来完成自动内存管理的工作。 Lua 中所有用到的内存，如：字符串、表、用户数据、函数、线程、 内部结构等，都服从自动管理。 垃圾回收器函数123456789101112">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Lua GC 机制">
+<meta property="og:url" content="https://silhouettesforyou.github.io/2021/11/22/92307bbcfe44/index.html">
+<meta property="og:site_name" content="Silhouettes For You">
+<meta property="og:description" content="垃圾回收  采用了自动内存管理。 这意味着你不用操心新创建的对象需要的内存如何分配出来， 也不用考虑在对象不再被使用后怎样释放它们所占用的内存。 Lua 运行了一个垃圾收集器来收集所有死对象 （即在 Lua 中不可能再访问到的对象）来完成自动内存管理的工作。 Lua 中所有用到的内存，如：字符串、表、用户数据、函数、线程、 内部结构等，都服从自动管理。 垃圾回收器函数123456789101112">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://silhouettesforyou.github.io/2021/11/22/92307bbcfe44/lua-gc.png">
+<meta property="article:published_time" content="2021-11-22T01:46:21.000Z">
+<meta property="article:modified_time" content="2024-07-23T12:46:53.557Z">
+<meta property="article:author" content="Xiaoming">
+<meta property="article:tag" content="lua">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://silhouettesforyou.github.io/2021/11/22/92307bbcfe44/lua-gc.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>Lua GC 机制 - Silhouettes For You</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"silhouettesforyou.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"62be422732dc4e6f91e7fa199aa1f3f2","google":{"measurement_id":"G-B260B2ZWXQ"},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?62be422732dc4e6f91e7fa199aa1f3f2";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=G-B260B2ZWXQ", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', 'G-B260B2ZWXQ');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<style type="text/css">
+.spoiler {
+  display: inline;
+}
+p.spoiler {
+  display: flex;
+}
+.spoiler a {
+  pointer-events: none;
+}
+.spoiler-blur, .spoiler-blur > * {
+  transition: text-shadow .5s ease;
+}
+.spoiler .spoiler-blur, .spoiler .spoiler-blur > * {
+  color: rgba(0, 0, 0, 0);
+  background-color: rgba(0, 0, 0, 0);
+  text-shadow: 0 0 10px grey;
+  cursor: pointer;
+}
+.spoiler .spoiler-blur:hover, .spoiler .spoiler-blur:hover > * {
+  text-shadow: 0 0 5px grey;
+}
+.spoiler-box, .spoiler-box > * {
+  transition: color .5s ease,
+  background-color .5s ease;
+}
+.spoiler .spoiler-box, .spoiler .spoiler-box > * {
+  color: black;
+  background-color: black;
+  text-shadow: none;
+}</style><meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/atom.xml" title="Silhouettes For You" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Silhouettes For You</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Tags</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/lover/" target="_self">
+                <i class="iconfont icon-heart"></i>
+                <span>Lover</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" href="javascript:;" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="iconfont icon-buyecsstorage"></i>
+                <span>Cloud Disk</span>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="https://onedrive-vercel-index-xi-liard.vercel.app/" target="_blank">
+                    <i class="iconfont icon-onedrive"></i>
+                    <span>OneDrive</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="https://fyddxwmx.cloud.sealos.io/" target="_blank">
+                    <i class="iconfont icon-aliyun"></i>
+                    <span>Aliyun</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="https://manual-maryl-silhouette-7fc7ff34.koyeb.app/" target="_blank">
+                    <i class="iconfont icon-storage"></i>
+                    <span>Other Storages</span>
+                  </a>
+                
+              </div>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/post.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Lua GC 机制"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2021-11-22 09:46" pubdate>
+          November 22, 2021 am
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.3k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          19 mins
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> views
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Lua GC 机制</h1>
+            
+              <p id="updated-time" class="note note-light" style="display: none">
+                
+                  
+                    Last updated on 2024-07-23T20:46:53+08:00
+                  
+                  
+
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h4 id="垃圾回收"><a href="# 垃圾回收" class="headerlink" title="垃圾回收"></a>垃圾回收 </h4><p> 采用了自动内存管理。 这意味着你不用操心新创建的对象需要的内存如何分配出来， 也不用考虑在对象不再被使用后怎样释放它们所占用的内存。</p>
+<p>Lua 运行了一个垃圾收集器来收集所有死对象 （即在 Lua 中不可能再访问到的对象）来完成自动内存管理的工作。 Lua 中所有用到的内存，如：字符串、表、用户数据、函数、线程、 内部结构等，都服从自动管理。</p>
+<h4 id="垃圾回收器函数"><a href="# 垃圾回收器函数" class="headerlink" title="垃圾回收器函数"></a>垃圾回收器函数</h4><figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs lua"><span class="hljs-comment">-- collectgarbage(&quot;collect&quot;): 做一次完整的垃圾收集循环。通过参数 opt 它提供了一组不同的功能</span><br><span class="hljs-comment">-- collectgarbage(&quot;count&quot;): 以 K 字节数为单位返回 Lua 使用的总内存数。 这个值有小数部分，所以只需要乘上 1024 就能得到 Lua 使用的准确字节数（除非溢出）。</span><br><span class="hljs-comment">-- collectgarbage(&quot;restart&quot;): 重启垃圾收集器的自动运行。</span><br><span class="hljs-comment">-- collectgarbage(&quot;setpause&quot;): 将 arg 设为收集器的 间歇率。 返回 间歇率 的前一个值。</span><br><span class="hljs-comment">-- collectgarbage(&quot;setstepmul&quot;): 返回 步进倍率 的前一个值。</span><br><span class="hljs-comment">-- collectgarbage(&quot;step&quot;): 单步运行垃圾收集器。 步长 &quot; 大小 &quot; 由 arg 控制。 传入 0 时，收集器步进（不可分割的）一步。 传入非 0 值， 收集器收集相当于 Lua 分配这些多（K 字节）内存的工作。 如果收集器结束一个循环将返回 true 。</span><br><span class="hljs-comment">-- collectgarbage(&quot;stop&quot;): 停止垃圾收集器的运行。 在调用重启前，收集器只会因显式的调用运行。</span><br><br>test = &#123;<span class="hljs-string">&quot;W&quot;</span>,<span class="hljs-string">&quot;L&quot;</span>,<span class="hljs-string">&quot;Q&quot;</span>&#125;<br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">collectgarbage</span>(<span class="hljs-string">&quot;count&quot;</span>))<br><br>test = <span class="hljs-literal">nil</span><br><br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">collectgarbage</span>(<span class="hljs-string">&quot;count&quot;</span>))<br><br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">collectgarbage</span>(<span class="hljs-string">&quot;collect&quot;</span>))<br><br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">collectgarbage</span>(<span class="hljs-string">&quot;count&quot;</span>))<br></code></pre></td></tr></table></figure>
+
+<h4 id="gc- 算法分析"><a href="#gc- 算法分析" class="headerlink" title="gc 算法分析"></a>gc 算法分析 </h4><p>Lua gc 采用的是<strong> 标记 - 清除 </strong> 算法，即一次 gc 分两步：</p>
+<ul>
+<li>在标记阶段，从根集对象开始标记，把整个对象层级都标记完，这些被标记到的对象称为可达到的对象。</li>
+<li>在清除阶段，遍历上面提到的对象链表，如果对象被标记过则擦除标记并跳过，如果对象没有被标记说明他不可达到，那就把它释放掉。</li>
+</ul>
+<p>lua5.1 开始采用了一种三色回收的算法</p>
+<ul>
+<li>白色：表示对象未被标记，在 GC 周期开始之前对象为白色，如果到清除阶段还是白色，那就说明该对象不可到达，要被清除掉。</li>
+<li>灰色：表示对象本身已标记，但它引用的对象未被标记，比如一个表已被标记，它的键值对象还未被标记。这表示对象标记的一个中间状态。</li>
+<li>黑色：表示对象和它引用的对象都已被标记，在清除阶段黑色对象为可到达对象。</li>
+</ul>
+<h5 id="对象链表"><a href="# 对象链表" class="headerlink" title="对象链表"></a>对象链表 </h5><p><code>global_State</code> 有好多和 GC 相关的字段，其中有一些重要链表。所有 GC 对象总是在下面的链表中：</p>
+<ul>
+<li><code>allgc</code>：所有未被标记为终结的对象</li>
+<li><code>finobj</code>：所有标记为终结的对象</li>
+<li><code>tobefnz</code>：所有准备终结的对象（准备调用 <code>__gc</code> 的对象）</li>
+<li><code>fixedgc</code>：不会被回收的对象</li>
+</ul>
+<p>正常情况下，新建对象都会进入 <code>allgc</code> 链表。</p>
+<p>如果对象设置一个元表，且元表有 <code>__gc</code> 元方法，那么它会从 <code>allgc</code> 取出，加入到 <code>finobj</code> 去，并设置对象的 <code>FINALIZEDBIT</code> 标记为。</p>
+<p>在标记阶段，<code>finobj</code>中的白对象会移到 <code>tobefnz</code> 链表去，然后标记这些对象，这样当前周期不会释放这些对象；清除完之后会进入 <code>GCScallfin</code> 阶段，在这里调用 <code>tobefnz</code> 对象的 gc 方法，同时把对象移回 <code>allgc</code> 链表；如果 gc 中使对象重新变成可到达，则对象复活过来；否则下个周期这个对象就会被正常清除。</p>
+<p><code>fixedgc</code>是那些不会被回收的对象，在新建完对象后，必须马上调用 <code>luaC_fic</code> 把对象从 <code>allgc</code> 移到 <code>fixedgc</code> 去。GC 的过程不会对 <code>fixedgc</code> 进行清除。</p>
+<p><img src="/2021/11/22/92307bbcfe44/lua-gc.png" srcset="/img/loading.gif" lazyload></p>
+<p>luajit 使用状态机来执行 gc 算法，共有 6 中状态：</p>
+<ul>
+<li><strong><code>GCSpause</code>：</strong> gc 开始阶段，初始化一些属性，将一些跟节点（主线程对象，主线程环境对象，全局对象等）push 到灰色链表中</li>
+<li><strong><code>GCSpropagate</code>：</strong> 分步进行扫描，每次从灰色链表 pop 一个对象，遍历该对象的子对象，例如如果该对象为 table，并且 value 没有设置为 week，则会遍历 table 所有 table 可达的 value，如果 value 为 gc 对象且为白色，则会被 push 到灰色链表中，这一步将一直持续到灰色链表为空的时候</li>
+<li><strong><code>GCSatomic</code>：</strong> 原子操作，因为 <code>GCSpropagate</code> 是分步的，所以分步过程中可能会有新的对象创建，这时候将再进行一次补充遍历，这遍历是不能被打断的，但因为绝大部分工作被 <code>GCSpropagate</code> 做了，所以过程会很快。新创建的没有被引用的 <code>userdata</code>，如果该<code>userdata</code> 自定义了 gc 元方法，则会加入到全局的 <code>userdata</code> 链表中，该链表会在最后一步 <code>GCSfinalize</code> 处理</li>
+<li><strong><code>GCSsweepstring</code>：</strong> 遍历全局字符串 hash 表，每次遍历一个 hash 节点，如果 hash 冲突严重，会在这里影响 gc。如果字符串为白色并且没有被设置为固定不释放，则进行释放</li>
+<li><strong><code>GCSsweep</code>：</strong> 遍历所有全局 gc 对象，每次遍历 40 个，如果 gc 对象为白色，将被释放</li>
+<li><strong><code>GCSfinalize</code>：</strong> 遍历 <code>GCSatomic</code> 生成的 <code>userdata</code> 链表，如果该 <code>userdata</code> 还存在 gc 元方法，调用该元方法，每次处理一个</li>
+</ul>
+<h5 id="什么时候会导致 -gc"><a href="# 什么时候会导致 -gc" class="headerlink" title="什么时候会导致 gc"></a>什么时候会导致 gc</h5><p><code>global_state</code>有两个字段是关于 Lua 的内存统计的：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs c++">l_mem totalbytes;<br>l_mem GCdebt;<br></code></pre></td></tr></table></figure>
+<p>在 <code>lua_newstate</code> 函数里，这两个字段初始为：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs c++">g-&gt;totalbytes = <span class="hljs-built_in">sizeof</span>(LG);<br>g-&gt;GCdebt = <span class="hljs-number">0</span>;<br></code></pre></td></tr></table></figure>
+<p>在内存分配函数 <code>luaM_realloc_</code> 里，会根据分配或释放内存调整 <code>GCdebt</code> 的值：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-type">void</span> *<span class="hljs-title">luaM_realloc_</span><span class="hljs-params">(lua_State* L, <span class="hljs-type">void</span>* block, <span class="hljs-type">size_t</span> osize, <span class="hljs-type">size_t</span>, nsize)</span> </span>&#123;<br>    ...<br>    g-&gt;GCdebt = (g-&gt;GCdebt + nsize) - realosize;<br>    ...<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>判断是否触发 GC 的宏是：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">define</span> lauC_condGC(L, pre, pos) \</span><br><span class="hljs-meta">    &#123; <span class="hljs-keyword">if</span> (G(L)-&gt;GCdebt &gt; 0) &#123; pre; luaC_step(L); pos; &#125;; \</span><br><span class="hljs-meta">        condchangemem(L, pre, pos); &#125;</span><br></code></pre></td></tr></table></figure>
+<p><code>g-&gt;GCdebt</code>如果大于 0，就执行一次<code>luaC_step</code>。</p>
+<h5 id="回收控制"><a href="# 回收控制" class="headerlink" title="回收控制"></a>回收控制 </h5><p><code>luaC_step</code> 执行一步 GC：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">luaC_step</span><span class="hljs-params">(lua_State* L)</span> </span>&#123;<br>    global_State* g = <span class="hljs-built_in">G</span>(L);<br>    <span class="hljs-comment">// 1. 计算 GC 的内存债务</span><br>    l_mem debt = <span class="hljs-built_in">getdebt</span>(g);<br>    ...<br>    <span class="hljs-comment">// 2. 循环执行 singlestep，知道 GC 周期完毕，或 debt 小于某个值</span><br>    <span class="hljs-keyword">do</span> &#123;<br>        lu_mem work = <span class="hljs-built_in">singlestep</span>(L);<br>        debt -= work;<br>    &#125; <span class="hljs-keyword">while</span> (debt &gt; -GCSTEPSIZE &amp;&amp; g-&gt;gcstate != GCSpause);<br>    <br>    <span class="hljs-comment">// 3. 如果 GC 结束，计算下一个阈值</span><br>    <span class="hljs-keyword">if</span> (g-&gt;gcstate == GCSpause)<br>        <span class="hljs-built_in">setpause</span>(g);<br>    <span class="hljs-keyword">else</span> &#123;<br>    <span class="hljs-comment">// 4. 否则计算下一次触发的时机</span><br>        debt = (debt / g-&gt;gcstepmul) * STEPMULADJ;<br>        <span class="hljs-built_in">luaE_setdebt</span>(g, debt);<br>        <span class="hljs-built_in">runafewinalizers</span>(L);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<hr>
+<h4 id="GC- 的过程"><a href="#GC- 的过程" class="headerlink" title="GC 的过程"></a>GC 的过程</h4><p>Lua 会自动管理内存，它通过垃圾收集器回收掉不再使用的对象，所谓不再使用，可以简单理解为没有其他对象引用的对象。</p>
+<p>Lua 使用简单的标记和清除的垃圾回收容器，每次完整的 GC 分为 4 个阶段：</p>
+<ul>
+<li>标记（mark）：Lua 将根集对象标记为活的，根集对象实际上就是 C 注册表，像主线程和全局环境都是注册表的预定义项。从根集对象一直往下标记，任何存在于活对象中的对象，只要程序可达（弱表除外），也会被标记为活的。</li>
+<li>清理（cleaning）：这一阶段，Lua 遍历那些未标记的对象，如果它们有终结函数，将它们移出到另一个列表中，后面第 4 个阶段会用到。接着遍历 Lua 弱表，把其中 key 或 value 未被标记的对象从弱表移除。</li>
+<li>清除（sweep）：Lua 遍历所有对象，如表未被标记则回收掉，如果有标记则清除标记。</li>
+<li>终结（finalization）：在清理阶段将有终结函数，且未被标记的对象都移到一个独立的列表中，这阶段就是遍历这个列表，并调用它们的终结函数。而这些未活的对象，实际上应该会在下一个 GC 周期才被回收掉。</li>
+</ul>
+<p>在 Lua5.1 以上的版本，GC 被优化成增量式的，它和解释器交错运行，即每一个 GC 只执行一部分，这样就有效避免 GC 的时候解释器停顿太久。</p>
+<h5 id="弱表"><a href="# 弱表" class="headerlink" title="弱表"></a>弱表 </h5><p> 下面的例子能说明弱表的行为：</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs lua">a = &#123;&#125;<br>mt = &#123;<span class="hljs-built_in">__mode</span> = <span class="hljs-string">&#x27;k&#x27;</span>&#125; <span class="hljs-comment">-- 设置为 k 表示 a 的 key 是弱引用；设置为 v 表示 value 是弱引用；设置为 kv 表示 key 和 value 都是弱引用</span><br><span class="hljs-built_in">setmetatable</span>(a, mt)<br><br>k1 = &#123;&#125;<br>a[k1] = <span class="hljs-number">1</span><br>k2 = &#123;&#125;<br>a[k2] = <span class="hljs-number">2</span><br>k1 = <span class="hljs-literal">nil</span> <span class="hljs-comment">-- 将 k1 删除，k1 引用的那个表只存在于 a，但 a 是 key 的弱引用，所以这个表被 GC</span><br><br><span class="hljs-built_in">collectgarbage</span>()<br><span class="hljs-keyword">for</span> k, v <span class="hljs-keyword">in</span> <span class="hljs-built_in">pairs</span>(a) <span class="hljs-keyword">do</span> <span class="hljs-built_in">print</span>(v) <span class="hljs-keyword">end</span><br><span class="hljs-comment">-- &gt; 2</span><br></code></pre></td></tr></table></figure>
+
+<h5 id="终结函数"><a href="# 终结函数" class="headerlink" title="终结函数"></a>终结函数 </h5><p> 就是元表有指定 <code>__gc</code> 元方法，如：</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs lua">o = &#123;x = <span class="hljs-string">&#x27;hi&#x27;</span>&#125;<br><span class="hljs-built_in">setmetatable</span>(o, &#123;<span class="hljs-built_in">__gc</span> = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(o)</span></span> <span class="hljs-built_in">print</span>(o.x) <span class="hljs-keyword">end</span>&#125;)<br>o = <span class="hljs-literal">nil</span><br><span class="hljs-built_in">collectgarbage</span>() <span class="hljs-comment">-- &gt; hi</span><br></code></pre></td></tr></table></figure>
+
+<p>如果一个对象（有终结函数）在程序结束的时候还未被回收，Lua 会在结束的时候调用该对象的终结函数，可以利用这个特性来监控程序结束。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Lua/" class="category-chain-item">Lua</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/lua/" class="print-no-link">#lua</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Lua GC 机制</div>
+      <div>https://silhouettesforyou.github.io/2021/11/22/92307bbcfe44/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Xiaoming</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>November 22, 2021</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/11/22/7ac3af061ccd/" title="红黑树">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">红黑树</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/11/17/ce5b10922e00/" title="包围盒">
+                        <span class="hidden-mobile">包围盒</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+      <div class="col-lg-7 mx-auto nopadding-x-md">
+        <div class="container custom mx-auto">
+          <link rel="stylesheet" href="//at.alicdn.com/t/c/font_4625503_lmam43j6xt.css">,<script src="https://kit.fontawesome.com/8e800a3a44.js" crossorigin="anonymous"></script>
+        </div>
+      </div>
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+      <i class="iconfont icon-love"></i>
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  var relativeDate = function() {
+    var updatedTime = document.getElementById('updated-time');
+    if (updatedTime) {
+      var text = updatedTime.textContent;
+      var reg = /\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:Z|[+-]\d{2}:\d{2})/;
+      var matchs = text.match(reg);
+      if (matchs) {
+        var relativeTime = moment(matchs[0]).fromNow();
+        updatedTime.textContent = text.replace(reg, relativeTime);
+      }
+      updatedTime.style.display = '';
+    }
+  };
+  Fluid.utils.createScript('https://lib.baomitu.com/moment.js/2.29.4/moment.min.js', function() {
+    if (!'en'.startsWith('en')) {
+      Fluid.utils.createScript('https://lib.baomitu.com/moment.js/2.29.4/locale/en.min.js', function() {
+        relativeDate();
+      });
+    } else {
+      relativeDate();
+    }
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+<!-- hexo injector body_end start --><script src="https://cdn.jsdelivr.net/npm/hexo-tag-common@0.0.5/js/index.js"></script><!-- hexo injector body_end end --><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"left","width":150,"height":300},"mobile":{"show":false},"react":{"opacity":0.7}});</script></body>
+</html>

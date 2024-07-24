@@ -1,0 +1,860 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head><!-- hexo injector head_begin start -->
+<link rel="stylesheet" href="/css/bilicard.css">
+<link href="https://cdn.jsdelivr.net/npm/hexo-tag-common@0.0.5/css/index.css" rel="stylesheet"/><!-- hexo injector head_begin end -->
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/breaking-bad.png">
+  <link rel="icon" href="/img/breaking-bad.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Xiaoming">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="应用阶段  准备好场景数据，包括 Camera 的位置、朝向，视锥体，场景物件、光源信息，渲染对象的渲染状态准备包括材质、纹理、Shader 等基本信息，调用渲染图元的指令。  把数据加载到显存 设置渲染状态 调用 DrawCall  几何阶段  传入顶点数据，经过顶点着色器、曲面细分着色器、几何着色器、三角形裁剪、屏幕映射。  顶点着色器：操作顶点，可编程。主要是坐标变换和逐顶点光照，输出后">
+<meta property="og:type" content="article">
+<meta property="og:title" content="渲染管线">
+<meta property="og:url" content="https://silhouettesforyou.github.io/2021/11/05/bc62e4de65c0/index.html">
+<meta property="og:site_name" content="Silhouettes For You">
+<meta property="og:description" content="应用阶段  准备好场景数据，包括 Camera 的位置、朝向，视锥体，场景物件、光源信息，渲染对象的渲染状态准备包括材质、纹理、Shader 等基本信息，调用渲染图元的指令。  把数据加载到显存 设置渲染状态 调用 DrawCall  几何阶段  传入顶点数据，经过顶点着色器、曲面细分着色器、几何着色器、三角形裁剪、屏幕映射。  顶点着色器：操作顶点，可编程。主要是坐标变换和逐顶点光照，输出后">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://silhouettesforyou.github.io/2021/11/05/bc62e4de65c0/render-flows.svg">
+<meta property="og:image" content="https://pic1.zhimg.com/80/v2-c0ac8da7f6808e700f22ab4fd02ddb30_720w.jpg">
+<meta property="article:published_time" content="2021-11-05T09:06:38.000Z">
+<meta property="article:modified_time" content="2024-07-23T12:46:53.560Z">
+<meta property="article:author" content="Xiaoming">
+<meta property="article:tag" content="Graphics">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://silhouettesforyou.github.io/2021/11/05/bc62e4de65c0/render-flows.svg">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>渲染管线 - Silhouettes For You</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"silhouettesforyou.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"62be422732dc4e6f91e7fa199aa1f3f2","google":{"measurement_id":"G-B260B2ZWXQ"},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?62be422732dc4e6f91e7fa199aa1f3f2";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=G-B260B2ZWXQ", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', 'G-B260B2ZWXQ');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<style type="text/css">
+.spoiler {
+  display: inline;
+}
+p.spoiler {
+  display: flex;
+}
+.spoiler a {
+  pointer-events: none;
+}
+.spoiler-blur, .spoiler-blur > * {
+  transition: text-shadow .5s ease;
+}
+.spoiler .spoiler-blur, .spoiler .spoiler-blur > * {
+  color: rgba(0, 0, 0, 0);
+  background-color: rgba(0, 0, 0, 0);
+  text-shadow: 0 0 10px grey;
+  cursor: pointer;
+}
+.spoiler .spoiler-blur:hover, .spoiler .spoiler-blur:hover > * {
+  text-shadow: 0 0 5px grey;
+}
+.spoiler-box, .spoiler-box > * {
+  transition: color .5s ease,
+  background-color .5s ease;
+}
+.spoiler .spoiler-box, .spoiler .spoiler-box > * {
+  color: black;
+  background-color: black;
+  text-shadow: none;
+}</style><meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/atom.xml" title="Silhouettes For You" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Silhouettes For You</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Tags</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/lover/" target="_self">
+                <i class="iconfont icon-heart"></i>
+                <span>Lover</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" href="javascript:;" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="iconfont icon-buyecsstorage"></i>
+                <span>Cloud Disk</span>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="https://onedrive-vercel-index-xi-liard.vercel.app/" target="_blank">
+                    <i class="iconfont icon-onedrive"></i>
+                    <span>OneDrive</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="https://fyddxwmx.cloud.sealos.io/" target="_blank">
+                    <i class="iconfont icon-aliyun"></i>
+                    <span>Aliyun</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="https://manual-maryl-silhouette-7fc7ff34.koyeb.app/" target="_blank">
+                    <i class="iconfont icon-storage"></i>
+                    <span>Other Storages</span>
+                  </a>
+                
+              </div>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/post.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="渲染管线"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2021-11-05 17:06" pubdate>
+          November 5, 2021 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.5k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          13 mins
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> views
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">渲染管线</h1>
+            
+              <p id="updated-time" class="note note-light" style="display: none">
+                
+                  
+                    Last updated on 2024-07-23T20:46:53+08:00
+                  
+                  
+
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p><img src="/2021/11/05/bc62e4de65c0/render-flows.svg" srcset="/img/loading.gif" lazyload></p>
+<hr>
+<h3 id="应用阶段"><a href="# 应用阶段" class="headerlink" title="应用阶段"></a>应用阶段 </h3><p> 准备好场景数据，包括 Camera 的位置、朝向，视锥体，场景物件、光源信息，渲染对象的渲染状态准备包括材质、纹理、Shader 等基本信息，调用渲染图元的指令。</p>
+<ul>
+<li>把数据加载到显存</li>
+<li>设置渲染状态</li>
+<li>调用 DrawCall</li>
+</ul>
+<h3 id="几何阶段"><a href="# 几何阶段" class="headerlink" title="几何阶段"></a>几何阶段 </h3><p> 传入顶点数据，经过顶点着色器、曲面细分着色器、几何着色器、三角形裁剪、屏幕映射。</p>
+<ul>
+<li>顶点着色器：操作顶点，可编程。主要是坐标变换和逐顶点光照，输出后续阶段需要的数据，从模型空间到齐次裁剪空间。</li>
+<li>曲面细分着色器、几何着色器：目前在手机上支持不是很好，手机渲染基本上不能用。</li>
+<li>三角形裁剪：把那些不在摄像机视野范围内的顶点裁剪掉，并剔除掉不在屏幕范围内的顶点。这个过程可配置。</li>
+<li>屏幕映射：把图元的顶点坐标转化为屏幕坐标系的二维坐标，输入的是三维坐标（归一化的 NDC 坐标）。</li>
+</ul>
+<h3 id="光栅化阶段"><a href="# 光栅化阶段" class="headerlink" title="光栅化阶段"></a>光栅化阶段 </h3><p> 光栅化阶段的目的有两个：①计算每个图元覆盖了那些像素，②为这些像素计算他们的颜色。</p>
+<ul>
+<li>三角形设置：上一个阶段，我们已经拿到了图元顶点的屏幕二维坐标，包括顶点法线、深度值、视角方向等信息，根据这些信息，我们来计算光栅化一个三角形所需要的信息，比如该三角形包含那些像素点等。</li>
+<li>三角形遍历：在这个阶段会检测每个像素的中心（或者说每个采样点）是否被三角形覆盖，像素中三角形覆盖的部分会生成一个 <em>fragment</em>，而寻找采样点或者像素位于哪个三角形上，这一过程被称为三角形遍历。而三角形中我们所生成的每一个<em>fragment</em>，其属性都由三角形的顶点插值而来。这些属性包括<em>fragment</em> 的深度和从几何阶段传输来的其他着色数据</li>
+<li>片元着色器：可编程，作用是处理上一个阶段生成的每个片元，最终计算出每个像素的最终颜色。实际上就是数据的集合。这个数据集合包含每个像素的各个颜色分量和像素透明度的值。</li>
+<li>逐片元操作：修改颜色，修改深度，混合</li>
+<li>屏幕图像</li>
+</ul>
+<hr>
+<p><img src="https://pic1.zhimg.com/80/v2-c0ac8da7f6808e700f22ab4fd02ddb30_720w.jpg" srcset="/img/loading.gif" lazyload></p>
+<h3 id="顶点数据"><a href="# 顶点数据" class="headerlink" title="顶点数据"></a>顶点数据 </h3><p><strong> 一个模型或者图形是由点线面构成的，为了让计算机绘制出这个图形，就必须告诉计算机这些数据的值，顶点数据包括顶点坐标、坐标的法线、坐标的切线、颜色等信息。</strong> 对于 OpenGL，这些数据一般都是向量结构体。对于游戏引擎，这些数据来自导入的模型中。在开始渲染之前，CPU 会获取这些数据，然后传递给 GPU，作为最原始数据，做好计算准备。</p>
+<h3 id="顶点着色器"><a href="# 顶点着色器" class="headerlink" title="顶点着色器"></a>顶点着色器 </h3><p><strong> 顶点着色器（vertex shader）</strong> 在渲染管线中的作用非常大，是渲染管线的第一个可编程着色器。<strong>处理单元是顶点数据。顶点着色器的主要功能是对坐标进行变换。将输入的局部左边变换到世界坐标、观察坐标和裁剪坐标。</strong> 除此之外当然也可以进行光照着色，但是着色效果远不如在片元着色器中进行光照着色，因为计算量较小。</p>
+<h3 id="图元装配"><a href="# 图元装配" class="headerlink" title="图元装配"></a>图元装配 </h3><p><strong> 图元装配（primitive assembly）是对传入的顶点数据进行重新组装，将顶点着色器的输出作为输入。</strong> 这一点正验证了渲染的过程是以流水线的形式进行的，图元装配会将顶点装配成指定的图形，与此同时，会进行裁剪、表面剔除等操作，以减少不必要的计算，加速渲染过程。</p>
+<h3 id="几何着色器"><a href="# 几何着色器" class="headerlink" title="几何着色器"></a>几何着色器 </h3><p><strong> 几何着色器（geometry shader）会将图元装配阶段的数据作为输入数据。几何着色器属于不可编程阶段，由硬件设备自动完成，</strong> 其重要作用是对顶点数据进行重构， 可以在此阶段产生新的顶点数据，来弥补之前存在的一些问题。以便为接下来要进行的操作做好充分的准备工作。</p>
+<h3 id="光栅化"><a href="# 光栅化" class="headerlink" title="光栅化"></a>光栅化 </h3><p><strong> 光栅化阶段（rasterization stage）的数据输入来自几何着色器的输出数据，为了实现顶点到屏幕像素的映射。</strong> 光栅化的作用就是将两个顶点之间缺少的像素点通过插值的形式进行补充，生成片元着色器可以处理的片段。此阶段由硬件完成插值极端。在插值的过程中，会将不可见的顶点进行剔除。</p>
+<h3 id="片元着色器"><a href="# 片元着色器" class="headerlink" title="片元着色器"></a>片元着色器 </h3><p><strong> 片元着色器处理的对象是像素点的颜色信息，也是最终显示在屏幕上的像素点，在这个过程中，可以处理光照和阴影计算，将处理完的值保存至缓冲区中。</strong></p>
+<h3 id="混合处理阶段"><a href="# 混合处理阶段" class="headerlink" title="混合处理阶段"></a>混合处理阶段 </h3><p> 混合处理阶段属于屏幕后期梳理范围，这意味着此阶段主要做的任务为屏幕优化操作，通过片元着色器得到的像素，有些不能被显示出来，比如透明度为 0 的像素点，对于这类像素点，我们需要进行测试，测试的范围包括 <strong>Alpha 测试、模板测试和深度测试等</strong>。不能通过测试的像素点将会被丢弃，就不会参与接下来的操作；通过测试的像素会进入混合阶段。混合阶段主要是处理透明物体，混合阶段不需要进行编程，但是常见的渲染管线接口会开放初一些参数给程序员做调整。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E5%9B%BE%E5%BD%A2%E5%AD%A6/" class="category-chain-item">图形学</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Graphics/" class="print-no-link">#Graphics</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>渲染管线</div>
+      <div>https://silhouettesforyou.github.io/2021/11/05/bc62e4de65c0/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Xiaoming</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>November 5, 2021</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/11/08/ea34a7c058d8/" title="C++ 知识">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">C++ 知识</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/11/05/3e236ae5c063/" title="日常开发笔记">
+                        <span class="hidden-mobile">日常开发笔记</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+      <div class="col-lg-7 mx-auto nopadding-x-md">
+        <div class="container custom mx-auto">
+          <link rel="stylesheet" href="//at.alicdn.com/t/c/font_4625503_lmam43j6xt.css">,<script src="https://kit.fontawesome.com/8e800a3a44.js" crossorigin="anonymous"></script>
+        </div>
+      </div>
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+      <i class="iconfont icon-love"></i>
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  var relativeDate = function() {
+    var updatedTime = document.getElementById('updated-time');
+    if (updatedTime) {
+      var text = updatedTime.textContent;
+      var reg = /\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:Z|[+-]\d{2}:\d{2})/;
+      var matchs = text.match(reg);
+      if (matchs) {
+        var relativeTime = moment(matchs[0]).fromNow();
+        updatedTime.textContent = text.replace(reg, relativeTime);
+      }
+      updatedTime.style.display = '';
+    }
+  };
+  Fluid.utils.createScript('https://lib.baomitu.com/moment.js/2.29.4/moment.min.js', function() {
+    if (!'en'.startsWith('en')) {
+      Fluid.utils.createScript('https://lib.baomitu.com/moment.js/2.29.4/locale/en.min.js', function() {
+        relativeDate();
+      });
+    } else {
+      relativeDate();
+    }
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+<!-- hexo injector body_end start --><script src="https://cdn.jsdelivr.net/npm/hexo-tag-common@0.0.5/js/index.js"></script><!-- hexo injector body_end end --><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"left","width":150,"height":300},"mobile":{"show":false},"react":{"opacity":0.7}});</script></body>
+</html>
