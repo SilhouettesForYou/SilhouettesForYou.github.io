@@ -123,6 +123,12 @@ refplus: true
   <li><span class="fa-li"><i class="fa-solid fa-check-square"></i></span>GAMES 102</li>
   <li><span class="fa-li"><i class="fa-inverse fa-solid  fa-heart fa-beat fa-2xs" style="color:Tomato"></i></span>Machine Learning</li>
   <li><span class="fa-li"><i class="fa-inverse fa-solid  fa-heart fa-beat fa-2xs" style="color:Tomato"></i></span>Modern C++</li>
+  <li><span class="fa-li"><i class="fa-inverse fa-solid  fa-heart fa-beat fa-2xs" style="color:Tomato"></i></span>Reinforcement Learning with `pytorch`</li>
+  <li><span class="fa-li"><i class="fa-regular fa-square"></i></span>Stat Quest Deep Learning</li>
+  <li><span class="fa-li"><i class="fa-regular fa-square"></i></span>Optimization on Manifolds</li>
+  <li><span class="fa-li"><i class="fa-regular fa-square"></i></span>Cuda</li>
+  <li><span class="fa-li"><i class="fa-regular fa-square"></i></span>Transformer</li>
+  <li><span class="fa-li"><i class="fa-regular fa-square"></i></span>Optimal Transportation</li>
 </ul>
 
 ### <i class="fa-regular fa-face-grin-stars"></i> Hobbies
