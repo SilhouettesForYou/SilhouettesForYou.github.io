@@ -236,9 +236,10 @@ custom_js:
 # 指定自定义 .css 文件路径，用法和 custom_js 相同
 # The usage is the same as custom_js
 custom_css:
+- /css/tool-tips.css
 
 custom_html:
-- '<link rel="stylesheet" href="//at.alicdn.com/t/c/font_4625503_lmam43j6xt.css">'
+- '<link rel="stylesheet" href="//at.alicdn.com/t/c/font_4625503_mwf1rzbm81g.css">'
 - '<script src="https://kit.fontawesome.com/8e800a3a44.js" crossorigin="anonymous"></script>'
 
 # 网页访问统计

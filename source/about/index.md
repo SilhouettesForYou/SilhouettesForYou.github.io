@@ -31,7 +31,7 @@ refplus: true
   <li><span class="fa-li"><i class="fa-solid fa-asterisk fa-spin-pulse"></i></span>2021/10 - by far | Huanle Entertainment (Shanghai) Technology co., Ltd.</li>
 </ul>
 
-### <i class="fa-solid fa-gears"></i></i> Skills
+### <i class="fa-solid fa-gears fa-shake"></i></i> Skills
 
 ***
 
@@ -71,25 +71,43 @@ refplus: true
   <li><span class="fa-li"><i class="fa-solid fa-envelope"></i></span>E-mail</li>
   <div>
     <li><span style="display: inline-block; margin: 0.25em; border: 0px solid silver; border-radius: 0.25em; padding: .25em 0.5em">
-      <a><i class="fa-brands fa-google"></i> mgze.wang@gmail.com</a>
+      <a><span class="iconfont icon-gmail"></span> mgze.wang@gmail.com</a>
     </span></li>
     <li><span style="display: inline-block; margin: 0.25em; border: 0px solid silver; border-radius: 0.25em; padding: .25em 0.5em">
-      <a><i class="fa-brands fa-windows"></i> wang_ming_zhe@hotmail.com</a>
+      <a><span class="iconfont icon-outlook"></span> wang_ming_zhe@hotmail.com</a>
+    </span></li>
+    <li><span style="display: inline-block; margin: 0.25em; border: 0px solid silver; border-radius: 0.25em; padding: .25em 0.5em">
+      <a><span class="iconfont icon-netease"></span> amazedwang@163.com</a>
     </span></li>
   </div>
   <li><span class="fa-li"><i class="fa-solid fa-link"></i></span>Links</li>
   <div>
     <span style="display: inline-block; margin: 0.25em; border: 0px solid silver; border-radius: 0.25em; padding: .25em 0.5em">
-      <a href="https://www.bilibili.com/"><i class="fa-brands fa-bilibili"></i></a>
+      <a href="https://www.bilibili.com/" title="bilibili"><i class="fa-brands fa-bilibili"></i></a>
     </span>
     <span style="display: inline-block; margin: 0.25em; border: 0px solid silver; border-radius: 0.25em; padding: .25em 0.5em">
-      <a href="https://www.zhihu.com/"><i class="fa-brands fa-zhihu"></i></a>
+      <a href="https://www.zhihu.com/" title="知乎"><i class="fa-brands fa-zhihu"></i></a>
     </span>
     <span style="display: inline-block; margin: 0.25em; border: 0px solid silver; border-radius: 0.25em; padding: .25em 0.5em">
-      <a href="https://store.steampowered.com/"><i class="fa-brands fa-steam"></i></a>
+      <a href="https://store.steampowered.com/" title="Steam"><i class="fa-brands fa-steam"></i></a>
     </span>
     <span style="display: inline-block; margin: 0.25em; border: 0px solid silver; border-radius: 0.25em; padding: .25em 0.5em">
-      <a href="https://www.yinxiang.com/"><i class="fa-brands fa-evernote"></i></a>
+      <a href="https://www.yinxiang.com/" title="Evernote"><i class="fa-brands fa-evernote"></i></a>
+    </span>
+    <span style="display: inline-block; margin: 0.25em; border: 0px solid silver; border-radius: 0.25em; padding: .25em 0.5em">
+      <a href="https://www.douban.com/" title="豆瓣"><span class="iconfont icon-douban"></span></a>
+    </span>
+    <span style="display: inline-block; margin: 0.25em; border: 0px solid silver; border-radius: 0.25em; padding: .25em 0.5em">
+      <a href="https://colorhunt.co/" title="Color Hunt"><span class="iconfont icon-color"></span></a>
+    </span>
+    <span style="display: inline-block; margin: 0.25em; border: 0px solid silver; border-radius: 0.25em; padding: .25em 0.5em">
+      <a href="https://www.kdocs.cn/latest?from=docs" title="WPS"><span class="iconfont icon-wps"></span></a>
+    </span>
+    <span style="display: inline-block; margin: 0.25em; border: 0px solid silver; border-radius: 0.25em; padding: .25em 0.5em">
+      <a href="https://cppinsights.io/" title="cpp insights"><span class="iconfont icon-insight"></span></a>
+    </span>
+    <span style="display: inline-block; margin: 0.25em; border: 0px solid silver; border-radius: 0.25em; padding: .25em 0.5em">
+      <a href="https://compiler-explorer.com/" title="compiler explorer"><span class="iconfont icon-compile"></span></a>
     </span>
   </div>
 </ul>
@@ -103,8 +121,8 @@ refplus: true
   <li><span class="fa-li"><i class="fa-solid fa-check-square"></i></span>Reinforcement Learning</li>
   <li><span class="fa-li"><i class="fa-solid fa-check-square"></i></span>GAMES 101</li>
   <li><span class="fa-li"><i class="fa-solid fa-check-square"></i></span>GAMES 102</li>
-  <li><span class="fa-li"><i class="fa-solid fa-spinner fa-pulse"></i></span>Machine Learning</li>
-  <li><span class="fa-li"><i class="fa-solid fa-spinner fa-pulse"></i></span>Modern C++</li>
+  <li><span class="fa-li"><i class="fa-inverse fa-solid  fa-heart fa-beat fa-2xs" style="color:Tomato"></i></span>Machine Learning</li>
+  <li><span class="fa-li"><i class="fa-inverse fa-solid  fa-heart fa-beat fa-2xs" style="color:Tomato"></i></span>Modern C++</li>
 </ul>
 
 ### <i class="fa-regular fa-face-grin-stars"></i> Hobbies
@@ -112,23 +130,26 @@ refplus: true
 ***
 
 <div class="fa-1x">
-  <i class="fa-solid fa-heart-pulse fa-bounce"></i>Badminton
+  <i><span class="iconfont icon-a-07"></span></i>Badminton
+  <i class="fa-inverse fa-solid  fa-heart fa-beat fa-2xs" style="color:Tomato"></i>
   <i class="fa-solid fa-minus fa-rotate-90"></i>
-  <i class="fa-solid fa-dumbbell fa-bounce"></i>Fitness
+  <i class="fa-solid fa-dumbbell"></i>Fitness
+  <i class="fa-inverse fa-solid  fa-heart fa-beat fa-2xs" style="color:Tomato"></i>
   <i class="fa-solid fa-minus fa-rotate-90"></i>
-  <i class="fa-solid fa-person-hiking fa-bounce"></i>Hiking
+  <i class="fa-solid fa-person-hiking"></i>Hiking
   <i class="fa-solid fa-minus fa-rotate-90"></i>
-  <i class="fa-solid fa-person-biking fa-bounce"></i>Cycling
+  <i class="fa-solid fa-person-biking"></i>Cycling
+  <i class="fa-inverse fa-solid  fa-heart fa-beat fa-2xs" style="color:Tomato"></i>
   <i class="fa-solid fa-minus fa-rotate-90"></i>
-  <i class="fa-solid fa-kitchen-set fa-bounce"></i>Cooking
+  <i class="fa-solid fa-kitchen-set"></i>Cooking
   <i class="fa-solid fa-minus fa-rotate-90"></i>
-  <i class="fa-solid fa-film fa-bounce"></i>Films
+  <i class="fa-solid fa-film"></i>Films
   <i class="fa-solid fa-minus fa-rotate-90"></i>
-  <i class="fa-solid fa-plane-departure fa-bounce"></i>Traveling
+  <i class="fa-solid fa-plane-departure"></i>Traveling
   <i class="fa-solid fa-minus fa-rotate-90"></i>
-  <i class="fa-solid fa-cat fa-bounce"></i>Pets
+  <i class="fa-solid fa-cat"></i>Pets
   <i class="fa-solid fa-minus fa-rotate-90"></i>
-  <i class="fa-solid fa-gamepad fa-bounce"></i>Switch
+  <i><span class="iconfont icon-nintendo-switch"></span></i>Switch
 </div>
 
 ***
