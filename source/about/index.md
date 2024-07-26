@@ -9,8 +9,8 @@ refplus: true
 ***
 
 <ul class="fa-ul">
-  <li><span class="fa-li"><i class="fa-solid fa-fan fa-spin-pulse"></i></span>2012/09 - 2016/06 | Undergraduate, Software Engineering, Dalian University of Technology</li>
-  <li><span class="fa-li"><i class="fa-solid fa-fan fa-spin-pulse"></i></span>2016/09 - 2019/06 | Postgraduate , Software Engineering, Dalian University of Technology</li>
+  <li><span class="fa-li"><i class="fa-solid fa-fan fa-spin"></i></span>2012/09 - 2016/06 | Undergraduate, Software Engineering, Dalian University of Technology</li>
+  <li><span class="fa-li"><i class="fa-solid fa-fan fa-spin"></i></span>2016/09 - 2019/06 | Postgraduate , Software Engineering, Dalian University of Technology</li>
 </ul>
 
 ### <i class="fa-solid fa-dna "></i> Research
@@ -18,8 +18,8 @@ refplus: true
 ***
 
 <ul class="fa-ul">
-  <li><span class="fa-li"><i class="fa-solid fa-atom fa-spin-pulse"></i></span>An effective ROI extracting method for color brain slice in assisting the diagnostic analysis of epilepsy{% ref 1 %}</li>
-  <li><span class="fa-li"><i class="fa-solid fa-atom fa-spin-pulse"></i></span>A Fragment Fracture Surface Segmentation Method Based on Learning of Local Geometric Features on Margins Used for Automatic Utensil Reassembly{% ref 2 %}</li>
+  <li><span class="fa-li"><i class="fa-solid fa-atom fa-spin"></i></span>An effective ROI extracting method for color brain slice in assisting the diagnostic analysis of epilepsy{% ref 1 %}</li>
+  <li><span class="fa-li"><i class="fa-solid fa-atom fa-spin"></i></span>A Fragment Fracture Surface Segmentation Method Based on Learning of Local Geometric Features on Margins Used for Automatic Utensil Reassembly{% ref 2 %}</li>
 </ul>
 
 ### <i class="fa-solid fa-city "></i> Experience
@@ -27,11 +27,11 @@ refplus: true
 ***
 
 <ul class="fa-ul">
-  <li><span class="fa-li"><i class="fa-solid fa-asterisk fa-spin-pulse"></i></span>2019/07 - 2021/10 | Giant Network</li>
-  <li><span class="fa-li"><i class="fa-solid fa-asterisk fa-spin-pulse"></i></span>2021/10 - by far | Huanle Entertainment (Shanghai) Technology co., Ltd.</li>
+  <li><span class="fa-li"><i class="fa-solid fa-asterisk fa-spin"></i></span>2019/07 - 2021/10 | Giant Network</li>
+  <li><span class="fa-li"><i class="fa-solid fa-asterisk fa-spin"></i></span>2021/10 - by far | Huanle Entertainment (Shanghai) Technology co., Ltd.</li>
 </ul>
 
-### <i class="fa-solid fa-gears fa-shake"></i></i> Skills
+### <i class="fa-solid fa-gear fa-spin"></i></i> Skills
 
 ***
 
@@ -62,6 +62,20 @@ refplus: true
 
 ***
 
+<div class="toast-container position-fixed bottom-0 start-50 translate-middle p-6">
+  <div class="toast fade text-bg-success hide" id="liveToast" role="alert">
+    <div class="toast-body">
+      <div class="d-flex gap-4">
+        <span><i class="fa-solid fa-circle-check fa-lg"></i></span>
+        <div class="d-flex flex-grow-1 align-items-center">
+          <span class="fw-semibold">Copied Success!</span>
+          <button type="button" class="btn-close btn-close-white btn-close-sm ms-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <ul class="fa-ul">
   <li><span class="fa-li"><i class="fa-brands fa-safari"></i></span>Websites</li>
   <div>
@@ -71,43 +85,49 @@ refplus: true
   <li><span class="fa-li"><i class="fa-solid fa-envelope"></i></span>E-mail</li>
   <div>
     <li><span style="display: inline-block; margin: 0.25em; border: 0px solid silver; border-radius: 0.25em; padding: .25em 0.5em">
-      <a><span class="iconfont icon-gmail"></span> mgze.wang@gmail.com</a>
+      <a id="link-copy-1" data-toggle="tooltip" class="btn btn-outline-secondary btn-sm" data-clipboard-text="mgze.wang@gmail.com" title="Click to copy">
+        <span class="iconfont icon-gmail"></span> mgze.wang@gmail.com
+      </a>
     </span></li>
     <li><span style="display: inline-block; margin: 0.25em; border: 0px solid silver; border-radius: 0.25em; padding: .25em 0.5em">
-      <a><span class="iconfont icon-outlook"></span> wang_ming_zhe@hotmail.com</a>
+      <a id="link-copy-2" data-toggle="tooltip" class="btn btn-outline-danger btn-sm" data-clipboard-text="amazedwang@163.com" title="Click to copy">
+        <span class="iconfont icon-netease"></span> amazedwang@163.com
+      </a>
     </span></li>
     <li><span style="display: inline-block; margin: 0.25em; border: 0px solid silver; border-radius: 0.25em; padding: .25em 0.5em">
-      <a><span class="iconfont icon-netease"></span> amazedwang@163.com</a>
+      <a id="link-copy-3" data-toggle="tooltip" class="btn btn-outline-primary btn-sm" data-width="300px" data-clipboard-text="wang_ming_zhe@hotmail.com" title="Click to copy">
+        <span class="iconfont icon-outlook"></span> wang_ming_zhe@hotmail.com
+      </a>
     </span></li>
   </div>
   <li><span class="fa-li"><i class="fa-solid fa-link"></i></span>Links</li>
   <div>
     <span style="display: inline-block; margin: 0.25em; border: 0px solid silver; border-radius: 0.25em; padding: .25em 0.5em">
-      <a href="https://www.bilibili.com/" title="bilibili"><i class="fa-brands fa-bilibili"></i></a>
+      <a href="https://www.bilibili.com/" data-toggle="tooltip" title="bilibili"><i class="fa-brands fa-bilibili"></i></a>
     </span>
     <span style="display: inline-block; margin: 0.25em; border: 0px solid silver; border-radius: 0.25em; padding: .25em 0.5em">
-      <a href="https://www.zhihu.com/" title="知乎"><i class="fa-brands fa-zhihu"></i></a>
+      <a href="https://www.zhihu.com/" data-toggle="tooltip" title="知乎"><i class="fa-brands fa-zhihu"></i></a>
     </span>
     <span style="display: inline-block; margin: 0.25em; border: 0px solid silver; border-radius: 0.25em; padding: .25em 0.5em">
-      <a href="https://store.steampowered.com/" title="Steam"><i class="fa-brands fa-steam"></i></a>
+      <a href="https://store.steampowered.com/" data-toggle="tooltip" title="Steam"><i class="fa-brands fa-steam"></i></a>
     </span>
     <span style="display: inline-block; margin: 0.25em; border: 0px solid silver; border-radius: 0.25em; padding: .25em 0.5em">
-      <a href="https://www.yinxiang.com/" title="Evernote"><i class="fa-brands fa-evernote"></i></a>
+      <a href="https://www.yinxiang.com/" data-toggle="tooltip" title="Evernote"><i class="fa-brands fa-evernote"></i></a>
     </span>
     <span style="display: inline-block; margin: 0.25em; border: 0px solid silver; border-radius: 0.25em; padding: .25em 0.5em">
-      <a href="https://www.douban.com/" title="豆瓣"><span class="iconfont icon-douban"></span></a>
+      <a href="https://www.douban.com/" data-toggle="tooltip" title="豆瓣"><span class="iconfont icon-douban"></span></a>
     </span>
     <span style="display: inline-block; margin: 0.25em; border: 0px solid silver; border-radius: 0.25em; padding: .25em 0.5em">
-      <a href="https://colorhunt.co/" title="Color Hunt"><span class="iconfont icon-color"></span></a>
+      <a href="https://colorhunt.co/" data-toggle="tooltip" title="Color Hunt"><span class="iconfont icon-color"></span></a>
     </span>
     <span style="display: inline-block; margin: 0.25em; border: 0px solid silver; border-radius: 0.25em; padding: .25em 0.5em">
-      <a href="https://www.kdocs.cn/latest?from=docs" title="WPS"><span class="iconfont icon-wps"></span></a>
+      <a href="https://www.kdocs.cn/latest?from=docs" data-toggle="tooltip" title="WPS"><span class="iconfont icon-wps"></span></a>
     </span>
     <span style="display: inline-block; margin: 0.25em; border: 0px solid silver; border-radius: 0.25em; padding: .25em 0.5em">
-      <a href="https://cppinsights.io/" title="cpp insights"><span class="iconfont icon-insight"></span></a>
+      <a href="https://cppinsights.io/" data-toggle="tooltip" title="cpp insights"><span class="iconfont icon-insight"></span></a>
     </span>
     <span style="display: inline-block; margin: 0.25em; border: 0px solid silver; border-radius: 0.25em; padding: .25em 0.5em">
-      <a href="https://compiler-explorer.com/" title="compiler explorer"><span class="iconfont icon-compile"></span></a>
+      <a href="https://compiler-explorer.com/" data-toggle="tooltip" title="compiler explorer"><span class="iconfont icon-compile"></span></a>
     </span>
   </div>
 </ul>
@@ -121,9 +141,9 @@ refplus: true
   <li><span class="fa-li"><i class="fa-solid fa-check-square"></i></span>Reinforcement Learning</li>
   <li><span class="fa-li"><i class="fa-solid fa-check-square"></i></span>GAMES 101</li>
   <li><span class="fa-li"><i class="fa-solid fa-check-square"></i></span>GAMES 102</li>
-  <li><span class="fa-li"><i class="fa-inverse fa-solid  fa-heart fa-beat fa-2xs" style="color:Tomato"></i></span>Machine Learning</li>
-  <li><span class="fa-li"><i class="fa-inverse fa-solid  fa-heart fa-beat fa-2xs" style="color:Tomato"></i></span>Modern C++</li>
-  <li><span class="fa-li"><i class="fa-inverse fa-solid  fa-heart fa-beat fa-2xs" style="color:Tomato"></i></span>Reinforcement Learning with `pytorch`</li>
+  <li><span class="fa-li"><i class="fa-inverse fa-solid  fa-heart fa-beat fa-2xs" style="color:Dodgerblue"></i></span>Machine Learning</li>
+  <li><span class="fa-li"><i class="fa-inverse fa-solid  fa-heart fa-beat fa-2xs" style="color:Dodgerblue"></i></span>Modern C++</li>
+  <li><span class="fa-li"><i class="fa-inverse fa-solid  fa-heart fa-beat fa-2xs" style="color:Dodgerblue"></i></span>Reinforcement Learning with `pytorch`</li>
   <li><span class="fa-li"><i class="fa-regular fa-square"></i></span>Stat Quest Deep Learning</li>
   <li><span class="fa-li"><i class="fa-regular fa-square"></i></span>Optimization on Manifolds</li>
   <li><span class="fa-li"><i class="fa-regular fa-square"></i></span>Cuda</li>
