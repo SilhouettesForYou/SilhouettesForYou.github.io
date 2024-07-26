@@ -62,16 +62,10 @@ refplus: true
 
 ***
 
-<div class="toast-container position-fixed bottom-0 start-50 translate-middle p-6">
-  <div class="toast fade text-bg-success hide" id="liveToast" role="alert">
-    <div class="toast-body">
-      <div class="d-flex gap-4">
-        <span><i class="fa-solid fa-circle-check fa-lg"></i></span>
-        <div class="d-flex flex-grow-1 align-items-center">
-          <span class="fw-semibold">Copied Success!</span>
-          <button type="button" class="btn-close btn-close-white btn-close-sm ms-auto" data-bs-dismiss="toast" aria-label="Close"></button>
-        </div>
-      </div>
+<div class="position-fixed" style="z-index: 1130;right: 42.75%;bottom: 50%;">
+  <div id="liveToast" class="toast hide" role="alert" aria-live="assertive" aria-atomic="true" data-delay="2000">
+    <div class="toast-body text-white bg-success rounded-lg">
+      Copied Success!
     </div>
   </div>
 </div>
