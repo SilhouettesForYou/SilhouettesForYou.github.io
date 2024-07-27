@@ -38,7 +38,7 @@ refplus: true
 <ul class="fa-ul">
   <li><span class="fa-li"><i class="fa-solid fa-code"></i></span>Programming Language</li>
   <div>
-    <span style="display: inline-block; margin: 0.25em; border: 1px solid silver; border-radius: 0.25em; padding: .25em 0.5em">C++</span>
+    <span style="display: inline-block; margin: 0.25em; border: 1px solid silver; border-radius: 0.25em; padding: .25em 0.5em"><span class="iconfont icon-a-C"></span> C++</span>
     <span style="display: inline-block; margin: 0.25em; border: 1px solid silver; border-radius: 0.25em; padding: .25em 0.5em"><i class="fa-brands fa-python"></i> Python</span>
     <span style="display: inline-block; margin: 0.25em; border: 1px solid silver; border-radius: 0.25em; padding: .25em 0.5em">Lua</span>
     <span style="display: inline-block; margin: 0.25em; border: 1px solid silver; border-radius: 0.25em; padding: .25em 0.5em">C#</span>
@@ -71,11 +71,6 @@ refplus: true
 </div>
 
 <ul class="fa-ul">
-  <li><span class="fa-li"><i class="fa-brands fa-safari"></i></span>Websites</li>
-  <div>
-    <span style="display: inline-block; margin: 0.25em; border: 0px solid silver; border-radius: 0.25em; padding: .25em 0.5em"><a href="https://github.com/SilhouettesForYou"><i class="fa-brands fa-github"></i></a></span>
-    <span style="display: inline-block; margin: 0.25em; border: 0px solid silver; border-radius: 0.25em; padding: .25em 0.5em"><a href="https://fyddxwmx.cloud.sealos.io/"><i class="fa-solid fa-hard-drive"></i></a></span>
-  </div>
   <li><span class="fa-li"><i class="fa-solid fa-envelope"></i></span>E-mail</li>
   <div>
     <li><span style="display: inline-block; margin: 0.25em; border: 0px solid silver; border-radius: 0.25em; padding: .25em 0.5em">
@@ -96,6 +91,9 @@ refplus: true
   </div>
   <li><span class="fa-li"><i class="fa-solid fa-link"></i></span>Links</li>
   <div>
+    <span style="display: inline-block; margin: 0.25em; border: 0px solid silver; border-radius: 0.25em; padding: .25em 0.5em">
+      <a href="https://github.com/SilhouettesForYou" data-toggle="tooltip" title="SilhouettesForYou"><i class="fa-brands fa-github"></i></a>
+    </span>
     <span style="display: inline-block; margin: 0.25em; border: 0px solid silver; border-radius: 0.25em; padding: .25em 0.5em">
       <a href="https://www.bilibili.com/" data-toggle="tooltip" title="bilibili"><i class="fa-brands fa-bilibili"></i></a>
     </span>
