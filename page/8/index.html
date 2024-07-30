@@ -461,6 +461,67 @@ mjx-container[display="true"] + br {
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
+        <a href="/2021/11/12/6b21d140a633/" target="_self">
+          各种数据结构及其底层实现
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2021/11/12/6b21d140a633/" target="_self">
+        <div>
+          vector：底层数据结构为数组，支持快速随机访问。 扩容规则为：当新建一个 vector 时，会首先分配一块连续的内存空间，当向其中增加元素是，如果初始分配空间已满，就会引起 vector 扩容。首先重新申请一个 2 倍大的内存空间；然后将原空间的内容拷贝过来；最后将原空间内容进行释放，将内存交还给操作系统。 在插入位置和删除位置之后的多有迭代器和指针引用都会失效，同理，扩容之后的所有迭代器指
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-11-12 10:01" pubdate>
+              2021-11-12
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" class="category-chain-item">数据结构</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">#数据结构</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
         <a href="/2021/11/12/52b937df3194/" target="_self">
           顶点着色器和片元着色器
         </a>
@@ -658,7 +719,7 @@ mjx-container[display="true"] + br {
       
       <a class="index-excerpt index-excerpt__noimg" href="/2021/11/09/f90648db822c/" target="_self">
         <div>
-          投影矩阵  透视投影矩阵推导        对于正交投影（Orthographic Projection）需要把长方体  进行标准化成正方体，相应的变换矩阵是先进行平移变换（将长方体的中心与原点重合），再进行缩放变换（由于标准化的正方体的边长是 2，长宽高要归一化到 2），即：     对于透视投影（Perspective Projection），思路是把视锥体“挤压”成长方体，再对长方体进行归一
+          投影矩阵  透视投影矩阵推导        对于正交投影（Orthographic Projection）需要把长方体  进行标准化成正方体，相应的变换矩阵是先进行平移变换（将长方体的中心与原点重合），再进行缩放变换（由于标准化的正方体的边长是 2，长宽高要归一化到 2），即：         对于透视投影（Perspective Projection），思路是把视锥体“挤压”成长方体，再对长方体
         </div>
       </a>
 
@@ -784,7 +845,7 @@ mjx-container[display="true"] + br {
       
       <a class="index-excerpt index-excerpt__noimg" href="/2021/11/08/ea34a7c058d8/" target="_self">
         <div>
-          C++ 虚函数C++ 虚函数是定义在基类中的函数，子类必须对其进行覆盖。 虚函数的作用 定义子类对象，并调用对象中未被子类重写的基类函数 A。同时在该函数A 中，又调用了已被子类重写的基类函数B。那此时将会调用基类中的函数B，可我们本应该调用的是子类中的函数B。虚函数即能解决这个问题。12345678910111213141516171819202122232425262728#include&l
+          C++ 虚函数C++ 虚函数是定义在基类中的函数，子类必须对其进行覆盖。 虚函数的作用 定义子类对象，并调用对象中未被子类重写的基类函数 A。同时在该函数A 中，又调用了已被子类重写的基类函数B。那此时将会调用基类中的函数B，可我们本应该调用的是子类中的函数B。虚函数即能解决这个问题。  12345678910111213141516171819202122232425262728#include
         </div>
       </a>
 
@@ -885,73 +946,6 @@ mjx-container[display="true"] + br {
             <i class="iconfont icon-tags"></i>
             
               <a href="/tags/Graphics/">#Graphics</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/2021/11/05/3e236ae5c063/" target="_self">
-          日常开发笔记
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2021/11/05/3e236ae5c063/" target="_self">
-        <div>
-          Git 相关 相关命令 分支  git 回退本地修改 12git checkout &lt;filename&gt;git checkout . 切换到分支 12git checkout &lt;branch&gt; # 切换到 &lt;branch&gt; 分支git checkout -b &lt;branch&gt; # 创建 &lt;branch&gt; 分支并切换到该分支 删除分支  删
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-11-05 12:06" pubdate>
-              2021-11-05
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/%E6%97%A5%E5%B8%B8/" class="category-chain-item">日常</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/git/">#git</a>
-            
-              <a href="/tags/unity/">#unity</a>
-            
-              <a href="/tags/c/">#c#</a>
-            
-              <a href="/tags/c/">#c++</a>
             
           </div>
         

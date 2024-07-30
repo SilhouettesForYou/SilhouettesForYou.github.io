@@ -27,7 +27,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://silhouettesforyou.github.io/2022/01/14/e4c1a6355096/lua-gettable.png">
 <meta property="article:published_time" content="2022-01-14T09:10:37.000Z">
-<meta property="article:modified_time" content="2024-07-23T12:46:53.560Z">
+<meta property="article:modified_time" content="2024-07-29T14:23:06.769Z">
 <meta property="article:author" content="Xiaoming">
 <meta property="article:tag" content="lua">
 <meta name="twitter:card" content="summary_large_image">
@@ -410,7 +410,7 @@ p.spoiler {
               <p id="updated-time" class="note note-light" style="display: none">
                 
                   
-                    Last updated on 2024-07-23T20:46:53+08:00
+                    Last updated on 2024-07-29T22:23:06+08:00
                   
                   
 
@@ -424,12 +424,12 @@ p.spoiler {
 
 <p>把 <code>t[k]</code> 值压入堆栈， 这里的 <code>t</code> 是指有效索引 <code>index</code> 指向的值， 而 <code>k</code> 则是栈顶放的值。这个函数会弹出堆栈上的 key（把结果放在栈上相同位置），在 Lua 中这个函数可能触发对应 <code>__index</code> 事件的元方法</p>
 <center>
-    <img src="/2022/01/14/e4c1a6355096/lua-gettable.png" srcset="/img/loading.gif" lazyload>
+    <img src="/2022/01/14/e4c1a6355096/lua-gettable.png" srcset="/img/loading.gif" lazyload alt>
 </center>
 
 <h3 id="lua-settable"><a href="#lua-settable" class="headerlink" title="lua_settable"></a><code>lua_settable</code></h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">void</span> <span class="hljs-title function_">lua_settable</span><span class="hljs-params">(lua_State *L, <span class="hljs-type">int</span> index)</span>;<br></code></pre></td></tr></table></figure>
 
-<p>作一个等价于 <code>t[k] = v</code> 的操作， 这里 <code>t</code> 是一个给定有效索引 <code>index</code> 处的值， <code>v </code>指栈顶的值， 而 <code>k</code> 是栈顶之下的那个值。这个函数会把键和值都从堆栈中弹出。 在 Lua 中这个函数可能触发 <code>__newindex</code> 事件的元方法</p>
+<p>作一个等价于 <code>t[k] = v</code> 的操作， 这里 <code>t</code> 是一个给定有效索引 <code>index</code> 处的值， <code>v</code>指栈顶的值， 而 <code>k</code> 是栈顶之下的那个值。这个函数会把键和值都从堆栈中弹出。 在 Lua 中这个函数可能触发 <code>__newindex</code> 事件的元方法</p>
 <h3 id="lua-rawset-amp-lua-rawget"><a href="#lua-rawset-amp-lua-rawget" class="headerlink" title="lua_rawset &amp; lua_rawget"></a><code>lua_rawset</code> &amp; <code>lua_rawget</code></h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">void</span> <span class="hljs-title function_">lua_rawset</span><span class="hljs-params">(lua_State *L, <span class="hljs-type">int</span> index)</span>;<br><span class="hljs-type">void</span> <span class="hljs-title function_">lua_rawget</span><span class="hljs-params">(lua_State *L, <span class="hljs-type">int</span> index)</span>;<br></code></pre></td></tr></table></figure>
 
 <p><code>lua_rawset</code>类似于 <code>lua_settable</code>， 但是是作一个直接赋值，不触发元方法；<code>lua_rawget</code> 类似于<code>lua_gettable</code>， 但是作一次直接访问，不触发元方法</p>

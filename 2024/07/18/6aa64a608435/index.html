@@ -26,7 +26,7 @@
 <meta property="og:description" content="▶generic composition                                  “generic composition”可以拆分为两部分来解释，即“generic”和“composition”。Generic：含义：通用的、普遍的。应用领域：计算机编程：用于描述可以处理不同种类数据类型的程序或类。商业领域：许多公司选择采用通用">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2024-07-18T09:21:18.000Z">
-<meta property="article:modified_time" content="2024-07-23T12:46:53.587Z">
+<meta property="article:modified_time" content="2024-07-30T13:36:05.712Z">
 <meta property="article:author" content="Xiaoming">
 <meta property="article:tag" content="翻译">
 <meta property="article:tag" content="Terminology">
@@ -348,7 +348,7 @@ p.spoiler {
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.2k words
+          2.3k words
         
       </span>
     
@@ -359,7 +359,7 @@ p.spoiler {
         
         
         
-          19 mins
+          20 mins
         
       </span>
     
@@ -409,7 +409,7 @@ p.spoiler {
               <p id="updated-time" class="note note-light" style="display: none">
                 
                   
-                    Last updated on 2024-07-23T20:46:53+08:00
+                    Last updated on 2024-07-30T21:36:05+08:00
                   
                   
 
@@ -463,6 +463,18 @@ p.spoiler {
       <div class="fold-collapse collapse" id="collapse-843260ee">
         <div class="fold-content">
           <p>Trivial types（平凡类型）在 C++ 中是一个重要的概念，特别是在处理对象复制和内存布局时。以下是对 Trivial types 的详细解释：</p><ul><li><strong>定义 </strong>：<ul><li>Trivial types 指的是在内存中表示连续的一片空间，可以像内置类型或者 C 的结构体、联合体一样进行操作的对象。它可以是一个类（class）或结构体（struct）。</li><li> 它拥有编译器生成的默认构造、析构、拷贝构造和赋值运算符，这些函数都是平凡的（即它们没有执行任何额外的操作，仅仅是按照内存布局进行复制或销毁）。</li></ul></li><li><strong>特性 </strong>：<ul><li> 平凡类型的对象可以直接拷贝到 <code>char</code> 或<code>unsigned char</code>数组，然后再拷贝回来，其类型仍然保持不变。这意味着它们可以安全地进行序列化和反序列化。</li><li>平凡类型通常用于需要对数据进行底层操作和通过 <code>memcpy</code> 等内存复制函数进行快速复制的情况。</li></ul></li><li><strong>条件 </strong>：<ul><li> 一个类型要被认为是 Trivial type，它必须满足以下条件：</li><li>有默认构造、析构、拷贝构造、赋值运算符，这些函数可以是编译器自动生成的，也可以是用户显式地通过 <code>default</code> 关键字声明的。</li><li>没有虚函数、虚基类和虚继承。</li></ul></li><li><strong>与其他类型的关系 </strong>：<ul><li>Trivial types 是标准布局类型（Standard Layout Types）的一个子集，它们除了满足标准布局类型的条件外，还需要满足上述的平凡性条件。</li><li>POD（Plain Old Data）类型在 C++11 之前是一个更广泛的概念，它包含了 Trivial types 和标准布局类型。但从 C++11 开始，POD 的概念逐渐被更细致的 Trivial types 和 Standard-Layout types 概念所替代。</li></ul></li><li><strong> 用途 </strong>：<ul><li> 由于其平凡性，Trivial types 在内存管理和对象复制方面提供了很大的灵活性。它们可以直接通过内存操作函数（如 <code>memcpy</code>、<code>memmove</code>）进行复制，而无需考虑对象的内部结构和状态。</li><li> 这种类型在与其他语言或系统交互时特别有用，因为它们具有确定的内存布局和简单的复制语义。</li></ul></li><li><strong>示例 </strong>：<ul><li> 一个只包含基础数据类型（如 <code>int</code>、<code>float</code>）和 / 或平凡类型的数组作为成员的类，可以被视为一个 Trivial type。</li></ul></li></ul><p> 总之，Trivial types 是 C++ 中一个非常重要的概念，它们在内存管理、对象复制以及与其他系统交互等方面具有重要的作用。</p>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="fold">
+      <div class="fold-title fold-light collapsed" data-toggle="collapse" href="#collapse-c972cc4a" role="button" aria-expanded="false" aria-controls="collapse-c972cc4a">
+        <div class="fold-arrow">▶</div>Thread Engine
+      </div>
+      <div class="fold-collapse collapse" id="collapse-c972cc4a">
+        <div class="fold-content">
+          <p>Thread Engine（线程引擎）在计算机科学中是一个负责管理和调度线程执行的组件或系统。它对于实现多线程编程、提高程序并发执行效率至关重要。</p>
         </div>
       </div>
     </div>

@@ -27,7 +27,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://silhouettesforyou.github.io/2021/11/22/92307bbcfe44/lua-gc.png">
 <meta property="article:published_time" content="2021-11-22T01:46:21.000Z">
-<meta property="article:modified_time" content="2024-07-23T12:46:53.557Z">
+<meta property="article:modified_time" content="2024-07-29T14:23:06.753Z">
 <meta property="article:author" content="Xiaoming">
 <meta property="article:tag" content="lua">
 <meta name="twitter:card" content="summary_large_image">
@@ -410,7 +410,7 @@ p.spoiler {
               <p id="updated-time" class="note note-light" style="display: none">
                 
                   
-                    Last updated on 2024-07-23T20:46:53+08:00
+                    Last updated on 2024-07-29T22:23:06+08:00
                   
                   
 
@@ -446,7 +446,7 @@ p.spoiler {
 <p>如果对象设置一个元表，且元表有 <code>__gc</code> 元方法，那么它会从 <code>allgc</code> 取出，加入到 <code>finobj</code> 去，并设置对象的 <code>FINALIZEDBIT</code> 标记为。</p>
 <p>在标记阶段，<code>finobj</code>中的白对象会移到 <code>tobefnz</code> 链表去，然后标记这些对象，这样当前周期不会释放这些对象；清除完之后会进入 <code>GCScallfin</code> 阶段，在这里调用 <code>tobefnz</code> 对象的 gc 方法，同时把对象移回 <code>allgc</code> 链表；如果 gc 中使对象重新变成可到达，则对象复活过来；否则下个周期这个对象就会被正常清除。</p>
 <p><code>fixedgc</code>是那些不会被回收的对象，在新建完对象后，必须马上调用 <code>luaC_fic</code> 把对象从 <code>allgc</code> 移到 <code>fixedgc</code> 去。GC 的过程不会对 <code>fixedgc</code> 进行清除。</p>
-<p><img src="/2021/11/22/92307bbcfe44/lua-gc.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2021/11/22/92307bbcfe44/lua-gc.png" srcset="/img/loading.gif" lazyload alt="&quot;&quot;"></p>
 <p>luajit 使用状态机来执行 gc 算法，共有 6 中状态：</p>
 <ul>
 <li><strong><code>GCSpause</code>：</strong> gc 开始阶段，初始化一些属性，将一些跟节点（主线程对象，主线程环境对象，全局对象等）push 到灰色链表中</li>
@@ -458,12 +458,16 @@ p.spoiler {
 </ul>
 <h5 id="什么时候会导致 -gc"><a href="# 什么时候会导致 -gc" class="headerlink" title="什么时候会导致 gc"></a>什么时候会导致 gc</h5><p><code>global_state</code>有两个字段是关于 Lua 的内存统计的：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs c++">l_mem totalbytes;<br>l_mem GCdebt;<br></code></pre></td></tr></table></figure>
+
 <p>在 <code>lua_newstate</code> 函数里，这两个字段初始为：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs c++">g-&gt;totalbytes = <span class="hljs-built_in">sizeof</span>(LG);<br>g-&gt;GCdebt = <span class="hljs-number">0</span>;<br></code></pre></td></tr></table></figure>
+
 <p>在内存分配函数 <code>luaM_realloc_</code> 里，会根据分配或释放内存调整 <code>GCdebt</code> 的值：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-type">void</span> *<span class="hljs-title">luaM_realloc_</span><span class="hljs-params">(lua_State* L, <span class="hljs-type">void</span>* block, <span class="hljs-type">size_t</span> osize, <span class="hljs-type">size_t</span>, nsize)</span> </span>&#123;<br>    ...<br>    g-&gt;GCdebt = (g-&gt;GCdebt + nsize) - realosize;<br>    ...<br>&#125;<br></code></pre></td></tr></table></figure>
+
 <p>判断是否触发 GC 的宏是：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">define</span> lauC_condGC(L, pre, pos) \</span><br><span class="hljs-meta">    &#123; <span class="hljs-keyword">if</span> (G(L)-&gt;GCdebt &gt; 0) &#123; pre; luaC_step(L); pos; &#125;; \</span><br><span class="hljs-meta">        condchangemem(L, pre, pos); &#125;</span><br></code></pre></td></tr></table></figure>
+
 <p><code>g-&gt;GCdebt</code>如果大于 0，就执行一次<code>luaC_step</code>。</p>
 <h5 id="回收控制"><a href="# 回收控制" class="headerlink" title="回收控制"></a>回收控制 </h5><p><code>luaC_step</code> 执行一步 GC：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">luaC_step</span><span class="hljs-params">(lua_State* L)</span> </span>&#123;<br>    global_State* g = <span class="hljs-built_in">G</span>(L);<br>    <span class="hljs-comment">// 1. 计算 GC 的内存债务</span><br>    l_mem debt = <span class="hljs-built_in">getdebt</span>(g);<br>    ...<br>    <span class="hljs-comment">// 2. 循环执行 singlestep，知道 GC 周期完毕，或 debt 小于某个值</span><br>    <span class="hljs-keyword">do</span> &#123;<br>        lu_mem work = <span class="hljs-built_in">singlestep</span>(L);<br>        debt -= work;<br>    &#125; <span class="hljs-keyword">while</span> (debt &gt; -GCSTEPSIZE &amp;&amp; g-&gt;gcstate != GCSpause);<br>    <br>    <span class="hljs-comment">// 3. 如果 GC 结束，计算下一个阈值</span><br>    <span class="hljs-keyword">if</span> (g-&gt;gcstate == GCSpause)<br>        <span class="hljs-built_in">setpause</span>(g);<br>    <span class="hljs-keyword">else</span> &#123;<br>    <span class="hljs-comment">// 4. 否则计算下一次触发的时机</span><br>        debt = (debt / g-&gt;gcstepmul) * STEPMULADJ;<br>        <span class="hljs-built_in">luaE_setdebt</span>(g, debt);<br>        <span class="hljs-built_in">runafewinalizers</span>(L);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
