@@ -128,20 +128,55 @@ refplus: true
 
 ***
 
-<ul class="fa-ul">
-  <li><span class="fa-li"><i class="fa-solid fa-check-square"></i></span>Mathematical Programming</li>
-  <li><span class="fa-li"><i class="fa-solid fa-check-square"></i></span>Reinforcement Learning</li>
-  <li><span class="fa-li"><i class="fa-solid fa-check-square"></i></span>GAMES 101</li>
-  <li><span class="fa-li"><i class="fa-solid fa-check-square"></i></span>GAMES 102</li>
-  <li><span class="fa-li"><i class="fa-inverse fa-solid  fa-heart fa-beat fa-2xs" style="color:Dodgerblue"></i></span>Machine Learning</li>
-  <li><span class="fa-li"><i class="fa-inverse fa-solid  fa-heart fa-beat fa-2xs" style="color:Dodgerblue"></i></span>Modern C++</li>
-  <li><span class="fa-li"><i class="fa-inverse fa-solid  fa-heart fa-beat fa-2xs" style="color:Dodgerblue"></i></span>Reinforcement Learning with `pytorch`</li>
-  <li><span class="fa-li"><i class="fa-regular fa-square"></i></span>Stat Quest Deep Learning</li>
-  <li><span class="fa-li"><i class="fa-regular fa-square"></i></span>Optimization on Manifolds</li>
-  <li><span class="fa-li"><i class="fa-regular fa-square"></i></span>Cuda</li>
-  <li><span class="fa-li"><i class="fa-regular fa-square"></i></span>Transformer</li>
-  <li><span class="fa-li"><i class="fa-regular fa-square"></i></span>Optimal Transportation</li>
-</ul>
+<div class="card-deck">
+  <div class="card text-white bg-success mb-3">
+    <!-- <i class="fa-solid fa-thumbtack"></i> -->
+    <div class="card-body">
+      <h5 class="card-title">Done</h5>
+      <ul class="fa-ul">
+        <li><span class="fa-li"><i class="fa-solid fa-circle-check"></i></span>Mathematical Programming</li>
+        <li><span class="fa-li"><i class="fa-solid fa-circle-check"></i></span>Reinforcement Learning</li>
+        <li><span class="fa-li"><i class="fa-solid fa-circle-check"></i></span>GAMES 101</li>
+        <li><span class="fa-li"><i class="fa-solid fa-circle-check"></i></span>GAMES 102</li>
+      </ul>
+    </div>
+  </div>
+  <div class="card text-white bg-primary mb-3">
+    <!-- <i class="fa-solid fa-thumbtack"></i> -->
+    <div class="card-body">
+      <h5 class="card-title">Ongoing</h5>
+      <ul class="fa-ul">
+        <li><span class="fa-li"><i class="fa-inverse fa-solid  fa-heart fa-beat fa-2xs"></i></span>Machine Learning</li>
+        <li><span class="fa-li"><i class="fa-inverse fa-solid  fa-heart fa-beat fa-2xs"></i></span>Modern C++</li>
+        <li><span class="fa-li"><i class="fa-inverse fa-solid  fa-heart fa-beat fa-2xs"></i></span>Reinforcement Learning with <code>pytorch</code></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="card text-white bg-dark bg- mb-3">
+  <!-- <i class="fa-solid fa-thumbtack"></i> -->
+    <div class="card-body">
+      <h5 class="card-title">Planning</h5>
+      <div class="container">
+        <div class="row">
+            <div class="col">
+              <ul class="fa-ul">
+                <li><span class="fa-li"><i class="fa-regular fa-circle"></i></span>Stat Quest Deep Learning</li>
+                <li><span class="fa-li"><i class="fa-regular fa-circle"></i></span>Cuda</li>
+                <li><span class="fa-li"><i class="fa-regular fa-circle"></i></span>Optimal Transportation</li>
+              </ul>
+            </div>
+            <div class="col">
+              <ul class="fa-ul">
+                <li><span class="fa-li"><i class="fa-regular fa-circle"></i></span>Optimization on Manifolds</li>
+                <li><span class="fa-li"><i class="fa-regular fa-circle"></i></span>Transformer</li>
+              </ul>
+            </div>
+        </div>
+      </div>
+    </div>
+</div>
 
 ### <i class="fa-regular fa-face-grin-stars"></i> Hobbies
 
