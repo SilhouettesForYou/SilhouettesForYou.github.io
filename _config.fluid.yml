@@ -239,8 +239,9 @@ custom_js:
 custom_css:
 
 custom_html:
-  <link rel="stylesheet" href="//at.alicdn.com/t/c/font_4625503_mwf1rzbm81g.css">
+  <link rel="stylesheet" href="//at.alicdn.com/t/c/font_4625503_x1zx7x2eda8.css">
   <script src="https://kit.fontawesome.com/8e800a3a44.js" crossorigin="anonymous"></script>
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.13.3/jquery-ui.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -319,7 +320,7 @@ lazyload:
 
 # 图标库，包含了大量社交类图标，主题依赖的不包含在内，因此可自行修改，详见 https://hexo.fluid-dev.com/docs/icon/
 # Icon library, which includes many social icons, does not include those theme dependent, so your can modify link by yourself. See: https://hexo.fluid-dev.com/docs/en/icon/
-iconfont: //at.alicdn.com/t/font_1736178_lbnruvf0jn.css
+iconfont: //at.alicdn.com/t/c/font_4625503_x1zx7x2eda8.css
 
 
 #---------------------------
@@ -364,6 +365,14 @@ navbar:
           { key: "OneDrive", link: "https://onedrive-vercel-index-xi-liard.vercel.app/", icon: "iconfont icon-onedrive", target: "_blank" },
           { key: "Aliyun", link: "https://fyddxwmx.cloud.sealos.io/", icon: "iconfont icon-aliyun", target: "_blank" },
           { key: "Other Storages", link: "https://manual-maryl-silhouette-7fc7ff34.koyeb.app/", icon: "iconfont icon-storage", target: "_blank" }
+        ]
+      }
+    - {
+        key: "Jupyter Notebooks",
+        icon: "iconfont icon-jupyter",
+        submenu: [
+          { key: "Pytorch Tutorial", link: "/notebooks/pages/Pytorch-Tutorial.html", icon: "iconfont icon-pytorch" },
+          { key: "RL Tutorial", link: "/notebooks/pages/RL-Tutorial.html", icon: "iconfont icon-reinforcement-learning" }
         ]
       }
 
@@ -984,7 +993,7 @@ about:
 # Custom Page through `hexo new page`
 #---------------------------
 page:
-  banner_img: /img/about.jpg
+  banner_img: /img/default.png
   banner_img_height: 60
   banner_mask_alpha: 0.3
 

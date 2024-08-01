@@ -62,6 +62,7 @@
     "live2d-widget-model-hijiki": "^1.0.5",
     "live2d-widget-model-wanko": "^1.0.5",
     "markdown-it-ruby": "^0.1.1",
+    "nprogress": "^0.2.0",
     "save-dev": "^0.0.1-security"
   }
 }
