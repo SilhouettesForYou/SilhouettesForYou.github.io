@@ -121,6 +121,15 @@ refplus: true
     <span style="display: inline-block; margin: 0.25em; border: 0px solid silver; border-radius: 0.25em; padding: .25em 0.5em">
       <a href="https://compiler-explorer.com/" data-toggle="tooltip" title="compiler explorer"><span class="iconfont icon-compile"></span></a>
     </span>
+    <span style="display: inline-block; margin: 0.25em; border: 0px solid silver; border-radius: 0.25em; padding: .25em 0.5em">
+      <a href="https://www.pinterest.com/" data-toggle="tooltip" title="pinterest"><i class="fa-brands fa-pinterest"></i></a>
+    </span>
+    <span style="display: inline-block; margin: 0.25em; border: 0px solid silver; border-radius: 0.25em; padding: .25em 0.5em">
+      <a href="https://www.wallpaperhub.app/" data-toggle="tooltip" title="wallpaperhub"><i class="fa-regular fa-image"></i></a>
+    </span>
+    <span style="display: inline-block; margin: 0.25em; border: 0px solid silver; border-radius: 0.25em; padding: .25em 0.5em">
+      <a href="https://unsplash.com/" data-toggle="tooltip" title="unsplash"><i class="fa-brands fa-unsplash"></i></a>
+    </span>
   </div>
 </ul>
 
@@ -162,15 +171,15 @@ refplus: true
         <div class="row">
             <div class="col">
               <ul class="fa-ul">
-                <li><span class="fa-li"><i class="fa-regular fa-circle"></i></span>Stat Quest Deep Learning</li>
-                <li><span class="fa-li"><i class="fa-regular fa-circle"></i></span>Cuda</li>
-                <li><span class="fa-li"><i class="fa-regular fa-circle"></i></span>Optimal Transportation</li>
+                <li><span class="fa-li"><i class="fa-regular fa-square"></i></span>Stat Quest Deep Learning</li>
+                <li><span class="fa-li"><i class="fa-regular fa-square"></i></span>Cuda</li>
+                <li><span class="fa-li"><i class="fa-regular fa-square"></i></span>Optimal Transportation</li>
               </ul>
             </div>
             <div class="col">
               <ul class="fa-ul">
-                <li><span class="fa-li"><i class="fa-regular fa-circle"></i></span>Optimization on Manifolds</li>
-                <li><span class="fa-li"><i class="fa-regular fa-circle"></i></span>Transformer</li>
+                <li><span class="fa-li"><i class="fa-regular fa-square"></i></span>Optimization on Manifolds</li>
+                <li><span class="fa-li"><i class="fa-regular fa-square"></i></span>Transformer</li>
               </ul>
             </div>
         </div>
