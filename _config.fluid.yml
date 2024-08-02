@@ -239,7 +239,7 @@ custom_js:
 custom_css:
 
 custom_html:
-  <link rel="stylesheet" href="//at.alicdn.com/t/c/font_4625503_x1zx7x2eda8.css">
+  <link rel="stylesheet" href="//at.alicdn.com/t/c/font_4625503_8j4kic2ox3k.css">
   <script src="https://kit.fontawesome.com/8e800a3a44.js" crossorigin="anonymous"></script>
   <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -320,7 +320,7 @@ lazyload:
 
 # 图标库，包含了大量社交类图标，主题依赖的不包含在内，因此可自行修改，详见 https://hexo.fluid-dev.com/docs/icon/
 # Icon library, which includes many social icons, does not include those theme dependent, so your can modify link by yourself. See: https://hexo.fluid-dev.com/docs/en/icon/
-iconfont: //at.alicdn.com/t/c/font_4625503_x1zx7x2eda8.css
+iconfont: //at.alicdn.com/t/c/font_4625503_8j4kic2ox3k.css
 
 
 #---------------------------
@@ -480,7 +480,7 @@ footer:
 index:
   # 首页 Banner 头图，可以是相对路径或绝对路径，以下相同
   # Path of Banner image, can be a relative path or an absolute path, the same on other pages
-  banner_img: /img/index.jpg
+  banner_img: /img/Hayao-Miyazaki/index.jpg
 
   # 头图高度，屏幕百分比
   # Height ratio of banner image
@@ -552,7 +552,7 @@ index:
 # Post Page
 #---------------------------
 post:
-  banner_img: /img/post.jpg
+  banner_img: /img/Hayao-Miyazaki/post.jpg
   banner_img_height: 70
   banner_mask_alpha: 0.3
 
@@ -915,7 +915,7 @@ discuss:
 # Archive Page
 #---------------------------
 archive:
-  banner_img: /img/archive.jpg
+  banner_img: /img/Hayao-Miyazaki/archive.jpg
   banner_img_height: 60
   banner_mask_alpha: 0.3
 
@@ -926,7 +926,7 @@ archive:
 #---------------------------
 category:
   enable: true
-  banner_img: /img/category.jpg
+  banner_img: /img/Hayao-Miyazaki/category.jpg
   banner_img_height: 60
   banner_mask_alpha: 0.3
 
@@ -955,7 +955,7 @@ category:
 #---------------------------
 tag:
   enable: true
-  banner_img: /img/tag.png
+  banner_img: /img/Hayao-Miyazaki/tag.jpg
   banner_img_height: 80
   banner_mask_alpha: 0.3
   tagcloud:
@@ -972,7 +972,7 @@ tag:
 #---------------------------
 about:
   enable: true
-  banner_img: /img/about.jpg
+  banner_img: /img/Hayao-Miyazaki/about.jpg
   banner_img_height: 60
   banner_mask_alpha: 0.3
   avatar: /img/avatar.png
@@ -993,7 +993,7 @@ about:
 # Custom Page through `hexo new page`
 #---------------------------
 page:
-  banner_img: /img/default.png
+  banner_img: /img/Hayao-Miyazaki/default.jpg
   banner_img_height: 60
   banner_mask_alpha: 0.3
 
@@ -1004,7 +1004,7 @@ page:
 #---------------------------
 page404:
   enable: true
-  banner_img: /img/index.jpg
+  banner_img: /img/Hayao-Miyazaki/index.jpg
   banner_img_height: 85
   banner_mask_alpha: 0.3
   # 重定向到首页的延迟(毫秒)
@@ -1018,7 +1018,7 @@ page404:
 #---------------------------
 links:
   enable: true
-  banner_img: /img/index.jpg
+  banner_img: /img/Hayao-Miyazaki/index.jpg
   banner_img_height: 60
   banner_mask_alpha: 0.3
   # 友链的成员项

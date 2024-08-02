@@ -130,6 +130,12 @@ refplus: true
     <span style="display: inline-block; margin: 0.25em; border: 0px solid silver; border-radius: 0.25em; padding: .25em 0.5em">
       <a href="https://unsplash.com/" data-toggle="tooltip" title="unsplash"><i class="fa-brands fa-unsplash"></i></a>
     </span>
+    <span style="display: inline-block; margin: 0.25em; border: 0px solid silver; border-radius: 0.25em; padding: .25em 0.5em">
+      <a href="https://chatgpt.com/" data-toggle="tooltip" title="ChatGPT"><span class="iconfont icon-openai"></span></a>
+    </span>
+    <span style="display: inline-block; margin: 0.25em; border: 0px solid silver; border-radius: 0.25em; padding: .25em 0.5em">
+      <a href="https://www.ilovepdf.com/" data-toggle="tooltip" title="unsplash"><span class="iconfont icon-ilovepdf"></a>
+    </span>
   </div>
 </ul>
 
