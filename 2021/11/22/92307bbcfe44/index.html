@@ -9,8 +9,8 @@
 <link rel="stylesheet" href="/css/bilicard.css">
 <link href="https://cdn.jsdelivr.net/npm/hexo-tag-common@0.0.5/css/index.css" rel="stylesheet"/><!-- hexo injector head_begin end -->
   <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/img/breaking-bad.png">
-  <link rel="icon" href="/img/breaking-bad.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/Hayao-Miyazaki/jiji.png">
+  <link rel="icon" href="/img/Hayao-Miyazaki/jiji.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
@@ -27,7 +27,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://silhouettesforyou.github.io/2021/11/22/92307bbcfe44/lua-gc.png">
 <meta property="article:published_time" content="2021-11-22T01:46:21.000Z">
-<meta property="article:modified_time" content="2024-07-29T14:23:06.753Z">
+<meta property="article:modified_time" content="2024-08-05T01:36:44.128Z">
 <meta property="article:author" content="Xiaoming">
 <meta property="article:tag" content="lua">
 <meta name="twitter:card" content="summary_large_image">
@@ -58,7 +58,7 @@
 
 
 
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_4625503_8j4kic2ox3k.css">
 
 
 <link  rel="stylesheet" href="/css/main.css" />
@@ -297,6 +297,38 @@ p.spoiler {
             </li>
           
         
+          
+          
+          
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" href="javascript:;" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="iconfont icon-jupyter"></i>
+                <span>Jupyter Notebooks</span>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/notebooks/pages/Pytorch-Tutorial.html" target="_self">
+                    <i class="iconfont icon-pytorch"></i>
+                    <span>Pytorch Tutorial</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/notebooks/pages/RL-Tutorial.html" target="_self">
+                    <i class="iconfont icon-reinforcement-learning"></i>
+                    <span>RL Tutorial</span>
+                  </a>
+                
+              </div>
+            </li>
+          
+        
         
           <li class="nav-item" id="search-btn">
             <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
@@ -320,7 +352,7 @@ p.spoiler {
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/img/post.jpg') no-repeat center center; background-size: cover;">
+     style="background: url('/img/Hayao-Miyazaki/post.jpg') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
@@ -410,7 +442,7 @@ p.spoiler {
               <p id="updated-time" class="note note-light" style="display: none">
                 
                   
-                    Last updated on 2024-07-29T22:23:06+08:00
+                    Last updated on 2024-08-05T09:36:44+08:00
                   
                   
 
@@ -446,7 +478,7 @@ p.spoiler {
 <p>如果对象设置一个元表，且元表有 <code>__gc</code> 元方法，那么它会从 <code>allgc</code> 取出，加入到 <code>finobj</code> 去，并设置对象的 <code>FINALIZEDBIT</code> 标记为。</p>
 <p>在标记阶段，<code>finobj</code>中的白对象会移到 <code>tobefnz</code> 链表去，然后标记这些对象，这样当前周期不会释放这些对象；清除完之后会进入 <code>GCScallfin</code> 阶段，在这里调用 <code>tobefnz</code> 对象的 gc 方法，同时把对象移回 <code>allgc</code> 链表；如果 gc 中使对象重新变成可到达，则对象复活过来；否则下个周期这个对象就会被正常清除。</p>
 <p><code>fixedgc</code>是那些不会被回收的对象，在新建完对象后，必须马上调用 <code>luaC_fic</code> 把对象从 <code>allgc</code> 移到 <code>fixedgc</code> 去。GC 的过程不会对 <code>fixedgc</code> 进行清除。</p>
-<p><img src="/2021/11/22/92307bbcfe44/lua-gc.png" srcset="/img/loading.gif" lazyload alt="&quot;&quot;"></p>
+<p><img src="/2021/11/22/92307bbcfe44/lua-gc.png" srcset="/img/loading.gif" lazyload></p>
 <p>luajit 使用状态机来执行 gc 算法，共有 6 中状态：</p>
 <ul>
 <li><strong><code>GCSpause</code>：</strong> gc 开始阶段，初始化一些属性，将一些跟节点（主线程对象，主线程环境对象，全局对象等）push 到灰色链表中</li>
@@ -689,7 +721,7 @@ p.spoiler {
     
       <div class="col-lg-7 mx-auto nopadding-x-md">
         <div class="container custom mx-auto">
-          <link rel="stylesheet" href="//at.alicdn.com/t/c/font_4625503_mwf1rzbm81g.css"> <script src="https://kit.fontawesome.com/8e800a3a44.js" crossorigin="anonymous"></script> <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script> <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.13.3/jquery-ui.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script> <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script> <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.8/umd/popper.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script> <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.11/clipboard.min.js" crossorigin="anonymous" referrerpolicy="no-referrer">
+          <link rel="stylesheet" href="//at.alicdn.com/t/c/font_4625503_8j4kic2ox3k.css"> <script src="https://kit.fontawesome.com/8e800a3a44.js" crossorigin="anonymous"></script> <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script> <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script> <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.13.3/jquery-ui.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script> <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script> <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.8/umd/popper.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script> <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.11/clipboard.min.js" crossorigin="anonymous" referrerpolicy="no-referrer">
         </div>
       </div>
     
