@@ -28,7 +28,8 @@ refplus: true
 
 <ul class="fa-ul">
   <li><span class="fa-li"><i class="fa-solid fa-asterisk fa-spin"></i></span>2019/07 - 2021/10 | Giant Network</li>
-  <li><span class="fa-li"><i class="fa-solid fa-asterisk fa-spin"></i></span>2021/10 - by far | Huanle Entertainment (Shanghai) Technology co., Ltd.</li>
+  <li><span class="fa-li"><i class="fa-solid fa-asterisk fa-spin"></i></span>2021/10 - 2024/08 | Huanle Entertainment (Shanghai) Technology co., Ltd.</li>
+  <li><span class="fa-li"><i class="fa-solid fa-asterisk fa-spin"></i></span>2024/08 - by far | BYD Auto Industry Company Ltd.</li>
 </ul>
 
 ### <i class="fa-solid fa-gear fa-spin"></i></i> Skills
