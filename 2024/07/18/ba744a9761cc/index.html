@@ -27,7 +27,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://silhouettesforyou.github.io/img/teasers/65-teaser.png">
 <meta property="article:published_time" content="2024-07-18T10:10:24.000Z">
-<meta property="article:modified_time" content="2024-08-14T15:32:12.857Z">
+<meta property="article:modified_time" content="2024-08-15T15:44:23.184Z">
 <meta property="article:author" content="Xiaoming">
 <meta property="article:tag" content="C++">
 <meta property="article:tag" content="Modern C++">
@@ -383,7 +383,7 @@ p.spoiler {
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          25k words
+          26k words
         
       </span>
     
@@ -394,7 +394,7 @@ p.spoiler {
         
         
         
-          208 mins
+          213 mins
         
       </span>
     
@@ -444,7 +444,7 @@ p.spoiler {
               <p id="updated-time" class="note note-light" style="display: none">
                 
                   
-                    Last updated on 2024-08-14T23:32:12+08:00
+                    Last updated on 2024-08-15T23:44:23+08:00
                   
                   
 
@@ -674,7 +674,7 @@ p.spoiler {
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span><br> <span class="hljs-function"><span class="hljs-keyword">template</span>&lt;<span class="hljs-keyword">decltype</span>(<span class="hljs-keyword">auto</span>) N&gt;</span><br><span class="hljs-function"> <span class="hljs-type">void</span> <span class="hljs-title">f</span><span class="hljs-params">()</span> </span>&#123;<br>    std::cout &lt;&lt; N &lt;&lt; std::endl;<br> &#125;<br> <span class="hljs-type">static</span> <span class="hljs-type">const</span> <span class="hljs-type">int</span> x = <span class="hljs-number">11</span>;<br> <span class="hljs-type">static</span> <span class="hljs-type">int</span> y = <span class="hljs-number">7</span>;<br> <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>    <span class="hljs-built_in">f</span>&lt;x&gt;();   <span class="hljs-comment">// N 为 const int 类型</span><br>    <span class="hljs-built_in">f</span>&lt;(x)&gt;(); <span class="hljs-comment">// N 为 const int&amp; 类型</span><br>    <span class="hljs-built_in">f</span>&lt;y&gt;();   <span class="hljs-comment">// 编译失败，因为 y 不是一个常量，编译器无法对函数模板进行实例化</span><br>    <span class="hljs-built_in">f</span>&lt;(y)&gt;(); <span class="hljs-comment">// N 为 int&amp; 类型，恰好对于静态对象而言内存地址时固定的，所以可以通过编译</span><br> &#125;<br></code></pre></td></tr></table></figure>
 </li>
 </ul>
-<h2 id="05- 函数返回类型后置 -swig￼187">05 函数返回类型后置 <span class="label label-info">C++ 11</span></h2>
+<h2 id="05- 函数返回类型后置 -swig￼194">05 函数返回类型后置 <span class="label label-info">C++ 11</span></h2>
 <ul>
 <li>
 <p>返回类型比较复杂的是时候，比如返回一个函数指针类型，使用返回类型后置</p>
@@ -2056,7 +2056,7 @@ p.spoiler {
 </ul>
 </li>
 </ul>
-<h3 id="常量表达式函数的增强 -swig￼233">常量表达式函数的增强 <span class="label label-warning">C++ 14</span></h3>
+<h3 id="常量表达式函数的增强 -swig￼240">常量表达式函数的增强 <span class="label label-warning">C++ 14</span></h3>
 <ul>
 <li>
 <p>函数体允许声明变量，除了没有初始化、<code>static</code>和 <code>thread_local</code> 变量</p>
@@ -2141,7 +2141,7 @@ p.spoiler {
     </div>
   </div>
 </div>
-<h3 id="constexpr 其他特性 -swig￼236"><code>constexpr</code>其他特性 <span class="label label-primary">C++ 20</span></h3>
+<h3 id="constexpr 其他特性 -swig￼243"><code>constexpr</code>其他特性 <span class="label label-primary">C++ 20</span></h3>
 <ul>
 <li>
 <p>允许 <code>constexpr</code> 虚函数</p>
@@ -2382,7 +2382,7 @@ p.spoiler {
 </ul>
 </li>
 </ul>
-<h2 id="属性说明符和标准属性">属性说明符和标准属性</h2>
+<h2 id="31- 属性说明符和标准属性">31 属性说明符和标准属性</h2>
 <ul>
 <li>标准属性说明符语法 <span class="label label-info">C++ 11</span>
 <ul>
@@ -2441,8 +2441,89 @@ p.spoiler {
 <li>对类或者枚举类型本身并不起作用，只有当被声明为 <code>nodiscard</code> 属性的类或者枚举类型被当作函数返回值的时候才发挥作用</li>
 <li><code>nodiscard</code>属性只适用于返回值类型的函数，对于返回引用的函数使用 <code>nodiscard</code> 属性是没有作用的</li>
 </ul>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">class</span>[[nodiscard]] X&#123;&#125;;<br>[[nodiscard]] <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">foo</span><span class="hljs-params">()</span> </span>&#123; <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>; &#125;<br><span class="hljs-function">X <span class="hljs-title">bar1</span><span class="hljs-params">()</span> </span>&#123; <span class="hljs-keyword">return</span> <span class="hljs-built_in">X</span>(); &#125;;<br><span class="hljs-function">X&amp; <span class="hljs-title">bar2</span><span class="hljs-params">(X &amp;x)</span> </span>&#123; <span class="hljs-keyword">return</span> x; &#125;;<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>    X x;<br>    <span class="hljs-built_in">foo</span>(); <span class="hljs-comment">// 编译器发出警告</span><br>    <span class="hljs-built_in">bar1</span>(); <span class="hljs-comment">// 编译器发出警告</span><br>    <span class="hljs-built_in">bar2</span>(x); <span class="hljs-comment">// bar 返回引用，nodiscard 不起作用，不会引发警告</span><br>&#125;<br></code></pre></td></tr></table></figure></li>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">class</span>[[nodiscard]] X&#123;&#125;;<br>[[nodiscard]] <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">foo</span><span class="hljs-params">()</span> </span>&#123; <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>; &#125;<br><span class="hljs-function">X <span class="hljs-title">bar1</span><span class="hljs-params">()</span> </span>&#123; <span class="hljs-keyword">return</span> <span class="hljs-built_in">X</span>(); &#125;;<br><span class="hljs-function">X&amp; <span class="hljs-title">bar2</span><span class="hljs-params">(X &amp;x)</span> </span>&#123; <span class="hljs-keyword">return</span> x; &#125;;<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>    X x;<br>    <span class="hljs-built_in">foo</span>(); <span class="hljs-comment">// 编译器发出警告</span><br>    <span class="hljs-built_in">bar1</span>(); <span class="hljs-comment">// 编译器发出警告</span><br>    <span class="hljs-built_in">bar2</span>(x); <span class="hljs-comment">// bar 返回引用，nodiscard 不起作用，不会引发警告</span><br>&#125;<br></code></pre></td></tr></table></figure>
+</li>
+<li>
+<p><code>nodiscard</code>属性支持将一个字符串字面量作为属性的参数 <span class="label label-primary">C++ 20</span></p>
+</li>
+<li>
+<p><code>nodiscard</code>属性还能用于构造函数，它会在类型构建临时对象的时候让编译器发出警告 <span class="label label-primary">C++ 20</span></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">class</span> <span class="hljs-title class_">X</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    [[nodiscard]] <span class="hljs-built_in">X</span>() &#123;&#125;<br>    <span class="hljs-built_in">X</span>(<span class="hljs-type">int</span> a) &#123;&#125;<br>&#125;;<br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>    X x;<br>    X&#123;&#125;; <span class="hljs-comment">// `X&#123;&#125;` 构造了临时对象，于是编译器给出忽略 `X::X()` 返回值的警告</span><br>    X&#123; <span class="hljs-number">42</span> &#125;;<br>&#125;<br></code></pre></td></tr></table></figure>
+</li>
 </ul>
+</li>
+<li>
+<p><code>maybe_unused</code> <span class="label label-success">C++ 17</span></p>
+<ul>
+<li>该属性声明实体可能不会被应用以消除编译器警告</li>
+<li>还可以用在如类、结构体、联合类型、枚举类型、函数、变量等地方</li>
+</ul>
+</li>
+<li>
+<p><code>likely</code>和<code>unlikely</code> <span class="label label-primary">C++ 20</span></p>
+<ul>
+<li><code>likely</code>属性允许编译器对该属性所在的执行路径相对于其他执行路径进行优化</li>
+<li><code>unlikely</code>属性恰恰相反</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">f</span><span class="hljs-params">(<span class="hljs-type">int</span> i)</span> </span>&#123;<br>    <span class="hljs-keyword">switch</span>(i) &#123;<br>    <span class="hljs-keyword">case</span> <span class="hljs-number">1</span>: <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;<br>    [[unlikely]] <span class="hljs-keyword">case</span> <span class="hljs-number">2</span>: <span class="hljs-keyword">return</span> <span class="hljs-number">2</span>;&#125;<span class="hljs-keyword">return</span> <span class="hljs-number">3</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p><font color="#A8CD9F">编译在分支语句面前会做预判，对概率大的优先执行，如果执行的分支不是预测的，就直接将执行结果丢掉即可，再重新进行执行判断正确的语句</font></p>
+</li>
+<li>
+<p><code>no_unique_address</code> <span class="label label-primary">C++ 20</span></p>
+<ul>
+<li>该属性指示编译器该数据成员不需要唯一的地址，也就是说它不需要与其他非静态数据成员使用不同的地址</li>
+<li><font color="#496989">是不是可与理解为不占用其他非静态数据成员的地址</font></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="32- 新增预处理器和宏">32 新增预处理器和宏</h2>
+<ul>
+<li>预处理器<code>__has_include</code> <span class="label label-success">C++ 17</span>
+<ul>
+<li>用于判断某个头文件是否能够被包含进来</li>
+<li>可以替换实验性的头文件</li>
+</ul>
+</li>
+<li>特性测试宏 <span class="label label-primary">C++ 20</span> 测试当前的编译环境对各种功能特性的支持程度
+<ul>
+<li>属性特性测试宏<code>__has_cpp_attribute</code>
+<ul>
+<li>指示编译环境是否支持某种属性</li>
+<li><code>std::cout &lt;&lt; __has_cpp_attribute(deprecated); // 输出结果如下：201309</code></li>
+</ul>
+</li>
+<li>语言功能特性测试宏
+<ul>
+<li>编译环境所支持的语言功能特性</li>
+<li><code>__cpp_concepts</code>，<code>__cpp_constexpr</code>等等</li>
+</ul>
+</li>
+<li>标准库功能特性测试宏
+<ul>
+<li>编译环境所支持的标准库功能特性</li>
+<li><font color="#A8CD9F">判断起来很麻烦，直接查表更方便</font></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>新增宏<code>VA_OPT</code>
+<ul>
+<li>
+<p><code>__VA_ARGS__</code>常见的用法集中于打印日志上</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">define</span> LOG(msg, …) printf(<span class="hljs-string">&quot;[&quot;</span> __FILE__ <span class="hljs-string">&quot;:%d] &quot;</span> msg, __LINE__, __VA_ARGS__)</span><br><span class="hljs-built_in">LOG</span>(<span class="hljs-string">&quot;Hello %d&quot;</span>, <span class="hljs-number">2020</span>);<br></code></pre></td></tr></table></figure>
+<p>对于 <code>LOG</code> 宏来说，这种写法是非法的</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-built_in">LOG</span>(<span class="hljs-string">&quot;Hello 2020&quot;</span>);<br></code></pre></td></tr></table></figure>
+<p>上面这句代码展开后应该是</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;[&quot;</span> __FILE__ <span class="hljs-string">&quot;:%d] &quot;</span> <span class="hljs-string">&quot;Hello 2020&quot;</span>, __LINE__, );<br></code></pre></td></tr></table></figure>
+<p>可以使用 ## 连接逗号和<code>__VA_ARGS__</code></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">define</span> LOG(msg, …) printf(<span class="hljs-string">&quot;[&quot;</span> __FILE__ <span class="hljs-string">&quot;:%d] &quot;</span> msg, __LINE__, ##__VA_ARGS__)</span><br><span class="hljs-built_in">LOG</span>(<span class="hljs-string">&quot;Hello 2020&quot;</span>);<br></code></pre></td></tr></table></figure>
+</li>
+<li>
+<p>引入了一个新的宏__VA_OPT__令可变参数宏更易于在可变参数为空的情况下使用</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">define</span> LOG(msg, …) printf(<span class="hljs-string">&quot;[&quot;</span> __FILE__ <span class="hljs-string">&quot;:%d] &quot;</span> msg, __LINE__ __VA_OPT__(,) __VA_ARGS__)</span><br></code></pre></td></tr></table></figure>
+<p>观察上面的代码可以发现，<code>__LINE__</code>后面的逗号被修改为<code>__VA_OPT__(,)</code>，这是告诉编译器这个逗号是可选的</p>
 </li>
 </ul>
 </li>
