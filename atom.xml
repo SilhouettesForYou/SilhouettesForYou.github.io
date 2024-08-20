@@ -6,7 +6,7 @@
   <link href="https://silhouettesforyou.github.io/atom.xml" rel="self"/>
   
   <link href="https://silhouettesforyou.github.io/"/>
-  <updated>2024-08-05T01:36:44.140Z</updated>
+  <updated>2024-08-20T14:17:57.956Z</updated>
   <id>https://silhouettesforyou.github.io/</id>
   
   <author>
@@ -15,6 +15,36 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>自动驾驶可视化项目</title>
+    <link href="https://silhouettesforyou.github.io/2024/08/20/dde743d413c4/"/>
+    <id>https://silhouettesforyou.github.io/2024/08/20/dde743d413c4/</id>
+    <published>2024-08-20T14:13:00.000Z</published>
+    <updated>2024-08-20T14:17:57.956Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="C"><a href="#C" class="headerlink" title="C++"></a>C++</h2><h3 id="sregex-token-iterator 的特性"><a href="#sregex-token-iterator 的特性" class="headerlink" title="sregex_token_iterator 的特性"></a><code>sregex_token_iterator</code>的特性 </h3><h3 id="string 转数字"><a href="#string 转数字" class="headerlink" title="string 转数字"></a><code>string</code> 转数字</h3><h2 id="Windows- 编程"><a href="#Windows- 编程" class="headerlink" title="Windows 编程"></a>Windows 编程</h2><h3 id="WMIC- 指令"><a href="#WMIC- 指令" class="headerlink" title="WMIC 指令"></a>WMIC 指令</h3>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;link rel=&quot;stylesheet&quot; type=&quot;text&amp;#x2F;css&quot; href=&quot;https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css&quot;&gt;&lt;link rel=&quot;st</summary>
+      
+    
+    
+    
+    <category term="自动驾驶" scheme="https://silhouettesforyou.github.io/categories/%E8%87%AA%E5%8A%A8%E9%A9%BE%E9%A9%B6/"/>
+    
+    
+    <category term="c plus plus" scheme="https://silhouettesforyou.github.io/tags/c-plus-plus/"/>
+    
+    <category term="Windows Program" scheme="https://silhouettesforyou.github.io/tags/Windows-Program/"/>
+    
+    <category term="Qt" scheme="https://silhouettesforyou.github.io/tags/Qt/"/>
+    
+    <category term="可视化" scheme="https://silhouettesforyou.github.io/tags/%E5%8F%AF%E8%A7%86%E5%8C%96/"/>
+    
+  </entry>
   
   <entry>
     <title>Markov Decision Processes</title>
@@ -524,34 +554,6 @@
     <category term="lua" scheme="https://silhouettesforyou.github.io/tags/lua/"/>
     
     <category term="源码" scheme="https://silhouettesforyou.github.io/tags/%E6%BA%90%E7%A0%81/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Unity 技术美术 - Shader 篇</title>
-    <link href="https://silhouettesforyou.github.io/2023/04/03/6539b036c88c/"/>
-    <id>https://silhouettesforyou.github.io/2023/04/03/6539b036c88c/</id>
-    <published>2023-04-03T02:58:25.000Z</published>
-    <updated>2024-07-29T14:23:06.769Z</updated>
-    
-    <content type="html"><![CDATA[<link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h3 id="片段着色器"><a href="# 片段着色器" class="headerlink" title="片段着色器"></a>片段着色器 </h3><h4 id="图元、片元和像素"><a href="# 图元、片元和像素" class="headerlink" title="图元、片元和像素"></a> 图元、片元和像素 </h4><p> 生成的先后顺序：顶点 → 图元 → 片元 → 像素</p><h3 id="ShaderLab- 模板"><a href="#ShaderLab- 模板" class="headerlink" title="ShaderLab 模板"></a>ShaderLab 模板</h3><ul><li>Standard Surface Shader 表面着色器</li><li>Unlit Shader 不受光照（UnLight）</li><li>Image Effect Shader 后处理</li><li>Compute Shader</li><li>Ray Tracing Shader</li></ul><h3 id="SubShader"><a href="#SubShader" class="headerlink" title="SubShader"></a>SubShader</h3><p>GPU 会检查第一个 SubShader，如果 SubShader 不支持（显卡特性等），会检查第二个 SubShader，如果没有找到合适的 SubShader 就会执行 FallBack 中的 Shader 代码</p><h3 id="常用的 cginc"><a href="# 常用的 cginc" class="headerlink" title="常用的 cginc"></a>常用的 cginc</h3><ul><li>HLSLSupport.cginc 编译 CGRPOGRAM 时自动包含此文件，其中声明了很多预处理器宏帮助多平台开发</li><li>UnityShaderVariables.cginc 编译 CGRPOGRAM 时自动包含此文件，其中声明了很多各种内置的全局变量</li><li>UnityCG.cginc 需要手动添加，其中声明了很多内置的帮助函数与结构</li></ul><h3 id="材质属性 Properties"><a href="# 材质属性 Properties" class="headerlink" title="材质属性 Properties"></a>材质属性 Properties</h3><h4 id="语法格式"><a href="# 语法格式" class="headerlink" title="语法格式"></a>语法格式</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-comment">// Attribute 为属性</span><br><span class="hljs-comment">// _Name 为变量名</span><br><span class="hljs-comment">// Dispaly_Name 为展示在材质面板上的名字</span><br><span class="hljs-comment">// Type 为变量类型</span><br><span class="hljs-comment">/*********************</span><br><span class="hljs-comment"> *   &#123;</span><br><span class="hljs-comment"> *       color,</span><br><span class="hljs-comment"> *       int,</span><br><span class="hljs-comment"> *       float,</span><br><span class="hljs-comment"> *       vector,</span><br><span class="hljs-comment"> *       2D,</span><br><span class="hljs-comment"> *       3D,</span><br><span class="hljs-comment"> *       cube</span><br><span class="hljs-comment"> *   &#125;</span><br><span class="hljs-comment">**********************/</span><br><span class="hljs-comment">// Default_Value 为默认值</span><br>[Attribute]_Name(<span class="hljs-string">&quot;Display_Name&quot;</span>, Type) = Default_Value<br></code></pre></td></tr></table></figure><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs c">Properties<br>&#123;<br>    [HDR]_Color(<span class="hljs-string">&quot; 颜色 &quot;</span>, color) = (<span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>)<br>    _Int(<span class="hljs-string">&quot; 整数 &quot;</span>, <span class="hljs-type">int</span>) = <span class="hljs-number">0.5</span><br>    [PowerSlider(<span class="hljs-number">3</span>)]_Float(<span class="hljs-string">&quot; 浮点数 &quot;</span>, range(<span class="hljs-number">0</span>, <span class="hljs-number">10</span>)) = <span class="hljs-number">0.5</span><br>    _Vector(<span class="hljs-string">&quot; 四维向量 &quot;</span>, <span class="hljs-built_in">vector</span>) = (<span class="hljs-number">0.5</span>, <span class="hljs-number">2</span>, <span class="hljs-number">-1</span>, <span class="hljs-number">1</span>)<br>    _2DTex(<span class="hljs-string">&quot;2D 纹理 &quot;</span>, <span class="hljs-number">2</span>D) = <span class="hljs-string">&quot;black&quot;</span>&#123;&#125;<br>&#125;<br></code></pre></td></tr></table></figure><h3 id="混合操作"><a href="# 混合操作" class="headerlink" title="混合操作"></a>混合操作 </h3><p> 片段着色器（源颜色 <code>*</code> SrcFactor） <font color="#2E4F4F"><strong>BlendOp</strong></font> 帧缓冲区 Frame Buffer（目标颜色 <code>*</code> DstFactor）</p><h3 id="Shader 中的时间 -Time"><a href="#Shader 中的时间 -Time" class="headerlink" title="Shader 中的时间_Time"></a>Shader 中的时间<code>_Time</code></h3><p><code>_Time.xyzw</code></p><ul><li><code>_Time.x (t / 20)</code></li><li><code>_Time.y (t)</code></li><li><code>_Time.z (t * 2)</code></li><li><code>_Time.w (t * 3)</code></li></ul><h3 id="相关术语"><a href="# 相关术语" class="headerlink" title="相关术语"></a>相关术语 </h3><h4 id="菲涅尔效应"><a href="# 菲涅尔效应" class="headerlink" title="菲涅尔效应"></a> 菲涅尔效应 </h4><p> 在真实世界中，除了金属之外，其它物质均有不同程度的“菲涅尔效应”。简单的讲，就是视线垂直于表面时，反射较弱，而当视线非垂直表面时，夹角越小，反射越明显。如果你看向一个圆球，那圆球中心的反射较弱，靠近边缘较强。不过这种过度关系被折射率影响。如果你站在湖边，低头看脚下的水，你会发现水是透明的，反射不是特别强烈；如果你看远处的湖面，你会发现水并不是透明的，但反射非常强烈。这就是“菲涅尔效应”</p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;link rel=&quot;stylesheet&quot; type=&quot;text&amp;#x2F;css&quot; href=&quot;https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css&quot;&gt;&lt;link rel=&quot;st</summary>
-      
-    
-    
-    
-    <category term="游戏开发" scheme="https://silhouettesforyou.github.io/categories/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/"/>
-    
-    
-    <category term="Shader" scheme="https://silhouettesforyou.github.io/tags/Shader/"/>
-    
-    <category term="Unity" scheme="https://silhouettesforyou.github.io/tags/Unity/"/>
-    
-    <category term="课程" scheme="https://silhouettesforyou.github.io/tags/%E8%AF%BE%E7%A8%8B/"/>
     
   </entry>
   
