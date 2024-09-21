@@ -18,15 +18,15 @@
   <meta name="author" content="Xiaoming">
   <meta name="keywords" content="">
   
-    <meta name="description" content="C++sregex_token_iterator的特性 string 转数字 Windows 编程WMIC 指令CMake 相关问题issue 1             The target name“xxx.cpp”is reserved or not valid for certain CMake featres, such as generator expressions, and may">
+    <meta name="description" content="C++sregex_token_iterator的特性 string 转数字  关于时间的函数和结构体 time 函数12#include &lt;time.h&gt;time_t time(time_t* calptr)  得到自 1970-1-1 00:00:00 以来经过的秒数，结果可以通过返回值，也可以通过参数得到 1234time_t now;time(&amp;now);&#x2F;&#x2F; 等同于">
 <meta property="og:type" content="article">
-<meta property="og:title" content="自动驾驶可视化项目">
+<meta property="og:title" content="自动驾驶工具">
 <meta property="og:url" content="https://silhouettesforyou.github.io/2024/08/20/dde743d413c4/index.html">
 <meta property="og:site_name" content="Silhouettes For You">
-<meta property="og:description" content="C++sregex_token_iterator的特性 string 转数字 Windows 编程WMIC 指令CMake 相关问题issue 1             The target name“xxx.cpp”is reserved or not valid for certain CMake featres, such as generator expressions, and may">
+<meta property="og:description" content="C++sregex_token_iterator的特性 string 转数字  关于时间的函数和结构体 time 函数12#include &lt;time.h&gt;time_t time(time_t* calptr)  得到自 1970-1-1 00:00:00 以来经过的秒数，结果可以通过返回值，也可以通过参数得到 1234time_t now;time(&amp;now);&#x2F;&#x2F; 等同于">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2024-08-20T14:13:00.000Z">
-<meta property="article:modified_time" content="2024-08-28T07:30:55.463Z">
+<meta property="article:modified_time" content="2024-09-21T01:13:07.689Z">
 <meta property="article:author" content="Xiaoming">
 <meta property="article:tag" content="c plus plus">
 <meta property="article:tag" content="Windows Program">
@@ -38,7 +38,7 @@
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>自动驾驶可视化项目 - Silhouettes For You</title>
+  <title>自动驾驶工具 - Silhouettes For You</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -359,7 +359,7 @@ p.spoiler {
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="自动驾驶可视化项目"></span>
+            <span id="subtitle" data-typed-text="自动驾驶工具"></span>
           
         </div>
 
@@ -382,7 +382,7 @@ p.spoiler {
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          609 words
+          2.2k words
         
       </span>
     
@@ -393,7 +393,7 @@ p.spoiler {
         
         
         
-          6 mins
+          19 mins
         
       </span>
     
@@ -438,12 +438,12 @@ p.spoiler {
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">自动驾驶可视化项目</h1>
+            <h1 id="seo-header">自动驾驶工具</h1>
             
               <p id="updated-time" class="note note-light" style="display: none">
                 
                   
-                    Last updated on 2024-08-28T15:30:55+08:00
+                    Last updated on 2024-09-21T09:13:07+08:00
                   
                   
 
@@ -453,7 +453,84 @@ p.spoiler {
             
               <div class="markdown-body">
                 
-                <link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="C"><a href="#C" class="headerlink" title="C++"></a>C++</h2><h3 id="sregex-token-iterator 的特性"><a href="#sregex-token-iterator 的特性" class="headerlink" title="sregex_token_iterator 的特性"></a><code>sregex_token_iterator</code>的特性 </h3><h3 id="string 转数字"><a href="#string 转数字" class="headerlink" title="string 转数字"></a><code>string</code> 转数字 </h3><h2 id="Windows- 编程"><a href="#Windows- 编程" class="headerlink" title="Windows 编程"></a>Windows 编程</h2><h3 id="WMIC- 指令"><a href="#WMIC- 指令" class="headerlink" title="WMIC 指令"></a>WMIC 指令</h3><h2 id="CMake"><a href="#CMake" class="headerlink" title="CMake"></a>CMake</h2><h3 id="相关问题"><a href="# 相关问题" class="headerlink" title="相关问题"></a> 相关问题</h3><h4 id="issue-1"><a href="#issue-1" class="headerlink" title="issue 1"></a>issue 1</h4><div class="note note-danger">
+                <link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="C"><a href="#C" class="headerlink" title="C++"></a>C++</h2><h3 id="sregex-token-iterator 的特性"><a href="#sregex-token-iterator 的特性" class="headerlink" title="sregex_token_iterator 的特性"></a><code>sregex_token_iterator</code>的特性 </h3><h3 id="string 转数字"><a href="#string 转数字" class="headerlink" title="string 转数字"></a><code>string</code> 转数字 </h3><h3 id="关于时间的函数和结构体"><a href="# 关于时间的函数和结构体" class="headerlink" title="关于时间的函数和结构体"></a> 关于时间的函数和结构体 </h3><h4 id="time 函数"><a href="#time 函数" class="headerlink" title="time 函数"></a><code>time</code> 函数</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;time.h&gt;</span></span><br><span class="hljs-function"><span class="hljs-type">time_t</span> <span class="hljs-title">time</span><span class="hljs-params">(<span class="hljs-type">time_t</span>* calptr)</span></span><br></code></pre></td></tr></table></figure>
+
+<p>得到自 1970-1-1 00:00:00 以来经过的秒数，结果可以通过返回值，也可以通过参数得到</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-type">time_t</span> now;<br><span class="hljs-built_in">time</span>(&amp;now);<br><span class="hljs-comment">// 等同于 now = time(NULL)</span><br><span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;now time is %d\n&quot;</span>, now);<br></code></pre></td></tr></table></figure>
+
+<h4 id="localtime"><a href="#localtime" class="headerlink" title="localtime"></a><code>localtime</code></h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">struct</span> <span class="hljs-title class_">tm</span> &#123;<br>    <span class="hljs-type">int</span> tm_sec;       <span class="hljs-comment">/* 秒 – 取值区间为 [0,59] */</span><br>    <span class="hljs-type">int</span> tm_min;       <span class="hljs-comment">/* 分 - 取值区间为 [0,59] */</span><br>    <span class="hljs-type">int</span> tm_hour;      <span class="hljs-comment">/* 时 - 取值区间为 [0,23] */</span><br>    <span class="hljs-type">int</span> tm_mday;     <span class="hljs-comment">/* 一个月中的日期 - 取值区间为 [1,31] */</span><br>    <span class="hljs-type">int</span> tm_mon;     <span class="hljs-comment">/* 月份（从一月开始，0 代表一月） - 取值区间为 [0,11] */</span><br>    <span class="hljs-type">int</span> tm_year;     <span class="hljs-comment">/* 年份，其值等于实际年份减去 1900 */</span><br>    <span class="hljs-type">int</span> tm_wday;    <span class="hljs-comment">/* 星期 – 取值区间为 [0,6]，其中 0 代表星期天，1 代表星期一 */</span><br>    <span class="hljs-type">int</span> tm_yday;    <span class="hljs-comment">/* 从每年 1 月 1 日开始的天数– 取值区间 [0,365]，其中 0 代表 1 月 1 日 */</span><br>    <span class="hljs-type">int</span> tm_isdst;    <span class="hljs-comment">/* 夏令时标识符，夏令时 tm_isdst 为正；不实行夏令时 tm_isdst 为 0 */</span>    <br>&#125;;<br><br><span class="hljs-keyword">struct</span> <span class="hljs-title class_">tm</span> *<span class="hljs-built_in">localtime</span>(<span class="hljs-type">const</span> <span class="hljs-type">time_t</span>* calptr);<br></code></pre></td></tr></table></figure>
+
+<p>用来获取系统时间，精度为秒；将时间（秒）数值变换成本地时间，考虑到本地时区和夏令时标志</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-type">time_t</span> now;<br><span class="hljs-keyword">struct</span> <span class="hljs-title class_">tm</span> *tm_now;<br><span class="hljs-built_in">time</span>(&amp;now);<br>tm_now = <span class="hljs-built_in">localtime</span>(&amp;now);<br><span class="hljs-comment">// 把秒变换成年月日</span><br><span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;now datetime: %d-%d-%d %d:%d:%d\n&quot;</span>, <br>    tm_now-&gt;tm_year+<span class="hljs-number">1900</span>,<br>    tm_now-&gt;tm_mon+<span class="hljs-number">1</span>,<br>    tm_now-&gt;tm_mday,<br>    tm_now-&gt;tm_hour,<br>    tm_now-&gt;tm_min,<br>    tm_now-&gt;tm_sec<br>);<br></code></pre></td></tr></table></figure>
+
+<h4 id="localtime-r"><a href="#localtime-r" class="headerlink" title="localtime_r"></a><code>localtime_r</code></h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">struct</span> <span class="hljs-title class_">tm</span> *<span class="hljs-built_in">localtime_r</span>(<span class="hljs-type">const</span> <span class="hljs-type">time_t</span> *timep, <span class="hljs-keyword">struct</span> tm *result);<br></code></pre></td></tr></table></figure>
+
+<p>用来获取系统时间，运行于 linux 平台下</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;time.h&gt;</span></span><br>     <br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-type">time_t</span> time_seconds = <span class="hljs-built_in">time</span>(<span class="hljs-number">0</span>);<br>    <span class="hljs-keyword">struct</span> <span class="hljs-title class_">tm</span> now_time;<br>    <span class="hljs-built_in">localtime_r</span>(&amp;time_seconds, &amp;now_time);<br> <br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d-%d-%d %d:%d:%d\n&quot;</span>,<br>        now_time.tm_year + <span class="hljs-number">1900</span>,<br>        now_time.tm_mon + <span class="hljs-number">1</span>,<br>        now_time.tm_mday,<br>        now_time.tm_hour,<br>        now_time.tm_min,<br>        now_time.tm_sec<br>    );<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h4 id="localtime-s"><a href="#localtime-s" class="headerlink" title="localtime_s"></a><code>localtime_s</code></h4><p>用来获取系统时间，运行于 windows 平台下，与 <code>localtime_r</code> 只有参数顺序不一样</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs c++"> <span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;time.h&gt;</span></span><br>     <br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-type">time_t</span> time_seconds = <span class="hljs-built_in">time</span>(<span class="hljs-number">0</span>);<br>    <span class="hljs-keyword">struct</span> <span class="hljs-title class_">tm</span> now_time;<br>    <span class="hljs-built_in">localtime_s</span>(&amp;now_time,&amp;time_seconds);<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d-%d-%d %d:%d:%d\n&quot;</span>,<br>        now_time.tm_year + <span class="hljs-number">1900</span>,<br>        now_time.tm_mon + <span class="hljs-number">1</span>,<br>        now_time.tm_mday,<br>        now_time.tm_hour,<br>        now_time.tm_min,<br>        now_time.tm_sec<br>    );<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<div class="note note-warning">
+            <p><code>localtime</code>和 <code>localtime_r</code> 二者区别 </p><ul><li><code>localtime</code> 对于多线程不安全，因为 <code>localtime</code> 在使用时，只需定义一个指针，申请空间的动作由函数自己完成，这样在多线程的情况下，如果有另一个线程调用了这个函数，那么指针指向的 s<code>truct tm</code>结构体的数据就会改变 </li><li> 在 l<code>ocaltime_s</code>与 <code>localtime_r</code> 调用时，定义的是 <code>struct tm</code> 的结构体，获取到的时间已经保存在 <code>struct tm</code> 中，并不会受其他线程的影响</li></ul>
+          </div>
+
+<h4 id="gettimeofday"><a href="#gettimeofday" class="headerlink" title="gettimeofday"></a><code>gettimeofday</code></h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;sys/time.h&gt;</span></span><br><br><span class="hljs-keyword">struct</span> <span class="hljs-title class_">timezone</span> &#123;<br>    <span class="hljs-type">int</span> tz_minuteswest;<span class="hljs-comment">/* 格林威治时间往西方的时差 */</span><br>    <span class="hljs-type">int</span> tz_dsttime;<span class="hljs-comment">/*DST 时间的修正方式 */</span><br>&#125;<br>        <br><span class="hljs-keyword">struct</span> <span class="hljs-title class_">timeval</span> &#123;<br>    <span class="hljs-type">long</span> <span class="hljs-type">int</span> tv_sec; <span class="hljs-comment">// 秒数</span><br>    <span class="hljs-type">long</span> <span class="hljs-type">int</span> tv_usec; <span class="hljs-comment">// 微秒数</span><br>&#125;<br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">gettimeofday</span><span class="hljs-params">(<span class="hljs-keyword">struct</span> timeeval* tv, <span class="hljs-keyword">struct</span> timezone* tz)</span></span>;<br></code></pre></td></tr></table></figure>
+
+<p>获取秒、微秒、时区等信息；其参数 <code>tv</code> 是保存获取时间结果的结构体，参数 <code>tz</code> 用于保存时区结果，<code>timezone</code>参数若不使用则传入 <code>NULL</code> 即可</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">struct</span> <span class="hljs-title class_">timeval</span> tv_begin, tv_end;<br><span class="hljs-built_in">gettimeofday</span>(&amp;tv_begin, <span class="hljs-literal">NULL</span>);<br><span class="hljs-built_in">foo</span>();<br><span class="hljs-built_in">gettimeofday</span>(&amp;tv_end, <span class="hljs-literal">NULL</span>);<br></code></pre></td></tr></table></figure>
+
+<p>它获得的时间精确到微秒 <code>1e-6s</code> 量级，在一段代码前后分别使用 <code>gettimeofday</code> 可以计算代码执行时间</p>
+<h3 id="linux- 下 sprintf-s 函数的替代"><a href="#linux- 下 sprintf-s 函数的替代" class="headerlink" title="linux 下 sprintf_s 函数的替代"></a>linux 下 <code>sprintf_s</code> 函数的替代 </h3><p>windows 平台下线程安全的格式化字符串函数<code>sprint_s</code> 并非标准 C 函数，因此 linux 下无法使用，但可以使用 <code>snprintf</code> 函数代替</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-comment">/* 函数原型：*/</span><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">snprintf</span><span class="hljs-params">(<span class="hljs-type">char</span> *dest, <span class="hljs-type">size_t</span> n, <span class="hljs-type">const</span> <span class="hljs-type">char</span> *fmt, ...)</span></span>;<br><br><span class="hljs-comment">/* 函数说明：最多从源串中拷贝 n－1 个字符到目标串中，然后再在后面加一个 0。所以如果目标串的大小为 n 的话，将不会溢出。</span><br><span class="hljs-comment">函数返回值：若成功则返回存入数组的字符数，若编码出错则返回负值。</span><br><span class="hljs-comment">推荐的用法：*/</span><br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">f</span><span class="hljs-params">(<span class="hljs-type">const</span> <span class="hljs-type">char</span> *p)</span></span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-type">char</span> buf[<span class="hljs-number">11</span>] = &#123; <span class="hljs-number">0</span> &#125;;<br>    <span class="hljs-built_in">snprintf</span>(buf, <span class="hljs-built_in">sizeof</span>(buf), <span class="hljs-string">&quot;%10s&quot;</span>, p); <span class="hljs-comment">// 注意：这里第 2 个参数应当用 sizeof(str)，而不要使用硬编码 11，也不应当使用 sizeof(str)-1 或 10</span><br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%sn&quot;</span>, buf);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="incomplete-type-xxx-used-in-nested-name-specifier"><a href="#incomplete-type-xxx-used-in-nested-name-specifier" class="headerlink" title="incomplete type xxx used in nested name specifier"></a><font color="#FF204E">incomplete type <code>xxx</code> used in nested name specifier</font></h3><div class="note note-danger">
+            <p>Error: incomplete type ‘QTime’ used in nested name specifier</p>
+          </div>
+
+<p>声明 / 定义了 <code>QTime</code> 类型的变量，但是没有引入相应的头文件，即<code>#include &lt;QTime&gt;</code></p>
+<h3 id="关于 filesystem 在 -C-11、14、17- 中的使用问题"><a href="# 关于 filesystem 在 -C-11、14、17- 中的使用问题" class="headerlink" title="关于 filesystem 在 C++ 11、14、17 中的使用问题"></a>关于 <code>filesystem</code> 在 C++ 11、14、17 中的使用问题</h3><ul>
+<li>在 C++ 11 时，该类库定义在 <code>std::tr2::sys</code> 命名空间</li>
+<li>C++ 14 中已经不存在 <code>tr2</code> 命名空间 <code>filesystem</code> 放在 <code>std::experimental::filesystem</code> 空间<ul>
+<li>在（VS2019 以上）编译时可能会报错 C1189，提示该头文件已被取代，建议使用新的如果不想根据提示改用 C++ 17，那么我们可以坚持自己的想法，在项目配置中加预处理宏定义即可<code>_SILENCE_EXPERIMENTAL_FILESYSTEM_DEPRECATION_WARNING</code></li>
+</ul>
+</li>
+<li>不同的编译环境可以使用宏定义区分<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">if</span> (defined(_MSVC_LANG) &amp;&amp; _MSVC_LANG &gt;= 201703L || __cplusplus &gt;= 201703L)</span><br><span class="hljs-keyword">namespace</span> fs = std::filesystem<br><span class="hljs-meta">#<span class="hljs-keyword">else</span></span><br><span class="hljs-keyword">namespace</span> fs = std::experimental::filesystem;<br><span class="hljs-meta">#<span class="hljs-keyword">endif</span></span><br></code></pre></td></tr></table></figure></li>
+</ul>
+<blockquote>
+<p>‘filesystem’ in namespace ‘std’ does not name a type 出现这个报错可能是因为写错了<br><code>using fs = std::filesystem</code> 和 <code>namespace fs = std::filesystem</code></p>
+</blockquote>
+<h2 id="Windows- 编程"><a href="#Windows- 编程" class="headerlink" title="Windows 编程"></a>Windows 编程</h2><h3 id="WMIC- 指令"><a href="#WMIC- 指令" class="headerlink" title="WMIC 指令"></a>WMIC 指令</h3><h3 id="windows- 批处理 - 打开 -exe- 后关闭黑窗口"><a href="#windows- 批处理 - 打开 -exe- 后关闭黑窗口" class="headerlink" title="windows 批处理 打开 exe 后关闭黑窗口"></a>windows 批处理 打开 exe 后关闭黑窗口</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">start <span class="hljs-string">&quot;&quot;</span> <span class="hljs-string">&quot;xxx.exe&quot;</span><br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>如果下面这样调用，需要等待程序窗口关闭之后窗黑口才会关闭的<br><code>xxx.exe exit</code></p>
+</blockquote>
+<h2 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h2><h3 id="从 -windows- 拷贝文件到 -WSL- 最快速的方法"><a href="# 从 -windows- 拷贝文件到 -WSL- 最快速的方法" class="headerlink" title="从 windows 拷贝文件到 WSL 最快速的方法"></a>从 windows 拷贝文件到 WSL 最快速的方法</h3><ul>
+<li>在 WSL 用 <code>sudo ls /mnt/*</code> 列出系统所有的挂载盘，可以看到 windows 系统的所有盘都列出来了</li>
+<li>然后使用 <code>cp</code> 命令</li>
+</ul>
+<h2 id="Git"><a href="#Git" class="headerlink" title="Git"></a>Git</h2><h3 id="递归 git-push-pull"><a href="# 递归 git-push-pull" class="headerlink" title="递归 git push/pull"></a>递归 <code>git push/pull</code></h3><p> 在 Git 中，递归 <code>git push/pull</code> 操作是指在父模块中递归地操作子模块的 push 和 pull 操作。当一个代码库包含多个子模块时，可以使用递归 <code>git push/pull</code> 操作来同时对所有子模块进行相关操作，从而避免了手动逐个操作子模块的繁琐</p>
+<h4 id="递归 git-push"><a href="# 递归 git-push" class="headerlink" title="递归 git push"></a>递归<code>git push</code></h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">git push --recurse-submodules=on-demand<br></code></pre></td></tr></table></figure>
+
+<h4 id="递归 git-pull"><a href="# 递归 git-pull" class="headerlink" title="递归 git pull"></a>递归<code>git pull</code></h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">git pull --recurse-submodules<br></code></pre></td></tr></table></figure>
+
+<div class="note note-warning">
+            <ul><li>确保所有子模块都已经初始化和更新。如果有尚未初始化或更新的子模块，可以使用 <code>git submodule init</code> 和<code>git submodule update</code>命令来初始化和更新子模块 </li><li> 如果在父模块中进行了修改，并且同时也在某个子模块中进行了修改，那么在递归 <code>git push/pull</code> 操作时可能会出现冲突。如果出现冲突，需要手动解决冲突并再次进行递归 <code>git push/pull</code> 操作 </li><li> 在进行递归 <code>git push/pull</code> 操作时，确保所有子模块的远程仓库地址正确设置，并且拥有 push/pull 权限</li></ul>
+          </div>
+
+<h3 id="如何删除 -Git- 中的未跟踪文件 -untracked-files"><a href="# 如何删除 -Git- 中的未跟踪文件 -untracked-files" class="headerlink" title="如何删除 Git 中的未跟踪文件 untracked files"></a>如何删除 Git 中的未跟踪文件 untracked files</h3><p>要删除所有未跟踪的文件，可以运行以下命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">git clean -f <span class="hljs-comment"># 该命令中的 -f 参数表示强制执行删除操作</span><br></code></pre></td></tr></table></figure>
+
+<p>如果想要删除未跟踪的文件和目录，可以使用 <code>-d</code> 参数</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">git clean -f -d<br></code></pre></td></tr></table></figure>
+
+<h3 id="解决 -Git- 报 -error-unknown-switch-e‘- 错误"><a href="# 解决 -Git- 报 -error-unknown-switch-e‘- 错误" class="headerlink" title="解决 Git 报 error unknown switch `e‘ 错误"></a>解决 Git 报 error unknown switch `e‘ 错误 </h3><p> 在 VS Code 中，使用 <code>git stash pop [&lt;stash&gt;]</code> 语法报错</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">git stash pop stash@&#123;0&#125;<br>error unknown switch `e‘<br></code></pre></td></tr></table></figure>
+
+<p>花括号在 PowerShell 中被认为是代码块执行标识符，若想正常使用，可用反引号 ` 进行转义</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">git stash pop stash@`&#123;0`&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="CMake"><a href="#CMake" class="headerlink" title="CMake"></a>CMake</h2><h3 id="相关问题"><a href="# 相关问题" class="headerlink" title="相关问题"></a>相关问题</h3><h4 id="issue-1"><a href="#issue-1" class="headerlink" title="issue 1"></a>issue 1</h4><div class="note note-danger">
             <p>The target name<br>“xxx.cpp”<br>is reserved or not valid for certain CMake featres, such as generator expressions, and may result in undefined behavior.</p>
           </div>
 
@@ -492,7 +569,7 @@ p.spoiler {
 </li>
 </ul>
 <p>使用示例：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">if</span> defined(LIBRARY)</span><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> SHARED_EXPORT Q_DECL_EXPORT</span><br><span class="hljs-meta">#<span class="hljs-keyword">else</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> SHARED_EXPORT Q_DECL_IMPORT</span><br><span class="hljs-meta">#<span class="hljs-keyword">endif</span></span><br><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> Q_DECL_EXPORT __declspec(dllexport)</span><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> Q_DECL_IMPORT __declspec(dllimport)</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">if</span> defined(LIBRARY)</span><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> SHARED_EXPORT Q_</span><br><br>DECL_EXPORT<br><span class="hljs-meta">#<span class="hljs-keyword">else</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> SHARED_EXPORT Q_DECL_IMPORT</span><br><span class="hljs-meta">#<span class="hljs-keyword">endif</span></span><br><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> Q_DECL_EXPORT __declspec(dllexport)</span><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> Q_DECL_IMPORT __declspec(dllimport)</span><br></code></pre></td></tr></table></figure>
                 
               </div>
             
@@ -543,7 +620,7 @@ p.spoiler {
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>自动驾驶可视化项目</div>
+      <div>自动驾驶工具</div>
       <div>https://silhouettesforyou.github.io/2024/08/20/dde743d413c4/</div>
     </div>
     <div class="license-meta">
@@ -587,6 +664,12 @@ p.spoiler {
                 <div class="post-prevnext my-3">
                   <article class="post-prev col-6">
                     
+                    
+                      <a href="/2024/08/29/8a0141a1393b/" title="Linux 命令">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Linux 命令</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
                     
                   </article>
                   <article class="post-next col-6">
