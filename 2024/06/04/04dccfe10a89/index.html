@@ -1,0 +1,962 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head><!-- hexo injector head_begin start -->
+<link rel="stylesheet" href="/css/bilicard.css">
+<link href="https://cdn.jsdelivr.net/npm/hexo-tag-common@0.0.5/css/index.css" rel="stylesheet"/><!-- hexo injector head_begin end -->
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/Hayao-Miyazaki/jiji.png">
+  <link rel="icon" href="/img/Hayao-Miyazaki/jiji.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Xiaoming">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="🔗 深入 xLua 实现原理之 Lua 如何调用 C#  xLua 是腾讯的一个开源项目，为 Unity、 .Net、 Mono 等 C# 环境增加 Lua 脚本编程的能力。本文主要是探讨 xLua 下 Lua 调用 C# 的实现原理 Lua 与 C# 数据通信机制  无论是 Lua 调用 C#，还是 C# 调用 Lua，都需要一个通信机制，来完成数据的传递。而 Lua 本身就是由 C 语言编">
+<meta property="og:type" content="article">
+<meta property="og:title" content="XLua 如何与 C# 进行交互">
+<meta property="og:url" content="https://silhouettesforyou.github.io/2024/06/04/04dccfe10a89/index.html">
+<meta property="og:site_name" content="Silhouettes For You">
+<meta property="og:description" content="🔗 深入 xLua 实现原理之 Lua 如何调用 C#  xLua 是腾讯的一个开源项目，为 Unity、 .Net、 Mono 等 C# 环境增加 Lua 脚本编程的能力。本文主要是探讨 xLua 下 Lua 调用 C# 的实现原理 Lua 与 C# 数据通信机制  无论是 Lua 调用 C#，还是 C# 调用 Lua，都需要一个通信机制，来完成数据的传递。而 Lua 本身就是由 C 语言编">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-06-04T06:50:00.000Z">
+<meta property="article:modified_time" content="2024-09-28T03:32:59.868Z">
+<meta property="article:author" content="Xiaoming">
+<meta property="article:tag" content="C#">
+<meta property="article:tag" content="xLua">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>XLua 如何与 C# 进行交互 - Silhouettes For You</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_4625503_8j4kic2ox3k.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"silhouettesforyou.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"62be422732dc4e6f91e7fa199aa1f3f2","google":{"measurement_id":"G-B260B2ZWXQ"},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?62be422732dc4e6f91e7fa199aa1f3f2";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=G-B260B2ZWXQ", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', 'G-B260B2ZWXQ');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<style type="text/css">
+.spoiler {
+  display: inline;
+}
+p.spoiler {
+  display: flex;
+}
+.spoiler a {
+  pointer-events: none;
+}
+.spoiler-blur, .spoiler-blur > * {
+  transition: text-shadow .5s ease;
+}
+.spoiler .spoiler-blur, .spoiler .spoiler-blur > * {
+  color: rgba(0, 0, 0, 0);
+  background-color: rgba(0, 0, 0, 0);
+  text-shadow: 0 0 10px grey;
+  cursor: pointer;
+}
+.spoiler .spoiler-blur:hover, .spoiler .spoiler-blur:hover > * {
+  text-shadow: 0 0 5px grey;
+}
+.spoiler-box, .spoiler-box > * {
+  transition: color .5s ease,
+  background-color .5s ease;
+}
+.spoiler .spoiler-box, .spoiler .spoiler-box > * {
+  color: black;
+  background-color: black;
+  text-shadow: none;
+}</style><meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/atom.xml" title="Silhouettes For You" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Silhouettes For You</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Tags</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/lover/" target="_self">
+                <i class="iconfont icon-heart"></i>
+                <span>Lover</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" href="javascript:;" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="iconfont icon-buyecsstorage"></i>
+                <span>Cloud Disk</span>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="https://onedrive-vercel-index-xi-liard.vercel.app/" target="_blank">
+                    <i class="iconfont icon-onedrive"></i>
+                    <span>OneDrive</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="https://fyddxwmx.cloud.sealos.io/" target="_blank">
+                    <i class="iconfont icon-aliyun"></i>
+                    <span>Aliyun</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="https://manual-maryl-silhouette-7fc7ff34.koyeb.app/" target="_blank">
+                    <i class="iconfont icon-storage"></i>
+                    <span>Other Storages</span>
+                  </a>
+                
+              </div>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" href="javascript:;" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="iconfont icon-jupyter"></i>
+                <span>Jupyter Notebooks</span>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/notebooks/pages/Pytorch-Tutorial.html" target="_self">
+                    <i class="iconfont icon-pytorch"></i>
+                    <span>Pytorch Tutorial</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/notebooks/pages/RL-Tutorial.html" target="_self">
+                    <i class="iconfont icon-reinforcement-learning"></i>
+                    <span>RL Tutorial</span>
+                  </a>
+                
+              </div>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/Hayao-Miyazaki/post.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="XLua 如何与 C# 进行交互"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-06-04 14:50" pubdate>
+          June 4, 2024 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          6.8k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          57 mins
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> views
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">XLua 如何与 C# 进行交互</h1>
+            
+              <p id="updated-time" class="note note-light" style="display: none">
+                
+                  
+                    Last updated on 2024-09-28T11:32:59+08:00
+                  
+                  
+
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><blockquote>
+<p>🔗 <a target="_blank" rel="noopener" href="https://www.cnblogs.com/iwiniwin/p/15307368.html">深入 xLua 实现原理之 Lua 如何调用 C#</a></p>
+</blockquote>
+<p><a target="_blank" rel="noopener" href="https://github.com/Tencent/xLua">xLua</a> 是腾讯的一个开源项目，为 Unity、 .Net、 Mono 等 C# 环境增加 Lua 脚本编程的能力。本文主要是探讨 xLua 下 Lua 调用 C# 的实现原理</p>
+<h3 id="Lua- 与 -C- 数据通信机制"><a href="#Lua- 与 -C- 数据通信机制" class="headerlink" title="Lua 与 C# 数据通信机制"></a>Lua 与 C# 数据通信机制 </h3><p> 无论是 Lua 调用 C#，还是 C# 调用 Lua，都需要一个通信机制，来完成数据的传递。而 Lua 本身就是由 C 语言编写的，所以它出生自带一个和 C/C++ 的通信机制</p>
+<p>Lua 和 C/C++ 的数据交互通过栈进行，操作数据时，首先将数据拷贝到”栈”上，然后获取数据，栈中的每个数据通过索引值进行定位，索引值为正时表示相对于栈底的偏移索引，索引值为负时表示相对于栈顶的偏移索引，索引值以 1 或 -1 为起始值，因此栈顶索引值永远为 -1， 栈底索引值永远为 1 。 “栈”相当于数据在 Lua 和 C/C++ 之间的中转地。每种数据都有相应的存取接口</p>
+<p>而 C# 可以通过 P/Invoke 方式调用 Lua 的 dll，通过这个 dll 执行 Lua 的 C API。换言之 C# 可以借助 C/C++ 来与 Lua 进行数据通信。在 xLua 的 LuaDLL.cs 文件中可以找到许多 DllImport 修饰的数据入栈与获取的接口</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs c#"><span class="hljs-comment">// LuaDLL.cs</span><br>[<span class="hljs-meta">DllImport(LUADLL,CallingConvention=CallingConvention.Cdecl)</span>]<br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">extern</span> <span class="hljs-keyword">void</span> <span class="hljs-title">lua_pushnumber</span>(<span class="hljs-params">IntPtr L, <span class="hljs-built_in">double</span> number</span>)</span>;<br><br>[<span class="hljs-meta">DllImport(LUADLL,CallingConvention=CallingConvention.Cdecl)</span>]<br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">extern</span> <span class="hljs-keyword">void</span> <span class="hljs-title">lua_pushboolean</span>(<span class="hljs-params">IntPtr L, <span class="hljs-built_in">bool</span> <span class="hljs-keyword">value</span></span>)</span>;<br><br>[<span class="hljs-meta">DllImport(LUADLL, CallingConvention = CallingConvention.Cdecl)</span>]<br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">extern</span> <span class="hljs-keyword">void</span> <span class="hljs-title">xlua_pushinteger</span>(<span class="hljs-params">IntPtr L, <span class="hljs-built_in">int</span> <span class="hljs-keyword">value</span></span>)</span>;<br><br>[<span class="hljs-meta">DllImport(LUADLL, CallingConvention = CallingConvention.Cdecl)</span>]<br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">extern</span> <span class="hljs-built_in">double</span> <span class="hljs-title">lua_tonumber</span>(<span class="hljs-params">IntPtr L, <span class="hljs-built_in">int</span> index</span>)</span>;<br><br>[<span class="hljs-meta">DllImport(LUADLL, CallingConvention = CallingConvention.Cdecl)</span>]<br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">extern</span> <span class="hljs-built_in">int</span> <span class="hljs-title">xlua_tointeger</span>(<span class="hljs-params">IntPtr L, <span class="hljs-built_in">int</span> index</span>)</span>;<br><br>[<span class="hljs-meta">DllImport(LUADLL, CallingConvention = CallingConvention.Cdecl)</span>]<br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">extern</span> <span class="hljs-built_in">uint</span> <span class="hljs-title">xlua_touint</span>(<span class="hljs-params">IntPtr L, <span class="hljs-built_in">int</span> index</span>)</span>;<br><br>[<span class="hljs-meta">DllImport(LUADLL,CallingConvention=CallingConvention.Cdecl)</span>]<br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">extern</span> <span class="hljs-built_in">bool</span> <span class="hljs-title">lua_toboolean</span>(<span class="hljs-params">IntPtr L, <span class="hljs-built_in">int</span> index</span>)</span>;<br></code></pre></td></tr></table></figure>
+
+<h3 id="传递 -C- 对象到 -Lua"><a href="# 传递 -C- 对象到 -Lua" class="headerlink" title="传递 C# 对象到 Lua"></a>传递 C# 对象到 Lua</h3><p>对于 <code>bool</code>，<code>int</code> 这样简单的值类型可以直接通过 C API 传递。但对于 C# 对象就不同了，Lua 这边没有能与之对应的类型，因此传递到 Lua 的只是 C# 对象的一个索引，具体实现请看下面的代码</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><code class="hljs c#"><span class="hljs-comment">// ObjectTranslator.cs</span><br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">Push</span>(<span class="hljs-params">RealStatePtr L, <span class="hljs-built_in">object</span> o</span>)</span><br>&#123;<br>    <span class="hljs-comment">// ...</span><br>    <span class="hljs-built_in">int</span> index = <span class="hljs-number">-1</span>;<br>    Type type = o.GetType();<br><span class="hljs-meta">#<span class="hljs-keyword">if</span> !UNITY_WSA || UNITY_EDITOR</span><br>    <span class="hljs-built_in">bool</span> is_enum = type.IsEnum;<br>    <span class="hljs-built_in">bool</span> is_valuetype = type.IsValueType;<br><span class="hljs-meta">#<span class="hljs-keyword">else</span></span><br>    <span class="hljs-built_in">bool</span> is_enum = type.GetTypeInfo().IsEnum;<br>    <span class="hljs-built_in">bool</span> is_valuetype = type.GetTypeInfo().IsValueType;<br><span class="hljs-meta">#<span class="hljs-keyword">endif</span></span><br>    <span class="hljs-built_in">bool</span> needcache = !is_valuetype || is_enum;  <span class="hljs-comment">// 如果是引用或枚举，会进行缓存</span><br>    <span class="hljs-keyword">if</span> (needcache &amp;&amp; (is_enum ? enumMap.TryGetValue(o, <span class="hljs-keyword">out</span> index) : reverseMap.TryGetValue(o, <span class="hljs-keyword">out</span> index)))  <span class="hljs-comment">// 如果有缓存</span><br>    &#123;<br>        <span class="hljs-keyword">if</span> (LuaAPI.xlua_tryget_cachedud(L, index, cacheRef) == <span class="hljs-number">1</span>)  <br>        &#123;<br>            <span class="hljs-keyword">return</span>;<br>        &#125;<br>        <span class="hljs-comment">// 这里实在太经典了，weaktable 先删除，然后 GC 会延迟调用，当 index 会循环利用的时候，不注释这行将会导致重复释放</span><br>        <span class="hljs-comment">//collectObject(index);</span><br>    &#125;<br><br>    <span class="hljs-built_in">bool</span> is_first;<br>    <span class="hljs-built_in">int</span> type_id = getTypeId(L, type, <span class="hljs-keyword">out</span> is_first);<br><br>    <span class="hljs-comment">// 如果一个 type 的定义含本身静态 readonly 实例时，getTypeId 会 push 一个实例，这时候应该用这个实例</span><br>    <span class="hljs-keyword">if</span> (is_first &amp;&amp; needcache &amp;&amp; (is_enum ? enumMap.TryGetValue(o, <span class="hljs-keyword">out</span> index) : reverseMap.TryGetValue(o, <span class="hljs-keyword">out</span> index))) <br>    &#123;<br>        <span class="hljs-keyword">if</span> (LuaAPI.xlua_tryget_cachedud(L, index, cacheRef) == <span class="hljs-number">1</span>)   <br>        &#123;<br>            <span class="hljs-keyword">return</span>;<br>        &#125;<br>    &#125;<br>    <span class="hljs-comment">// C# 侧进行缓存</span><br>    index = addObject(o, is_valuetype, is_enum);<br>    <span class="hljs-comment">// 将代表对象的索引 push 到 lua</span><br>    LuaAPI.xlua_pushcsobj(L, index, type_id, needcache, cacheRef);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>代码中的两个 <code>if</code> 语句主要是对缓存的判断，如果要传递的对象已经被缓存过了就直接使用缓存的。如果这个对象是被第一次传递，则进行以下两步操作</p>
+<ol>
+<li><p>通过 <code>addObject</code> 将对象缓存在 <code>objects</code> 对象池中，并得到一个索引（通过这个索引可以获取到该对象）</p>
+ <figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs c#"><span class="hljs-comment">// ObjectTranslator.cs</span><br><span class="hljs-function"><span class="hljs-built_in">int</span> <span class="hljs-title">addObject</span>(<span class="hljs-params"><span class="hljs-built_in">object</span> obj, <span class="hljs-built_in">bool</span> is_valuetype, <span class="hljs-built_in">bool</span> is_enum</span>)</span><br>&#123;<br>    <span class="hljs-built_in">int</span> index = objects.Add(obj);<br>    <span class="hljs-keyword">if</span> (is_enum)<br>    &#123;<br>        enumMap[obj] = index;<br>    &#125;<br>    <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (!is_valuetype)<br>    &#123;<br>        reverseMap[obj] = index;<br>    &#125;<br>    <br>    <span class="hljs-keyword">return</span> index;<br>&#125;<br></code></pre></td></tr></table></figure></li>
+<li><p>通过 <code>xlua_pushcsobj</code> 将代表对象的索引传递到 Lua</p>
+</li>
+</ol>
+<p>参数 <code>key</code> 表示代表对象的索引，参数 <code>meta_ref</code> 表示代表对象类型的表的索引，它的值是通过 <code>getTypeId</code> 函数获得的，后面会详细讲到。参数 <code>need_cache</code> 表示是否需要在 Lua 侧进行缓存，参数 <code>cache_ref</code> 表示 Lua 侧缓存表的索引</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs C"><span class="hljs-comment">// xlua.c</span><br>LUA_API <span class="hljs-type">void</span> <span class="hljs-title function_">xlua_pushcsobj</span><span class="hljs-params">(lua_State *L, <span class="hljs-type">int</span> key, <span class="hljs-type">int</span> meta_ref, <span class="hljs-type">int</span> need_cache, <span class="hljs-type">int</span> cache_ref)</span> &#123;<br>    <span class="hljs-type">int</span>* pointer = (<span class="hljs-type">int</span>*)lua_newuserdata(L, <span class="hljs-keyword">sizeof</span>(<span class="hljs-type">int</span>));<br>    *pointer = key;<br>    <br>    <span class="hljs-keyword">if</span> (need_cache) cacheud(L, key, cache_ref);  <span class="hljs-comment">// Lua 侧缓存</span><br><br>    lua_rawgeti(L, LUA_REGISTRYINDEX, meta_ref);<br><br>    lua_setmetatable(L, <span class="hljs-number">-2</span>);  <span class="hljs-comment">// 为 userdata 设置元表</span><br>&#125;<br><br><span class="hljs-comment">// 将 key = userdata 存入缓存表</span><br><span class="hljs-type">static</span> <span class="hljs-type">void</span> <span class="hljs-title function_">cacheud</span><span class="hljs-params">(lua_State *L, <span class="hljs-type">int</span> key, <span class="hljs-type">int</span> cache_ref)</span> &#123;<br>    lua_rawgeti(L, LUA_REGISTRYINDEX, cache_ref);<br>    lua_pushvalue(L, <span class="hljs-number">-2</span>);<br>    lua_rawseti(L, <span class="hljs-number">-2</span>, key);<br>    lua_pop(L, <span class="hljs-number">1</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><code>xlua_pushcsobj</code>的主要逻辑是，代表对象的索引被 <code>push</code> 到 Lua 后，Lua 会为其创建一个 <code>userdata</code>，并将这个<code>userdata</code> 指向对象索引，如果需要缓存则将 <code>userdata</code> 保存到缓存表中， 最后为 <code>userdata</code> 设置了元表。也就是说，C# 对象在 Lua 这边对应的就是一个<code>userdata</code>，利用对象索引保持与 C# 对象的联系。</p>
+<h3 id="注册 -C- 类型信息到 -Lua"><a href="# 注册 -C- 类型信息到 -Lua" class="headerlink" title="注册 C# 类型信息到 Lua"></a>注册 C# 类型信息到 Lua</h3><p>为 <code>userdata</code>（特指 C# 对象在 Lua 这边对应的代理<code>userdata</code>，后面再出现的<code>userdata</code> 也是同样的含义，就不再赘述了）设置的元表，表示的实际是对象的类型信息。在将 C# 对象传递到 Lua 以后，还需要告知 Lua 该对象的类型信息，比如对象类型有哪些成员方法，属性或是静态方法等。将这些都注册到 Lua 后，Lua 才能正确的调用。这个元表是通过 <code>getTypeId</code> 函数生成的</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><code class="hljs c#"><span class="hljs-comment">// ObjectTranslator.cs</span><br><span class="hljs-function"><span class="hljs-keyword">internal</span> <span class="hljs-built_in">int</span> <span class="hljs-title">getTypeId</span>(<span class="hljs-params">RealStatePtr L, Type type, <span class="hljs-keyword">out</span> <span class="hljs-built_in">bool</span> is_first, LOGLEVEL log_level = LOGLEVEL.WARN</span>)</span><br>&#123;<br>    <span class="hljs-built_in">int</span> type_id;<br>    is_first = <span class="hljs-literal">false</span>;<br>    <span class="hljs-keyword">if</span> (!typeIdMap.TryGetValue(type, <span class="hljs-keyword">out</span> type_id)) <span class="hljs-comment">// no reference</span><br>    &#123;<br>        <span class="hljs-comment">// ...</span><br>        is_first = <span class="hljs-literal">true</span>;<br>        Type alias_type = <span class="hljs-literal">null</span>;<br>        aliasCfg.TryGetValue(type, <span class="hljs-keyword">out</span> alias_type);<br>        LuaAPI.luaL_getmetatable(L, alias_type == <span class="hljs-literal">null</span> ? type.FullName : alias_type.FullName);<br><br>        <span class="hljs-keyword">if</span> (LuaAPI.lua_isnil(L, <span class="hljs-number">-1</span>)) <span class="hljs-comment">//no meta yet, try to use reflection meta</span><br>        &#123;<br>            LuaAPI.lua_pop(L, <span class="hljs-number">1</span>);<br><br>            <span class="hljs-keyword">if</span> (TryDelayWrapLoader(L, alias_type == <span class="hljs-literal">null</span> ? type : alias_type))<br>            &#123;<br>                LuaAPI.luaL_getmetatable(L, alias_type == <span class="hljs-literal">null</span> ? type.FullName : alias_type.FullName);<br>            &#125;<br>            <span class="hljs-keyword">else</span><br>            &#123;<br>                <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> Exception(<span class="hljs-string">&quot;Fatal: can not load metatable of type:&quot;</span> + type);<br>            &#125;<br>        &#125;<br><br>        <span class="hljs-comment">// 循环依赖，自身依赖自己的 class，比如有个自身类型的静态 readonly 对象。</span><br>        <span class="hljs-keyword">if</span> (typeIdMap.TryGetValue(type, <span class="hljs-keyword">out</span> type_id))<br>        &#123;<br>            LuaAPI.lua_pop(L, <span class="hljs-number">1</span>);<br>        &#125;<br>        <span class="hljs-keyword">else</span><br>        &#123;<br>            <span class="hljs-comment">// ...</span><br>            LuaAPI.lua_pushvalue(L, <span class="hljs-number">-1</span>);<br>            type_id = LuaAPI.luaL_ref(L, LuaIndexes.LUA_REGISTRYINDEX);  <span class="hljs-comment">// 将元表添加到注册表中</span><br>            LuaAPI.lua_pushnumber(L, type_id);<br>            LuaAPI.xlua_rawseti(L, <span class="hljs-number">-2</span>, <span class="hljs-number">1</span>);   <span class="hljs-comment">// 元表 [1] = type_id</span><br>            LuaAPI.lua_pop(L, <span class="hljs-number">1</span>);<br><br>            <span class="hljs-keyword">if</span> (type.IsValueType())<br>            &#123;<br>                typeMap.Add(type_id, type);<br>            &#125;<br><br>            typeIdMap.Add(type, type_id);<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">return</span> type_id;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>函数主要逻辑是以类的名称为 <code>key</code> 通过 <code>luaL_getmetatable</code> 获取类对应的元表，如果获取不到，则通过 <code>TryDelayWrapLoader</code>函数生成。然后调用 <code>luaL_ref</code> 将获取到的元表添加到 Lua 注册表中，并返回 type_id。type_id 表示的就是元表在 Lua 注册表中的索引，通过这个索引可以在 Lua 注册表中取回元表。前面提到的 <code>xlua_pushcsobj</code>函数就是利用 <code>type_id</code> 即<code>meta_ref</code>，获取到元表，然后为 <code>userdata</code> 设置的元表。<br>下面来看元表具体是怎样生成的</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><code class="hljs c#"><span class="hljs-comment">// ObjectTranslator.cs</span><br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-built_in">bool</span> <span class="hljs-title">TryDelayWrapLoader</span>(<span class="hljs-params">RealStatePtr L, Type type</span>)</span><br>&#123;<br>    <span class="hljs-comment">// ...</span><br>    LuaAPI.luaL_newmetatable(L, type.FullName); <span class="hljs-comment">// 先建一个 metatable，因为加载过程可能会需要用到</span><br>    LuaAPI.lua_pop(L, <span class="hljs-number">1</span>);<br><br>    Action&lt;RealStatePtr&gt; loader;<br>    <span class="hljs-built_in">int</span> top = LuaAPI.lua_gettop(L);<br>    <span class="hljs-keyword">if</span> (delayWrap.TryGetValue(type, <span class="hljs-keyword">out</span> loader))  <span class="hljs-comment">// 如果有预先注册的类型元表生成器，则直接使用</span><br>    &#123;<br>        delayWrap.Remove(type);<br>        loader(L);<br>    &#125;<br>    <span class="hljs-keyword">else</span><br>    &#123;<br><span class="hljs-meta">#<span class="hljs-keyword">if</span> !GEN_CODE_MINIMIZE &amp;&amp; !ENABLE_IL2CPP &amp;&amp; (UNITY_EDITOR || XLUA_GENERAL) &amp;&amp; !FORCE_REFLECTION &amp;&amp; !NET_STANDARD_2_0</span><br>        <span class="hljs-keyword">if</span> (!DelegateBridge.Gen_Flag &amp;&amp; !type.IsEnum() &amp;&amp; !<span class="hljs-keyword">typeof</span>(Delegate).IsAssignableFrom(type) &amp;&amp; Utils.IsPublic(type))<br>        &#123;<br>            Type wrap = ce.EmitTypeWrap(type);<br>            MethodInfo method = wrap.GetMethod(<span class="hljs-string">&quot;__Register&quot;</span>, BindingFlags.Static | BindingFlags.Public);<br>            method.Invoke(<span class="hljs-literal">null</span>, <span class="hljs-keyword">new</span> <span class="hljs-built_in">object</span>[] &#123; L &#125;);<br>        &#125;<br>        <span class="hljs-keyword">else</span><br>        &#123;<br>            Utils.ReflectionWrap(L, type, privateAccessibleFlags.Contains(type));<br>        &#125;<br><span class="hljs-meta">#<span class="hljs-keyword">else</span></span><br>        Utils.ReflectionWrap(L, type, privateAccessibleFlags.Contains(type));<br><span class="hljs-meta">#<span class="hljs-keyword">endif</span></span><br>        <span class="hljs-comment">// ...</span><br>    &#125;<br>    <span class="hljs-keyword">if</span> (top != LuaAPI.lua_gettop(L))<br>    &#123;<br>        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> Exception(<span class="hljs-string">&quot;top change, before:&quot;</span> + top + <span class="hljs-string">&quot;, after:&quot;</span> + LuaAPI.lua_gettop(L));<br>    &#125;<br><br>    <span class="hljs-keyword">foreach</span> (<span class="hljs-keyword">var</span> nested_type <span class="hljs-keyword">in</span> type.GetNestedTypes(BindingFlags.Public))<br>    &#123;<br>        <span class="hljs-keyword">if</span> (nested_type.IsGenericTypeDefinition())  <span class="hljs-comment">// 过滤泛型类型定义</span><br>        &#123;<br>            <span class="hljs-keyword">continue</span>;<br>        &#125;<br>        GetTypeId(L, nested_type);<br>    &#125;<br>    <br>    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h4 id="TryDelayWrapLoader- 主要用来处理两种情况"><a href="#TryDelayWrapLoader- 主要用来处理两种情况" class="headerlink" title="TryDelayWrapLoader 主要用来处理两种情况"></a>TryDelayWrapLoader 主要用来处理两种情况</h4><ol>
+<li>通过 <code>delayWrap</code> 判断，是否有为该类生成代码，如果有，直接使用生成函数进行填充元表（<code>loader</code>方法）。在 xLua 的生成代码中有一个 XLuaGenAutoRegister.cs 文件，在这个文件中会为对应的类注册初始化器，而这个初始化器负责将类对应的元表生成函数添加到 <code>delayWrap</code> 中。</li>
+</ol>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs c#"><span class="hljs-comment">// XLuaGenAutoRegister.cs</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">XLua_Gen_Initer_Register__</span><br>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">wrapInit0</span>(<span class="hljs-params">LuaEnv luaenv, ObjectTranslator translator</span>)</span><br>    &#123;<br>        <span class="hljs-comment">// ...</span><br>        translator.DelayWrapLoader(<span class="hljs-keyword">typeof</span>(TestXLua), TestXLuaWrap.__Register);  <span class="hljs-comment">// 将类型对应的元表填充函数__Register 添加到 delayWrap 中</span><br>        <span class="hljs-comment">// ...</span><br>    &#125;<br>    <br>    <span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">Init</span>(<span class="hljs-params">LuaEnv luaenv, ObjectTranslator translator</span>)</span><br>    &#123;<br>        wrapInit0(luaenv, translator);<br>        translator.AddInterfaceBridgeCreator(<span class="hljs-keyword">typeof</span>(System.Collections.IEnumerator), SystemCollectionsIEnumeratorBridge.__Create);<br>    &#125;<br>    <br>    <span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-title">XLua_Gen_Initer_Register__</span>()</span><br>    &#123;<br>            XLua.LuaEnv.AddIniter(Init);  <span class="hljs-comment">// 注册初始化器</span><br>        &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<ol>
+<li>如果没有生成代码，通过反射填充元表（<code>ReflectionWrap</code>方法）</li>
+</ol>
+<h3 id="使用生成函数填充元表"><a href="# 使用生成函数填充元表" class="headerlink" title="使用生成函数填充元表"></a>使用生成函数填充元表 </h3><p> 以<code>LuaCallCSharp</code>修饰的 <code>TestXLua</code> 类为例来查看生成函数是如何生成的</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs c#"><span class="hljs-comment">// TestXLua.cs</span><br>[<span class="hljs-meta">LuaCallCSharp</span>]<br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">TestXLua</span><br>&#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-built_in">string</span> Name;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">Test1</span>(<span class="hljs-params"><span class="hljs-built_in">int</span> a</span>)</span>&#123;<br>    &#125;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">Test2</span>(<span class="hljs-params"><span class="hljs-built_in">int</span> a, <span class="hljs-built_in">bool</span> b, <span class="hljs-built_in">string</span> c</span>)</span><br>    &#123;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>Generate Code 之后生成的 TestXLuaWrap.cs 如下所示</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br></pre></td><td class="code"><pre><code class="hljs c#"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">TestXLuaWrap</span> <br>&#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> __Register(RealStatePtr L)<br>    &#123;<br>        ObjectTranslator translator = ObjectTranslatorPool.Instance.Find(L);<br>        System.Type type = <span class="hljs-keyword">typeof</span>(TestXLua);<br>        Utils.BeginObjectRegister(type, L, translator, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>);<br>        Utils.RegisterFunc(L, Utils.METHOD_IDX, <span class="hljs-string">&quot;Test1&quot;</span>, _m_Test1);<br>        Utils.RegisterFunc(L, Utils.GETTER_IDX, <span class="hljs-string">&quot;Name&quot;</span>, _g_get_Name);<br>        Utils.RegisterFunc(L, Utils.SETTER_IDX, <span class="hljs-string">&quot;Name&quot;</span>, _s_set_Name);<br>        Utils.EndObjectRegister(type, L, translator, <span class="hljs-literal">null</span>, <span class="hljs-literal">null</span>,<br>            <span class="hljs-literal">null</span>, <span class="hljs-literal">null</span>, <span class="hljs-literal">null</span>);<br>        Utils.BeginClassRegister(type, L, __CreateInstance, <span class="hljs-number">2</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>);<br>        Utils.RegisterFunc(L, Utils.CLS_IDX, <span class="hljs-string">&quot;Test2&quot;</span>, _m_Test2_xlua_st_);<br>        Utils.EndClassRegister(type, L, translator);<br>    &#125;<br>    <br>    [<span class="hljs-meta">MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))</span>]<br>    <span class="hljs-keyword">static</span> <span class="hljs-built_in">int</span> __CreateInstance(RealStatePtr L)<br>    &#123;<br>        <span class="hljs-keyword">try</span> &#123;<br>            ObjectTranslator translator = ObjectTranslatorPool.Instance.Find(L);<br>            <span class="hljs-keyword">if</span>(LuaAPI.lua_gettop(L) == <span class="hljs-number">1</span>)<br>            &#123;<br>                TestXLua gen_ret = <span class="hljs-keyword">new</span> TestXLua();<br>                translator.Push(L, gen_ret);<br>                <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">catch</span>(System.Exception gen_e) &#123;<br>            <span class="hljs-keyword">return</span> LuaAPI.luaL_error(L, <span class="hljs-string">&quot;c# exception:&quot;</span> + gen_e);<br>        &#125;<br>        <span class="hljs-keyword">return</span> LuaAPI.luaL_error(L, <span class="hljs-string">&quot;invalid arguments to TestXLua constructor!&quot;</span>);<br>        <br>    &#125;<br><br>    [<span class="hljs-meta">MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))</span>]<br>    <span class="hljs-keyword">static</span> <span class="hljs-built_in">int</span> _m_Test1(RealStatePtr L)<br>    &#123;<br>        <span class="hljs-keyword">try</span> &#123;<br>            ObjectTranslator translator = ObjectTranslatorPool.Instance.Find(L);<br>            TestXLua gen_to_be_invoked = (TestXLua)translator.FastGetCSObj(L, <span class="hljs-number">1</span>);<br>            &#123;<br>                <span class="hljs-built_in">int</span> _a = LuaAPI.xlua_tointeger(L, <span class="hljs-number">2</span>);<br>                gen_to_be_invoked.Test1(_a);<br>                <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>            &#125;<br>        &#125; <span class="hljs-keyword">catch</span>(System.Exception gen_e) &#123;<br>            <span class="hljs-keyword">return</span> LuaAPI.luaL_error(L, <span class="hljs-string">&quot;c# exception:&quot;</span> + gen_e);<br>        &#125;<br>    &#125;<br>    <br>    [<span class="hljs-meta">MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))</span>]<br>    <span class="hljs-keyword">static</span> <span class="hljs-built_in">int</span> _m_Test2_xlua_st_(RealStatePtr L)<br>    &#123;<br>        <span class="hljs-keyword">try</span> &#123;<br>            &#123;<br>                <span class="hljs-built_in">int</span> _a = LuaAPI.xlua_tointeger(L, <span class="hljs-number">1</span>);<br>                <span class="hljs-built_in">bool</span> _b = LuaAPI.lua_toboolean(L, <span class="hljs-number">2</span>);<br>                <span class="hljs-built_in">string</span> _c = LuaAPI.lua_tostring(L, <span class="hljs-number">3</span>);<br>                TestXLua.Test2(_a, _b, _c);<br>                <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>            &#125;<br>        &#125; <span class="hljs-keyword">catch</span>(System.Exception gen_e) &#123;<br>            <span class="hljs-keyword">return</span> LuaAPI.luaL_error(L, <span class="hljs-string">&quot;c# exception:&quot;</span> + gen_e);<br>        &#125;<br>    &#125;<br>    <br>    [<span class="hljs-meta">MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))</span>]<br>    <span class="hljs-keyword">static</span> <span class="hljs-built_in">int</span> _g_get_Name(RealStatePtr L)<br>    &#123;<br>        <span class="hljs-keyword">try</span> &#123;<br>            ObjectTranslator translator = ObjectTranslatorPool.Instance.Find(L);<br>        <br>            TestXLua gen_to_be_invoked = (TestXLua)translator.FastGetCSObj(L, <span class="hljs-number">1</span>);<br>            LuaAPI.lua_pushstring(L, gen_to_be_invoked.Name);<br>        &#125; <span class="hljs-keyword">catch</span>(System.Exception gen_e) &#123;<br>            <span class="hljs-keyword">return</span> LuaAPI.luaL_error(L, <span class="hljs-string">&quot;c# exception:&quot;</span> + gen_e);<br>        &#125;<br>        <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;<br>    &#125;<br>    <br>    [<span class="hljs-meta">MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))</span>]<br>    <span class="hljs-keyword">static</span> <span class="hljs-built_in">int</span> _s_set_Name(RealStatePtr L)<br>    &#123;<br>        <span class="hljs-keyword">try</span> &#123;<br>            ObjectTranslator translator = ObjectTranslatorPool.Instance.Find(L);<br>        <br>            TestXLua gen_to_be_invoked = (TestXLua)translator.FastGetCSObj(L, <span class="hljs-number">1</span>);<br>            gen_to_be_invoked.Name = LuaAPI.lua_tostring(L, <span class="hljs-number">2</span>);<br>        <br>        &#125; <span class="hljs-keyword">catch</span>(System.Exception gen_e) &#123;<br>            <span class="hljs-keyword">return</span> LuaAPI.luaL_error(L, <span class="hljs-string">&quot;c# exception:&quot;</span> + gen_e);<br>        &#125;<br>        <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h4 id="生成函数 -Register 主要是这样一个框架"><a href="# 生成函数 -Register 主要是这样一个框架" class="headerlink" title="生成函数__Register 主要是这样一个框架"></a>生成函数 <code>__Register</code> 主要是这样一个框架</h4><ol>
+<li><p><code>Utils.BeginObjectRegister</code>，在对类的非静态值（例如成员变量，成员方法等）进行注册前做一些准备工作。主要是为元表添加 <code>__gc</code> 和<code>__tostring</code>元方法，以及准备好 <code>method</code> 表、<code>getter</code>表、<code>setter</code>表，后面调用 <code>RegisterFunc</code> 时，可以选择插入到对应的表中</p>
+ <figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><code class="hljs c#"><span class="hljs-comment">// Utils.cs</span><br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">BeginObjectRegister</span>(<span class="hljs-params">Type type, RealStatePtr L, ObjectTranslator translator, <span class="hljs-built_in">int</span> meta_count, <span class="hljs-built_in">int</span> method_count, <span class="hljs-built_in">int</span> getter_count,</span></span><br><span class="hljs-params"><span class="hljs-function">    <span class="hljs-built_in">int</span> setter_count, <span class="hljs-built_in">int</span> type_id = <span class="hljs-number">-1</span></span>)</span><br>&#123;<br>    <span class="hljs-keyword">if</span> (type == <span class="hljs-literal">null</span>)<br>    &#123;<br>        <span class="hljs-keyword">if</span> (type_id == <span class="hljs-number">-1</span>) <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> Exception(<span class="hljs-string">&quot;Fatal: must provide a type of type_id&quot;</span>);<br>        LuaAPI.xlua_rawgeti(L, LuaIndexes.LUA_REGISTRYINDEX, type_id);<br>    &#125;<br>    <span class="hljs-keyword">else</span><br>    &#123;<br>        LuaAPI.luaL_getmetatable(L, type.FullName);<br>        <span class="hljs-comment">// 如果 type.FullName 对应的元表是空，则创建一个新的元表，并设置到注册表中</span><br>        <span class="hljs-keyword">if</span> (LuaAPI.lua_isnil(L, <span class="hljs-number">-1</span>))<br>        &#123;<br>            LuaAPI.lua_pop(L, <span class="hljs-number">1</span>);<br>            LuaAPI.luaL_newmetatable(L, type.FullName);<br>        &#125;<br>    &#125;<br>    LuaAPI.lua_pushlightuserdata(L, LuaAPI.xlua_tag());<br>    LuaAPI.lua_pushnumber(L, <span class="hljs-number">1</span>);<br>    LuaAPI.lua_rawset(L, <span class="hljs-number">-3</span>);  <span class="hljs-comment">// 为元表设置标志</span><br><br>    <span class="hljs-keyword">if</span> ((type == <span class="hljs-literal">null</span> || !translator.HasCustomOp(type)) &amp;&amp; type != <span class="hljs-keyword">typeof</span>(<span class="hljs-built_in">decimal</span>))<br>    &#123;<br>        LuaAPI.xlua_pushasciistring(L, <span class="hljs-string">&quot;__gc&quot;</span>);<br>        LuaAPI.lua_pushstdcallcfunction(L, translator.metaFunctions.GcMeta);<br>        LuaAPI.lua_rawset(L, <span class="hljs-number">-3</span>);  <span class="hljs-comment">// 为元表设置__gc 方法</span><br>    &#125;<br><br>    LuaAPI.xlua_pushasciistring(L, <span class="hljs-string">&quot;__tostring&quot;</span>);<br>    LuaAPI.lua_pushstdcallcfunction(L, translator.metaFunctions.ToStringMeta);<br>    LuaAPI.lua_rawset(L, <span class="hljs-number">-3</span>);  <span class="hljs-comment">// 为元表设置__tostring 方法</span><br><br>    <span class="hljs-keyword">if</span> (method_count == <span class="hljs-number">0</span>)<br>    &#123;<br>        LuaAPI.lua_pushnil(L);<br>    &#125;<br>    <span class="hljs-keyword">else</span><br>    &#123;<br>        LuaAPI.lua_createtable(L, <span class="hljs-number">0</span>, method_count);  <span class="hljs-comment">// 创建 method 表</span><br>    &#125;<br><br>    <span class="hljs-keyword">if</span> (getter_count == <span class="hljs-number">0</span>)<br>    &#123;<br>        LuaAPI.lua_pushnil(L);<br>    &#125;<br>    <span class="hljs-keyword">else</span><br>    &#123;<br>        LuaAPI.lua_createtable(L, <span class="hljs-number">0</span>, getter_count);  <span class="hljs-comment">// 创建 getter 表</span><br>    &#125;<br><br>    <span class="hljs-keyword">if</span> (setter_count == <span class="hljs-number">0</span>)<br>    &#123;<br>        LuaAPI.lua_pushnil(L);<br>    &#125;<br>    <span class="hljs-keyword">else</span><br>    &#123;<br>        LuaAPI.lua_createtable(L, <span class="hljs-number">0</span>, setter_count);  <span class="hljs-comment">// 创建 setter 表</span><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure></li>
+<li><p>多个 <code>Utils.RegisterFunc</code>，将类的每个非静态值对应的包裹方法注册到不同的 Lua 表中。包裹方法是 Generate Code 时动态生成的，对于类的属性会生成两个包裹方法，分别是<code>get</code> 和<code>set</code>包裹方法</p>
+<p> 例如成员方法 <code>Test1</code> 对应的包裹方法是 <code>_m_Test1</code>，并被注册到了<code>method</code> 表中。<code>Name</code>变量的 <code>_g_get_Name</code> 包裹方法被注册到<code>getter</code> 表，而 <code>_s_set_Name</code> 包裹方法被注册到 <code>setter</code> 表。这个包裹方法只是对原来方法的一层包裹，调用这个包裹方法本质上就是调用原来的方法。至于为什么需要生成包裹方法，后面会再讲到</p>
+ <figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs c#"><span class="hljs-comment">// Utils.cs RegisterFunc 根据不同的宏定义会有不同的版本，但大同小异</span><br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">RegisterFunc</span>(<span class="hljs-params">RealStatePtr L, <span class="hljs-built_in">int</span> idx, <span class="hljs-built_in">string</span> name, LuaCSFunction func</span>)</span><br>&#123;<br>    idx = abs_idx(LuaAPI.lua_gettop(L), idx);<br>    LuaAPI.xlua_pushasciistring(L, name);<br>    LuaAPI.lua_pushstdcallcfunction(L, func);<br>    LuaAPI.lua_rawset(L, idx);  <span class="hljs-comment">// 将 idx 指向的表中添加键值对 name = func</span><br>&#125;<br></code></pre></td></tr></table></figure></li>
+<li><p><code>Utils.EndObjectRegister</code>，结束对类的非静态值的注册。主要逻辑是为元表生成 <code>__index</code> 元方法和 <code>__newindex</code> 元方法，这也是 Lua 调用 C# 的核心所在</p>
+ <figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br></pre></td><td class="code"><pre><code class="hljs c#"><span class="hljs-comment">// Utils.cs</span><br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">EndObjectRegister</span>(<span class="hljs-params">Type type, RealStatePtr L, ObjectTranslator translator, LuaCSFunction csIndexer,</span></span><br><span class="hljs-params"><span class="hljs-function">    LuaCSFunction csNewIndexer, Type base_type, LuaCSFunction arrayIndexer, LuaCSFunction arrayNewIndexer</span>)</span><br>&#123;<br>    <span class="hljs-built_in">int</span> top = LuaAPI.lua_gettop(L);<br>    <span class="hljs-built_in">int</span> meta_idx = abs_idx(top, OBJ_META_IDX);<br>    <span class="hljs-built_in">int</span> method_idx = abs_idx(top, METHOD_IDX);<br>    <span class="hljs-built_in">int</span> getter_idx = abs_idx(top, GETTER_IDX);<br>    <span class="hljs-built_in">int</span> setter_idx = abs_idx(top, SETTER_IDX);<br><br>    <span class="hljs-comment">//begin index gen</span><br>    LuaAPI.xlua_pushasciistring(L, <span class="hljs-string">&quot;__index&quot;</span>);<br>    LuaAPI.lua_pushvalue(L, method_idx);  <span class="hljs-comment">// 1. 压入 methods 表</span><br>    LuaAPI.lua_pushvalue(L, getter_idx);  <span class="hljs-comment">// 2. 压入 getters 表</span><br><br>    <span class="hljs-keyword">if</span> (csIndexer == <span class="hljs-literal">null</span>)<br>    &#123;<br>        LuaAPI.lua_pushnil(L);<br>    &#125;<br>    <span class="hljs-keyword">else</span><br>    &#123;<br>        <span class="hljs-comment">// ...</span><br>        LuaAPI.lua_pushstdcallcfunction(L, csIndexer);  <span class="hljs-comment">// 3. 压入 csindexer</span><br>        <span class="hljs-comment">// ...</span><br>    &#125;<br><br>    translator.Push(L, type == <span class="hljs-literal">null</span> ? base_type : type.BaseType());  <span class="hljs-comment">// 4. 压入 base</span><br><br>    LuaAPI.xlua_pushasciistring(L, LuaIndexsFieldName);<br>    LuaAPI.lua_rawget(L, LuaIndexes.LUA_REGISTRYINDEX);  <span class="hljs-comment">// 5. 压入 indexfuncs</span><br>    <span class="hljs-keyword">if</span> (arrayIndexer == <span class="hljs-literal">null</span>)<br>    &#123;<br>        LuaAPI.lua_pushnil(L);<br>    &#125;<br>    <span class="hljs-keyword">else</span><br>    &#123;<br>        <span class="hljs-comment">// ...</span><br>        LuaAPI.lua_pushstdcallcfunction(L, arrayIndexer);  <span class="hljs-comment">// 6. 压入 arrayindexer</span><br>        <span class="hljs-comment">// ...</span><br>    &#125;<br><br>    LuaAPI.gen_obj_indexer(L);  <span class="hljs-comment">// 生成__index 元方法</span><br><br>    <span class="hljs-keyword">if</span> (type != <span class="hljs-literal">null</span>)<br>    &#123;<br>        LuaAPI.xlua_pushasciistring(L, LuaIndexsFieldName);<br>        LuaAPI.lua_rawget(L, LuaIndexes.LUA_REGISTRYINDEX);<span class="hljs-comment">//store in lua indexs function tables</span><br>        translator.Push(L, type);<br>        LuaAPI.lua_pushvalue(L, <span class="hljs-number">-3</span>);<br>        LuaAPI.lua_rawset(L, <span class="hljs-number">-3</span>);  <span class="hljs-comment">// 注册表 [LuaIndexs][type] = __index 函数</span><br>        LuaAPI.lua_pop(L, <span class="hljs-number">1</span>);<br>    &#125;<br><br>    LuaAPI.lua_rawset(L, meta_idx);<br>    <span class="hljs-comment">//end index gen</span><br><br>    <span class="hljs-comment">//begin newindex gen</span><br>    LuaAPI.xlua_pushasciistring(L, <span class="hljs-string">&quot;__newindex&quot;</span>);<br>    LuaAPI.lua_pushvalue(L, setter_idx);<br><br>    <span class="hljs-keyword">if</span> (csNewIndexer == <span class="hljs-literal">null</span>)<br>    &#123;<br>        LuaAPI.lua_pushnil(L);<br>    &#125;<br>    <span class="hljs-keyword">else</span><br>    &#123;<br>        <span class="hljs-comment">// ...</span><br>        LuaAPI.lua_pushstdcallcfunction(L, csNewIndexer);<br>        <span class="hljs-comment">// ...</span><br>    &#125;<br><br>    translator.Push(L, type == <span class="hljs-literal">null</span> ? base_type : type.BaseType());<br><br>    LuaAPI.xlua_pushasciistring(L, LuaNewIndexsFieldName);<br>    LuaAPI.lua_rawget(L, LuaIndexes.LUA_REGISTRYINDEX);<br><br>    <span class="hljs-keyword">if</span> (arrayNewIndexer == <span class="hljs-literal">null</span>)<br>    &#123;<br>        LuaAPI.lua_pushnil(L);<br>    &#125;<br>    <span class="hljs-keyword">else</span><br>    &#123;<br>        <span class="hljs-comment">// ...</span><br>        LuaAPI.lua_pushstdcallcfunction(L, arrayNewIndexer);<br>        <span class="hljs-comment">// ...</span><br>    &#125;<br><br>    LuaAPI.gen_obj_newindexer(L);  <span class="hljs-comment">// 生成__newindex 元方法</span><br><br>    <span class="hljs-keyword">if</span> (type != <span class="hljs-literal">null</span>)<br>    &#123;<br>        LuaAPI.xlua_pushasciistring(L, LuaNewIndexsFieldName);<br>        LuaAPI.lua_rawget(L, LuaIndexes.LUA_REGISTRYINDEX);<span class="hljs-comment">//store in lua newindexs function tables</span><br>        translator.Push(L, type);<br>        LuaAPI.lua_pushvalue(L, <span class="hljs-number">-3</span>);<br>        LuaAPI.lua_rawset(L, <span class="hljs-number">-3</span>);  <span class="hljs-comment">// 注册表 [LuaNewIndexs][type] = __newindex 函数</span><br>        LuaAPI.lua_pop(L, <span class="hljs-number">1</span>);<br>    &#125;<br><br>    LuaAPI.lua_rawset(L, meta_idx);<br>    <span class="hljs-comment">//end new index gen</span><br>    LuaAPI.lua_pop(L, <span class="hljs-number">4</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p> <code>__index</code>元方法是通过调用 <code>gen_obj_indexer</code> 获得的，在调用该方法前会依次压入 6 个参数（代码注释中有标注），<code>gen_obj_indexer</code>内部又会再压入一个 <code>nil</code> 值，用于为 <code>baseindex</code> 提前占位。共 7 个参数会作为 <code>upvalue</code> 关联到闭包 <code>obj_indexer</code>。<code>obj_indexer</code> 函数就是 <code>__index</code> 元方法，它的逻辑是当访问 <code>userdata[key]</code> 时，先依次查询之前通过 <code>RegisterFunc</code> 填充的 <code>methods</code>，<code>getters</code> 等表中是否存有对应 <code>key</code> 的包裹方法，如果有则直接使用，如果没有则递归在父类中查找。<code>__newindex</code>元方法是通过调用 <code>gen_obj_newindexer</code> 获得的，与<code>__index</code> 的获得原理类似，这里就不再列出了</p>
+ <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br></pre></td><td class="code"><pre><code class="hljs C"><span class="hljs-comment">// xlua.c</span><br>LUA_API <span class="hljs-type">int</span> <span class="hljs-title function_">gen_obj_indexer</span><span class="hljs-params">(lua_State *L)</span> &#123;<br>    lua_pushnil(L);<br>    lua_pushcclosure(L, obj_indexer, <span class="hljs-number">7</span>);<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br><br><span class="hljs-comment">//upvalue --- [1]: methods, [2]:getters, [3]:csindexer, [4]:base, [5]:indexfuncs, [6]:arrayindexer, [7]:baseindex</span><br><span class="hljs-comment">//param   --- [1]: obj, [2]: key</span><br>LUA_API <span class="hljs-type">int</span> <span class="hljs-title function_">obj_indexer</span><span class="hljs-params">(lua_State *L)</span> &#123;        <br>    <span class="hljs-keyword">if</span> (!lua_isnil(L, lua_upvalueindex(<span class="hljs-number">1</span>))) &#123;  <span class="hljs-comment">// 如果 methods 中有 key，则使用 methods[key]</span><br>        lua_pushvalue(L, <span class="hljs-number">2</span>);<br>        lua_gettable(L, lua_upvalueindex(<span class="hljs-number">1</span>));<br>        <span class="hljs-keyword">if</span> (!lua_isnil(L, <span class="hljs-number">-1</span>)) &#123;<span class="hljs-comment">//has method</span><br>            <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;<br>        &#125;<br>        lua_pop(L, <span class="hljs-number">1</span>);<br>    &#125;<br>    <br>    <span class="hljs-keyword">if</span> (!lua_isnil(L, lua_upvalueindex(<span class="hljs-number">2</span>))) &#123;  <span class="hljs-comment">// 如果 getters 中 key，则调用 getters[key]</span><br>        lua_pushvalue(L, <span class="hljs-number">2</span>);<br>        lua_gettable(L, lua_upvalueindex(<span class="hljs-number">2</span>));<br>        <span class="hljs-keyword">if</span> (!lua_isnil(L, <span class="hljs-number">-1</span>)) &#123;<span class="hljs-comment">//has getter</span><br>            lua_pushvalue(L, <span class="hljs-number">1</span>);<br>            lua_call(L, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>);<br>            <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;<br>        &#125;<br>        lua_pop(L, <span class="hljs-number">1</span>);<br>    &#125;<br>    <br>    <span class="hljs-keyword">if</span> (!lua_isnil(L, lua_upvalueindex(<span class="hljs-number">6</span>)) &amp;&amp; lua_type(L, <span class="hljs-number">2</span>) == LUA_TNUMBER) &#123;  <span class="hljs-comment">// 如果 arrayindexer 中有 key 且 key 是数字，则调用 arrayindexer[key]</span><br>        lua_pushvalue(L, lua_upvalueindex(<span class="hljs-number">6</span>));<br>        lua_pushvalue(L, <span class="hljs-number">1</span>);<br>        lua_pushvalue(L, <span class="hljs-number">2</span>);<br>        lua_call(L, <span class="hljs-number">2</span>, <span class="hljs-number">1</span>);<br>        <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;<br>    &#125;<br>    <br>    <span class="hljs-keyword">if</span> (!lua_isnil(L, lua_upvalueindex(<span class="hljs-number">3</span>))) &#123;  <span class="hljs-comment">// 如果 csindexer 中有 key，则调用 csindexer[key]</span><br>        lua_pushvalue(L, lua_upvalueindex(<span class="hljs-number">3</span>));<br>        lua_pushvalue(L, <span class="hljs-number">1</span>);<br>        lua_pushvalue(L, <span class="hljs-number">2</span>);<br>        lua_call(L, <span class="hljs-number">2</span>, <span class="hljs-number">2</span>);<br>        <span class="hljs-keyword">if</span> (lua_toboolean(L, <span class="hljs-number">-2</span>)) &#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;<br>        &#125;<br>        lua_pop(L, <span class="hljs-number">2</span>);<br>    &#125;<br>    <br>    <span class="hljs-keyword">if</span> (!lua_isnil(L, lua_upvalueindex(<span class="hljs-number">4</span>))) &#123;  <span class="hljs-comment">// 递归向上在 base 中查找</span><br>        lua_pushvalue(L, lua_upvalueindex(<span class="hljs-number">4</span>));<br>        <span class="hljs-keyword">while</span>(!lua_isnil(L, <span class="hljs-number">-1</span>)) &#123;<br>            lua_pushvalue(L, <span class="hljs-number">-1</span>);<br>            lua_gettable(L, lua_upvalueindex(<span class="hljs-number">5</span>));<br>            <span class="hljs-keyword">if</span> (!lua_isnil(L, <span class="hljs-number">-1</span>)) <span class="hljs-comment">// found</span><br>            &#123;<br>                lua_replace(L, lua_upvalueindex(<span class="hljs-number">7</span>)); <span class="hljs-comment">//baseindex = indexfuncs[base]</span><br>                lua_pop(L, <span class="hljs-number">1</span>);<br>                <span class="hljs-keyword">break</span>;<br>            &#125;<br>            lua_pop(L, <span class="hljs-number">1</span>);<br>            lua_getfield(L, <span class="hljs-number">-1</span>, <span class="hljs-string">&quot;BaseType&quot;</span>);<br>            lua_remove(L, <span class="hljs-number">-2</span>);<br>        &#125;<br>        lua_pushnil(L);<br>        lua_replace(L, lua_upvalueindex(<span class="hljs-number">4</span>));<span class="hljs-comment">//base = nil</span><br>    &#125;<br>    <br>    <span class="hljs-keyword">if</span> (!lua_isnil(L, lua_upvalueindex(<span class="hljs-number">7</span>))) &#123;  <br>        lua_settop(L, <span class="hljs-number">2</span>);<br>        lua_pushvalue(L, lua_upvalueindex(<span class="hljs-number">7</span>));  <br>        lua_insert(L, <span class="hljs-number">1</span>);<br>        lua_call(L, <span class="hljs-number">2</span>, <span class="hljs-number">1</span>);  <span class="hljs-comment">// 调用父类的__index，indexfuncs[base](obj, key)</span><br>        <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;<br>    &#125; <span class="hljs-keyword">else</span> &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure></li>
+<li><p><code>Utils.BeginClassRegister</code>，在对类的静态值（例如静态变量，静态方法等）进行注册前做一些准备工作。主要是为类生成对应的 <code>cls_table</code> 表，以及提前创建好 <code>static_getter</code> 表与 <code>static_setter</code> 表，后续用来存放静态字段对应的 <code>get</code> 和<code>set</code>包裹方法。注意这里还会为 <code>cls_table</code> 设置元表<code>meta_table</code></p>
+ <figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><code class="hljs c#"><span class="hljs-comment">// Utils.cs</span><br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">BeginClassRegister</span>(<span class="hljs-params">Type type, RealStatePtr L, LuaCSFunction creator, <span class="hljs-built_in">int</span> class_field_count,</span></span><br><span class="hljs-params"><span class="hljs-function">    <span class="hljs-built_in">int</span> static_getter_count, <span class="hljs-built_in">int</span> static_setter_count</span>)</span><br>&#123;<br>    ObjectTranslator translator = ObjectTranslatorPool.Instance.Find(L);<br>    LuaAPI.lua_createtable(L, <span class="hljs-number">0</span>, class_field_count);<br><br>    LuaAPI.xlua_pushasciistring(L, <span class="hljs-string">&quot;UnderlyingSystemType&quot;</span>);<br>    translator.PushAny(L, type);<br>    LuaAPI.lua_rawset(L, <span class="hljs-number">-3</span>);<br><br>    <span class="hljs-built_in">int</span> cls_table = LuaAPI.lua_gettop(L);<br><br>    SetCSTable(L, type, cls_table);<br><br>    LuaAPI.lua_createtable(L, <span class="hljs-number">0</span>, <span class="hljs-number">3</span>);<br>    <span class="hljs-built_in">int</span> meta_table = LuaAPI.lua_gettop(L);<br>    <span class="hljs-keyword">if</span> (creator != <span class="hljs-literal">null</span>)<br>    &#123;<br>        LuaAPI.xlua_pushasciistring(L, <span class="hljs-string">&quot;__call&quot;</span>);<br><span class="hljs-meta">#<span class="hljs-keyword">if</span> GEN_CODE_MINIMIZE</span><br>        translator.PushCSharpWrapper(L, creator);<br><span class="hljs-meta">#<span class="hljs-keyword">else</span></span><br>        LuaAPI.lua_pushstdcallcfunction(L, creator);<br><span class="hljs-meta">#<span class="hljs-keyword">endif</span></span><br>        LuaAPI.lua_rawset(L, <span class="hljs-number">-3</span>);<br>    &#125;<br><br>    <span class="hljs-keyword">if</span> (static_getter_count == <span class="hljs-number">0</span>)<br>    &#123;<br>        LuaAPI.lua_pushnil(L);<br>    &#125;<br>    <span class="hljs-keyword">else</span><br>    &#123;<br>        LuaAPI.lua_createtable(L, <span class="hljs-number">0</span>, static_getter_count);   <span class="hljs-comment">// 创建好 static_getter 表</span><br>    &#125;<br><br>    <span class="hljs-keyword">if</span> (static_setter_count == <span class="hljs-number">0</span>)<br>    &#123;<br>        LuaAPI.lua_pushnil(L);<br>    &#125;<br>    <span class="hljs-keyword">else</span><br>    &#123;<br>        LuaAPI.lua_createtable(L, <span class="hljs-number">0</span>, static_setter_count);  <span class="hljs-comment">// 创建好 static_setter 表</span><br>    &#125;<br>    LuaAPI.lua_pushvalue(L, meta_table);<br>    LuaAPI.lua_setmetatable(L, cls_table);  <span class="hljs-comment">// 设置元表</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p> <code>cls_table</code> 表是根据类的命名空间名逐层添加到注册表中的，主要是通过 <code>SetCSTable</code> 实现</p>
+ <figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><code class="hljs c#"><span class="hljs-comment">// Utils.cs</span><br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">SetCSTable</span>(<span class="hljs-params">RealStatePtr L, Type type, <span class="hljs-built_in">int</span> cls_table</span>)</span><br>&#123;<br>    <span class="hljs-built_in">int</span> oldTop = LuaAPI.lua_gettop(L);<br>    cls_table = abs_idx(oldTop, cls_table);<br>    LuaAPI.xlua_pushasciistring(L, LuaEnv.CSHARP_NAMESPACE);<br>    LuaAPI.lua_rawget(L, LuaIndexes.LUA_REGISTRYINDEX);<br><br>    List&lt;<span class="hljs-built_in">string</span>&gt; path = getPathOfType(type);<br><br>    <span class="hljs-comment">// 对于 A.B.C 来说</span><br><br>    <span class="hljs-comment">// for 循环处理 A.B</span><br>    <span class="hljs-comment">// 1. 注册表 [xlua_csharp_namespace][A] = &#123;&#125; 且出栈 注册表 [xlua_csharp_namespace]</span><br>    <span class="hljs-comment">// 2. 注册表 [xlua_csharp_namespace][A][B] = &#123;&#125; 且出栈 注册表 [xlua_csharp_namespace][A]</span><br><br>    <span class="hljs-keyword">for</span> (<span class="hljs-built_in">int</span> i = <span class="hljs-number">0</span>; i &lt; path.Count - <span class="hljs-number">1</span>; ++i)<br>    &#123;<br>        LuaAPI.xlua_pushasciistring(L, path[i]);<br>        <span class="hljs-keyword">if</span> (<span class="hljs-number">0</span> != LuaAPI.xlua_pgettable(L, <span class="hljs-number">-2</span>))<br>        &#123;<br>            <span class="hljs-keyword">var</span> err = LuaAPI.lua_tostring(L, <span class="hljs-number">-1</span>);<br>            LuaAPI.lua_settop(L, oldTop);<br>            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> Exception(<span class="hljs-string">&quot;SetCSTable for [&quot;</span> + type + <span class="hljs-string">&quot;] error: &quot;</span> + err);<br>        &#125;<br>        <span class="hljs-keyword">if</span> (LuaAPI.lua_isnil(L, <span class="hljs-number">-1</span>))  <span class="hljs-comment">// 如果 注册表 [xlua_csharp_namespace] 中没有 key path[i] , 则添加一个 path[i] = &#123;&#125; 键值对</span><br>        &#123;<br>            LuaAPI.lua_pop(L, <span class="hljs-number">1</span>);<br>            LuaAPI.lua_createtable(L, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>);<br>            LuaAPI.xlua_pushasciistring(L, path[i]);<br>            LuaAPI.lua_pushvalue(L, <span class="hljs-number">-2</span>);<br>            LuaAPI.lua_rawset(L, <span class="hljs-number">-4</span>);<br>        &#125;<br>        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (!LuaAPI.lua_istable(L, <span class="hljs-number">-1</span>))<br>        &#123;<br>            LuaAPI.lua_settop(L, oldTop);<br>            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> Exception(<span class="hljs-string">&quot;SetCSTable for [&quot;</span> + type + <span class="hljs-string">&quot;] error: ancestors is not a table!&quot;</span>);<br>        &#125;<br>        LuaAPI.lua_remove(L, <span class="hljs-number">-2</span>);<br>    &#125;<br><br>    <span class="hljs-comment">// 处理 C</span><br>    <span class="hljs-comment">// 注册表 [xlua_csharp_namespace][A][B][C] = cls_table 且出栈 [xlua_csharp_namespace][A][B][C]</span><br>    LuaAPI.xlua_pushasciistring(L, path[path.Count - <span class="hljs-number">1</span>]);<br>    LuaAPI.lua_pushvalue(L, cls_table);<br>    LuaAPI.lua_rawset(L, <span class="hljs-number">-3</span>);  <br>    LuaAPI.lua_pop(L, <span class="hljs-number">1</span>);<br><br>    <span class="hljs-comment">// 在 注册表 [xlua_csharp_namespace] 中添加键值对 [type 对应的 lua 代理 userdata] = cls_table</span><br>    LuaAPI.xlua_pushasciistring(L, LuaEnv.CSHARP_NAMESPACE);<br>    LuaAPI.lua_rawget(L, LuaIndexes.LUA_REGISTRYINDEX);<br>    ObjectTranslatorPool.Instance.Find(L).PushAny(L, type);<br>    LuaAPI.lua_pushvalue(L, cls_table);<br>    LuaAPI.lua_rawset(L, <span class="hljs-number">-3</span>);<br>    LuaAPI.lua_pop(L, <span class="hljs-number">1</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p> 以 <code>A.B.C</code> 类为例，将在 Lua 注册表中添加以下表结构，而 Lua 注册表 <code>xlua_csharp_namespace</code> 实际上对应的就是 CS 全局表，所以要在 xLua 中访问 C# 类时才可以直接使用 <code>CS.A.B.C</code> 这样的形式</p>
+ <figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs lua">Lua 注册表 = &#123;<br>    xlua_csharp_namespace = &#123;  <span class="hljs-comment">-- 就是 CS 全局表</span><br>        A = &#123;<br>            B = &#123;<br>                C = cls_table<br>            &#125;<br>        &#125;,<br>    &#125;,<br>&#125;<br></code></pre></td></tr></table></figure></li>
+<li><p>多个 <code>Utils.RegisterFunc</code>，与<code>BeginObjectRegister</code> 到<code>EndObjectRegister</code>之间的 <code>RegisterFunc</code> 作用相同，将类的每个静态值对应的包裹方法注册到对应的 Lua 表中。静态变量对应的 get 和 set 包裹方法会被分别注册到 <code>static_getter</code> 表和 <code>static_setter</code> 表（只读的静态变量除外）</p>
+</li>
+<li><p><code>Utils.EndClassRegister</code>，结束对类的静态值的注册。与 <code>EndObjectRegister</code> 类似，但它是为 <code>cls_table</code> 的元表 <code>meta_tabl</code> 设置 <code>__index</code> 元方法和 <code>__newindex</code> 元方法</p>
+ <figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><code class="hljs c#"><span class="hljs-comment">// Utils.cs</span><br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">EndClassRegister</span>(<span class="hljs-params">Type type, RealStatePtr L, ObjectTranslator translator</span>)</span><br>&#123;<br>    <span class="hljs-built_in">int</span> top = LuaAPI.lua_gettop(L);<br>    <span class="hljs-built_in">int</span> cls_idx = abs_idx(top, CLS_IDX);<br>    <span class="hljs-built_in">int</span> cls_getter_idx = abs_idx(top, CLS_GETTER_IDX);<br>    <span class="hljs-built_in">int</span> cls_setter_idx = abs_idx(top, CLS_SETTER_IDX);<br>    <span class="hljs-built_in">int</span> cls_meta_idx = abs_idx(top, CLS_META_IDX);<br><br>    <span class="hljs-comment">//begin cls index</span><br>    LuaAPI.xlua_pushasciistring(L, <span class="hljs-string">&quot;__index&quot;</span>);<br>    LuaAPI.lua_pushvalue(L, cls_getter_idx);<br>    LuaAPI.lua_pushvalue(L, cls_idx);<br>    translator.Push(L, type.BaseType());<br>    LuaAPI.xlua_pushasciistring(L, LuaClassIndexsFieldName);<br>    LuaAPI.lua_rawget(L, LuaIndexes.LUA_REGISTRYINDEX);  <br>    LuaAPI.gen_cls_indexer(L);<br><br>    LuaAPI.xlua_pushasciistring(L, LuaClassIndexsFieldName);<br>    LuaAPI.lua_rawget(L, LuaIndexes.LUA_REGISTRYINDEX);<span class="hljs-comment">//store in lua indexs function tables  </span><br>    translator.Push(L, type);<br>    LuaAPI.lua_pushvalue(L, <span class="hljs-number">-3</span>);<br>    LuaAPI.lua_rawset(L, <span class="hljs-number">-3</span>);  <span class="hljs-comment">// 注册表 [LuaClassIndexs][type] = __index 函数</span><br>    LuaAPI.lua_pop(L, <span class="hljs-number">1</span>);<br><br>    LuaAPI.lua_rawset(L, cls_meta_idx);<br>    <span class="hljs-comment">//end cls index</span><br><br>    <span class="hljs-comment">//begin cls newindex</span><br>    LuaAPI.xlua_pushasciistring(L, <span class="hljs-string">&quot;__newindex&quot;</span>);<br>    LuaAPI.lua_pushvalue(L, cls_setter_idx);<br>    translator.Push(L, type.BaseType());<br>    LuaAPI.xlua_pushasciistring(L, LuaClassNewIndexsFieldName);<br>    LuaAPI.lua_rawget(L, LuaIndexes.LUA_REGISTRYINDEX);<br>    LuaAPI.gen_cls_newindexer(L);<br><br>    LuaAPI.xlua_pushasciistring(L, LuaClassNewIndexsFieldName);<br>    LuaAPI.lua_rawget(L, LuaIndexes.LUA_REGISTRYINDEX);<span class="hljs-comment">//store in lua newindexs function tables</span><br>    translator.Push(L, type);<br>    LuaAPI.lua_pushvalue(L, <span class="hljs-number">-3</span>);<br>    LuaAPI.lua_rawset(L, <span class="hljs-number">-3</span>);  <span class="hljs-comment">// 注册表 [LuaClassNewIndexs][type] = __newindex 函数</span><br>    LuaAPI.lua_pop(L, <span class="hljs-number">1</span>);<br><br>    LuaAPI.lua_rawset(L, cls_meta_idx);<br>    <span class="hljs-comment">//end cls newindex</span><br><br>    LuaAPI.lua_pop(L, <span class="hljs-number">4</span>);<br>&#125;<br></code></pre></td></tr></table></figure></li>
+</ol>
+<p>上述 6 个部分的代码量比较大，逻辑也比较复杂，到这里有必要做一个总结</p>
+<p>生成代码会为类的非静态值都生成对应的包裹方法，并将包裹方法以 <code>key = func</code> 的形式注册到不同的表中。<code>userdata</code>元表的 <code>__index</code> 和<code>__newindex</code>负责从这不同的表中找到对应 <code>key</code> 的包裹方法，最终通过调用包裹方法实现对 C# 对象的控制</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs lua"><span class="hljs-comment">-- lua 测试代码</span><br><span class="hljs-keyword">local</span> obj = CS.TestXLua()<br>obj.Name = <span class="hljs-string">&quot;test&quot;</span>  <span class="hljs-comment">-- 赋值操作将触发 obj 元表的__newindex，__newindex 在 setter 表中找到 Name 对应的 set 包裹方法_s_set_Name，然后通过调用_s_set_Name 方法设置了 TestXLua 对象的 Name 属性为 &quot;test&quot;</span><br></code></pre></td></tr></table></figure>
+
+<p>生成代码还会为每个类以命名空间为层次结构生成 <code>cls_table</code> 表。与类的非静态值相同，生成代码也会为类的静态值都生成对应的包裹方法并注册到不同的表中（注意这里有些区别，类的静态方法会被直接注册到 <code>cls_table</code> 表中）。而 <code>cls_table</code> 元表的 <code>__index</code> 和<code>__newindex</code>负责从这不同的表中找到对应 <code>key</code> 的包裹方法，最终通过调用包裹方法实现对 C# 类的控制</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs lua"><span class="hljs-comment">-- lua 测试代码</span><br>CS.TestXLua.Test2()  <span class="hljs-comment">-- CS.TestXLua 获取到 TestXLua 类对应的 cls_table，由于 Test2 是静态方法，在 cls_table 中可以直接拿到其对应的包裹方法_m_Test2_xlua_st_，然后通过调用_m_Test2_xlua_st_而间接调用了 TestXLua 类的 Test2 方法</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="使用反射填充元表"><a href="# 使用反射填充元表" class="headerlink" title="使用反射填充元表"></a>使用反射填充元表 </h3><p> 当没有生成代码时，会使用反射进行注册，与生成代码进行注册的逻辑基本相同。通过反射获取到类的各个静态值和非静态值，然后分别注册到不同的表中，以及填充 <code>__index</code> 和<code>__newindex</code>元方法</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br></pre></td><td class="code"><pre><code class="hljs c#"><span class="hljs-comment">// Utils.cs</span><br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">ReflectionWrap</span>(<span class="hljs-params">RealStatePtr L, Type type, <span class="hljs-built_in">bool</span> privateAccessible</span>)</span><br>&#123;<br>    LuaAPI.lua_checkstack(L, <span class="hljs-number">20</span>);<br><br>    <span class="hljs-built_in">int</span> top_enter = LuaAPI.lua_gettop(L);<br>    ObjectTranslator translator = ObjectTranslatorPool.Instance.Find(L);<br>    <span class="hljs-comment">//create obj meta table</span><br>    LuaAPI.luaL_getmetatable(L, type.FullName);<br>    <span class="hljs-keyword">if</span> (LuaAPI.lua_isnil(L, <span class="hljs-number">-1</span>))<br>    &#123;<br>        LuaAPI.lua_pop(L, <span class="hljs-number">1</span>);<br>        LuaAPI.luaL_newmetatable(L, type.FullName);<br>    &#125;<br>    <span class="hljs-comment">// 为元表添加 xlua_tag 标志</span><br>    LuaAPI.lua_pushlightuserdata(L, LuaAPI.xlua_tag());<br>    LuaAPI.lua_pushnumber(L, <span class="hljs-number">1</span>);<br>    LuaAPI.lua_rawset(L, <span class="hljs-number">-3</span>);  <span class="hljs-comment">// 元表 [xlua_tag] = 1</span><br>    <span class="hljs-built_in">int</span> obj_meta = LuaAPI.lua_gettop(L);  <br><br>    LuaAPI.lua_newtable(L);<br>    <span class="hljs-built_in">int</span> cls_meta = LuaAPI.lua_gettop(L);<br><br>    LuaAPI.lua_newtable(L);<br>    <span class="hljs-built_in">int</span> obj_field = LuaAPI.lua_gettop(L);<br>    LuaAPI.lua_newtable(L);<br>    <span class="hljs-built_in">int</span> obj_getter = LuaAPI.lua_gettop(L);<br>    LuaAPI.lua_newtable(L);<br>    <span class="hljs-built_in">int</span> obj_setter = LuaAPI.lua_gettop(L);<br>    LuaAPI.lua_newtable(L);<br>    <span class="hljs-built_in">int</span> cls_field = LuaAPI.lua_gettop(L);<br>    <span class="hljs-comment">//set cls_field to namespace</span><br>    SetCSTable(L, type, cls_field);<br>    <span class="hljs-comment">//finish set cls_field to namespace</span><br>    LuaAPI.lua_newtable(L);<br>    <span class="hljs-built_in">int</span> cls_getter = LuaAPI.lua_gettop(L);<br>    LuaAPI.lua_newtable(L);<br>    <span class="hljs-built_in">int</span> cls_setter = LuaAPI.lua_gettop(L);<br><br>    LuaCSFunction item_getter;<br>    LuaCSFunction item_setter;<br>    makeReflectionWrap(L, type, cls_field, cls_getter, cls_setter, obj_field, obj_getter, obj_setter, obj_meta,<br>        <span class="hljs-keyword">out</span> item_getter, <span class="hljs-keyword">out</span> item_setter, privateAccessible ? (BindingFlags.Public | BindingFlags.NonPublic) : BindingFlags.Public);<br><br>    <span class="hljs-comment">// init obj metatable</span><br>    LuaAPI.xlua_pushasciistring(L, <span class="hljs-string">&quot;__gc&quot;</span>);<br>    LuaAPI.lua_pushstdcallcfunction(L, translator.metaFunctions.GcMeta);<br>    LuaAPI.lua_rawset(L, obj_meta);<br><br>    LuaAPI.xlua_pushasciistring(L, <span class="hljs-string">&quot;__tostring&quot;</span>);<br>    LuaAPI.lua_pushstdcallcfunction(L, translator.metaFunctions.ToStringMeta);<br>    LuaAPI.lua_rawset(L, obj_meta);<br><br>    LuaAPI.xlua_pushasciistring(L, <span class="hljs-string">&quot;__index&quot;</span>);<br>    LuaAPI.lua_pushvalue(L, obj_field);  <span class="hljs-comment">// 1.upvalue methods = obj_field</span><br>    LuaAPI.lua_pushvalue(L, obj_getter);  <span class="hljs-comment">// 2.upvalue getters = obj_getter</span><br>    translator.PushFixCSFunction(L, item_getter);  <span class="hljs-comment">// 3.upvalue csindexer = item_getter</span><br>    translator.PushAny(L, type.BaseType());  <span class="hljs-comment">// 压入 BaseType，4.upvalue base</span><br>    LuaAPI.xlua_pushasciistring(L, LuaIndexsFieldName);<br>    LuaAPI.lua_rawget(L, LuaIndexes.LUA_REGISTRYINDEX);  <span class="hljs-comment">// 5.upvalue indexfuncs = 注册表 [LuaIndexs]</span><br>    LuaAPI.lua_pushnil(L);  <span class="hljs-comment">// 6.upvalue arrayindexer = nil</span><br>    LuaAPI.gen_obj_indexer(L);  <span class="hljs-comment">// 生成__index 函数</span><br>    <span class="hljs-comment">//store in lua indexs function tables</span><br>    LuaAPI.xlua_pushasciistring(L, LuaIndexsFieldName);<br>    LuaAPI.lua_rawget(L, LuaIndexes.LUA_REGISTRYINDEX);  <br>    translator.Push(L, type);  <span class="hljs-comment">// 压入 type</span><br>    LuaAPI.lua_pushvalue(L, <span class="hljs-number">-3</span>);<br>    LuaAPI.lua_rawset(L, <span class="hljs-number">-3</span>);  <span class="hljs-comment">// 注册表 [LuaIndexs][type] = __index 函数</span><br>    LuaAPI.lua_pop(L, <span class="hljs-number">1</span>);<br>    LuaAPI.lua_rawset(L, obj_meta); <span class="hljs-comment">// set __index  即 obj_meta[&quot;__index&quot;] = 生成的__index 函数</span><br><br>    LuaAPI.xlua_pushasciistring(L, <span class="hljs-string">&quot;__newindex&quot;</span>);<br>    LuaAPI.lua_pushvalue(L, obj_setter);<br>    translator.PushFixCSFunction(L, item_setter);<br>    translator.Push(L, type.BaseType());<br>    LuaAPI.xlua_pushasciistring(L, LuaNewIndexsFieldName);<br>    LuaAPI.lua_rawget(L, LuaIndexes.LUA_REGISTRYINDEX);<br>    LuaAPI.lua_pushnil(L);<br>    LuaAPI.gen_obj_newindexer(L);<br>    <span class="hljs-comment">//store in lua newindexs function tables</span><br>    LuaAPI.xlua_pushasciistring(L, LuaNewIndexsFieldName);<br>    LuaAPI.lua_rawget(L, LuaIndexes.LUA_REGISTRYINDEX);<br>    translator.Push(L, type);<br>    LuaAPI.lua_pushvalue(L, <span class="hljs-number">-3</span>);<br>    LuaAPI.lua_rawset(L, <span class="hljs-number">-3</span>);  <span class="hljs-comment">// 注册表 [LuaNewIndexs][type] = __newindex 函数</span><br>    LuaAPI.lua_pop(L, <span class="hljs-number">1</span>);<br>    LuaAPI.lua_rawset(L, obj_meta); <span class="hljs-comment">// set __newindex</span><br>                                    <span class="hljs-comment">//finish init obj metatable</span><br><br>    LuaAPI.xlua_pushasciistring(L, <span class="hljs-string">&quot;UnderlyingSystemType&quot;</span>);<br>    translator.PushAny(L, type);<br>    LuaAPI.lua_rawset(L, cls_field);  <span class="hljs-comment">// cls_field[&quot;UnderlyingSystemType&quot;] = type  ， 记录类的基础类型</span><br><br>    <span class="hljs-keyword">if</span> (type != <span class="hljs-literal">null</span> &amp;&amp; type.IsEnum())<br>    &#123;<br>        LuaAPI.xlua_pushasciistring(L, <span class="hljs-string">&quot;__CastFrom&quot;</span>);<br>        translator.PushFixCSFunction(L, genEnumCastFrom(type));<br>        LuaAPI.lua_rawset(L, cls_field);<br>    &#125;<br><br>    <span class="hljs-comment">//init class meta</span><br>    LuaAPI.xlua_pushasciistring(L, <span class="hljs-string">&quot;__index&quot;</span>);<br>    LuaAPI.lua_pushvalue(L, cls_getter);<br>    LuaAPI.lua_pushvalue(L, cls_field);<br>    translator.Push(L, type.BaseType());<br>    LuaAPI.xlua_pushasciistring(L, LuaClassIndexsFieldName);<br>    LuaAPI.lua_rawget(L, LuaIndexes.LUA_REGISTRYINDEX);<br>    LuaAPI.gen_cls_indexer(L);<br>    <span class="hljs-comment">//store in lua indexs function tables</span><br>    LuaAPI.xlua_pushasciistring(L, LuaClassIndexsFieldName);<br>    LuaAPI.lua_rawget(L, LuaIndexes.LUA_REGISTRYINDEX);<br>    translator.Push(L, type);<br>    LuaAPI.lua_pushvalue(L, <span class="hljs-number">-3</span>);<br>    LuaAPI.lua_rawset(L, <span class="hljs-number">-3</span>);  <span class="hljs-comment">// 注册表 [LuaClassIndexs][type] = __index 函数</span><br>    LuaAPI.lua_pop(L, <span class="hljs-number">1</span>);<br>    LuaAPI.lua_rawset(L, cls_meta); <span class="hljs-comment">// set __index </span><br><br>    LuaAPI.xlua_pushasciistring(L, <span class="hljs-string">&quot;__newindex&quot;</span>);<br>    LuaAPI.lua_pushvalue(L, cls_setter);<br>    translator.Push(L, type.BaseType());<br>    LuaAPI.xlua_pushasciistring(L, LuaClassNewIndexsFieldName);<br>    LuaAPI.lua_rawget(L, LuaIndexes.LUA_REGISTRYINDEX);<br>    LuaAPI.gen_cls_newindexer(L);<br>    <span class="hljs-comment">//store in lua newindexs function tables</span><br>    LuaAPI.xlua_pushasciistring(L, LuaClassNewIndexsFieldName);<br>    LuaAPI.lua_rawget(L, LuaIndexes.LUA_REGISTRYINDEX);<br>    translator.Push(L, type);<br>    LuaAPI.lua_pushvalue(L, <span class="hljs-number">-3</span>);<br>    LuaAPI.lua_rawset(L, <span class="hljs-number">-3</span>);  <span class="hljs-comment">// // 注册表 [LuaClassNewIndexs][type] = __newindex 函数</span><br>    LuaAPI.lua_pop(L, <span class="hljs-number">1</span>);<br>    LuaAPI.lua_rawset(L, cls_meta); <span class="hljs-comment">// set __newindex</span><br>    <span class="hljs-comment">// ...</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="调用 -C- 方法时参数的传递"><a href="# 调用 -C- 方法时参数的传递" class="headerlink" title="调用 C# 方法时参数的传递"></a>调用 C# 方法时参数的传递 </h3><p> 先来解决前面遗留的一个问题，对于类的静态值或是非静态值为什么都需要生成对应的包裹方法？其实包裹方法就是用来处理参数传递问题的。</p>
+<p>为了正确的和 Lua 通讯，C 函数已经定义好了协议。这个协议定义了参数以及返回值传递方法：C 函数通过 Lua 中的栈来接受参数，参数以正序入栈（第一个参数首先入栈）。因此，当函数开始的时候，<code>lua_gettop(L)</code>可以返回函数收到的参数个数。第一个参数（如果有的话）在索引 1 的地方，而最后一个参数在索引 <code>lua_gettop(L)</code> 处。当需要向 Lua 返回值的时候，C 函数只需要把它们以正序压到堆栈上（第一个返回值最先压入），然后返回这些返回值的个数。在这些返回值之下的，堆栈上的东西都会被 Lua 丢掉。和 Lua 函数一样，从 Lua 中调用 C 函数可以有很多返回值。<br>也就是说，Lua 这边调用 C 函数时的参数会被自动的压栈，这套机制 Lua 内部已经实现好了。文章开头也提到，C# 可以借助 C/C++ 来与 Lua 进行数据通信，所以 C# 需要通过 C API 获取到 Lua 传递过来的参数，而这个逻辑就被封装在了包裹方法中。以 <code>TestXLua</code> 的<code>Test1</code>方法为例，它需要一个 <code>int</code> 参数。所以它的包裹方法需要通过 C API 获取到一个 <code>int</code> 参数，然后再使用这个参数去调用真正的方法</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs c#">[<span class="hljs-meta">MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))</span>]<br><span class="hljs-keyword">static</span> <span class="hljs-built_in">int</span> _m_Test1(RealStatePtr L)<br>&#123;<br>    <span class="hljs-keyword">try</span> &#123;<br>        ObjectTranslator translator = ObjectTranslatorPool.Instance.Find(L);<br>        TestXLua gen_to_be_invoked = (TestXLua)translator.FastGetCSObj(L, <span class="hljs-number">1</span>);<br>        &#123;<br>            <span class="hljs-built_in">int</span> _a = LuaAPI.xlua_tointeger(L, <span class="hljs-number">2</span>);  <span class="hljs-comment">// 获取到 int 参数</span><br>            gen_to_be_invoked.Test1(_a);  <span class="hljs-comment">// 调用真正的 Test1 方法</span><br>            <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>        &#125;<br>    &#125; <span class="hljs-keyword">catch</span>(System.Exception gen_e) &#123;<br>        <span class="hljs-keyword">return</span> LuaAPI.luaL_error(L, <span class="hljs-string">&quot;c# exception:&quot;</span> + gen_e);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>这也解释了为什么需要为类的属性生成对应的 <code>get</code> 和<code>set</code>方法，因为只有将 Lua 的访问或赋值操作转换成函数调用形式时，参数才能利用函数调用机制被自动的压栈，从而传递给 C#</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs lua"><span class="hljs-comment">-- lua 测试代码</span><br>obj.Name = <span class="hljs-string">&quot;test&quot;</span>  <span class="hljs-comment">-- 赋值操作</span><br>setter[<span class="hljs-string">&quot;Name&quot;</span>](<span class="hljs-string">&quot;test&quot;</span>)  <span class="hljs-comment">-- 函数调用形式</span><br></code></pre></td></tr></table></figure>
+
+<p>这里再提一下函数重载的问题，因为 C# 是支持重载的，所以会存在多个同名函数，但参数不同的情况。对于这种情况，只能通过同名函数被调用时传递的参数情况来判断到底应该调用哪个函数</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><code class="hljs c#">[<span class="hljs-meta">LuaCallCSharp</span>]<br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">TestXLua</span><br>&#123;<br>    <span class="hljs-comment">// 函数重载 Test1</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">Test1</span>(<span class="hljs-params"><span class="hljs-built_in">int</span> a</span>)</span>&#123;<br>    &#125;<br>    <span class="hljs-comment">// 函数重载 Test1</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">Test1</span>(<span class="hljs-params"><span class="hljs-built_in">bool</span> b</span>)</span>&#123;<br>    &#125;<br>&#125;<br><br><span class="hljs-comment">// 为 Test1 生成的包裹方法</span><br>[<span class="hljs-meta">MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))</span>]<br><span class="hljs-keyword">static</span> <span class="hljs-built_in">int</span> _m_Test1(RealStatePtr L)<br>&#123;<br>    <span class="hljs-keyword">try</span> &#123;<br>        ObjectTranslator translator = ObjectTranslatorPool.Instance.Find(L);<br>        TestXLua gen_to_be_invoked = (TestXLua)translator.FastGetCSObj(L, <span class="hljs-number">1</span>);<br>        <span class="hljs-built_in">int</span> gen_param_count = LuaAPI.lua_gettop(L);<br>        <span class="hljs-keyword">if</span>(gen_param_count == <span class="hljs-number">2</span>&amp;&amp; LuaTypes.LUA_TNUMBER == LuaAPI.lua_type(L, <span class="hljs-number">2</span>))  <span class="hljs-comment">// 根据参数数量与类型判断调用哪个方法</span><br>        &#123;<br>            <span class="hljs-built_in">int</span> _a = LuaAPI.xlua_tointeger(L, <span class="hljs-number">2</span>);<br>            gen_to_be_invoked.Test1(_a);<br>            <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>        &#125;<br>        <span class="hljs-keyword">if</span>(gen_param_count == <span class="hljs-number">2</span>&amp;&amp; LuaTypes.LUA_TBOOLEAN == LuaAPI.lua_type(L, <span class="hljs-number">2</span>))  <span class="hljs-comment">// 根据参数数量与类型判断调用哪个方法</span><br>        &#123; <br>            <span class="hljs-built_in">bool</span> _b = LuaAPI.lua_toboolean(L, <span class="hljs-number">2</span>);<br>            gen_to_be_invoked.Test1(_b);<br>            <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>        &#125;<br>    &#125; <span class="hljs-keyword">catch</span>(System.Exception gen_e) &#123;<br>        <span class="hljs-keyword">return</span> LuaAPI.luaL_error(L, <span class="hljs-string">&quot;c# exception:&quot;</span> + gen_e);<br>    &#125;<br>    <span class="hljs-keyword">return</span> LuaAPI.luaL_error(L, <span class="hljs-string">&quot;invalid arguments to TestXLua.Test1!&quot;</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="GC"><a href="#GC" class="headerlink" title="GC"></a>GC</h3><p>C# 和 Lua 都是有自动垃圾回收机制的，并且相互是无感知的。如果传递到 Lua 的 C# 对象被 C# 自动回收掉了，而 Lua 这边仍毫不知情继续使用，则必然会导致无法预知的错误。所以基本原则是传递到 Lua 的 C#对象，C# 不能自动回收，只能 Lua 在确定不再使用后通知 C# 进行回收 <br> 为了保证 C# 不会自动回收对象，所有传递给 Lua 的对象都会被 <code>objects</code> 保持引用。真实传递给 Lua 的对象索引就是对象在 <code>objects</code> 中的索引 <br>Lua 这边为对象索引建立的<code>userdata</code> 会被保存在缓存表中，而缓存表的引用模式被设置为弱引用</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs c#"><span class="hljs-comment">// ObjectTranslator.cs</span><br>LuaAPI.lua_newtable(L);  <span class="hljs-comment">// 创建缓存表</span><br>LuaAPI.lua_newtable(L);  <span class="hljs-comment">// 创建元表</span><br>LuaAPI.xlua_pushasciistring(L, <span class="hljs-string">&quot;__mode&quot;</span>);<br>LuaAPI.xlua_pushasciistring(L, <span class="hljs-string">&quot;v&quot;</span>);<br>LuaAPI.lua_rawset(L, <span class="hljs-number">-3</span>);  <span class="hljs-comment">// 元表 [__mode] = v，表示这张表的所有值皆为弱引用</span><br>LuaAPI.lua_setmetatable(L, <span class="hljs-number">-2</span>);  <span class="hljs-comment">// 为缓存表设置元表</span><br>cacheRef = LuaAPI.luaL_ref(L, LuaIndexes.LUA_REGISTRYINDEX);<br></code></pre></td></tr></table></figure>
+
+<p>当 Lua 这边不再引用这个 <code>userdata</code> 时，<code>userdata</code>会被从缓存表中移除，Lua GC 时会回收这个 userdata，回收之前又会调用 <code>userdata</code> 元表的 <code>__gc</code> 方法，以此来通知 C#，”我 Lua 这边不再使用这个对象了，你该回收可以回收了”。在 <code>BeginObjectRegister</code>方法内部，会为 <code>userdata</code> 的元表添加 <code>__gc</code> 方法</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs c#"><span class="hljs-comment">// Utils.cs BeginObjectRegister 方法</span><br><span class="hljs-keyword">if</span> ((type == <span class="hljs-literal">null</span> || !translator.HasCustomOp(type)) &amp;&amp; type != <span class="hljs-keyword">typeof</span>(<span class="hljs-built_in">decimal</span>))<br>&#123;<br>    LuaAPI.xlua_pushasciistring(L, <span class="hljs-string">&quot;__gc&quot;</span>);<br>    LuaAPI.lua_pushstdcallcfunction(L, translator.metaFunctions.GcMeta);<br>    LuaAPI.lua_rawset(L, <span class="hljs-number">-3</span>);  <span class="hljs-comment">// 为元表设置__gc 方法</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><code>translator.metaFunctions.GcMeta</code>实际上就是 <code>StaticLuaCallbacks</code> 的<code>LuaGC</code>方法</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs c#"><span class="hljs-comment">// StaticLuaCallbacks.cs</span><br>[<span class="hljs-meta">MonoPInvokeCallback(typeof(LuaCSFunction))</span>]<br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-built_in">int</span> <span class="hljs-title">LuaGC</span>(<span class="hljs-params">RealStatePtr L</span>)</span><br>&#123;<br>    <span class="hljs-keyword">try</span><br>    &#123;<br>        <span class="hljs-built_in">int</span> udata = LuaAPI.xlua_tocsobj_safe(L, <span class="hljs-number">1</span>);<br>        <span class="hljs-keyword">if</span> (udata != <span class="hljs-number">-1</span>)<br>        &#123;<br>            ObjectTranslator translator = ObjectTranslatorPool.Instance.Find(L);<br>            <span class="hljs-keyword">if</span> (translator != <span class="hljs-literal">null</span> )<br>            &#123;<br>                translator.collectObject(udata);<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>    &#125;<br>    <span class="hljs-keyword">catch</span> (Exception e)<br>    &#123;<br>        <span class="hljs-keyword">return</span> LuaAPI.luaL_error(L, <span class="hljs-string">&quot;c# exception in LuaGC:&quot;</span> + e);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><code>LuaGC</code>方法又会调用 <code>collectObject</code> 方法。在 <code>collectObject</code> 方法内部会将对象从 <code>objects</code> 移除，从而使对象不再被固定引用，能够被 C# GC 正常回收</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><code class="hljs c#"><span class="hljs-comment">// ObjectTranslator.cs</span><br><span class="hljs-function"><span class="hljs-keyword">internal</span> <span class="hljs-keyword">void</span> <span class="hljs-title">collectObject</span>(<span class="hljs-params"><span class="hljs-built_in">int</span> obj_index_to_collect</span>)</span><br>&#123;<br>    <span class="hljs-built_in">object</span> o;<br>    <br>    <span class="hljs-keyword">if</span> (objects.TryGetValue(obj_index_to_collect, <span class="hljs-keyword">out</span> o))<br>    &#123;<br>        objects.Remove(obj_index_to_collect);<br>        <br>        <span class="hljs-keyword">if</span> (o != <span class="hljs-literal">null</span>)<br>        &#123;<br>            <span class="hljs-built_in">int</span> obj_index;<br>            <span class="hljs-comment">//lua gc 是先把 weak table 移除后再调用__gc，这期间同一个对象可能再次 push 到 lua，关联到新的 index</span><br>            <span class="hljs-built_in">bool</span> is_enum = o.GetType().IsEnum();<br>            <span class="hljs-keyword">if</span> ((is_enum ? enumMap.TryGetValue(o, <span class="hljs-keyword">out</span> obj_index) : reverseMap.TryGetValue(o, <span class="hljs-keyword">out</span> obj_index))<br>                &amp;&amp; obj_index == obj_index_to_collect)<br>            &#123;<br>                <span class="hljs-keyword">if</span> (is_enum)<br>                &#123;<br>                    enumMap.Remove(o);<br>                &#125;<br>                <span class="hljs-keyword">else</span><br>                &#123;<br>                    reverseMap.Remove(o);<br>                &#125;<br>            &#125;<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/" class="category-chain-item">游戏开发</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/C/" class="print-no-link">#C#</a>
+      
+        <a href="/tags/xLua/" class="print-no-link">#xLua</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>XLua 如何与 C# 进行交互</div>
+      <div>https://silhouettesforyou.github.io/2024/06/04/04dccfe10a89/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Xiaoming</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>June 4, 2024</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/06/10/f3b491abe2f8/" title="Unreal 基础">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Unreal 基础</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/06/04/77811b82e50c/" title="ProtoBuf 的基本原理">
+                        <span class="hidden-mobile">ProtoBuf 的基本原理</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+      <div class="col-lg-7 mx-auto nopadding-x-md">
+        <div class="container custom mx-auto">
+          <link rel="stylesheet" href="//at.alicdn.com/t/c/font_4625503_8j4kic2ox3k.css"> <script src="https://kit.fontawesome.com/8e800a3a44.js" crossorigin="anonymous"></script> <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script> <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script> <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.13.3/jquery-ui.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script> <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script> <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.8/umd/popper.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script> <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.11/clipboard.min.js" crossorigin="anonymous" referrerpolicy="no-referrer">
+        </div>
+      </div>
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+      <i class="iconfont icon-love"></i>
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  var relativeDate = function() {
+    var updatedTime = document.getElementById('updated-time');
+    if (updatedTime) {
+      var text = updatedTime.textContent;
+      var reg = /\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:Z|[+-]\d{2}:\d{2})/;
+      var matchs = text.match(reg);
+      if (matchs) {
+        var relativeTime = moment(matchs[0]).fromNow();
+        updatedTime.textContent = text.replace(reg, relativeTime);
+      }
+      updatedTime.style.display = '';
+    }
+  };
+  Fluid.utils.createScript('https://lib.baomitu.com/moment.js/2.29.4/moment.min.js', function() {
+    if (!'en'.startsWith('en')) {
+      Fluid.utils.createScript('https://lib.baomitu.com/moment.js/2.29.4/locale/en.min.js', function() {
+        relativeDate();
+      });
+    } else {
+      relativeDate();
+    }
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  
+<script src="/js/tool-tips.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+<!-- hexo injector body_end start --><script src="https://cdn.jsdelivr.net/npm/hexo-tag-common@0.0.5/js/index.js"></script><!-- hexo injector body_end end --><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"left","width":150,"height":300},"mobile":{"show":false},"react":{"opacity":0.7}});</script></body>
+</html>
