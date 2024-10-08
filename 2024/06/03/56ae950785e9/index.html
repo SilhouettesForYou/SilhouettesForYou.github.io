@@ -30,7 +30,7 @@
 <meta property="og:image" content="https://silhouettesforyou.github.io/2024/06/03/56ae950785e9/set-operations-inclues-2.png">
 <meta property="og:image" content="https://silhouettesforyou.github.io/2024/06/03/56ae950785e9/locale-imp.gif">
 <meta property="article:published_time" content="2024-06-03T06:11:57.000Z">
-<meta property="article:modified_time" content="2024-07-29T14:23:06.785Z">
+<meta property="article:modified_time" content="2024-10-08T14:24:24.929Z">
 <meta property="article:author" content="Xiaoming">
 <meta property="article:tag" content="C++">
 <meta property="article:tag" content="现代 C++">
@@ -558,7 +558,7 @@ mjx-container[display="true"] + br {
               <p id="updated-time" class="note note-light" style="display: none">
                 
                   
-                    Last updated on 2024-07-29T22:23:06+08:00
+                    Last updated on 2024-10-08T22:24:24+08:00
                   
                   
 
@@ -2974,6 +2974,10 @@ mjx-container[display="true"] + br {
 </li>
 <li><p>Create a new group of facet 如何创建新的 facet</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Umlaut</span> : <span class="hljs-keyword">public</span> std::locale::facet {<span class="hljs-comment">//1</span><br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-type">static</span> std::locale::id id;                               <span class="hljs-comment">//2</span><br>    <span class="hljs-built_in">Umlaut</span>(std::<span class="hljs-type">size_t</span> refs=<span class="hljs-number">0</span>): std::locale::<span class="hljs-built_in">facet</span>(refs) {}  <span class="hljs-comment">//3</span><br>    <span class="hljs-function"><span class="hljs-type">bool</span> <span class="hljs-title">is_umlaut</span><span class="hljs-params">(<span class="hljs-type">char</span> c)</span> <span class="hljs-type">const</span> </span>{<span class="hljs-keyword">return</span> <span class="hljs-built_in">do_isumlaut</span>(c);}    <span class="hljs-comment">//4</span><br><span class="hljs-keyword">protected</span>:<br>    <span class="hljs-function"><span class="hljs-keyword">virtual</span> <span class="hljs-type">bool</span> <span class="hljs-title">do_isumlaut</span><span class="hljs-params">(<span class="hljs-type">char</span>)</span> <span class="hljs-type">const</span></span>;                    <span class="hljs-comment">//5</span><br>};<br></code></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="Format"><a href="#Format" class="headerlink" title="Format"></a>Format</h3><ul>
+<li><code>printf</code> is faster than <code>std::cout</code> dramatically</li>
+<li><i class="fa-solid fa-circle-exclamation" style="color: #e78f81;"></i><code>printf</code> is not type-safe, i.e. type cannot be identified to match <code>%d</code></li>
 </ul>
 
                 
