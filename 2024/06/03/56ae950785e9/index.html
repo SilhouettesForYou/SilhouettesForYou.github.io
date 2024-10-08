@@ -30,7 +30,7 @@
 <meta property="og:image" content="https://silhouettesforyou.github.io/2024/06/03/56ae950785e9/set-operations-inclues-2.png">
 <meta property="og:image" content="https://silhouettesforyou.github.io/2024/06/03/56ae950785e9/locale-imp.gif">
 <meta property="article:published_time" content="2024-06-03T06:11:57.000Z">
-<meta property="article:modified_time" content="2024-10-08T14:24:24.929Z">
+<meta property="article:modified_time" content="2024-10-08T15:17:47.166Z">
 <meta property="article:author" content="Xiaoming">
 <meta property="article:tag" content="C++">
 <meta property="article:tag" content="现代 C++">
@@ -508,7 +508,7 @@ mjx-container[display="true"] + br {
         
         
         
-          114 mins
+          116 mins
         
       </span>
     
@@ -558,7 +558,7 @@ mjx-container[display="true"] + br {
               <p id="updated-time" class="note note-light" style="display: none">
                 
                   
-                    Last updated on 2024-10-08T22:24:24+08:00
+                    Last updated on 2024-10-08T23:17:47+08:00
                   
                   
 
@@ -2977,7 +2977,51 @@ mjx-container[display="true"] + br {
 </ul>
 <h3 id="Format"><a href="#Format" class="headerlink" title="Format"></a>Format</h3><ul>
 <li><code>printf</code> is faster than <code>std::cout</code> dramatically</li>
-<li><i class="fa-solid fa-circle-exclamation" style="color: #e78f81;"></i><code>printf</code> is not type-safe, i.e. type cannot be identified to match <code>%d</code></li>
+<li><code>printf</code> is not type-safe, i.e. type cannot be identified to match <code>%d</code> <i class="fa-solid fa-bomb" style="color: #e78f81;"></i></li>
+<li><code>printf</code> cannot be customized, but stream can overload <code>operator &lt;&lt;</code></li>
+<li>You can use <code>std::cout &lt;&lt; std::format(“a={},b={},c={}\n”,a,b,c)</code><ul>
+<li>To print <code>{</code> or <code>}</code>, you need to use <code>{{` or `}}</code></li>
+<li>You can alos specify order explicitly, e.g. like <code>std::format("c={1}, a={0}, c={1}\n", a, c)</code></li>
+</ul>
+</li>
+<li>C++ 23 introduces <code>std::print</code>, which also utilizes format</li>
+<li><code>std::format</code> is even faster than <code>snprintf()</code></li>
+<li>You can write format specifiers after <code>:</code>, e.g. <code>c={:xx}</code> or <code>a={0:xx}</code> (<code>0</code> is order)</li>
+<li>The format is like <strong>fill</strong> – <strong>align</strong> – <strong>sign</strong> - <strong>#</strong> - <strong>0</strong> – <strong>width</strong> - <strong>.precision</strong> – <strong>L</strong> – <strong>type</strong>, and all parts are optional<ul>
+<li><strong>fill</strong>, <strong>align</strong>, <strong>width</strong> are used to fill into additional characters to keep a fixed length<ul>
+<li><strong>width</strong> means the total character numbers (including element itself)</li>
+<li><strong>fill</strong> means the character to fill in (by default whitespace)</li>
+<li><strong>align</strong> can be left(&lt;), right(&gt;) or middle(^) (by default left, except for integers and floating points to be right)</li>
+<li>For example: <code>std::format(“{:0^8}”, 1)</code> will get <code>00010000</code>, <code>std::format(“{:08}”, 1)</code> will get <code>00000001</code></li>
+<li><i class="fa-solid fa-comment" style="color: #FFD43B;"></i> if element itself is longer than width (e.g. here we pass <code>10000000</code>), then these specifiers will do nothing</li>
+<li><i class="fa-solid fa-comment" style="color: #FFD43B;"></i> if only a number is given, then it’s seen as width instead of fill</li>
+<li><i class="fa-solid fa-comment" style="color: #FFD43B;"></i> for most of East Asian characters and many emojis, width is seen as 2 instead of 1</li>
+</ul>
+</li>
+<li><strong>sign</strong>: can be – (default, i.e. only show sign when the number is negative, including -0.0), + (always show sign), and whitespace (only show negative sign, but non-negative number will fill into a whitespace)<ul>
+<li>For example, <code>std::format("{:0^+8}", 1)</code> will get <code>000+1000</code>, <code>std::format("{:+8}", 1)</code> will get <code>  +1  </code>, <code>std::format("{:}", 1)</code> will get <code> 1</code></li>
+</ul>
+</li>
+<li><strong>type</strong>: how to show the element in many forms<ul>
+<li>Integer: <code>b/B/d/o/x/X</code>; by default d(ecimal). Prefix is not output</li>
+<li>Particularly, <code>bool</code> has an additional <code>s</code> (default), which will get <code>true/false</code></li>
+<li><code>char/wchar_t</code> has an additional <code>c</code> (default), which will get the character; and an additional <code>?</code> since C++ 23, which will output raw character (e.g. <code>\n</code> instead of a new line)</li>
+<li>Floating point: <code>e/f/g/a/E/F/G/A</code>; by default g(eneral)</li>
+<li>Same as <code>std::chars_format::scientific/fixed/general/hex</code>, while default parameter to precision of<code> e/f/g/E/F/G</code> is 6</li>
+<li>String (including C-string, std::string, etc.): <code>s</code>; by default s<ul>
+<li>C++ 23 adds a <code>?</code>, which outputs escaped string (surrounding <code>""</code> will be output too)</li>
+</ul>
+</li>
+<li>pointer: <code>p</code>; by default p. Same as <code>reinterpret_cast&lt;std::uintptr_t&gt;(ptr)</code><ul>
+<li>It will additionally output a <code>0x</code></li>
+<li>C++ 26 adds a <code>P</code>, which will force hexadecimal letters to be uppercase</li>
+</ul>
+</li>
+<li>For example, <code>std::format(“{:m^+8x}”, 32)</code> will get <code>mm+20mmm</code>; <code>std::format(“{:e}”, 32.F)</code> will get <code>3.200000e+01</code></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 
                 
