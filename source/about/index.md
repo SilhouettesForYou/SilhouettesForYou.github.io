@@ -52,7 +52,8 @@ refplus: true
     <span style="display: inline-block; margin: 0.25em; border: 1px solid silver; border-radius: 0.25em; padding: .25em 0.5em">VTK</span>
     <span style="display: inline-block; margin: 0.25em; border: 1px solid silver; border-radius: 0.25em; padding: .25em 0.5em"><i class="fa-solid fa-spider"></i> Web Crawler</span>
     <span style="display: inline-block; margin: 0.25em; border: 1px solid silver; border-radius: 0.25em; padding: .25em 0.5em">pytorch</span>
-  </div>
+    <span style="display: inline-block; margin: 0.25em; border: 1px solid silver; border-radius: 0.25em; padding: .25em 0.5em"><span class="iconfont icon-cmake"></span>CMake</span>
+    <span style="display: inline-block; margin: 0.25em; border: 1px solid silver; border-radius: 0.25em; padding: .25em 0.5em"><span class="iconfont icon-about_qt"></span>QT</span>
   <li><span class="fa-li"><i class="fa-solid fa-language"></i></span>Language</li>
   <div>
     <span style="display: inline-block; margin: 0.25em; border: 1px solid silver; border-radius: 0.25em; padding: .25em 0.5em">CET-6</span>
