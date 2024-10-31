@@ -17,7 +17,6 @@
     "hexo-admonition": "^1.1.2",
     "hexo-analytics": "^0.1.1",
     "hexo-asset-image": "github:CodeFalling/hexo-asset-image",
-    "hexo-bilibili-card": "^0.6.0",
     "hexo-blog-encrypt": "^3.1.6",
     "hexo-butterfly-tag-plugins-plus": "^1.0.3",
     "hexo-cli": "^4.3.0",
@@ -63,6 +62,7 @@
     "live2d-widget-model-wanko": "^1.0.5",
     "markdown-it-ruby": "^0.1.1",
     "nprogress": "^0.2.0",
+    "punycode": "^2.3.1",
     "save-dev": "^0.0.1-security"
   }
 }
