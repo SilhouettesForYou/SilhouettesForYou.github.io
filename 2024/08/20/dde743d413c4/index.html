@@ -5,9 +5,7 @@
 
 
 
-<head><!-- hexo injector head_begin start -->
-<link rel="stylesheet" href="/css/bilicard.css">
-<link href="https://cdn.jsdelivr.net/npm/hexo-tag-common@0.0.5/css/index.css" rel="stylesheet"/><!-- hexo injector head_begin end -->
+<head><!-- hexo injector head_begin start --><link href="https://cdn.jsdelivr.net/npm/hexo-tag-common@0.0.5/css/index.css" rel="stylesheet"/><!-- hexo injector head_begin end -->
   <meta charset="UTF-8">
   <link rel="apple-touch-icon" sizes="76x76" href="/img/Hayao-Miyazaki/jiji.png">
   <link rel="icon" href="/img/Hayao-Miyazaki/jiji.png">
@@ -18,20 +16,21 @@
   <meta name="author" content="Xiaoming">
   <meta name="keywords" content="">
   
-    <meta name="description" content="C++sregex_token_iterator的特性 string 转数字  关于时间的函数和结构体 time 函数12#include &lt;time.h&gt;time_t time(time_t* calptr)  得到自 1970-1-1 00:00:00 以来经过的秒数，结果可以通过返回值，也可以通过参数得到 1234time_t now;time(&amp;now);&#x2F;&#x2F; 等同于">
+    <meta name="description" content="C++issuesissue 1             error LINK2001: 无法解析的外部符号public: static struct QMetaObject const DataHandlerBase::staticMetaObject             原因是自定义的链接库没有导出相关类或者函数 sregex_token_iterator的特性 string 转数字  关">
 <meta property="og:type" content="article">
 <meta property="og:title" content="自动驾驶工具工作记录">
 <meta property="og:url" content="https://silhouettesforyou.github.io/2024/08/20/dde743d413c4/index.html">
 <meta property="og:site_name" content="Silhouettes For You">
-<meta property="og:description" content="C++sregex_token_iterator的特性 string 转数字  关于时间的函数和结构体 time 函数12#include &lt;time.h&gt;time_t time(time_t* calptr)  得到自 1970-1-1 00:00:00 以来经过的秒数，结果可以通过返回值，也可以通过参数得到 1234time_t now;time(&amp;now);&#x2F;&#x2F; 等同于">
+<meta property="og:description" content="C++issuesissue 1             error LINK2001: 无法解析的外部符号public: static struct QMetaObject const DataHandlerBase::staticMetaObject             原因是自定义的链接库没有导出相关类或者函数 sregex_token_iterator的特性 string 转数字  关">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2024-08-20T14:13:00.000Z">
-<meta property="article:modified_time" content="2024-10-08T15:19:08.828Z">
+<meta property="article:modified_time" content="2024-11-27T14:01:30.006Z">
 <meta property="article:author" content="Xiaoming">
 <meta property="article:tag" content="c plus plus">
 <meta property="article:tag" content="Windows Program">
 <meta property="article:tag" content="Qt">
 <meta property="article:tag" content="可视化">
+<meta property="article:tag" content="CMake">
 <meta name="twitter:card" content="summary_large_image">
   
   
@@ -59,7 +58,7 @@
 
 
 
-<link rel="stylesheet" href="//at.alicdn.com/t/c/font_4625503_8j4kic2ox3k.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_4625503_510r6zojz9c.css">
 
 
 <link  rel="stylesheet" href="/css/main.css" />
@@ -265,46 +264,6 @@ p.spoiler {
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" target="_self" href="javascript:;" role="button"
                  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="iconfont icon-buyecsstorage"></i>
-                <span>Cloud Disk</span>
-              </a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                
-                  
-                  
-                  
-                  <a class="dropdown-item" href="https://onedrive-vercel-index-xi-liard.vercel.app/" target="_blank">
-                    <i class="iconfont icon-onedrive"></i>
-                    <span>OneDrive</span>
-                  </a>
-                
-                  
-                  
-                  
-                  <a class="dropdown-item" href="https://fyddxwmx.cloud.sealos.io/" target="_blank">
-                    <i class="iconfont icon-aliyun"></i>
-                    <span>Aliyun</span>
-                  </a>
-                
-                  
-                  
-                  
-                  <a class="dropdown-item" href="https://manual-maryl-silhouette-7fc7ff34.koyeb.app/" target="_blank">
-                    <i class="iconfont icon-storage"></i>
-                    <span>Other Storages</span>
-                  </a>
-                
-              </div>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" target="_self" href="javascript:;" role="button"
-                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="iconfont icon-jupyter"></i>
                 <span>Jupyter Notebooks</span>
               </a>
@@ -382,7 +341,7 @@ p.spoiler {
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.7k words
+          5.7k words
         
       </span>
     
@@ -393,7 +352,7 @@ p.spoiler {
         
         
         
-          23 mins
+          48 mins
         
       </span>
     
@@ -443,7 +402,7 @@ p.spoiler {
               <p id="updated-time" class="note note-light" style="display: none">
                 
                   
-                    Last updated on 2024-10-08T23:19:08+08:00
+                    Last updated on 2024-11-27T22:01:30+08:00
                   
                   
 
@@ -453,7 +412,12 @@ p.spoiler {
             
               <div class="markdown-body">
                 
-                <link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="C"><a href="#C" class="headerlink" title="C++"></a>C++</h2><h3 id="sregex-token-iterator 的特性"><a href="#sregex-token-iterator 的特性" class="headerlink" title="sregex_token_iterator 的特性"></a><code>sregex_token_iterator</code>的特性 </h3><h3 id="string 转数字"><a href="#string 转数字" class="headerlink" title="string 转数字"></a><code>string</code> 转数字 </h3><h3 id="关于时间的函数和结构体"><a href="# 关于时间的函数和结构体" class="headerlink" title="关于时间的函数和结构体"></a> 关于时间的函数和结构体 </h3><h4 id="time 函数"><a href="#time 函数" class="headerlink" title="time 函数"></a><code>time</code> 函数</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;time.h&gt;</span></span><br><span class="hljs-function"><span class="hljs-type">time_t</span> <span class="hljs-title">time</span><span class="hljs-params">(<span class="hljs-type">time_t</span>* calptr)</span></span><br></code></pre></td></tr></table></figure>
+                <link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="C"><a href="#C" class="headerlink" title="C++"></a>C++</h2><h3 id="issues"><a href="#issues" class="headerlink" title="issues"></a>issues</h3><h4 id="issue-1"><a href="#issue-1" class="headerlink" title="issue 1"></a>issue 1</h4><div class="note note-danger">
+            <p><font color="#FF204E">error LINK2001</font>: 无法解析的外部符号<code>public: static struct QMetaObject const DataHandlerBase::staticMetaObject</code></p>
+          </div>
+
+<p>原因是自定义的链接库没有导出相关类或者函数</p>
+<h3 id="sregex-token-iterator 的特性"><a href="#sregex-token-iterator 的特性" class="headerlink" title="sregex_token_iterator 的特性"></a><code>sregex_token_iterator</code>的特性 </h3><h3 id="string 转数字"><a href="#string 转数字" class="headerlink" title="string 转数字"></a><code>string</code> 转数字 </h3><h3 id="关于时间的函数和结构体"><a href="# 关于时间的函数和结构体" class="headerlink" title="关于时间的函数和结构体"></a> 关于时间的函数和结构体 </h3><h4 id="time 函数"><a href="#time 函数" class="headerlink" title="time 函数"></a><code>time</code> 函数</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;time.h&gt;</span></span><br><span class="hljs-function"><span class="hljs-type">time_t</span> <span class="hljs-title">time</span><span class="hljs-params">(<span class="hljs-type">time_t</span>* calptr)</span></span><br></code></pre></td></tr></table></figure>
 
 <p>得到自 1970-1-1 00:00:00 以来经过的秒数，结果可以通过返回值，也可以通过参数得到</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-type">time_t</span> now;<br><span class="hljs-built_in">time</span>(&amp;now);<br><span class="hljs-comment">// 等同于 now = time(NULL)</span><br><span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;now time is %d\n&quot;</span>, now);<br></code></pre></td></tr></table></figure>
@@ -540,10 +504,49 @@ p.spoiler {
 <blockquote>
 <p>如果下面这样调用，需要等待程序窗口关闭之后窗黑口才会关闭的<br><code>xxx.exe exit</code></p>
 </blockquote>
+<h3 id="findstr 的使用"><a href="#findstr 的使用" class="headerlink" title="findstr 的使用"></a><code>findstr</code>的使用 </h3><p><code>findstr</code> 是一个在 Windows 系统的命令提示符或 PowerShell 中使用的命令行工具，主要用于在文本文件中搜索字符串。以下是一些关于<code>findstr</code> 的基本用法和选项：</p>
+<h4 id="基本字符串搜索"><a href="# 基本字符串搜索" class="headerlink" title="基本字符串搜索"></a>基本字符串搜索 </h4><p> 使用 <code>findstr</code> 可以在一个或多个文件中搜索包含特定字符串的行。例如，<code>findstr &quot;keyword&quot; filename.txt</code>将在 filename.txt 文件中搜索包含 <code>“keyword”</code> 的行</p>
+<p><code>findstr</code>支持使用正则表达式进行高级搜索。例如，<code>findstr /r &quot;^start&quot; filename.txt</code>将匹配以 <code>“start”</code> 开头的行</p>
+<ul>
+<li><code>/B</code>：在一行的开始配对模式</li>
+<li><code>/E</code>：在一行的结尾配对模式</li>
+<li><code>/L</code>：按字使用搜索字符串</li>
+<li><code>/R</code>：将搜索字符串作为正则表达式使用</li>
+<li><code>/S</code>：在当前目录和所有子目录中搜索匹配文件</li>
+<li><code>/I</code>：指定搜索不分大小写</li>
+<li><code>/X</code>：打印完全匹配的行</li>
+<li><code>/V</code>：只打印不包含匹配的行</li>
+<li><code>/N</code>：在匹配的每行前打印行数</li>
+</ul>
+<h4 id="搜索多个字符串"><a href="# 搜索多个字符串" class="headerlink" title="搜索多个字符串"></a>搜索多个字符串 </h4><p> 如果没有使用 <code>/C</code> 前缀，findstr 会使用空格分隔的搜索字符串。例如，<code>findstr &quot;hello there&quot; x.y</code>会在文件 x.y 中寻找 <code>“hello”</code> 或<code>“there”</code></p>
+<ul>
+<li><code>.</code>：通配符，代表任何字符</li>
+<li><code>*</code>：重复，代表前一个字符或类出现零次或多次</li>
+<li><code>^</code>：行的开始</li>
+<li><code>$</code>：行的结束</li>
+<li><code>[class]</code>：字符类，代表任何在字符集中的字符</li>
+<li><code>[^class]</code>：补字符类，代表任何不在字符集中的字符</li>
+<li><code>[x-y]</code>：范围，代表在指定范围内的任何字符</li>
+</ul>
 <h2 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h2><h3 id="从 -windows- 拷贝文件到 -WSL- 最快速的方法"><a href="# 从 -windows- 拷贝文件到 -WSL- 最快速的方法" class="headerlink" title="从 windows 拷贝文件到 WSL 最快速的方法"></a>从 windows 拷贝文件到 WSL 最快速的方法</h3><ul>
 <li>在 WSL 用 <code>sudo ls /mnt/*</code> 列出系统所有的挂载盘，可以看到 windows 系统的所有盘都列出来了</li>
 <li>然后使用 <code>cp</code> 命令</li>
 </ul>
+<h3 id="安装 -deb- 文件"><a href="# 安装 -deb- 文件" class="headerlink" title="安装 .deb 文件"></a>安装 .deb 文件</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">sudo dpkg -i &#123;packagen ame&#125;<br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>While <code>dpkg -i</code> indeed installs the package, it doesn’t do any automatic dependency resolution. Meanwhile there are two other alternative, using <code>gdebi</code> or the <code>apt-get</code> tool</p>
+</blockquote>
+<ul>
+<li>卸载 .deb</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">sudo dpkg -r &#123;package name&#125;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>删除目录</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-built_in">rm</span> -rf &#123;<span class="hljs-built_in">dir</span>&#125;<br></code></pre></td></tr></table></figure>
+
 <h2 id="Git"><a href="#Git" class="headerlink" title="Git"></a>Git</h2><h3 id="递归 git-push-pull"><a href="# 递归 git-push-pull" class="headerlink" title="递归 git push/pull"></a>递归 <code>git push/pull</code></h3><p> 在 Git 中，递归 <code>git push/pull</code> 操作是指在父模块中递归地操作子模块的 push 和 pull 操作。当一个代码库包含多个子模块时，可以使用递归 <code>git push/pull</code> 操作来同时对所有子模块进行相关操作，从而避免了手动逐个操作子模块的繁琐</p>
 <h4 id="递归 git-push"><a href="# 递归 git-push" class="headerlink" title="递归 git push"></a>递归<code>git push</code></h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">git push --recurse-submodules=on-demand<br></code></pre></td></tr></table></figure>
 
@@ -571,7 +574,20 @@ p.spoiler {
 <blockquote>
 <p>请注意，<code>-k</code>选项告诉 git stash 不要暂存那些已经被添加到暂存区的文件</p>
 </blockquote>
-<h2 id="CMake"><a href="#CMake" class="headerlink" title="CMake"></a>CMake</h2><h3 id="相关问题"><a href="# 相关问题" class="headerlink" title="相关问题"></a>相关问题</h3><h4 id="issue-1"><a href="#issue-1" class="headerlink" title="issue 1"></a>issue 1</h4><div class="note note-danger">
+<h3 id="git-clone-depth-1- 之后切换远程分支的方案"><a href="#git-clone-depth-1- 之后切换远程分支的方案" class="headerlink" title="git clone -depth 1 之后切换远程分支的方案"></a>git clone -depth 1 之后切换远程分支的方案 </h3><p> 将 shallow clone 转换为 deep clone</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">git config remote.origin.fetch <span class="hljs-string">&#x27;+refs/heads/*:refs/remotes/origin/*&#x27;</span><br>git fetch --unshallow<br></code></pre></td></tr></table></figure>
+
+<div class="note note-warning">
+            <p>git config 是容易被忽视的，shallow clone 之后，remote.origin.fetch 的值是 +refs/heads/master:refs/remotes/origin/master，所以会发现怎么 fetch 都没有其他分支</p>
+          </div>
+
+<h3 id="SSH-keygen- 用法"><a href="#SSH-keygen- 用法" class="headerlink" title="SSH-keygen 用法"></a>SSH-keygen 用法</h3><h4 id="https- 和 -SSH- 的区别"><a href="#https- 和 -SSH- 的区别" class="headerlink" title="https 和 SSH 的区别"></a>https 和 SSH 的区别</h4><ul>
+<li>前者可以随意克隆 github 上的项目，而不管是谁的；而后者则是你必须是你要克隆的项目的拥有者或管理员，且需要先添加 SSH key ，否则无法克隆</li>
+<li>https url 在 push 的时候是需要验证用户名和密码的；而 SSH 在 push 的时候，是不需要输入用户名的，如果配置 SSH key 的时候设置了密码，则需要输入密码的，否则直接是不需要输入密码的</li>
+</ul>
+<h4 id="在 -github- 上添加 -SSH-key- 的步骤"><a href="# 在 -github- 上添加 -SSH-key- 的步骤" class="headerlink" title="在 github 上添加 SSH key 的步骤"></a>在 github 上添加 SSH key 的步骤</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># -t 指定密钥类型，默认是 rsa ，可以省略</span><br><span class="hljs-comment"># -C 设置注释文字，比如邮箱</span><br><span class="hljs-comment"># -f 指定密钥文件存储文件名</span><br>ssh-keygen -t rsa -C <span class="hljs-string">&quot;your_email@example.com&quot;</span><br>clip &lt; ~/.ssh/id_rsa.pub <span class="hljs-comment"># 拷贝 id_rsa.pub 文件的内容</span><br>ssh -T git@github.com <span class="hljs-comment"># 测试一下 SSH key</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="CMake"><a href="#CMake" class="headerlink" title="CMake"></a>CMake</h2><h3 id="相关问题"><a href="# 相关问题" class="headerlink" title="相关问题"></a>相关问题</h3><h4 id="issue-1-1"><a href="#issue-1-1" class="headerlink" title="issue 1"></a>issue 1</h4><div class="note note-danger">
             <p>The target name<br>“xxx.cpp”<br>is reserved or not valid for certain CMake featres, such as generator expressions, and may result in undefined behavior.</p>
           </div>
 
@@ -593,6 +609,181 @@ p.spoiler {
           </div>
 
 <p>没有将自己编译的动态库导入到 <code>LD_LIBRARY_PATH</code> 中</p>
+<h4 id="issue-4"><a href="#issue-4" class="headerlink" title="issue 4"></a>issue 4</h4><p>如果已经在 CMakeLists.txt 中使用了<code>CMAKE_AUTOMOC</code>，则不需要手动调用<code>qt5_wrap_cpp</code></p>
+<h4 id="issue-5"><a href="#issue-5" class="headerlink" title="issue 5"></a>issue 5</h4><p>执行<code>cmake --build path/build &gt; build.log</code> 构建 msvc 项目将日志重定向某个文本文档中乱码问题</p>
+<h3 id="CMake- 增加编译参数和预处理指令"><a href="#CMake- 增加编译参数和预处理指令" class="headerlink" title="CMake 增加编译参数和预处理指令"></a>CMake 增加编译参数和预处理指令 </h3><h4 id="添加编译参数"><a href="# 添加编译参数" class="headerlink" title="添加编译参数"></a> 添加编译参数</h4><ul>
+<li>使用 <code>add_compile_options</code> 命令，这个命令将添加到所有的目标上 <code>cmake add_compile_options(-Wall)</code></li>
+<li>使用 <code>target_compile_options</code> 命令，这个命令只会添加到指定的目标上，这种方法直接修改了 CMake 的全局变量，所以它会影响到所有的目标 <code>cmake target_compile_options(target PRIVATE -Wall) - set(CMAKE_CXX_FLAGS &quot;$&#123;CMAKE_CXX_FLAGS&#125; ...&quot;)</code></li>
+</ul>
+<h4 id="添加预处理指令"><a href="# 添加预处理指令" class="headerlink" title="添加预处理指令"></a>添加预处理指令</h4><ul>
+<li>使用 <code>add_definitions</code> 命令，这个命令将添加到所有的目标上 <code>cmake add_definitions(-DDEBUG)</code></li>
+<li>使用 <code>target_compile_definitions</code> 命令，这个命令只会添加到指定的目标上 <code>cmake target_compile_definitions(target PRIVATE DEBUG)</code><ul>
+<li><code>PRIVATE</code>: 只有目标自己会使用这些编译参数</li>
+<li><code>PUBLIC</code>: 目标自己和其他依赖这个目标的目标都会使用这些编译参数</li>
+<li><code>INTERFACE</code>: 只有其他依赖这个目标的目标会使用这些编译参数</li>
+</ul>
+</li>
+</ul>
+<h3 id="set 与 list 的字符串操作"><a href="#set 与 list 的字符串操作" class="headerlink" title="set 与 list 的字符串操作"></a><code>set</code>与 <code>list</code> 的字符串操作 </h3><h4 id="set 拼接"><a href="#set 拼接" class="headerlink" title="set 拼接"></a><code>set</code> 拼接</h4><figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs cmake"><span class="hljs-comment">#set(变量名 1 $&#123; 变量名 1&#125; $&#123; 变量名 2&#125; ...)</span><br><span class="hljs-keyword">set</span>(src1 <span class="hljs-variable">$&#123;src1&#125;</span> <span class="hljs-variable">$&#123;src2&#125;</span>)<br></code></pre></td></tr></table></figure>
+
+<div class="note note-warning">
+            <p>其实就是将从第二个参数开始往后所有的字符串进行拼接，最后将结果存储到第一个参数中，如果第一个参数中有数据就会对元数据进行覆盖</p>
+          </div>
+
+<h4 id="list"><a href="#list" class="headerlink" title="list"></a><code>list</code></h4><h5 id="获取 list 的长度"><a href="# 获取 list 的长度" class="headerlink" title="获取 list 的长度"></a>获取 <code>list</code> 的长度</h5><figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cmake"><span class="hljs-keyword">list</span>(LENGTH &lt;<span class="hljs-keyword">list</span>&gt; &lt;output_variable&gt;)<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li><code>LENGTH</code>：子命令 <code>LENGTH</code> 用于读取列表长度</li>
+<li><code>&lt;list&gt;</code>：当前操作的列表</li>
+<li><code>&lt;output_variable&gt;</code>：新创建的变量，用户存储列表长度的结果</li>
+</ul>
+<h5 id="读取列表中指定索引的元素"><a href="# 读取列表中指定索引的元素" class="headerlink" title="读取列表中指定索引的元素"></a>读取列表中指定索引的元素</h5><figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs cmake"><span class="hljs-keyword">list</span>(GET &lt;<span class="hljs-keyword">list</span>&gt; [&lt;element_index&gt;....] &lt;output_variable&gt;)<br><br><span class="hljs-keyword">list</span>（GET  [....]）<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li><code>&lt;list&gt;</code>：当前操作的列表</li>
+<li><code>&lt;element_index&gt;</code>：列表元素的索引<ul>
+<li>从开始编号，索引表示 0 的元素为列表中的第一个元素</li>
+<li>索引也可以是负数，-1 表示列表的最后一个元素，-2 表示倒数第二个元素，以此类推</li>
+<li>当索引（不管正负）超过列表的长度，运行会报错</li>
+<li><code>&lt;output_variable&gt;</code>：新创建的变量，用户存储索引元素的返回结果，也是一个列表</li>
+</ul>
+</li>
+</ul>
+<h5 id="将列表中的元素用连接符（字符串）连接起来组成一个字符串"><a href="# 将列表中的元素用连接符（字符串）连接起来组成一个字符串" class="headerlink" title="将列表中的元素用连接符（字符串）连接起来组成一个字符串"></a>将列表中的元素用连接符（字符串）连接起来组成一个字符串</h5><figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cmake"><span class="hljs-keyword">list</span>(JOIN &lt;<span class="hljs-keyword">list</span>&gt; &lt;glue&gt; &lt;output_variable&gt;)<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li><code>JOIN</code>：子命令 <code>JOIN</code> 用于连接列表数据</li>
+<li><code>&lt;list&gt;</code>：当前操作的列表</li>
+<li><code>&lt;glue&gt;</code>：指定的链接符（字符串）</li>
+<li><code>&lt;output_variable&gt;</code>：新创建的变量，存储返回的字符串</li>
+</ul>
+<h5 id="查找 list 列表中是否存在指定的元素 - 若未找到返回 -1"><a href="# 查找 list 列表中是否存在指定的元素 - 若未找到返回 -1" class="headerlink" title="查找 list 列表中是否存在指定的元素, 若未找到返回 -1"></a>查找 <code>list</code> 列表中是否存在指定的元素, 若未找到返回 -1</h5><figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cmake"><span class="hljs-keyword">list</span>(FIND &lt;<span class="hljs-keyword">list</span>&gt; &lt;value&gt; &lt;output_variable&gt;)<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li><code>FIND</code>：表示进行查找操作</li>
+<li><code>&lt;list&gt;</code>：表示当前操作的列表</li>
+<li><code>&lt;value&gt;</code>：需要在列表中搜索的元素</li>
+<li><code>&lt;output_variable&gt;</code>：新创建的变量<ul>
+<li>如果列表 <code>&lt;list&gt;</code> 中存在 <code>&lt;value&gt;</code> 那么返回 <code>&lt;value&gt;</code> 在列表中的索引</li>
+<li>如果未找到则返回 -1</li>
+</ul>
+</li>
+</ul>
+<h5 id="列表排序"><a href="# 列表排序" class="headerlink" title="列表排序"></a>列表排序</h5><figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cmake"><span class="hljs-keyword">list</span>(SORT &lt;<span class="hljs-keyword">list</span>&gt; [COMPARE &lt;compare&gt;] [CASE &lt;case&gt;] [ORDER &lt;order&gt;])<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li><code>COMPARE</code>：指定排序方法。有如下几种值可选：<ul>
+<li><code>STRING</code>：按照字符顺序进行排序，为默认的排序方法</li>
+<li><code>FILE_BASENAME</code>：如果是一系列路径名，会使用 <code>basename</code> 进行排序</li>
+<li><code>NATURAL</code>：使用自然数顺序排序</li>
+</ul>
+</li>
+<li><code>CASE</code>：指明大小写是否敏感，有如下两种值可选：<ul>
+<li><code>SENSITIVE</code>：按照大小写敏感的方式进行排序，为默认值</li>
+<li><code>INSENSITIVE</code>：按照大小写不敏感方式进行排序</li>
+</ul>
+</li>
+<li><code>ORDER</code>：指明排序的顺序，如有几种值可选<ul>
+<li><code>ASCENDING</code>：按照升序排列，为默认值</li>
+<li><code>DESCENDING</code>：按照降序排列</li>
+</ul>
+</li>
+</ul>
+<h5 id="其他操作"><a href="# 其他操作" class="headerlink" title="其他操作"></a>其他操作</h5><ul>
+<li>将元素追加到列表尾部中 <code>list(APPEND &lt;list&gt; [&lt;element&gt; ...])</code></li>
+<li>将元素插入到列表的 0 索引位置 <code>list(PREPEND &lt;list&gt; [&lt;element&gt; ...])</code></li>
+<li>将列表中的最后元素移除 <code>list(POP_BACK &lt;list&gt; [&lt;output_variable&gt; ...])</code></li>
+<li>将列表中的第一个元素移除 <code>list(POP_FRONT &lt;list&gt; [&lt;output_variable&gt; ...])</code></li>
+<li>将指定元素从列表中移除 <code>list(REMOVE_ITEM &lt;list&gt; [&lt;value&gt; ...])</code></li>
+<li>将指定索引的元素从列表中移除 <code>list(REMOVE_AT &lt;list&gt; [&lt;index&gt; ...])</code></li>
+<li>移除列表中重复的元素 <code>list(REMOVE_DUPLICATES &lt;list&gt;)</code></li>
+<li>列表翻转 <code>list(REVERSE &lt;list&gt;)</code></li>
+</ul>
+<h2 id="虚拟机"><a href="# 虚拟机" class="headerlink" title="虚拟机"></a>虚拟机</h2><h3 id="VirtualBox-Ubuntu22-04-Terminal- 无法打开"><a href="#VirtualBox-Ubuntu22-04-Terminal- 无法打开" class="headerlink" title="VirtualBox Ubuntu22.04 Terminal 无法打开"></a>VirtualBox Ubuntu22.04 Terminal 无法打开</h3><p>CTRL + ALT + F3 进入命令行模式（需要返回桌面时 CTRL + ALT + F1）</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">cd</span> /etc/default<br>sudo vi locale<br><span class="hljs-comment"># 把文件中的 en_US 改成 en_US.UTF-8</span><br><span class="hljs-comment"># 保存退出</span><br>sudo locate-gen --purge<br>reboot<br></code></pre></td></tr></table></figure>
+
+<h3 id="VirtualBox- 如何连接虚拟机与主机"><a href="#VirtualBox- 如何连接虚拟机与主机" class="headerlink" title="VirtualBox 如何连接虚拟机与主机"></a>VirtualBox 如何连接虚拟机与主机</h3><h4 id="NAT- 网络：适用于基本互联网连接"><a href="#NAT- 网络：适用于基本互联网连接" class="headerlink" title="NAT 网络：适用于基本互联网连接"></a>NAT 网络：适用于基本互联网连接</h4><p>NAT（网络地址转换）是 VirtualBox 默认的网络设置。它允许虚拟机通过主机的网络连接访问互联网，而无需额外的配置。虚拟机在 NAT 模式下无法被主机或局域网中的其他计算机访问，这意味着它具有很高的安全性</p>
+<ul>
+<li>配置步骤<ul>
+<li>打开 VirtualBox，选择目标虚拟机，点击“设置”</li>
+<li>进入“网络”选项卡，确保“启用网络适配器”已选中</li>
+<li>网络连接方式选择“NAT”</li>
+<li>启动虚拟机，虚拟机将自动获取一个 IP 地址并通过主机的网络连接到互联网</li>
+</ul>
+</li>
+<li>优点<ul>
+<li>配置简单，无需进行复杂的网络设置</li>
+<li>对于只需要互联网连接的虚拟机非常方便</li>
+</ul>
+</li>
+<li>缺点<ul>
+<li>虚拟机无法被主机或局域网中的其他设备访问</li>
+<li>不适用于需要虚拟机与主机或其他虚拟机直接通信的场景</li>
+</ul>
+</li>
+</ul>
+<h4 id="桥接网络：虚拟机与主机及局域网设备互通"><a href="# 桥接网络：虚拟机与主机及局域网设备互通" class="headerlink" title="桥接网络：虚拟机与主机及局域网设备互通"></a>桥接网络：虚拟机与主机及局域网设备互通 </h4><p> 桥接网络是 VirtualBox 提供的另一种网络模式，它允许虚拟机像主机一样直接连接到局域网。这意味着虚拟机将获得与主机在同一网段的 IP 地址，并且可以与局域网中的其他设备互相通信。这种模式特别适用于需要虚拟机与主机及其他局域网设备直接通信的场景</p>
+<ul>
+<li>配置步骤<ul>
+<li>打开 VirtualBox，选择目标虚拟机，点击“设置”</li>
+<li>进入“网络”选项卡，确保“启用网络适配器”已选中</li>
+<li>网络连接方式选择“桥接适配器”</li>
+<li>从下拉菜单中选择主机的网络接口</li>
+<li>启动虚拟机，虚拟机将自动获取一个与主机同一网段的 IP 地址</li>
+</ul>
+</li>
+<li>优点<ul>
+<li>虚拟机与主机及局域网设备互通，无需额外的网络配置</li>
+<li>适用于需要虚拟机作为网络服务提供者的场景，如 Web 服务器、数据库服务器等</li>
+</ul>
+</li>
+<li>缺点<ul>
+<li>需要局域网中有足够的 IP 地址分配给虚拟机</li>
+<li>配置稍微复杂，需要了解主机的网络接口情况</li>
+</ul>
+</li>
+</ul>
+<h4 id="内部网络：虚拟机之间的独立网络"><a href="# 内部网络：虚拟机之间的独立网络" class="headerlink" title="内部网络：虚拟机之间的独立网络"></a>内部网络：虚拟机之间的独立网络 </h4><p> 内部网络是一种特殊的网络模式，它允许多个虚拟机在一个独立的网络中互相通信，但不与主机或局域网设备通信。这种模式特别适用于创建隔离的测试环境</p>
+<ul>
+<li>配置步骤<ul>
+<li>打开 VirtualBox，选择目标虚拟机，点击“设置”</li>
+<li>进入“网络”选项卡，确保“启用网络适配器”已选中</li>
+<li>网络连接方式选择“内部网络”</li>
+<li>在“名称”字段中输入一个内部网络名称，确保所有需要互通的虚拟机使用相同的网络名称</li>
+<li>启动虚拟机，根据需求手动配置 IP 地址，确保在同一网段内</li>
+</ul>
+</li>
+<li>优点<ul>
+<li>虚拟机之间可以相互通信，适用于创建独立的测试环境</li>
+<li>不受主机或局域网的网络配置影响</li>
+</ul>
+</li>
+<li>缺点<ul>
+<li>虚拟机无法访问互联网或主机网络</li>
+<li>需要手动配置 IP 地址，可能对网络配置的理解有一定要求</li>
+</ul>
+</li>
+</ul>
+<h4 id="主机专用网络：虚拟机与主机的独立网络"><a href="# 主机专用网络：虚拟机与主机的独立网络" class="headerlink" title="主机专用网络：虚拟机与主机的独立网络"></a>主机专用网络：虚拟机与主机的独立网络 </h4><p> 主机专用网络是一种介于 NAT 和内部网络之间的模式，它允许虚拟机与主机在一个独立的网络中通信，但不与其他局域网设备通信。这种模式适用于需要虚拟机与主机直接通信，但不需要外部网络访问的场景</p>
+<ul>
+<li>配置步骤<ul>
+<li>打开 VirtualBox，选择目标虚拟机，点击“设置”</li>
+<li>进入“网络”选项卡，确保“启用网络适配器”已选中</li>
+<li>网络连接方式选择“主机专用适配器”</li>
+<li>启动虚拟机，虚拟机将自动获取一个主机专用网络的 IP 地址</li>
+</ul>
+</li>
+<li>优点<ul>
+<li>虚拟机与主机可以直接通信，适用于开发和测试环境</li>
+<li>不受局域网配置影响，安全性较高</li>
+</ul>
+</li>
+<li>缺点<ul>
+<li>虚拟机无法访问互联网或局域网中的其他设备</li>
+<li>需要手动配置主机专用网络的设置</li>
+</ul>
+</li>
+</ul>
 
                 
               </div>
@@ -633,6 +824,8 @@ p.spoiler {
         <a href="/tags/Qt/" class="print-no-link">#Qt</a>
       
         <a href="/tags/%E5%8F%AF%E8%A7%86%E5%8C%96/" class="print-no-link">#可视化</a>
+      
+        <a href="/tags/CMake/" class="print-no-link">#CMake</a>
       
     </div>
   
@@ -799,7 +992,7 @@ p.spoiler {
     
       <div class="col-lg-7 mx-auto nopadding-x-md">
         <div class="container custom mx-auto">
-          <link rel="stylesheet" href="//at.alicdn.com/t/c/font_4625503_8j4kic2ox3k.css"> <script src="https://kit.fontawesome.com/8e800a3a44.js" crossorigin="anonymous"></script> <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script> <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script> <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.13.3/jquery-ui.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script> <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script> <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.8/umd/popper.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script> <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.11/clipboard.min.js" crossorigin="anonymous" referrerpolicy="no-referrer">
+          <link rel="stylesheet" href="//at.alicdn.com/t/c/font_4625503_510r6zojz9c.css"> <script src="https://kit.fontawesome.com/8e800a3a44.js" crossorigin="anonymous"></script> <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script> <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script> <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.13.3/jquery-ui.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script> <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script> <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.8/umd/popper.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script> <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.11/clipboard.min.js" crossorigin="anonymous" referrerpolicy="no-referrer">
         </div>
       </div>
     

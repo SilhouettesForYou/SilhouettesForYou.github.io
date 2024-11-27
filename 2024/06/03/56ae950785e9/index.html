@@ -5,9 +5,7 @@
 
 
 
-<head><!-- hexo injector head_begin start -->
-<link rel="stylesheet" href="/css/bilicard.css">
-<link href="https://cdn.jsdelivr.net/npm/hexo-tag-common@0.0.5/css/index.css" rel="stylesheet"/><!-- hexo injector head_begin end -->
+<head><!-- hexo injector head_begin start --><link href="https://cdn.jsdelivr.net/npm/hexo-tag-common@0.0.5/css/index.css" rel="stylesheet"/><!-- hexo injector head_begin end -->
   <meta charset="UTF-8">
   <link rel="apple-touch-icon" sizes="76x76" href="/img/Hayao-Miyazaki/jiji.png">
   <link rel="icon" href="/img/Hayao-Miyazaki/jiji.png">
@@ -29,8 +27,14 @@
 <meta property="og:image" content="https://silhouettesforyou.github.io/2024/06/03/56ae950785e9/set-operations-inclues-1.png">
 <meta property="og:image" content="https://silhouettesforyou.github.io/2024/06/03/56ae950785e9/set-operations-inclues-2.png">
 <meta property="og:image" content="https://silhouettesforyou.github.io/2024/06/03/56ae950785e9/locale-imp.gif">
+<meta property="og:image" content="https://silhouettesforyou.github.io/2024/06/03/56ae950785e9/io-system.jpeg">
+<meta property="og:image" content="https://silhouettesforyou.github.io/2024/06/03/56ae950785e9/stream-design-overview.jpeg">
+<meta property="og:image" content="https://silhouettesforyou.github.io/2024/06/03/56ae950785e9/output-stream.jpeg">
+<meta property="og:image" content="https://silhouettesforyou.github.io/2024/06/03/56ae950785e9/stream-buffer.jpeg">
+<meta property="og:image" content="https://silhouettesforyou.github.io/2024/06/03/56ae950785e9/input-stream.jpg">
+<meta property="og:image" content="https://silhouettesforyou.github.io/2024/06/03/56ae950785e9/input-stream-1.jpg">
 <meta property="article:published_time" content="2024-06-03T06:11:57.000Z">
-<meta property="article:modified_time" content="2024-10-08T15:17:47.166Z">
+<meta property="article:modified_time" content="2024-11-27T14:01:29.986Z">
 <meta property="article:author" content="Xiaoming">
 <meta property="article:tag" content="C++">
 <meta property="article:tag" content="现代 C++">
@@ -62,7 +66,7 @@
 
 
 
-<link rel="stylesheet" href="//at.alicdn.com/t/c/font_4625503_8j4kic2ox3k.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_4625503_510r6zojz9c.css">
 
 
 <link  rel="stylesheet" href="/css/main.css" />
@@ -380,46 +384,6 @@ mjx-container[display="true"] + br {
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" target="_self" href="javascript:;" role="button"
                  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="iconfont icon-buyecsstorage"></i>
-                <span>Cloud Disk</span>
-              </a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                
-                  
-                  
-                  
-                  <a class="dropdown-item" href="https://onedrive-vercel-index-xi-liard.vercel.app/" target="_blank">
-                    <i class="iconfont icon-onedrive"></i>
-                    <span>OneDrive</span>
-                  </a>
-                
-                  
-                  
-                  
-                  <a class="dropdown-item" href="https://fyddxwmx.cloud.sealos.io/" target="_blank">
-                    <i class="iconfont icon-aliyun"></i>
-                    <span>Aliyun</span>
-                  </a>
-                
-                  
-                  
-                  
-                  <a class="dropdown-item" href="https://manual-maryl-silhouette-7fc7ff34.koyeb.app/" target="_blank">
-                    <i class="iconfont icon-storage"></i>
-                    <span>Other Storages</span>
-                  </a>
-                
-              </div>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" target="_self" href="javascript:;" role="button"
-                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="iconfont icon-jupyter"></i>
                 <span>Jupyter Notebooks</span>
               </a>
@@ -497,7 +461,7 @@ mjx-container[display="true"] + br {
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          14k words
+          16k words
         
       </span>
     
@@ -508,7 +472,7 @@ mjx-container[display="true"] + br {
         
         
         
-          116 mins
+          138 mins
         
       </span>
     
@@ -558,7 +522,7 @@ mjx-container[display="true"] + br {
               <p id="updated-time" class="note note-light" style="display: none">
                 
                   
-                    Last updated on 2024-10-08T23:17:47+08:00
+                    Last updated on 2024-11-27T22:01:29+08:00
                   
                   
 
@@ -2650,7 +2614,7 @@ mjx-container[display="true"] + br {
 <p>如果 <code>new</code> 抛出异常，尽管内存已经释放掉了，但是 <code>first_</code> 和<code>end_</code>仍然不变，所以 <code>.size()</code> 依然不变</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs c++">Vector&amp; <span class="hljs-keyword">operator</span>=(<span class="hljs-type">const</span> Vector&amp; another)<br>{<br>    <span class="hljs-keyword">delete</span>[] first_;<br>    first_ = last_ = end_ = <span class="hljs-literal">nullptr</span>; <span class="hljs-comment">// 将指针也释放掉</span><br>    <span class="hljs-keyword">auto</span> size = another.<span class="hljs-built_in">size</span>();<br>    std::unique_ptr&lt;T[]&gt; arr{ <span class="hljs-keyword">new</span> T[size] };<br>    first_ = arr.<span class="hljs-built_in">release</span>();<br>    std::ranges::<span class="hljs-built_in">copy</span>(another.first_, another.last_, first_);<br>    last_ = end_ = first_ + size;<br>    <span class="hljs-keyword">return</span> *<span class="hljs-keyword">this</span>;<br>}<br></code></pre></td></tr></table></figure>
 
-<p>如果 <code>std::ranges::copy</code> 出现了异常，那么 <code>first_ ，</code>last_<code>，</code>end_<code> 状态又是不一致的，</code>first_` 被先赋值的</p>
+<p>如果 <code>std::ranges::copy</code> 出现了异常，那么 <code>first_</code>，<code>last_</code>，<code>end_</code> 状态又是不一致的，<code>first_</code>被先赋值的</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs c++">Vector&amp; <span class="hljs-keyword">operator</span>=(<span class="hljs-type">const</span> Vector&amp; another)<br>{<br>    <span class="hljs-keyword">delete</span>[] first_;<br>    first_ = last_ = end_ = <span class="hljs-literal">nullptr</span>; <span class="hljs-comment">// 将指针也释放掉</span><br>    <span class="hljs-keyword">auto</span> size = another.<span class="hljs-built_in">size</span>();<br>    std::unique_ptr&lt;T[]&gt; arr{ <span class="hljs-keyword">new</span> T[size] };<br>    std::ranges::<span class="hljs-built_in">copy</span>(another.first_, another.last_, first_);<br>    <span class="hljs-comment">// only release when all exceptions are possibly thrown!</span><br>    first_ = arr.<span class="hljs-built_in">release</span>();<br>    last_ = end_ = first_ + size;<br>    <span class="hljs-keyword">return</span> *<span class="hljs-keyword">this</span>;<br>}<br></code></pre></td></tr></table></figure>
 
 <p>满足了基本异常安全的保证，但是不满足强异常安全性的保证，必须保证释放资源是在所有可能抛出异常语句的后面</p>
@@ -2981,7 +2945,7 @@ mjx-container[display="true"] + br {
 <li><code>printf</code> cannot be customized, but stream can overload <code>operator &lt;&lt;</code></li>
 <li>You can use <code>std::cout &lt;&lt; std::format(“a={},b={},c={}\n”,a,b,c)</code><ul>
 <li>To print <code>{</code> or <code>}</code>, you need to use <code>{{` or `}}</code></li>
-<li>You can alos specify order explicitly, e.g. like <code>std::format("c={1}, a={0}, c={1}\n", a, c)</code></li>
+<li>You can also specify order explicitly, e.g. like <code>std::format("c={1}, a={0}, c={1}\n", a, c)</code></li>
 </ul>
 </li>
 <li>C++ 23 introduces <code>std::print</code>, which also utilizes format</li>
@@ -2999,7 +2963,7 @@ mjx-container[display="true"] + br {
 </ul>
 </li>
 <li><strong>sign</strong>: can be – (default, i.e. only show sign when the number is negative, including -0.0), + (always show sign), and whitespace (only show negative sign, but non-negative number will fill into a whitespace)<ul>
-<li>For example, <code>std::format("{:0^+8}", 1)</code> will get <code>000+1000</code>, <code>std::format("{:+8}", 1)</code> will get <code>  +1  </code>, <code>std::format("{:}", 1)</code> will get <code> 1</code></li>
+<li>For example, <code>std::format("{:0^+8}", 1)</code> will get <code>000+1000</code>, <code>std::format("{:+8}", 1)</code> will get <code>+1</code>, <code>std::format("{:}", 1)</code> will get <code>1</code></li>
 </ul>
 </li>
 <li><strong>type</strong>: how to show the element in many forms<ul>
@@ -3007,7 +2971,7 @@ mjx-container[display="true"] + br {
 <li>Particularly, <code>bool</code> has an additional <code>s</code> (default), which will get <code>true/false</code></li>
 <li><code>char/wchar_t</code> has an additional <code>c</code> (default), which will get the character; and an additional <code>?</code> since C++ 23, which will output raw character (e.g. <code>\n</code> instead of a new line)</li>
 <li>Floating point: <code>e/f/g/a/E/F/G/A</code>; by default g(eneral)</li>
-<li>Same as <code>std::chars_format::scientific/fixed/general/hex</code>, while default parameter to precision of<code> e/f/g/E/F/G</code> is 6</li>
+<li>Same as <code>std::chars_format::scientific/fixed/general/hex</code>, while default parameter to precision of<code>e/f/g/E/F/G</code> is 6</li>
 <li>String (including C-string, std::string, etc.): <code>s</code>; by default s<ul>
 <li>C++ 23 adds a <code>?</code>, which outputs escaped string (surrounding <code>""</code> will be output too)</li>
 </ul>
@@ -3020,6 +2984,461 @@ mjx-container[display="true"] + br {
 <li>For example, <code>std::format(“{:m^+8x}”, 32)</code> will get <code>mm+20mmm</code>; <code>std::format(“{:e}”, 32.F)</code> will get <code>3.200000e+01</code></li>
 </ul>
 </li>
+<li><strong>#</strong>: alternative form<ul>
+<li>For integers with type <code>x/X/o/b/B</code>, prefix <code>0x/0X/0/0b/0B</code> will be added</li>
+<li>For floating points, dot will always be shown (e.g. <code>42.f</code> by default is <code>42</code>, but will get <code>42</code> with <code>#</code>)<ul>
+<li>Particularly, for explicit <code>#g/#G</code>, all zeros will be shown, e.g. <code>42.0000</code></li>
+</ul>
+</li>
+<li>For example, <code>std::format("{:m^#8x}", 32)</code> will get <code>mm0x20mm</code>;</li>
+</ul>
+</li>
+<li><strong>.precision</strong>: valid for floating point and string 对浮点数和字符串是有效的<ul>
+<li>For floating point, same as <code>to_chars</code>, i.e. digits after dot</li>
+<li>For strings, it’s the maximum characters to output</li>
+<li>For example, <code>std::format(“{:.4e}”, 32.F)</code> will get <code>3.2000e+01</code></li>
+</ul>
+</li>
+<li><strong>0</strong>: fill into 0 for only integers and floating points after sign and prefix (different from <strong>fill</strong>!), when <strong>align</strong> isn’t specified</li>
+<li><strong>L</strong>: apply locale information on integers and floating points by the current locale (you can also provide <code>std::locale</code> as the first parameter to specify it)</li>
+<li><strong>fill – align – sign - # - 0 – width - .precision – L – type</strong>: If you’ve known <code>printf</code> formatting thoroughly, or formatting on some other languages, it’s easy for you to understand formatting in C++</li>
+</ul>
+</li>
+<li>When the format string is invalid, compilation will fail; if the memory is not enough, <code>std::bad_alloc</code> will be thrown 格式化无效是时候会导致编译错误，实际上是两个过程 parse 和 format；parse 失败导致编译报错，format 失败会抛出异常</li>
+<li><code>std::format</code>只支持编译期可确定的字符串，不能指定用户输入的字符串<ul>
+<li>Since C++26, you can use <code>std::runtime_format</code></li>
+</ul>
+</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;format&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;print&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;string&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;string_view&gt;</span></span><br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>{<br>    std::<span class="hljs-built_in">print</span>(<span class="hljs-string">"Hello {}!\n"</span>, <span class="hljs-string">"world"</span>);<br><br>    std::string fmt;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i{}; i != <span class="hljs-number">3</span>; ++i)<br>    {<br>        fmt += <span class="hljs-string">"{}"</span>;<br>        std::<span class="hljs-built_in">print</span>(<span class="hljs-string">"{} :"</span>, fmt);<br>        std::<span class="hljs-built_in">println</span>(std::<span class="hljs-built_in">runtime_format</span>(fmt), <span class="hljs-string">"alpha"</span>, <span class="hljs-string">"Z"</span>, <span class="hljs-number">3.14</span>, <span class="hljs-string">"unused"</span>);<br>    }<br>}<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>C++23 reinforces functionality of <code>std::format</code>, i.e. it can format a range<ul>
+<li><code>std::vector v{1,2,3}</code> will get <code>[1, 2, 3]</code>, <code>std::vector&lt;std::vector&lt;int&gt;&gt; v{{1,2},{3,4}}</code> will get <code>[[1, 2], [3, 4]]</code></li>
+<li>For container adaptors (i.e. stack, queue, priority_queue), they don’t provide iterators so it’s hard to print them before; now they also support <code>std::format</code></li>
+<li>For <code>std::vector&lt;bool&gt;</code>, the proxy type doesn’t support output before</li>
+<li>For <code>std::pair/std::tuple</code>, you will get <code>(xx, yy, …)</code></li>
+<li>For associative containers, you will get <code>{xx:yy, aa:bb,…}</code> or <code>{xx, aa}</code>(depending on map/set)</li>
+</ul>
+</li>
+<li>Of course, you can add format specifier for elements and ranges<ul>
+<li><code>s/?s</code>: only valid for range of string, output string/escaped string</li>
+<li><code>m</code>: only valid for range of pair/tuple of size 2, output as <code>{k1: v1, k2: v2, …}</code>(like element of map)</li>
+<li><code>n</code>: strip the surrounding wrapper, e.g. <code>[xx, yy]</code> will become <code>xx, yy</code> (so that you can customize your parentheses)</li>
+<li><code>nm</code>: combine <code>n</code> with <code>m</code>, i.e. output as <code>k1: v1, k2: v2, …</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="Print-function"><a href="#Print-function" class="headerlink" title="Print function"></a>Print function</h3><ul>
+<li>By format, C++23 introduces print functions in <code>&lt;print&gt;</code><ul>
+<li><code>std::print(“{}”, v)</code>, or <code>std::println(“{}”, v)</code> to print an additional <code>\n</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="User-defined-format"><a href="#User-defined-format" class="headerlink" title="User-defined format"></a>User-defined format</h3><ul>
+<li><p>Resolving format has two phases</p>
+<ul>
+<li><strong>Parsing</strong>: the formatter should parse things in the <code>{}</code>, and record necessary states 对 <code>{}</code> 内部的东西进行分词</li>
+<li><strong>Formatting</strong>: according to the recorded states of parsing, the string is inserted from back</li>
+</ul>
+</li>
+<li><p>Output scoped enumeration name <code>enum class Color {Red = 0xFF0000, Green = 0x00FF00, Blue = 0x0000FF, White = 0xFFFFFF};</code></p>
+<ul>
+<li>You need to specialize <code>std::formatter&lt;T&gt;</code> <code>template&lt;&gt; struct std::formatter&lt;Color&gt;</code> 模板的特化</li>
+<li>Then just define a <code>constexpr auto parse(const std::format_parse_context&amp;)</code><ul>
+<li>可以认为里面的参数就是 <code>std::string_view</code> 但是不包含 <code>std::string_view</code> 的所有方法，只能拿到首尾迭代器，如：<code>.begin()</code>或<code>.end()</code></li>
+<li><code>begin</code>到 <code>end</code> 之间可以是从 <code>{:...}</code> 中的 <code>:</code> 到<code>}</code>结束，或者只包含 <code>{:}</code> 或<code>{}</code></li>
+</ul>
+</li>
+<li>假设只需要两个 specifiers，一个是<code>x</code>（输出颜色的 16 进制），另一个是<code>s</code>（输出枚举的名字）</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">template</span>&lt;&gt;<br><span class="hljs-keyword">struct</span> <span class="hljs-title class_">std</span>::formatter&lt;Color&gt;<br>{<br>  <span class="hljs-type">char</span> type  = <span class="hljs-string">'s'</span>;<br>  <span class="hljs-function"><span class="hljs-keyword">constexpr</span> <span class="hljs-keyword">auto</span> <span class="hljs-title">parse</span><span class="hljs-params">(<span class="hljs-type">const</span> std::format_parse_context* context)</span></span><br><span class="hljs-function">  </span>{<br>    <span class="hljs-keyword">auto</span> it = context.<span class="hljs-built_in">begin</span>();<br>    <span class="hljs-keyword">if</span> (it == context.<span class="hljs-built_in">end</span>() || *it == <span class="hljs-string">'}'</span>)<br>        <span class="hljs-keyword">return</span> it;<br>    type = *(it++);<br>        <br>    <span class="hljs-keyword">if</span> (type != <span class="hljs-string">'x'</span> &amp;&amp; type != <span class="hljs-string">'s'</span>)<br>      <span class="hljs-keyword">throw</span> std::format_error{<span class="hljs-string">"Unrecognized color format"</span> };<br>    <span class="hljs-keyword">return</span> it;<br>  }<br>  <span class="hljs-function"><span class="hljs-keyword">auto</span> <span class="hljs-title">format</span><span class="hljs-params">(Color color, <span class="hljs-keyword">auto</span>&amp; context)</span></span><br><span class="hljs-function">  </span>{<br>    <span class="hljs-keyword">auto</span> formatByType = [outIt = context.<span class="hljs-built_in">out</span>(), type = type] (std::string_view stringInfo, std::string_view numberInfo) {<br>      <span class="hljs-keyword">return</span> type == <span class="hljs-string">'s'</span> ? std::format_to(outIt， <span class="hljs-string">"{}"</span>, stringInfo) : std::format_to(outIt, <span class="hljs-string">"{}"</span>, numberInfo);<br>    }<br><br>    <span class="hljs-keyword">switch</span> (color) {<br>      <span class="hljs-keyword">using</span> <span class="hljs-keyword">enum</span> <span class="hljs-title class_">Color</span>;<br><br>      <span class="hljs-keyword">case</span> Red:<br>        <span class="hljs-keyword">return</span> formatByType(<span class="hljs-string">"Red"</span>, <span class="hljs-string">"#FF0000"</span>);<br>      <span class="hljs-keyword">case</span> Green:<br>        <span class="hljs-keyword">return</span> formatByType(<span class="hljs-string">"Green"</span>, <span class="hljs-string">"#00FF00"</span>);<br>      <span class="hljs-keyword">case</span> Blue:<br>        <span class="hljs-keyword">return</span> formatByType(<span class="hljs-string">"Blue"</span>, <span class="hljs-string">"#0000FF"</span>);<br>      <span class="hljs-keyword">case</span> White:<br>        <span class="hljs-keyword">return</span> formatByType(<span class="hljs-string">"White"</span>, <span class="hljs-string">"#FFFFFF"</span>);<br>      <span class="hljs-keyword">default</span>:<br>      {<br>        <span class="hljs-keyword">auto</span> outIt = context.<span class="hljs-built_in">out</span>();<br>        <span class="hljs-keyword">if</span> (type == <span class="hljs-string">'s'</span>)<br>          outIt = std::format_to(outIt, <span class="hljs-string">"Unknown color:"</span>);<br>        <span class="hljs-keyword">return</span> std::format_to(outIt, <span class="hljs-string">"#{:0&gt;6x}"</span>), <span class="hljs-keyword">static_cast</span>&lt;std::<span class="hljs-type">underlying_type_t</span>&lt;Color&gt;&gt;(color);<br>      }<br>    }<br>  };<br>}<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li><p>After parsing, we need to utilize saved state to fill in string</p>
+<ul>
+<li>You need <code>auto format(const T&amp;/T, auto &amp;) const {...}</code>, where <code>T</code> is the object type (<code>Color</code> here)</li>
+<li>You can user <code>.out()</code> to get the output iterator, where you need to append new contents; the function should return new iterator</li>
+</ul>
+</li>
+<li><p><i class="fa-solid fa-circle-exclamation" style="color: #FFD43B;"></i> NOTE</p>
+<ul>
+<li>为什么比 <code>printf</code> 要快<ul>
+<li>It tries to parse when compiling, and only fill string in runtime</li>
+<li>C and C functions cannot utilize compile-time evaluation</li>
+</ul>
+</li>
+<li>you can save the context string in the member in parse, and then print it in format to debug, which saves the trouble that you cannot output in parse</li>
+<li>the general parameter is in fact <code>std::basic_format_context&lt;T&gt;/std::basic_format_parse_context&lt;T&gt;</code>, which can also support e.g. <code>std::wstring</code>; if you want that, <code>auto&amp;</code> and <code>const auto&amp;</code> as parameter types are also OK</li>
+<li>it’s also acceptable to inherit or own another <code>std::formatter&lt;T&gt;</code> as member, so that you can utilize its parsing or formatting</li>
+<li>C++23 also adds <code>std::range_formatter&lt;T&gt;</code>, which is used to be inherited by <code>std::formatter&lt;Container&lt;T&gt;&gt;</code> for customizing range of <code>T</code> to output 辅助 <code>range</code> 的格式化</li>
+</ul>
+</li>
+</ul>
+<h2 id="Stream"><a href="#Stream" class="headerlink" title="Stream"></a>Stream</h2><p>Stream is a high-level abstraction of readable/writeable buffer; No matter it’s in fact console, file or memory, users usually don’t need to care about the details, but just see it as a continuous buffer to read/write</p>
+<center>
+    <img src="/2024/06/03/56ae950785e9/io-system.jpeg" srcset="/img/loading.gif" lazyload alt>
+</center>
+
+<ul>
+<li>system call 是非常耗时的</li>
+<li>准备一个缓冲区，将文件中的大部分内容放到缓冲区里，在缓冲区中通过调整指针读取缓冲区的内容</li>
+<li>对于写操作，也需要先准备往缓冲区中写入，再 flush 进磁盘中</li>
+</ul>
+<div class="note note-warning">
+            <p>“Flush to disk” may be not rigorous because it depends on OS; That is, flush in our application level may still be cached in the OS buffer, which needs OS-dependent API to go to disk thoroughly</p><p><strong><code>std::endl</code> v.s. <code>\n</code></strong></p><ul><li><code>std::endl</code> is in fact a special IO manipulator, meaning that “output a newline, and flush the stream” 立即回显到控制台上 </li><li>if you output a <code>\n</code>, file/console may not get it immediately until proper time</li><li> 如果一遍一遍的使用 <code>std::endl</code> 会很慢，推荐使用<code>\n</code>，必要的时候也可以使用<code>std::flush</code></li></ul>
+          </div>
+
+<h3 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h3><center>
+    <img src="/2024/06/03/56ae950785e9/stream-design-overview.jpeg" srcset="/img/loading.gif" lazyload alt>
+</center>
+
+<h3 id="Output-stream"><a href="#Output-stream" class="headerlink" title="Output stream"></a>Output stream</h3><ul>
+<li>Output stream is inherited from <code>std::basic_stream</code></li>
+<li>It’s in fact a template, i.e. <code>&lt;Char, CharTraits = std::char_traits&lt;Char&gt;&gt;</code></li>
+<li>Formatted output: just use <code>&lt;&lt;</code> (sometimes named “insertion operator”), like what you’ve done in <code>std::cout</code><ul>
+<li>Only for raw character (&amp; its array) output; return reference to <code>*this</code></li>
+<li><code>.put(ch)</code> and <code>.write(chArr, len)</code></li>
+<li>For example, <code>.write(fmtStr.data(), fmtStr.size())</code> is same as <code>&lt;&lt; fmtStr</code> with no manipulator</li>
+</ul>
+</li>
+<li>Sometimes, you may want to jump to other positions (as if you move the pointer to some place of the whole buffer) 随机读取或者写入<ul>
+<li>You can use <code>.tellp()</code> and <code>.seekp()</code> to get or set the “put” position</li>
+<li><code>.tellp()</code> returns &amp; <code>.seekp()</code> accepts <code>std::basic_ostream&lt;xx&gt;::pos_type</code>, which can be seen as a signed integer (in fact a class <code>std::streampos</code>)</li>
+<li>Besides, you can use relative position to seek, i.e. by <code>.seekp(off_type off, std::ios_base::seekdir dir)</code></li>
+</ul>
+</li>
+</ul>
+<center>
+    <img src="/2024/06/03/56ae950785e9/output-stream.jpeg" srcset="/img/loading.gif" lazyload alt>
+</center>
+
+<ul>
+<li><code>std::basic_streambuf</code> also handles buffering automatically, so derived class doesn’t need to care “when buffer is full”<ul>
+<li>Usually the derived class has a default memory buffer, while users can use <code>.pubsetbuf()</code> to set it by themselves</li>
+<li>The buffer is abstracted as three components: begin, curr, end</li>
+<li>If you want to adjust <code>pptr</code> manually, you can use <code>.pbump(int off)</code></li>
+</ul>
+</li>
+</ul>
+<center>
+    <img src="/2024/06/03/56ae950785e9/stream-buffer.jpeg" srcset="/img/loading.gif" lazyload alt>
+</center>
+
+<ul>
+<li>The stream buffer can be got by <code>.rdbuf()</code>, which returns <code>std::basic_streambuf*</code><ul>
+<li><code>.pbase()/.pptr()/.epptr()</code>: return <code>begin/cur/end</code> pointer</li>
+<li><code>.setp(pBeg, pEnd)</code>: set the begin/cur/end pointer to <code>pBeg/pBeg/pEnd</code></li>
+<li><code>.pbump(int off)</code>: <code>cur += off</code>; <code>cur</code> can go out of <code>[begin, end)</code></li>
+<li><code>.overflow(int_type ch = Traits::eof())</code>: if <code>ch</code> is <code>eof</code>, then do nothing; otherwise put the <code>ch</code> to the proper position <code>eof</code> – end of file</li>
+<li><code>.xsputn(const Char* arr, std::streamsize cnt)</code>: output a string to the proper position 把一个字符串输出到合适的位置</li>
+</ul>
+</li>
+<li>For both input and output buffer, some protected positioning can be overridden<ul>
+<li><code>.seekoff(off_type off, seekdir, std::ios_base::openmode mode)</code>: seek position by relative offset; the buffer should adjust its pointers to proper position; return the absolute position of type <code>pos_type</code>, or <code>pos_type(-1)</code> if fail 通过相对的位置进行 seek，模式由 <code>mode</code> 决定</li>
+<li><code>.seekpos(pos_type pos, openmode mode)</code>: seek position by absolute offset; the buffer should adjust its pointers to proper position; return the absolute position of type <code>pos_type</code>, or <code>pos_type(-1)</code> if fail</li>
+<li><code>.sync()</code>: write buffer back for output stream and empty the buffer for input stream. Exposed by <code>.pubsync()</code></li>
+<li><code>.setbuf(Char* s, std::streamsize n)</code>: allow to set the underlying buffer manually; you can use it to set a larger buffer. Return <code>this</code>. Exposed by <code>.pubsetbuf()</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="Input-stream"><a href="#Input-stream" class="headerlink" title="Input stream"></a>Input stream</h3><ul>
+<li>Input stream is inherited from <code>std::basic_istream</code></li>
+<li>Formatted input: just use <code>&gt;&gt;</code> (sometimes named “extraction operator”), like what you’ve done in <code>std::cin</code></li>
+<li>Unformatted input: not affected by io manipulator<ul>
+<li><code>.get()</code>, <code>.get(ch)</code> and <code>.read(chArr, len)</code></li>
+<li><code>.get()</code> will return <code>int_type</code>, while <code>.get(Char&amp; c)</code> will save the result into <code>c</code> 接受引用</li>
+<li>For <code>.read(chArr, len)</code>, remaining characters can be less than <code>len</code></li>
+<li>You can you <code>.tellg()</code> and <code>.seekg()</code> to get or set the “get” position</li>
+</ul>
+</li>
+<li>Beyond these, input stream provides more utility functions</li>
+<li>You can you <code>.tellg()</code> and <code>.seekg()</code> to get or set the “get” position</li>
+<li>Beyond these, input stream provides more utility functions<ul>
+<li><code>&gt;&gt; streambuf</code> (only this <code>&gt;&gt;</code> is unformatted) 可以输入到 <code>streambuf</code> 中</li>
+<li><code>.get(Char* buffer, std::streamsize count, delim = Char(‘\n’))</code>: input to the buffer, until <code>delim</code> or character numbers are count 遇到分割符就停止</li>
+<li><code>.getline(Char* buffer, std::streamsize count, delim = Char(‘\n’))</code>: similar to <code>.get</code>, except that it will eat the <code>delim</code> while <code>.get()</code> will keep it in the stream (so that the next time you can still get the <code>delim</code>)</li>
+<li><code>.readsome(Char* buffer, std::streamsize count)</code>: extract at most count characters from buffer in memory (i.e. no need to reload from e.g. file)</li>
+<li><code>.ignore(count = 1, delim = Traits::eof())</code>: eat at most count characters / until reaching <code>delim</code> 忽略一些字符，流会“吞掉”一些字符</li>
+<li><code>.peek()</code>: get the next character without really changing the status of the stream (i.e. next <code>.get()</code> will get the peeked result). Return <code>eof</code> if stream reaches its end “窥视”下一个字符</li>
+<li><code>.unget()</code>: try to put back the last extracted character; <code>.peek()</code> is basically equivalent to <code>.get()</code> + <code>.unget()</code> 把上一个字符放回去</li>
+<li><code>.putback(ch)</code>: try to put an arbitrary character back to the stream</li>
+<li><code>.gcount()</code>: get number of characters got from the last unformatted input functions</li>
+<li><code>.sync()</code>: synchronize the buffer with the underlying sequence; for example, if the file is written, input stream can use this method to reload</li>
+</ul>
+</li>
+</ul>
+<center>
+    <img src="/2024/06/03/56ae950785e9/input-stream.jpg" srcset="/img/loading.gif" lazyload alt>
+</center>
+
+<center>
+    <img src="/2024/06/03/56ae950785e9/input-stream-1.jpg" srcset="/img/loading.gif" lazyload alt>
+</center>
+
+<ul>
+<li><code>.eback()/.gptr()/.egptr()</code>: return <code>begin/cur/end</code> pointer</li>
+<li><code>.setg(gBeg, gCurr, gEnd)</code>: set the <code>begin/cur/end</code> pointer to <code>gBeg/gCurr/gEnd</code></li>
+<li><code>.gbump(int off)</code>: <code>cur += off</code>; <code>cur</code> can go out of <code>[begin, end)</code></li>
+<li><code>.underflow()</code>: return the next character and adjust pointers to the proper position. Return <code>eof</code> if fail</li>
+<li><code>.uflow()</code>: <code>.underflow()</code> and then advance cur by 1</li>
+<li><code>.xsgetn(Char* arr, std::streamsize cnt)</code>: input a string to <code>arr</code> and return the number of characters that are written successfully</li>
+<li><code>.pbackfail(int_type ch = Traits::eof())</code>: this method is called if <code>eback == gptr</code> or <code>gptr == nullptr or *(gptr–1) != ch</code> (i.e. fail to go back); buffer should put the character back (e.g. for file buffer, it may need to reload buffer by going backwards). Return <code>eof</code> if fail</li>
+<li><code>.showmanyc()</code>: abbr. for stream-how-many-character; return estimated remaining number of characters of the underlying sequence (or 0 if not sure; default of base class) <code>.showmanyc</code> – string how many characters<ul>
+<li>If we implement a <code>TCP_streambuf</code> ourselves, and we want to know how many characters can be got from the system buffer immediately. Then you can call system API to know it, and returned by <code>.showmanyc</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="Stream-status"><a href="#Stream-status" class="headerlink" title="Stream status"></a>Stream status</h3><p>Stream buffer 的 API 好多都返回 <code>eof</code> 表示失败，失败的原因各种各样，需要类型去表示失败的原因，即 Stream status. There are three bits for that: <code>eofbit</code>, <code>failbit</code> and <code>badbit</code></p>
+<ul>
+<li><code>std::ios_base::eofbit</code> is commonly used to denote end of stream</li>
+<li><code>std::ios_base::failbit</code>: commonly used when parsing error, e.g. if you <code>cin &gt;&gt; SomeFloat</code> but input a character <code>a</code>; or failing to open/close file</li>
+<li><code>std::ios_base::badbit</code>: some irrecoverable error happens</li>
+<li>You can use <code>.rdstate()</code> to get the state flags, and test it by e.g. <code>s &amp; eofbit</code>, <code>.clear(states = goodbit)</code> to set flags, <code>.setstate(states)</code> to add flags (equivalent to <code>.clear(rdstate() | states)</code>)</li>
+</ul>
+<p>However, it’s usually not convenient to operate on bits, so methods are also provided directly</p>
+<ul>
+<li><code>.good()/operator bool</code>: return whether the stream is good</li>
+<li><code>.eof()</code>: return whether <code>eofbit</code> is set</li>
+<li><code>.fail()</code>: return whether <code>failbit</code> or <code>badbit</code> is set</li>
+<li><code>.bad()</code>: return whether <code>badbit</code> is set</li>
+</ul>
+<p>If you want to throw <code>std::ios_base::failure</code> (derived from <code>std::system_error/runtime_error</code>) when error states occur, you can use <code>.exceptions(states)</code></p>
+<p>When the stream is not good, any input/output will do nothing; so don’t forget to <code>.clear()</code> if you want to continue to use the stream normally</p>
+<h3 id="Bidirectional-stream"><a href="#Bidirectional-stream" class="headerlink" title="Bidirectional stream"></a>Bidirectional stream</h3><p>Streams can also both input and output by <code>std::basic_iostream</code></p>
+<ul>
+<li>It has a single buffer in the <code>streambuf</code>, with two sets of <code>begin/cur/end</code> pointers</li>
+<li>It has all methods from <code>istream</code> and <code>ostream</code>, e.g. <code>.tellg/seekg/tellp/seekp()</code></li>
+<li>Whether they share the same position is determined by the derived class. For example, file stream share while other streams don’t</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">Test</span><span class="hljs-params">(std::iostream&amp; s)</span></span><br><span class="hljs-function"></span>{<br>  <span class="hljs-type">int</span> a;<br>  s &gt;&gt; a;<br>  std::cout &lt;&lt; s.<span class="hljs-built_in">tellg</span>() &lt;&lt; <span class="hljs-string">""</span> &lt;&lt; s.<span class="hljs-built_in">tellp</span>() &lt;&lt; <span class="hljs-string">"\n"</span>;<br>  s &lt;&lt; (a + <span class="hljs-number">1</span>);<br>  std::cout &lt;&lt; s.<span class="hljs-built_in">tellg</span>() &lt;&lt; <span class="hljs-string">" "</span> &lt;&lt; s.<span class="hljs-built_in">tellp</span>() &lt;&lt; <span class="hljs-string">"\n"</span>;<br>  <span class="hljs-keyword">return</span>;<br>}<br><br>std::stringstream s1{<span class="hljs-string">"123 456"</span> };<br>std::fstream s2{<span class="hljs-string">"test.txt"</span> };<br><span class="hljs-built_in">Test</span>(s1);<br><span class="hljs-built_in">Test</span>(s2);<br></code></pre></td></tr></table></figure>
+
+<h3 id="Standard-streams"><a href="#Standard-streams" class="headerlink" title="Standard streams"></a>Standard streams</h3><p>There are three pre-defined standard streams with their buffers, inherited from <code>std::basic_istream/ostream/iostream/streambuf</code></p>
+<ul>
+<li>File stream: <code>std::basic_ifstream/ofstream/fstream</code> with <code>std::basic_filebuf</code> as buffer. They’re defined in <code>&lt;fstream&gt;</code></li>
+<li>String stream: <code>std::basic_istringstream/ostringstream/stringstream</code>, with <code>std::basic_stringbuf</code> as buffer. They’re defined in <code>&lt;sstream&gt;</code></li>
+<li>Span stream (C++23): <code>std::basic_ispanstream/ospanstream/spanstream</code>, with <code>std::basic_spanbuf</code> as buffer. They’re defined in <code>&lt;spanstream&gt;</code></li>
+</ul>
+<blockquote>
+<p>Synchronized output stream: C++20, <code>std::basic_osyncstream</code>, with <code>std::basic_syncbuf</code> as buffer. They’re defined in <code>&lt;syncstream&gt;</code></p>
+</blockquote>
+<h4 id="File-stream"><a href="#File-stream" class="headerlink" title="File stream"></a>File stream</h4><ul>
+<li>Thus, to construct a new file stream, you need a path and open mode 需要一个路径和一个打开方式<ul>
+<li>Open mode is widely used in many languages and platform APIs, e.g. C, Python, Go, etc., with slight difference on name or functionality 打开方式在不同语言不同平台下都差不多<ul>
+<li><code>in</code>: 只读的方式</li>
+<li><code>out</code>: 只写的方式，如果文件不存在就创建；如果文件存在则把整个文件 truncate（从头到尾清空掉）</li>
+<li><code>ate</code>: after opening the file, seek the pointer to the end of file immediately</li>
+<li><code>app</code>: seek the pointer to the end of file every time before writing happens 每次写之前都把指针调到最后，<code>ate</code>不会调整指针</li>
+<li><code>binary</code>: files can be opened in text mode (default) or binary mode<ul>
+<li>For example, in Windows, newline will output <code>\r\n</code> (CRLF) though you only write a <code>\n</code> 在 Windows 上换行是两个字符表示的 <code>\r\n</code>，就算写了<code>\n</code> 也会翻译成 <code>\r\n</code>，在 Linux 上没有这个问题；用<code>binary</code> 就不会出现这种情况</li>
+<li><i class="fa-solid fa-circle-exclamation" style="color: #FF204E;"></i><font color="#FF204E"><strong>ATTENTION</strong></font>: This is the only difference between binary mode and text mode</li>
+<li>In binary mode, you can also use <code>operator&lt;&lt;</code> (e.g. <code>fout &lt;&lt; 1</code>). Parameters are formatted to string and the characters are then written 都会被转换为字符串，然后再写到二进制文件中</li>
+<li>There are many files that should be read as pure byte sequence, like some compressed file, video/image, etc</li>
+<li>Similarly, you can use <code>.read()</code> to read bytes directly</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="Codecvt"><a href="#Codecvt" class="headerlink" title="Codecvt"></a>Codecvt</h4><ul>
+<li>The conversion happens when goes to external device, i.e. the encoding of the memory buffer haven’t changed at all</li>
+<li>Codecvt in file stream is always <code>std::codecvt&lt;CharT, char&gt;</code>, i.e. convert to char when writing</li>
+<li>Notice that MS-STL will cancel codecvt when <code>.pubsetbuf(CharT*, size)</code>, but libc++/libstdc++ won’t</li>
+<li>Binary mode for file stream will still go through codecvt</li>
+</ul>
+<h4 id="String-stream"><a href="#String-stream" class="headerlink" title="String stream"></a>String stream</h4><ul>
+<li>The underlying sequence of the string stream is just memory</li>
+<li>The string stream will reallocate when overflow 扩容和 <code>std::string</code> 机制一样</li>
+</ul>
+<h4 id="Span-stream"><a href="#Span-stream" class="headerlink" title="Span stream"></a>Span stream</h4><ul>
+<li>String stream will always create a new underlying string, span stream not String stream 会拷贝一份传入进来的字串，创建新的字串；Span stream 提供了一个 buffer，写入溢出后就不能再写入了，Span stream 接受的是一个 buffer，自己并不会拥有这块 buffer</li>
+<li>Changes are applied on the buffer directly, without worrying about whether the output exceeds the buffer (just truncates it rather than reallocate)</li>
+<li>Ctor: use a <code>span&lt;CharT&gt;</code> + mode</li>
+<li>Get view: .span(), get <code>span&lt;CharT&gt;</code> (instead of <code>basic_string_view&lt;CharT&gt;</code>!)</li>
+</ul>
+<h4 id="Synchronized-stream"><a href="#Synchronized-stream" class="headerlink" title="Synchronized stream"></a>Synchronized stream</h4><ul>
+<li>If you’ve coded some multi-threading program that uses <code>std::cout</code>, you may find output is messed up…<ul>
+<li>E.g. <code>std::cout &lt;&lt; “a=” &lt;&lt; a &lt;&lt; “c=” &lt;&lt; c;</code> in two threads may have any permutation (e.g. <code>a=a=1c=c=22</code>)</li>
+</ul>
+</li>
+<li>Other streams, like file stream you create, will still cause data race because two threads may operate on file pointer simultaneously. You need to add a lock manually</li>
+<li>You need to create two <code>std::osyncstream</code> and each thread has its own</li>
+</ul>
+<h3 id="IO-manipulator"><a href="#IO-manipulator" class="headerlink" title="IO manipulator"></a>IO manipulator</h3><ul>
+<li>The vexing fact of IO format manipulators is that many of them will keep the manipulation state so that any following output will be affected</li>
+<li>For those three that have multiple options, their default values are left/dec/fixed</li>
+<li>Fill-align-width-type</li>
+<li>Locale-related manipulators</li>
+</ul>
+<h2 id="Regular-expression"><a href="#Regular-expression" class="headerlink" title="Regular expression"></a>Regular expression</h2><h3 id="Regex-syntax"><a href="#Regex-syntax" class="headerlink" title="Regex syntax"></a>Regex syntax</h3><ul>
+<li>For classic regex, it can be converted to a finite automata (FA, 有限自动机), which will be strictly <mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.566ex;" xmlns="http://www.w3.org/2000/svg" width="4.844ex" height="2.262ex" role="img" focusable="false" viewbox="0 -750 2141 1000"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D442" d="M740 435Q740 320 676 213T511 42T304 -22Q207 -22 138 35T51 201Q50 209 50 244Q50 346 98 438T227 601Q351 704 476 704Q514 704 524 703Q621 689 680 617T740 435ZM637 476Q637 565 591 615T476 665Q396 665 322 605Q242 542 200 428T157 216Q157 126 200 73T314 19Q404 19 485 98T608 313Q637 408 637 476Z"/></g><g data-mml-node="mo" transform="translate(763,0)"><path data-c="28" d="M94 250Q94 319 104 381T127 488T164 576T202 643T244 695T277 729T302 750H315H319Q333 750 333 741Q333 738 316 720T275 667T226 581T184 443T167 250T184 58T225 -81T274 -167T316 -220T333 -241Q333 -250 318 -250H315H302L274 -226Q180 -141 137 -14T94 250Z"/></g><g data-mml-node="mi" transform="translate(1152,0)"><path data-c="1D45B" d="M21 287Q22 293 24 303T36 341T56 388T89 425T135 442Q171 442 195 424T225 390T231 369Q231 367 232 367L243 378Q304 442 382 442Q436 442 469 415T503 336T465 179T427 52Q427 26 444 26Q450 26 453 27Q482 32 505 65T540 145Q542 153 560 153Q580 153 580 145Q580 144 576 130Q568 101 554 73T508 17T439 -10Q392 -10 371 17T350 73Q350 92 386 193T423 345Q423 404 379 404H374Q288 404 229 303L222 291L189 157Q156 26 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 112 180T152 343Q153 348 153 366Q153 405 129 405Q91 405 66 305Q60 285 60 284Q58 278 41 278H27Q21 284 21 287Z"/></g><g data-mml-node="mo" transform="translate(1752,0)"><path data-c="29" d="M60 749L64 750Q69 750 74 750H86L114 726Q208 641 251 514T294 250Q294 182 284 119T261 12T224 -76T186 -143T145 -194T113 -227T90 -246Q87 -249 86 -250H74Q66 -250 63 -250T58 -247T55 -238Q56 -237 66 -225Q221 -64 221 250T66 725Q56 737 55 738Q55 746 60 749Z"/></g></g></g></svg></mjx-container><ul>
+<li>编译原理会涉及到一些 classic regex</li>
+<li>KMP is a kind of FA in essence</li>
+</ul>
+</li>
+<li>classic regex 有一些受限<ul>
+<li>Its syntax is restricted, which still can only do simple work 经典的正则表达式可以覆盖大部分的词法分析工作</li>
+<li>The FA may be very huge, and its construction also typically needs <mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.566ex;" xmlns="http://www.w3.org/2000/svg" width="5.494ex" height="2.451ex" role="img" focusable="false" viewbox="0 -833.2 2428.6 1083.2"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D442" d="M740 435Q740 320 676 213T511 42T304 -22Q207 -22 138 35T51 201Q50 209 50 244Q50 346 98 438T227 601Q351 704 476 704Q514 704 524 703Q621 689 680 617T740 435ZM637 476Q637 565 591 615T476 665Q396 665 322 605Q242 542 200 428T157 216Q157 126 200 73T314 19Q404 19 485 98T608 313Q637 408 637 476Z"/></g><g data-mml-node="mo" transform="translate(763,0)"><path data-c="28" d="M94 250Q94 319 104 381T127 488T164 576T202 643T244 695T277 729T302 750H315H319Q333 750 333 741Q333 738 316 720T275 667T226 581T184 443T167 250T184 58T225 -81T274 -167T316 -220T333 -241Q333 -250 318 -250H315H302L274 -226Q180 -141 137 -14T94 250Z"/></g><g data-mml-node="msup" transform="translate(1152,0)"><g data-mml-node="mi"><path data-c="1D45F" d="M21 287Q22 290 23 295T28 317T38 348T53 381T73 411T99 433T132 442Q161 442 183 430T214 408T225 388Q227 382 228 382T236 389Q284 441 347 441H350Q398 441 422 400Q430 381 430 363Q430 333 417 315T391 292T366 288Q346 288 334 299T322 328Q322 376 378 392Q356 405 342 405Q286 405 239 331Q229 315 224 298T190 165Q156 25 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 114 189T154 366Q154 405 128 405Q107 405 92 377T68 316T57 280Q55 278 41 278H27Q21 284 21 287Z"/></g><g data-mml-node="mn" transform="translate(484,363) scale(0.707)"><path data-c="33" d="M127 463Q100 463 85 480T69 524Q69 579 117 622T233 665Q268 665 277 664Q351 652 390 611T430 522Q430 470 396 421T302 350L299 348Q299 347 308 345T337 336T375 315Q457 262 457 175Q457 96 395 37T238 -22Q158 -22 100 21T42 130Q42 158 60 175T105 193Q133 193 151 175T169 130Q169 119 166 110T159 94T148 82T136 74T126 70T118 67L114 66Q165 21 238 21Q293 21 321 74Q338 107 338 175V195Q338 290 274 322Q259 328 213 329L171 330L168 332Q166 335 166 348Q166 366 174 366Q202 366 232 371Q266 376 294 413T322 525V533Q322 590 287 612Q265 626 240 626Q208 626 181 615T143 592T132 580H135Q138 579 143 578T153 573T165 566T175 555T183 540T186 520Q186 498 172 481T127 463Z"/></g></g><g data-mml-node="mo" transform="translate(2039.6,0)"><path data-c="29" d="M60 749L64 750Q69 750 74 750H86L114 726Q208 641 251 514T294 250Q294 182 284 119T261 12T224 -76T186 -143T145 -194T113 -227T90 -246Q87 -249 86 -250H74Q66 -250 63 -250T58 -247T55 -238Q56 -237 66 -225Q221 -64 221 250T66 725Q56 737 55 738Q55 746 60 749Z"/></g></g></g></svg></mjx-container> (and worst <mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.566ex;" xmlns="http://www.w3.org/2000/svg" width="7.535ex" height="2.452ex" role="img" focusable="false" viewbox="0 -833.9 3330.5 1083.9"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D442" d="M740 435Q740 320 676 213T511 42T304 -22Q207 -22 138 35T51 201Q50 209 50 244Q50 346 98 438T227 601Q351 704 476 704Q514 704 524 703Q621 689 680 617T740 435ZM637 476Q637 565 591 615T476 665Q396 665 322 605Q242 542 200 428T157 216Q157 126 200 73T314 19Q404 19 485 98T608 313Q637 408 637 476Z"/></g><g data-mml-node="mo" transform="translate(763,0)"><path data-c="28" d="M94 250Q94 319 104 381T127 488T164 576T202 643T244 695T277 729T302 750H315H319Q333 750 333 741Q333 738 316 720T275 667T226 581T184 443T167 250T184 58T225 -81T274 -167T316 -220T333 -241Q333 -250 318 -250H315H302L274 -226Q180 -141 137 -14T94 250Z"/></g><g data-mml-node="msup" transform="translate(1152,0)"><g data-mml-node="mi"><path data-c="1D45F" d="M21 287Q22 290 23 295T28 317T38 348T53 381T73 411T99 433T132 442Q161 442 183 430T214 408T225 388Q227 382 228 382T236 389Q284 441 347 441H350Q398 441 422 400Q430 381 430 363Q430 333 417 315T391 292T366 288Q346 288 334 299T322 328Q322 376 378 392Q356 405 342 405Q286 405 239 331Q229 315 224 298T190 165Q156 25 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 114 189T154 366Q154 405 128 405Q107 405 92 377T68 316T57 280Q55 278 41 278H27Q21 284 21 287Z"/></g><g data-mml-node="mn" transform="translate(484,363) scale(0.707)"><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"/></g></g><g data-mml-node="msup" transform="translate(2039.6,0)"><g data-mml-node="mn"><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"/></g><g data-mml-node="mi" transform="translate(533,363) scale(0.707)"><path data-c="1D45F" d="M21 287Q22 290 23 295T28 317T38 348T53 381T73 411T99 433T132 442Q161 442 183 430T214 408T225 388Q227 382 228 382T236 389Q284 441 347 441H350Q398 441 422 400Q430 381 430 363Q430 333 417 315T391 292T366 288Q346 288 334 299T322 328Q322 376 378 392Q356 405 342 405Q286 405 239 331Q229 315 224 298T190 165Q156 25 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 114 189T154 366Q154 405 128 405Q107 405 92 377T68 316T57 280Q55 278 41 278H27Q21 284 21 287Z"/></g></g><g data-mml-node="mo" transform="translate(2941.5,0)"><path data-c="29" d="M60 749L64 750Q69 750 74 750H86L114 726Q208 641 251 514T294 250Q294 182 284 119T261 12T224 -76T186 -143T145 -194T113 -227T90 -246Q87 -249 86 -250H74Q66 -250 63 -250T58 -247T55 -238Q56 -237 66 -225Q221 -64 221 250T66 725Q56 737 55 738Q55 746 60 749Z"/></g></g></g></svg></mjx-container>, where <mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.025ex;" xmlns="http://www.w3.org/2000/svg" width="1.02ex" height="1.025ex" role="img" focusable="false" viewbox="0 -442 451 453"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D45F" d="M21 287Q22 290 23 295T28 317T38 348T53 381T73 411T99 433T132 442Q161 442 183 430T214 408T225 388Q227 382 228 382T236 389Q284 441 347 441H350Q398 441 422 400Q430 381 430 363Q430 333 417 315T391 292T366 288Q346 288 334 299T322 328Q322 376 378 392Q356 405 342 405Q286 405 239 331Q229 315 224 298T190 165Q156 25 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 114 189T154 366Q154 405 128 405Q107 405 92 377T68 316T57 280Q55 278 41 278H27Q21 284 21 287Z"/></g></g></g></svg></mjx-container> is length of regex), which consumes a lot of space and time too 构建有限自动机的时间复杂度就会很高了</li>
+</ul>
+</li>
+<li>Backtracking 基于回溯的正则表达式引擎<ul>
+<li>its time complexity can be as bad as <mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.566ex;" xmlns="http://www.w3.org/2000/svg" width="5.765ex" height="2.262ex" role="img" focusable="false" viewbox="0 -750 2548.3 1000"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D442" d="M740 435Q740 320 676 213T511 42T304 -22Q207 -22 138 35T51 201Q50 209 50 244Q50 346 98 438T227 601Q351 704 476 704Q514 704 524 703Q621 689 680 617T740 435ZM637 476Q637 565 591 615T476 665Q396 665 322 605Q242 542 200 428T157 216Q157 126 200 73T314 19Q404 19 485 98T608 313Q637 408 637 476Z"/></g><g data-mml-node="mo" transform="translate(763,0)"><path data-c="28" d="M94 250Q94 319 104 381T127 488T164 576T202 643T244 695T277 729T302 750H315H319Q333 750 333 741Q333 738 316 720T275 667T226 581T184 443T167 250T184 58T225 -81T274 -167T316 -220T333 -241Q333 -250 318 -250H315H302L274 -226Q180 -141 137 -14T94 250Z"/></g><g data-mml-node="msup" transform="translate(1152,0)"><g data-mml-node="mn"><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"/></g><g data-mml-node="mi" transform="translate(533,363) scale(0.707)"><path data-c="1D45B" d="M21 287Q22 293 24 303T36 341T56 388T89 425T135 442Q171 442 195 424T225 390T231 369Q231 367 232 367L243 378Q304 442 382 442Q436 442 469 415T503 336T465 179T427 52Q427 26 444 26Q450 26 453 27Q482 32 505 65T540 145Q542 153 560 153Q580 153 580 145Q580 144 576 130Q568 101 554 73T508 17T439 -10Q392 -10 371 17T350 73Q350 92 386 193T423 345Q423 404 379 404H374Q288 404 229 303L222 291L189 157Q156 26 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 112 180T152 343Q153 348 153 366Q153 405 129 405Q91 405 66 305Q60 285 60 284Q58 278 41 278H27Q21 284 21 287Z"/></g></g><g data-mml-node="mo" transform="translate(2159.3,0)"><path data-c="29" d="M60 749L64 750Q69 750 74 750H86L114 726Q208 641 251 514T294 250Q294 182 284 119T261 12T224 -76T186 -143T145 -194T113 -227T90 -246Q87 -249 86 -250H74Q66 -250 63 -250T58 -247T55 -238Q56 -237 66 -225Q221 -64 221 250T66 725Q56 737 55 738Q55 746 60 749Z"/></g></g></g></svg></mjx-container> (or even higher, even never ends!)</li>
+</ul>
+</li>
+</ul>
+<h4 id="Regex"><a href="#Regex" class="headerlink" title="Regex"></a>Regex</h4><ul>
+<li>Classic regex has these syntax<ul>
+<li>Alternative (or): <code>|</code>; for example, <code>a | b</code> will match both <code>a</code> and <code>b</code></li>
+<li>Concatenate: e.g. <code>a</code> will match <code>a</code>, <code>b</code> will match <code>b</code> → <code>ab</code> will match <code>ab</code></li>
+<li>Kleene closure: <code>*</code>, which means match more than zero times, e.g. <code>a*</code>will match <mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.025ex;" xmlns="http://www.w3.org/2000/svg" width="0.919ex" height="1ex" role="img" focusable="false" viewbox="0 -431 406 442"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D716" d="M227 -11Q149 -11 95 41T40 174Q40 262 87 322Q121 367 173 396T287 430Q289 431 329 431H367Q382 426 382 411Q382 385 341 385H325H312Q191 385 154 277L150 265H327Q340 256 340 246Q340 228 320 219H138V217Q128 187 128 143Q128 77 160 52T231 26Q258 26 284 36T326 57T343 68Q350 68 354 58T358 39Q358 36 357 35Q354 31 337 21T289 0T227 -11Z"/></g></g></g></svg></mjx-container> (i.e. nothing), <code>a</code>, <code>aa</code>, <code>,aaa</code>, …</li>
+<li>Precedence of these three operators are <code>*</code> &gt; concatenate &gt; <code>|</code>, e.g. <code>ab*</code> means e.g. <code>abbbbb…</code></li>
+<li>Combine: <code>()</code>, which will raise the precedence of some group, e.g. <code>(ab)*</code></li>
+</ul>
+</li>
+<li>There are some syntax sugar for it<ul>
+<li>Positive closure: <code>+</code>, which match more than one times</li>
+<li>Zero or one: <code>?</code>, which match zero or one time</li>
+<li>Multiple: <code>a{1,3}</code> will match 1 to 3 times; <code>a{3,}</code> will match at least 3 times</li>
+<li>Character class: <code>[atyz]</code> means <code>a|t|y|z</code>; <code>[^atyz]</code> means all characters except for <code>a|t|y|z</code>; <code>[a-z]</code> can represent <code>a|b|…|z</code></li>
+</ul>
+</li>
+<li>Beyond these extensions, there are some pre-defined regular definitions<ul>
+<li><code>\d</code>: all digits, equivalent to <code>[0-9]</code></li>
+<li><code>\w</code>: all English letters, digits and underscore, i.e. <code>[a-zA-Z0-9_]</code></li>
+<li><code>\s</code>: all blank letters, i.e. whitespace, tab and <code>\n</code></li>
+<li><code>\D</code>, <code>\W</code>, <code>\S</code>: <code>[^0-9]</code>, <code>[^a-zA-Z0-9_]</code>, all non-blank letters</li>
+<li><code>.</code>(yes, a dot): any character</li>
+</ul>
+</li>
+</ul>
+<div class="note note-warning">
+            <p>Of course, you need escaped <code>\</code> to express the original one; considering that C-string needs escaped themselves, you need <code>\\\\</code> is actually <code>\\</code>, which express <code>\</code> in regex</p><ul><li>Thus, raw string is extremely important for regex; you need <code>R"(\\)"</code> for that</li><li>Particularly, slash needs escape too, i.e. you need <code>R"(\/)"</code></li><li>For non-printable values, octal form <code>\0</code> and hexa form <code>\x…</code> can be used</li></ul>
+          </div>
+
+<ul>
+<li>Backtracking regex distorts the original semantic meaning of classic regex<ul>
+<li>It will not create a FA (thus space consumption and preparation time may be less), so new rules are needed to regulate how to match 基于回溯的正则表达式并不会创建一个有限自动机</li>
+<li>It introduces “greedy match” and “lazy match” 贪婪和懒惰<ul>
+<li>That is, <code>*</code>, <code>+</code>, <code>?</code> will first try to match as much as it can, and <code>*?</code>, <code>+?</code>, <code>??</code> will first try to match as little as it can 基于有限状态机的正则表达式匹配，尽可能的匹配一直到不能匹配为止</li>
+<li>For example, <code>a+.+</code> to match <code>aaa,</code> then <code>a+</code> matches all things and <code>.+</code> matches nothing 后面的 <code>.+</code> 就不匹配了</li>
+<li>And for <code>a+?.+</code> to match <code>aaa</code>, then<code>a+?</code> matches only a single <code>a</code> and <code>.+</code> matches <code>aa</code></li>
+</ul>
+</li>
+<li>If the choice doesn’t successfully match, it will go back to the last successful state and try another option (same as DFS) 一种状态下并没有成功匹配，回退到上一个成功的状态，类似 DFS，本质上就是深度有限搜索的过程</li>
+</ul>
+</li>
+<li>It also extends the functionality of regex<ul>
+<li>Anchors 三种锚点<ul>
+<li><code>^</code> means matched string must at the beginning 从头开始匹配</li>
+<li><code>$</code> means it must go until the end 必须匹配到最后</li>
+<li><code>\b</code> means ending at word boundary (i.e. the next character after the matched string shouldn’t be <code>\w</code>), and <code>\B</code> conversely 必须在单词边界停止</li>
+</ul>
+</li>
+<li>Capture: <code>()</code> is additionally used to capture matched part, and you can get these capture afterwards 而外的匹配其中的一部分<ul>
+<li>id is determined by the order of left brace</li>
+<li>The whole matched string is also usually seen as capture 0</li>
+<li>If you don’t want to capture (which will boost performance), use <code>(?:)</code> instead</li>
+</ul>
+</li>
+<li>Back reference (not supported by Re2): utilize the captured group in the regex by <code>\id</code>; e.g. <code>(a+)b\1</code> will match ``aabaa<code>in aabaaa</code>, because aa is captured and <code>\1</code> refers to the same thing as it</li>
+<li>Look-ahead and look-behind 先行断言和后行断言，统称零宽断言</li>
+</ul>
+</li>
+</ul>
+<h3 id="C-support-for-Regex"><a href="#C-support-for-Regex" class="headerlink" title="C++ support for Regex"></a>C++ support for Regex</h3><p>There are three operations for regex</p>
+<ul>
+<li>Match: match the whole string</li>
+<li>Search: find matched substring</li>
+<li>Replace: replace the matched string with another string</li>
+</ul>
+<div class="note note-danger">
+            <p>C++ standard library on regex has a tragic performance (even much slower than Python), and doesn’t support Unicode regex</p>
+          </div>
+
+<p>There are some fast alternative solutions</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.boost.org/doc/libs/1_83_0/libs/regex/doc/html/index.html">Boost.Regex</a>, also supports Unicode regex</li>
+<li><a target="_blank" rel="noopener" href="https://github.com/hanickadot/compile-time-regular-expressions">CTRE</a> (compile-time regex), which compiles the regex pattern in C++ compilation time and optimizes the matching procedures<ul>
+<li>如果匹配的字串非常长，编译的时间也会变长</li>
+<li>由于是编译期间确定，所以传入进去的字符串必须是编译期间能确定的</li>
+<li>不支持 replace</li>
+</ul>
+</li>
+<li><a target="_blank" rel="noopener" href="https://github.com/google/re2/wiki/CplusplusAPI">RE2</a> by Google, guarantees linear complexity 保证线性时间复杂度，但是不能支持一些复杂度的匹配</li>
+<li><a target="_blank" rel="noopener" href="https://github.com/intel/hyperscan">Hyperscan</a> by Intel (only usable on x86/x86-64 Intel platform)</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="left"></th>
+<th align="left">CTRE</th>
+<th align="left">RE2</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">Parameter</td>
+<td align="left">CTRE returns matched result by a <code>struct</code></td>
+<td align="left">while RE2 by passing pointers</td>
+</tr>
+<tr>
+<td align="left">Matching</td>
+<td align="left"><code>ctre::match&lt;regex&gt;(str)</code></td>
+<td align="left"><code>bool re2::RE2::FullMatch(str, regex, manyCapturesAddress…)</code></td>
+</tr>
+<tr>
+<td align="left">Search</td>
+<td align="left"><code>ctre::search&lt;regex&gt;(str)</code></td>
+<td align="left"><code>bool re2::RE2::PartialMatch(str, regex, manyCapturesAddress…)</code></td>
+</tr>
+<tr>
+<td align="left">Replace</td>
+<td align="left"><i class="fa-solid fa-xmark" style="color: #ff204e;"></i></td>
+<td align="left"><code>bool re2::RE2::Replace(std::string*, regex, replaceStr)</code>/<code>re2::RE2::GlobalReplace(std::string*, regex, replaceStr)</code></td>
+</tr>
+</tbody></table>
+<h2 id="Move-Semantics-Basics"><a href="#Move-Semantics-Basics" class="headerlink" title="Move Semantics Basics"></a>Move Semantics Basics</h2><h3 id="Move-Ctor-amp-Assignment"><a href="#Move-Ctor-amp-Assignment" class="headerlink" title="Move Ctor & Assignment"></a>Move Ctor &amp; Assignment</h3><ul>
+<li>Move Ctor: just steal resource<ul>
+<li>Utilize <code>std::exchange(x, y)</code>: assign <code>y</code> to <code>x</code> and return the original <code>x</code></li>
+</ul>
+</li>
+<li>Move Assignment: stealing the resource &amp; release self resource</li>
+<li>rvalues:<ul>
+<li>Temporaries, like return value of the function 临时值</li>
+<li>Those <strong>labeled</strong> with <code>std::move</code> 被 <code>std::move</code> 标记的值</li>
+</ul>
+</li>
+<li>In <code>Func(std::string&amp;&amp; s)</code>, is <code>s</code> is rvalue?<ul>
+<li>变量 <code>s</code> 并不是右值</li>
+<li>It just refers to a rvalue from caller, but in the callee it already becomes lvalue 本身不是右值</li>
+<li>“rvalue reference is not necessarily rvalue” 右值引用不必时右值</li>
+</ul>
+</li>
+<li>In facet, this can be generated automatically by compilers （移动）复制和（移动）赋值构造函数是有编译器自动完成的，而且都是逐成员的实现<ul>
+<li>Implicit copy ctor -&gt; member-wise copy ctor</li>
+<li>Implicit copy assignment -&gt; member-wise copy assignment</li>
+<li>Implicit move ctor -&gt; member-wise move ctor</li>
+<li>Implicit move assignment -&gt; member-wise move assigment</li>
+</ul>
+</li>
+<li>Why is it <code>std::string&amp;&amp;</code> instead of <code>const std::string&amp;&amp;</code>?<ul>
+<li>在拷贝的时候是不希望传入进来的对象会有任何改变</li>
+<li>但是当需要移动的时候，调用移动构造函数的调用者本身就知道需要改变传入进来对象的状态（所有权），并不能有 <code>const</code>，所以<code>const std::string&amp;&amp;</code> 几乎没有任何用处</li>
+</ul>
+</li>
+<li>Is self-move legal? 自移动是否是合法的，取决于自己的实现，标准库中都是合法的</li>
+<li>How to define move ctor &amp; assignment for inheritance?<ul>
+<li>和调用父类拷贝 / 赋值构造函数类似</li>
+<li>需要额外添加 <code>std::move</code> 的标记，继续保持右值的属性</li>
+</ul>
+</li>
+<li>Should move ctor &amp; assignment throw exceptions?<ul>
+<li>移动的 <code>noexcept</code> 是非常重要的，确保资源因为抛出异常，需要做回滚，导致不会触发移动构造的效果</li>
+<li>只有当明确知道会抛出异常不加 <code>noexcept</code> 关键字，否则一定要写上，这样才会对性能有明显提升</li>
+<li>Conclusion: move ctor/assignment should almost always be <code>noexcept</code></li>
 </ul>
 </li>
 </ul>
@@ -3225,7 +3644,7 @@ mjx-container[display="true"] + br {
     
       <div class="col-lg-7 mx-auto nopadding-x-md">
         <div class="container custom mx-auto">
-          <link rel="stylesheet" href="//at.alicdn.com/t/c/font_4625503_8j4kic2ox3k.css"> <script src="https://kit.fontawesome.com/8e800a3a44.js" crossorigin="anonymous"></script> <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script> <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script> <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.13.3/jquery-ui.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script> <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script> <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.8/umd/popper.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script> <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.11/clipboard.min.js" crossorigin="anonymous" referrerpolicy="no-referrer">
+          <link rel="stylesheet" href="//at.alicdn.com/t/c/font_4625503_510r6zojz9c.css"> <script src="https://kit.fontawesome.com/8e800a3a44.js" crossorigin="anonymous"></script> <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script> <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script> <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.13.3/jquery-ui.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script> <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script> <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.8/umd/popper.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script> <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.11/clipboard.min.js" crossorigin="anonymous" referrerpolicy="no-referrer">
         </div>
       </div>
     
